@@ -11,7 +11,6 @@ public class CharacterScript : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         playerControls = new PlayerControls();
         playerControls.Gameplay.Move.performed += ctx => movement = ctx.ReadValue<Vector2>(); //lamda expression to preform function
-        playerControls.Gameplay.Move.canceled += ctx => rb.velocity = Vector3.zero;
     }
     private void Update()
     {

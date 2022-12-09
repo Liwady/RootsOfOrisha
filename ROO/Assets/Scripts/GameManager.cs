@@ -1,18 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public int amountOfFruit;
+    public TMP_Text fruitText;
 
-    // Update is called once per frame
-    void Update()
+    private void Awake()
     {
-        
+        amountOfFruit = 0;
     }
+    
 }
