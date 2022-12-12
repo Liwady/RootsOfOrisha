@@ -8,8 +8,7 @@ public class GameManager : MonoBehaviour
     public TMP_Text abilityText;
     public GameObject character1;
     public GameObject character2;
-    public GameObject checkerTall;
-    public GameObject checkerSmall;
+    public GameObject rope;
     private int currentChar;
     public int currentAbility;
     public bool abilityActive;
@@ -19,7 +18,8 @@ public class GameManager : MonoBehaviour
         currentChar = 0;
         abilityActive = false;
         currentAbility = 1;
-        abilityText.text=currentAbility.ToString();
+        abilityText.text = currentAbility.ToString();
+        SpawnRope();
     }
     public void SwitchCharacter()
     {
@@ -35,5 +35,10 @@ public class GameManager : MonoBehaviour
             character1.GetComponent<CharacterScript>().enabled = true;
             currentChar = 0;
         }
+    }
+    private void SpawnRope()
+    {
+        GameObject ropeSpawn = Instantiate(rope, transform);
+        ropeSpawn.transform.localPosition = character1.transform.position;
     }
 }
