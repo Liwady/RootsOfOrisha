@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 1942274932113018979}
   - component: {fileID: 7677453143143640685}
   - component: {fileID: 5242765004944909965}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: fieldborderDownX
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -106,9 +106,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 586524150066697944}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LevelField
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -144,9 +144,9 @@ GameObject:
   - component: {fileID: 4943707400013924187}
   - component: {fileID: 2759081104502259129}
   - component: {fileID: 7838407908003736234}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: fieldborderUpX
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -241,9 +241,9 @@ GameObject:
   - component: {fileID: 1060454183297173318}
   - component: {fileID: 4401784240197647122}
   - component: {fileID: 7749904916410032181}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: fieldborderRightY
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -338,9 +338,9 @@ GameObject:
   - component: {fileID: 1733125915959101512}
   - component: {fileID: 566335681237522574}
   - component: {fileID: 6724730065130545143}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: fieldborderLeftY
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

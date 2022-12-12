@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     public TMP_Text abilityText;
     public GameObject character1;
     public GameObject character2;
+    public GameObject checkerTall;
+    public GameObject checkerSmall;
     private int currentChar;
     public int currentAbility;
     public bool abilityActive;
@@ -34,5 +36,4 @@ public class GameManager : MonoBehaviour
             currentChar = 0;
         }
     }
-
 }
