@@ -506,9 +506,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1863499097}
     m_Modifications:
+    - target: {fileID: 40666386576463988, guid: 60e68fdf569e72a4d854d3c928a9a838, type: 3}
+      propertyPath: m_Mass
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 40666386576463988, guid: 60e68fdf569e72a4d854d3c928a9a838, type: 3}
+      propertyPath: m_Constraints
+      value: 120
+      objectReference: {fileID: 0}
     - target: {fileID: 2421599816767966083, guid: 60e68fdf569e72a4d854d3c928a9a838, type: 3}
       propertyPath: m_Name
       value: Char2Tall
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000141624524903997, guid: 60e68fdf569e72a4d854d3c928a9a838, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5239857158213282281, guid: 60e68fdf569e72a4d854d3c928a9a838, type: 3}
       propertyPath: m_RootOrder
@@ -516,7 +528,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5239857158213282281, guid: 60e68fdf569e72a4d854d3c928a9a838, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -47.5
+      value: -47.53
       objectReference: {fileID: 0}
     - target: {fileID: 5239857158213282281, guid: 60e68fdf569e72a4d854d3c928a9a838, type: 3}
       propertyPath: m_LocalPosition.y
@@ -554,7 +566,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 60e68fdf569e72a4d854d3c928a9a838, type: 3}
 --- !u!4 &767489333 stripped
 Transform:
@@ -577,13 +590,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Char1Short
       objectReference: {fileID: 0}
+    - target: {fileID: 2955080951917956999, guid: 1cea4c96de011a54c81e1128441a83ea, type: 3}
+      propertyPath: m_Mass
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2955080951917956999, guid: 1cea4c96de011a54c81e1128441a83ea, type: 3}
+      propertyPath: m_Constraints
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 5383764782412386704, guid: 1cea4c96de011a54c81e1128441a83ea, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6832207856262785527, guid: 1cea4c96de011a54c81e1128441a83ea, type: 3}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6832207856262785527, guid: 1cea4c96de011a54c81e1128441a83ea, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -47.51
+      value: -47.52
       objectReference: {fileID: 0}
     - target: {fileID: 6832207856262785527, guid: 1cea4c96de011a54c81e1128441a83ea, type: 3}
       propertyPath: m_LocalPosition.y
@@ -621,7 +646,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 1cea4c96de011a54c81e1128441a83ea, type: 3}
 --- !u!4 &874798503 stripped
 Transform:
@@ -882,7 +908,6 @@ MonoBehaviour:
   abilityText: {fileID: 1891159129}
   character1: {fileID: 546767559}
   character2: {fileID: 852127848}
-  rope: {fileID: 2980705762583341089, guid: 1042f1d84bfd1c94ba73d130868156f8, type: 3}
   currentAbility: 0
   abilityActive: 0
 --- !u!4 &1166486979

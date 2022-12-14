@@ -10,6 +10,8 @@ public class CharacterScript : MonoBehaviour
     private GameManager gameManager;
     private CheckerScript checker;
 
+
+
     void Awake()
     {
         canResize = true;
@@ -46,31 +48,33 @@ public class CharacterScript : MonoBehaviour
             //ability 2: size
             case 1:
 
-                    if (canResize)
+                if (canResize)
+                {
+                    if (gameManager.abilityActive)
                     {
-                        if (gameManager.abilityActive)
-                        {
-                            gameManager.character1.transform.localScale = new Vector3(0.9f, 0.4f, 1);
-                            gameManager.character2.transform.localScale = new Vector3(0.8f, 1.8f, 1);
-                            gameManager.abilityActive = false;
-                        }
-                        else if(checker.checkIfColliderEmpty())
-                        {
-                            if (gameObject == gameManager.character1)
-                            {
-                                gameManager.character1.transform.localScale = new Vector3(gameManager.character1.transform.localScale.x * 2, gameManager.character1.transform.localScale.y * 2, 1);
-                                gameManager.character2.transform.localScale = new Vector3(gameManager.character2.transform.localScale.x / 2, gameManager.character2.transform.localScale.y / 2, 1);
-                            }
-                            else
-                            {
-                                gameManager.character2.transform.localScale = new Vector3(gameManager.character2.transform.localScale.x * 2, gameManager.character2.transform.localScale.y * 2, 1);
-                                gameManager.character1.transform.localScale = new Vector3(gameManager.character1.transform.localScale.x / 2, gameManager.character1.transform.localScale.y / 2, 1);
-                                gameManager.character2.transform.position = new Vector3(gameManager.character2.transform.position.x, gameManager.character2.transform.position.y + 3, gameManager.character2.transform.position.z);
-                            }
-                            gameManager.abilityActive = true;
-                        }
+                        gameManager.character1.transform.localScale = new Vector3(0.9f, 0.4f, 1);
+                        gameManager.character2.transform.localScale = new Vector3(0.8f, 1.8f, 1);
+                        gameManager.character2.transform.position = new Vector3(gameManager.character2.transform.position.x, gameManager.character2.transform.position.y + 2, gameManager.character2.transform.position.z);
+
+                        gameManager.abilityActive = false;
                     }
-                
+                    else if (checker.checkIfColliderEmpty())
+                    {
+                        if (gameObject == gameManager.character1)
+                        {
+                            gameManager.character1.transform.localScale = gameManager.character1.transform.localScale * 2;
+                            gameManager.character2.transform.localScale = gameManager.character2.transform.localScale / 2;
+                        }
+                        else
+                        {
+                            gameManager.character2.transform.localScale = gameManager.character2.transform.localScale * 2;
+                            gameManager.character1.transform.localScale = gameManager.character1.transform.localScale / 2;
+                            gameManager.character2.transform.position = new Vector3(gameManager.character2.transform.position.x, gameManager.character2.transform.position.y + 3, gameManager.character2.transform.position.z);
+                        }
+                        gameManager.abilityActive = true;
+                    }
+                }
+
                 break;
             //ability 3: combine
             case 2:

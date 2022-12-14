@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 7607003189326131707}
   - component: {fileID: 40666386576463988}
   - component: {fileID: 3434593180138826828}
-  - component: {fileID: 1711401410000037470}
   m_Layer: 0
   m_Name: Char2Tall
   m_TagString: 2
@@ -133,42 +132,6 @@ MonoBehaviour:
   movementSpeed: 5
   canResize: 0
   rb: {fileID: 40666386576463988}
---- !u!59 &1711401410000037470
-HingeJoint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2421599816767966083}
-  m_ConnectedBody: {fileID: 0}
-  m_ConnectedArticulationBody: {fileID: 0}
-  m_Anchor: {x: 0, y: 1, z: 0}
-  m_Axis: {x: 1, y: 0, z: 0}
-  m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
-  m_UseSpring: 0
-  m_Spring:
-    spring: 0
-    damper: 0
-    targetPosition: 0
-  m_UseMotor: 0
-  m_Motor:
-    targetVelocity: 0
-    force: 0
-    freeSpin: 0
-  m_UseLimits: 0
-  m_Limits:
-    min: 0
-    max: 0
-    bounciness: 0
-    bounceMinVelocity: 0.2
-    contactDistance: 0
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_EnableCollision: 0
-  m_EnablePreprocessing: 1
-  m_MassScale: 1
-  m_ConnectedMassScale: 1
 --- !u!1 &7212308615090373227
 GameObject:
   m_ObjectHideFlags: 0
