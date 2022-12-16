@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CharacterScript : MonoBehaviour
@@ -9,11 +10,28 @@ public class CharacterScript : MonoBehaviour
     private PlayerControls playerControls;
     private GameManager gameManager;
     private CheckerScript checker;
+    private bool dead, canPressButton, canMoveObject;
+    WaterState statusW;
+    QuickSandState statusQ;
 
-
-
+    private enum WaterState
+    { 
+        CanWalk,
+        Sink,
+        Die
+    }
+    private enum QuickSandState
+    {
+        CanWalk,
+        Sink,
+        Stuck,
+        Die
+    }
+   
     void Awake()
     {
+        statusW = WaterState.CanWalk;
+        statusQ = QuickSandState.CanWalk;
         canResize = true;
         checker = GetComponentInChildren<CheckerScript>();
         gameManager = FindObjectOfType<GameManager>();
