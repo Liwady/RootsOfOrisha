@@ -38,6 +38,13 @@ public class GameManager : MonoBehaviour
             currentChar = character1.GetComponent<CharacterScript>();
         }
     }
+
+    public void ToggleLever()
+    {
+        Debug.Log("e");
+        Debug.Log(currentChar.inRangeLever);
+        currentChar.inRangeLever.toggleLever();
+    }
     public void TriggerAbility()
     {
         currentChar.canMove = true;

@@ -15,7 +15,7 @@ public class CharacterScript : MonoBehaviour
     public int size;
     public int weight;
     WaterState statusW;
-
+    public lever inRangeLever;
     private enum WaterState
     {
         CanWalk,
@@ -36,6 +36,7 @@ public class CharacterScript : MonoBehaviour
         playerControls.Gameplay.SwitchCharacter.performed += ctx => gameManager.SwitchCharacter();
         playerControls.Gameplay.SwitchAbility.performed += ctx => gameManager.SwitchAbility();
         playerControls.Gameplay.TriggerAbility.performed += ctx => gameManager.TriggerAbility();
+        playerControls.Gameplay.ToggleButton.performed += ctx => gameManager.ToggleLever();
     }
     private void Update()
     { 
