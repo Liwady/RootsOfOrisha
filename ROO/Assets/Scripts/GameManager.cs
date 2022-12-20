@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
         amountOfFruit = 0;
         currentChar = character1;
         abilityActive = false;
-        currentAbility = 1;
+        currentAbility = 0;
         abilityText.text = currentAbility.ToString();
     }
     public void SwitchCharacter()

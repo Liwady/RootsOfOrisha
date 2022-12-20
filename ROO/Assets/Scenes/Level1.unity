@@ -158,7 +158,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -440, y: 224}
+  m_AnchoredPosition: {x: -25.3, y: 139.8}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &155479097
@@ -505,6 +505,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character1Short
       objectReference: {fileID: 0}
+    - target: {fileID: 3905024070069288414, guid: 1cea4c96de011a54c81e1128441a83ea, type: 3}
+      propertyPath: canResize
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6832207856262785527, guid: 1cea4c96de011a54c81e1128441a83ea, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -803,8 +807,8 @@ MonoBehaviour:
   amountOfFruit: 0
   fruitText: {fileID: 155479097}
   abilityText: {fileID: 1891159129}
-  character1: {fileID: 0}
-  character2: {fileID: 0}
+  character1: {fileID: 1190754531}
+  character2: {fileID: 2064549232}
   currentChar: {fileID: 0}
   currentAbility: 0
   abilityActive: 0
@@ -823,6 +827,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1190754531 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2503702393892867136, guid: 1cea4c96de011a54c81e1128441a83ea, type: 3}
+  m_PrefabInstance: {fileID: 731279524}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1238581322 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6832207856262785527, guid: 1cea4c96de011a54c81e1128441a83ea, type: 3}
@@ -950,6 +959,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6284740664761945734, guid: 60e68fdf569e72a4d854d3c928a9a838, type: 3}
+      propertyPath: canResize
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60e68fdf569e72a4d854d3c928a9a838, type: 3}
 --- !u!1 &1863499096
@@ -1020,7 +1033,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -262, y: 227}
+  m_AnchoredPosition: {x: -262, y: 136.5}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1891159129
@@ -1204,6 +1217,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2064549232 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4859826779041552143, guid: 60e68fdf569e72a4d854d3c928a9a838, type: 3}
+  m_PrefabInstance: {fileID: 1777507586}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1891471998446743472
 PrefabInstance:
   m_ObjectHideFlags: 0

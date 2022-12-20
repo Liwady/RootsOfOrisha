@@ -179,11 +179,11 @@ public class CharacterScript : MonoBehaviour
         switch (gameManager.currentAbility)
         {
             //ability 1, gravity 
-            case 0:
+            case 1:
                 SetGravity();
                 break;
             //ability 2: size
-            case 1:
+            case 0:
                 if (canResize)
                     SetSize();
                 //else feedback that u cant 
