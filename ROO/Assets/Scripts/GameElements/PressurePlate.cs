@@ -13,7 +13,7 @@ public class PressurePlate : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "1" || other.tag == "2")
+        if (other.CompareTag("1") || other.CompareTag("2"))
         {
             CharacterScript character = other.GetComponent<CharacterScript>();
             if (character.weight >= weightRequirment)
@@ -28,7 +28,7 @@ public class PressurePlate : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "1" || other.tag == "2")
+        if (other.CompareTag("1") || other.CompareTag("2"))
         {
             CharacterScript character = other.GetComponent<CharacterScript>();
             if (character.weight < weightRequirment)
@@ -43,14 +43,13 @@ public class PressurePlate : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "1" || other.tag == "2")
+        if (other.CompareTag("1") || other.CompareTag("2"))
         {
-            CharacterScript character = other.GetComponent<CharacterScript>();
             for (int i = 0; i < triggeredObjects.Length; i++)
             {
                   triggeredObjects[i].Toggle(false);
             }
-            
+
         }
     }
 }
