@@ -11,7 +11,7 @@ public class CharacterScript : MonoBehaviour
     private CheckerScript checker;
     private bool dead, canGrab, canMoveObject;
     int size;
-    int weight;
+    public int weight;
     bool gravity;
     WaterState statusW;
 
