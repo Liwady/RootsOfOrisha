@@ -21,7 +21,6 @@ public class CharacterScript : MonoBehaviour
         Sink,
         Die
     }
-
     private void SetSize()
     {
         if (checker.checkIfColliderEmpty())//todo checker for mini and make size table 
@@ -37,14 +36,14 @@ public class CharacterScript : MonoBehaviour
             {
                 if (gameManager.currentChar == gameManager.character1)
                 {
-                    gameManager.character1.transform.localScale = gameManager.character1.transform.localScale * 2;
-                    gameManager.character2.transform.localScale = gameManager.character2.transform.localScale / 2;
+                    gameManager.character1.transform.localScale = gameManager.character1.transform.localScale * 1.8f;
+                    gameManager.character2.transform.localScale = gameManager.character2.transform.localScale / 1.8f;
                 }
                 else
                 {
-                    gameManager.character2.transform.localScale = gameManager.character2.transform.localScale * 2;
-                    gameManager.character1.transform.localScale = gameManager.character1.transform.localScale / 2;
-                    gameManager.character2.transform.position = new Vector3(gameManager.character2.transform.position.x, gameManager.character2.transform.position.y + 3, gameManager.character2.transform.position.z);
+                    gameManager.character2.transform.localScale = gameManager.character2.transform.localScale * 1.2f;
+                    gameManager.character1.transform.localScale = gameManager.character1.transform.localScale / 1.2f;
+                    gameManager.character2.transform.position = new Vector3(gameManager.character2.transform.position.x, gameManager.character2.transform.position.y + 2, gameManager.character2.transform.position.z);
                 }
                 gameManager.abilityActive = true;
             }
