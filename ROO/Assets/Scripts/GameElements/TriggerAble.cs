@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class TriggerAble : MonoBehaviour
 {
-    enum MoveDir
+    enum Mode
     {
         up,
         down,
+        weightdown,
+        weightup,
     }
+
+    GameManager gameManager;
 
     [SerializeField]
     private Vector3 movementVector;
@@ -18,13 +22,15 @@ public class TriggerAble : MonoBehaviour
     private Vector3 originalPos;
    
     private bool triggered;
+    private int weightOnMe;
 
     [SerializeField]
-    private MoveDir MoveDirection;
+    private Mode mode;
 
     private void Start()
     {
         originalPos = transform.position;
+        gameManager = FindObjectOfType<GameManager>();
     }
     public void Toggle(bool _value)
     {
@@ -32,11 +38,12 @@ public class TriggerAble : MonoBehaviour
     }
 
 
+
     private void Update()
     {
-        switch (MoveDirection)
+        switch (mode)
         {
-            case MoveDir.up:
+            case Mode.up:
                 if (triggered)
                 {
                     if (transform.position.y < maxPos.y)
@@ -49,21 +56,47 @@ public class TriggerAble : MonoBehaviour
                     transform.Translate(-movementVector);
                 }
                 break;
-            case MoveDir.down:
+            case Mode.down:
                 if (triggered)
                 {
                     if (transform.position.y > maxPos.y) //max pos downwards 
                     {
-                        transform.Translate(movementVector);
+                        transform.Translate(-movementVector);
                     }
                 }
                 else if (transform.position.y < originalPos.y)
+                {
+                    transform.Translate(movementVector);
+                }
+                break;
+            case Mode.weightdown:
+                if (triggered)
+                {
+                    maxPos = new Vector3(0, movementVector.y * gameManager.currentChar.GetComponent<CharacterScript>().weight, 1);
+                    if (transform.position.y > maxPos.y)
+                    {
+                        transform.Translate(-movementVector);
+                    }
+                }
+                else if(transform.position.y < originalPos.y)
+                {
+                    transform.Translate(movementVector);
+                }
+                break;
+            case Mode.weightup:
+                if (triggered)
+                {
+                    maxPos = new Vector3(0, movementVector.y * gameManager.currentChar.GetComponent<CharacterScript>().weight, 1);
+                    if (transform.position.y < maxPos.y)
+                    {
+                        transform.Translate(movementVector);
+                    }
+                }
+                else if (transform.position.y > originalPos.y)
                 {
                     transform.Translate(-movementVector);
                 }
                 break;
         }
-
-        
     }
 }
