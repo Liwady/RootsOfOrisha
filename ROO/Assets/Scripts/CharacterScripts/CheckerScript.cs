@@ -13,8 +13,6 @@ public class CheckerScript : MonoBehaviour
     {
         if (other.tag == "Obstacle")
         {
-            Debug.Log(this.name);
-            Debug.Log(other.name);
             isEmpty = false;
         }
     }

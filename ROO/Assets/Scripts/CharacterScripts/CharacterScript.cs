@@ -166,27 +166,27 @@ public class CharacterScript : MonoBehaviour
         {
             if (gameManager.currentChar == gameManager.character1) //char1
             {
-                if (gameManager.currentAbility == 1)//size change
+                if (gameManager.currentAbility == 0)//size change
                 {
-                    movementSpeed = 3;
-                    gameManager.character2.GetComponent<CharacterScript>().movementSpeed = 7;
+                    movementSpeed = 4;
+                    gameManager.character2.GetComponent<CharacterScript>().movementSpeed = 6;
                 }
                 else
                 {
-                    movementSpeed = 3;
+                    movementSpeed = 2;
                     gameManager.character2.GetComponent<CharacterScript>().movementSpeed = 0;
                 }
             }
             else //char2
             {
-                if (gameManager.currentAbility == 1)//size change
+                if (gameManager.currentAbility == 0)//size change
                 {
-                    movementSpeed = 4;
-                    gameManager.character1.GetComponent<CharacterScript>().movementSpeed = 6;
+                    movementSpeed = 3;
+                    gameManager.character1.GetComponent<CharacterScript>().movementSpeed = 7;
                 }
                 else
                 {
-                    movementSpeed = 2;
+                    movementSpeed = 3;
                     gameManager.character1.GetComponent<CharacterScript>().movementSpeed = 0;
                 }
             }
