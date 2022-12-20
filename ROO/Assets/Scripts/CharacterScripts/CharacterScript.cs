@@ -9,10 +9,11 @@ public class CharacterScript : MonoBehaviour
     private PlayerControls playerControls;
     private GameManager gameManager;
     public GameObject checker;
+    public GameObject floatCheck;
     private bool dead, canGrab, canMoveObject;
-    int size;
+    private bool activatedFloat;
+    public int size;
     public int weight;
-    bool gravity;
     WaterState statusW;
 
     private enum WaterState
@@ -25,21 +26,24 @@ public class CharacterScript : MonoBehaviour
 
     void Awake()
     {
+        activatedFloat = false;
         statusW = WaterState.CanWalk;
         canResize = true;
         rb = GetComponentInChildren<Rigidbody>();
         gameManager = FindObjectOfType<GameManager>();
         SetWeight();
-        SetGravity();
         SetMovementSpeed();
         playerControls = new PlayerControls();
         playerControls.Gameplay.Move.performed += ctx => movement = ctx.ReadValue<Vector2>(); //lamda expression to preform function
         playerControls.Gameplay.SwitchCharacter.performed += ctx => gameManager.SwitchCharacter();
+        playerControls.Gameplay.SwitchAbility.performed += ctx => gameManager.SwitchAbility();
         playerControls.Gameplay.TriggerAbility.performed += ctx => TriggerAbility();
     }
     private void Update()
     {
         Move();
+        if (gameManager.currentAbility == 1 && activatedFloat)
+            Floating();
     }
     private void OnEnable()
     {
@@ -55,11 +59,12 @@ public class CharacterScript : MonoBehaviour
     }
     public void TriggerAbility()
     {
+        SetGravity();
         switch (gameManager.currentAbility)
         {
             //ability 1, gravity 
             case 1:
-                SetGravity();
+                Floating();
                 break;
             //ability 2: size
             case 0:
@@ -73,16 +78,29 @@ public class CharacterScript : MonoBehaviour
     }
     private void Floating()
     {
-
+        activatedFloat = true;
+        if (gameManager.abilityActive)
+        {
+            gameManager.character1.GetComponent<CharacterScript>().GetComponent<Rigidbody>().useGravity = true;
+            gameManager.character2.GetComponent<CharacterScript>().GetComponent<Rigidbody>().useGravity = true;
+        }
+        else
+        {
+            if (gameManager.currentChar == gameManager.character1)
+                gameManager.character2.transform.position = Vector3.MoveTowards(gameManager.character2.transform.position, floatCheck.transform.position, 3);
+            else
+                gameManager.character1.transform.position = Vector3.MoveTowards(gameManager.character2.transform.position, floatCheck.transform.position, 3);
+        }
     }
     private void SetSize()
     {
+        activatedFloat = false;
         if (checker.GetComponent<CheckerScript>().checkIfColliderEmpty())//todo checker for mini and make size table 
         {
             if (gameManager.abilityActive)
             {
                 gameManager.character1.transform.localScale = new Vector3(0.9f, 0.4f, 1);
-                gameManager.character2.transform.localScale = new Vector3(0.8f, 1.8f, 1);
+                gameManager.character2.transform.localScale = new Vector3(0.8f, 1.6f, 1);
                 gameManager.abilityActive = false;
             }
             else
@@ -140,23 +158,23 @@ public class CharacterScript : MonoBehaviour
     }
     private void SetGravity()
     {
-        if (gameManager.currentAbility != 1)
+        if (gameManager.currentAbility == 1)
         {
             if (gameManager.currentChar == gameManager.character1)
             {
-                gameManager.character1.GetComponent<CharacterScript>().gravity = true;
-                gameManager.character2.GetComponent<CharacterScript>().gravity = false;
+                gameManager.character1.GetComponent<CharacterScript>().GetComponent<Rigidbody>().useGravity = true;
+                gameManager.character2.GetComponent<CharacterScript>().GetComponent<Rigidbody>().useGravity = false;
             }
             else
             {
-                gameManager.character1.GetComponent<CharacterScript>().gravity = false;
-                gameManager.character2.GetComponent<CharacterScript>().gravity = true;
+                gameManager.character1.GetComponent<CharacterScript>().GetComponent<Rigidbody>().useGravity = false;
+                gameManager.character2.GetComponent<CharacterScript>().GetComponent<Rigidbody>().useGravity = true;
             }
         }
         else
         {
-            gameManager.character1.GetComponent<CharacterScript>().gravity = true;
-            gameManager.character2.GetComponent<CharacterScript>().gravity = true;
+            gameManager.character1.GetComponent<CharacterScript>().GetComponent<Rigidbody>().useGravity = true;
+            gameManager.character2.GetComponent<CharacterScript>().GetComponent<Rigidbody>().useGravity = true;
         }
 
     }

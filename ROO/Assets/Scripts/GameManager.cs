@@ -19,6 +19,10 @@ public class GameManager : MonoBehaviour
         currentAbility = 0;
         abilityText.text = currentAbility.ToString();
     }
+    private void Update()
+    {
+        abilityText.text = currentAbility.ToString();
+    }
     public void SwitchCharacter()
     {
         if (currentChar == character1)
@@ -33,5 +37,12 @@ public class GameManager : MonoBehaviour
             character1.GetComponent<CharacterScript>().enabled = true;
             currentChar = character1;
         }
+    }
+    public void SwitchAbility()
+    {
+        if (currentAbility == 0) //size
+            currentAbility = 1;
+        else //float
+            currentAbility = 0;
     }
 }
