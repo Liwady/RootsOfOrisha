@@ -83,7 +83,6 @@ public class CharacterScript : MonoBehaviour
             {
                 gameManager.character1.transform.localScale = new Vector3(0.9f, 0.4f, 1);
                 gameManager.character2.transform.localScale = new Vector3(0.8f, 1.8f, 1);
-                gameManager.character2.transform.position = new Vector3(gameManager.character2.transform.position.x, gameManager.character2.transform.position.y + 2, gameManager.character2.transform.position.z);
                 gameManager.abilityActive = false;
             }
             else
@@ -97,7 +96,6 @@ public class CharacterScript : MonoBehaviour
                 {
                     gameManager.character2.transform.localScale = gameManager.character2.transform.localScale * 1.2f;
                     gameManager.character1.transform.localScale = gameManager.character1.transform.localScale / 1.2f;
-                    gameManager.character2.transform.position = new Vector3(gameManager.character2.transform.position.x, gameManager.character2.transform.position.y + 2, gameManager.character2.transform.position.z);
                 }
                 gameManager.abilityActive = true;
             }
