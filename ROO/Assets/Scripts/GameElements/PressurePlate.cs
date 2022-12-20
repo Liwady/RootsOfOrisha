@@ -9,6 +9,8 @@ public class PressurePlate : MonoBehaviour
     [SerializeField]
     private int weightRequirment;
 
+
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "1" || other.tag == "2")

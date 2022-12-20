@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class TriggerAble : MonoBehaviour
 {
+    enum MoveDir
+    {
+        up,
+        down,
+    }
+
     [SerializeField]
     private Vector3 movementVector;
     [SerializeField]
@@ -12,6 +18,9 @@ public class TriggerAble : MonoBehaviour
     private Vector3 originalPos;
    
     private bool triggered;
+
+    [SerializeField]
+    private MoveDir MoveDirection;
 
     private void Start()
     {
@@ -25,16 +34,36 @@ public class TriggerAble : MonoBehaviour
 
     private void Update()
     {
-        if (triggered)
+        switch (MoveDirection)
         {
-            if (transform.position.y < maxPos.y)
-            {
-                transform.Translate(movementVector);
-            }
+            case MoveDir.up:
+                if (triggered)
+                {
+                    if (transform.position.y < maxPos.y)
+                    {
+                        transform.Translate(movementVector);
+                    }
+                }
+                else if (transform.position.y > originalPos.y)
+                {
+                    transform.Translate(-movementVector);
+                }
+                break;
+            case MoveDir.down:
+                if (triggered)
+                {
+                    if (transform.position.y > maxPos.y) //max pos downwards 
+                    {
+                        transform.Translate(movementVector);
+                    }
+                }
+                else if (transform.position.y < originalPos.y)
+                {
+                    transform.Translate(-movementVector);
+                }
+                break;
         }
-        else if(transform.position.y > originalPos.y)
-        {
-            transform.Translate(-movementVector);
-        }
+
+        
     }
 }
