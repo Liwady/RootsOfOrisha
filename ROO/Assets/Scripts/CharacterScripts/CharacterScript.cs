@@ -1,25 +1,48 @@
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class CharacterScript : MonoBehaviour
 {
     public float movementSpeed;
-    private Rigidbody rb;
+    public bool canResize;
+    public Rigidbody rb;
     private Vector2 movement;
     private PlayerControls playerControls;
     private GameManager gameManager;
+    public GameObject checker;
+    public GameObject floatCheck;
+    public bool dead, canGrab, canMove,usedAbility,abilityTriggered;
+    public int size;
+    public int weight;
+    WaterState statusW;
+
+    private enum WaterState
+    {
+        CanWalk,
+        Sink,
+        Die
+    }
 
     void Awake()
     {
+        usedAbility = false;
+        statusW = WaterState.CanWalk;
+        canResize = true;
+        canMove = true;
+        rb = GetComponentInChildren<Rigidbody>();
         gameManager = FindObjectOfType<GameManager>();
-        rb = GetComponent<Rigidbody>();
         playerControls = new PlayerControls();
         playerControls.Gameplay.Move.performed += ctx => movement = ctx.ReadValue<Vector2>(); //lamda expression to preform function
         playerControls.Gameplay.SwitchCharacter.performed += ctx => gameManager.SwitchCharacter();
-        playerControls.Gameplay.TriggerAbility.performed += ctx => TriggerAbility();
+        playerControls.Gameplay.SwitchAbility.performed += ctx => gameManager.SwitchAbility();
+        playerControls.Gameplay.TriggerAbility.performed += ctx => gameManager.TriggerAbility();
     }
     private void Update()
-    {
-        Move();
+    { 
+        if(canMove)
+            Move();
+        if (gameManager.currentAbility == 1 && gameManager.abilityActive && usedAbility)
+            MoveTowardsPlace();
     }
     private void OnEnable()
     {
@@ -33,44 +56,56 @@ public class CharacterScript : MonoBehaviour
     {
         rb.velocity = new Vector3(movement.x * movementSpeed, rb.velocity.y, rb.velocity.z);
     }
-    public void TriggerAbility()
+    public void Floating()
     {
-        switch (gameManager.currentAbility)
+        usedAbility = true;
+        if (gameManager.abilityActive)
         {
-            //ability 1, gravity 
-            case 0:
-                break;
-            //ability 2: size
-            case 1:
-                if (gameManager.abilityActive)
-                {
-                    gameManager.character1.transform.localScale = new Vector3(1.8f, 0.8f, 1);
-                    gameManager.character2.transform.localScale = new Vector3(0.8f, 1.8f, 1);
-                    gameManager.abilityActive = false;
-                }
-                else
-                {
-                    if (gameObject == gameManager.character1)
-                    {
-                        gameManager.character1.transform.localScale = new Vector3(gameManager.character1.transform.localScale.x * 2, gameManager.character1.transform.localScale.y * 2, 1);
-                        gameManager.character2.transform.localScale = new Vector3(gameManager.character2.transform.localScale.x / 2, gameManager.character2.transform.localScale.y / 2, 1);
-                    }
-                    else
-                    {
-                        gameManager.character2.transform.localScale = new Vector3(gameManager.character2.transform.localScale.x * 2, gameManager.character2.transform.localScale.y * 2, 1);
-                        gameManager.character1.transform.localScale = new Vector3(gameManager.character1.transform.localScale.x / 2, gameManager.character1.transform.localScale.y / 2, 1);
-                        gameManager.character2.transform.position = new Vector3(gameManager.character2.transform.position.x, gameManager.character2.transform.position.y + 3, gameManager.character2.transform.position.z);
-                    }
-                    gameManager.abilityActive = true;
-                }
-                break;
-            //ability 3: combine
-            case 2:
-                break;
+            gameManager.abilityActive = false;
+            usedAbility = false;
+            DefaultValuesFloating();
+            gameManager.SetGravity();
+        }
+        else
+        {
+            gameManager.abilityActive = true;
+            MoveTowardsPlace();
         }
     }
-    private void Floating()
+    public void Sizing()
     {
-
+        if (canResize)//todo checker for mini and make size table 
+        {
+            if (gameManager.abilityActive)
+            {
+                DefaultValuesSize();
+                gameManager.abilityActive = false;
+            }
+            else
+            {
+                gameManager.abilityActive = true;
+                gameManager.SetSize();
+                gameManager.SetGravity();
+            }
+        }//else feedback
+    }
+    private void MoveTowardsPlace()
+    {
+        if (gameManager.currentChar.gameObject == gameManager.character1)
+            gameManager.character2.transform.position = Vector3.MoveTowards(gameManager.character2.transform.position, gameManager.character1.GetComponent<CharacterScript>().floatCheck.transform.position, 5 * Time.deltaTime);
+        else
+            gameManager.character1.transform.position = Vector3.MoveTowards(gameManager.character1.transform.position, gameManager.character2.GetComponent<CharacterScript>().floatCheck.transform.position, 5 * Time.deltaTime);
+    }
+    public void DefaultValuesSize()
+    {
+        gameManager.character1.transform.localScale = new Vector3(0.9f, 0.4f, 1);
+        gameManager.character2.transform.localScale = new Vector3(0.8f, 1.6f, 1);
+    }
+    public void DefaultValuesFloating()
+    {
+        if (gameManager.currentChar.gameObject == gameManager.character1)
+            gameManager.character2.transform.position = new Vector3(gameManager.character1.transform.position.x, gameManager.character2.transform.position.y, 1);
+        else
+            gameManager.character1.transform.position = new Vector3(gameManager.character2.transform.position.x, gameManager.character1.transform.position.y, 1);
     }
 }

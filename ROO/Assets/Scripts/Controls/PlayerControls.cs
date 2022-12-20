@@ -53,6 +53,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwitchAbility"",
+                    ""type"": ""Button"",
+                    ""id"": ""768daa8b-129b-42ef-9386-53398d00c04a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -165,6 +174,28 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""TriggerAbility"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""39d41cad-8f1d-4ee7-bf78-513da89f8fce"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchAbility"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f98b0381-f56c-4135-9ad4-0cbf0b01498c"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchAbility"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -199,6 +230,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Gameplay_Move = m_Gameplay.FindAction("Move", throwIfNotFound: true);
         m_Gameplay_SwitchCharacter = m_Gameplay.FindAction("SwitchCharacter", throwIfNotFound: true);
         m_Gameplay_TriggerAbility = m_Gameplay.FindAction("TriggerAbility", throwIfNotFound: true);
+        m_Gameplay_SwitchAbility = m_Gameplay.FindAction("SwitchAbility", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -261,6 +293,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Move;
     private readonly InputAction m_Gameplay_SwitchCharacter;
     private readonly InputAction m_Gameplay_TriggerAbility;
+    private readonly InputAction m_Gameplay_SwitchAbility;
     public struct GameplayActions
     {
         private @PlayerControls m_Wrapper;
@@ -268,6 +301,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_Gameplay_Move;
         public InputAction @SwitchCharacter => m_Wrapper.m_Gameplay_SwitchCharacter;
         public InputAction @TriggerAbility => m_Wrapper.m_Gameplay_TriggerAbility;
+        public InputAction @SwitchAbility => m_Wrapper.m_Gameplay_SwitchAbility;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -286,6 +320,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @TriggerAbility.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnTriggerAbility;
                 @TriggerAbility.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnTriggerAbility;
                 @TriggerAbility.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnTriggerAbility;
+                @SwitchAbility.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSwitchAbility;
+                @SwitchAbility.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSwitchAbility;
+                @SwitchAbility.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSwitchAbility;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -299,6 +336,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @TriggerAbility.started += instance.OnTriggerAbility;
                 @TriggerAbility.performed += instance.OnTriggerAbility;
                 @TriggerAbility.canceled += instance.OnTriggerAbility;
+                @SwitchAbility.started += instance.OnSwitchAbility;
+                @SwitchAbility.performed += instance.OnSwitchAbility;
+                @SwitchAbility.canceled += instance.OnSwitchAbility;
             }
         }
     }
@@ -326,5 +366,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnSwitchCharacter(InputAction.CallbackContext context);
         void OnTriggerAbility(InputAction.CallbackContext context);
+        void OnSwitchAbility(InputAction.CallbackContext context);
     }
 }
