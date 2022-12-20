@@ -15,7 +15,7 @@ public class PressurePlate : MonoBehaviour
     {
         if (other.CompareTag("1") || other.CompareTag("2"))
         {
-            CharacterScript character = other.GetComponent<CharacterScript>();
+            CharacterScript character = other.GetComponentInParent<CharacterScript>();
             if (character.weight >= weightRequirment)
             {
                 for (int i = 0; i < triggeredObjects.Length; i++)
@@ -30,7 +30,7 @@ public class PressurePlate : MonoBehaviour
     {
         if (other.CompareTag("1") || other.CompareTag("2"))
         {
-            CharacterScript character = other.GetComponent<CharacterScript>();
+            CharacterScript character = other.GetComponentInParent<CharacterScript>();
             if (character.weight < weightRequirment)
             {
                 for (int i = 0; i < triggeredObjects.Length; i++)

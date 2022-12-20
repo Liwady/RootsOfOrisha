@@ -645,7 +645,7 @@ GameObject:
   - component: {fileID: 1077367067}
   - component: {fileID: 1077367072}
   m_Layer: 0
-  m_Name: PressurePlate
+  m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -917,6 +917,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character1Short
       objectReference: {fileID: 0}
+    - target: {fileID: 1569109946545100556, guid: 1cea4c96de011a54c81e1128441a83ea, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 2503702393892867136, guid: 1cea4c96de011a54c81e1128441a83ea, type: 3}
+      propertyPath: m_TagString
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6832207856262785527, guid: 1cea4c96de011a54c81e1128441a83ea, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1035,6 +1043,14 @@ PrefabInstance:
     - target: {fileID: 2421599816767966083, guid: 60e68fdf569e72a4d854d3c928a9a838, type: 3}
       propertyPath: m_Name
       value: Character2Tall
+      objectReference: {fileID: 0}
+    - target: {fileID: 2421599816767966083, guid: 60e68fdf569e72a4d854d3c928a9a838, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 4859826779041552143, guid: 60e68fdf569e72a4d854d3c928a9a838, type: 3}
+      propertyPath: m_TagString
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5239857158213282281, guid: 60e68fdf569e72a4d854d3c928a9a838, type: 3}
       propertyPath: m_RootOrder
