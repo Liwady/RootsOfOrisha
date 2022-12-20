@@ -8,7 +8,7 @@ public class CharacterScript : MonoBehaviour
     private Vector2 movement;
     private PlayerControls playerControls;
     private GameManager gameManager;
-    public GameObject checker;
+    private CheckerScript checker;
     private bool dead, canGrab, canMoveObject;
     int size;
     public int weight;
@@ -21,63 +21,9 @@ public class CharacterScript : MonoBehaviour
         Sink,
         Die
     }
-
-
-    void Awake()
-    {
-        statusW = WaterState.CanWalk;
-        canResize = true;
-        rb = GetComponentInChildren<Rigidbody>();
-        gameManager = FindObjectOfType<GameManager>();
-        SetWeight();
-        SetGravity();
-        SetMovementSpeed();
-        playerControls = new PlayerControls();
-        playerControls.Gameplay.Move.performed += ctx => movement = ctx.ReadValue<Vector2>(); //lamda expression to preform function
-        playerControls.Gameplay.SwitchCharacter.performed += ctx => gameManager.SwitchCharacter();
-        playerControls.Gameplay.TriggerAbility.performed += ctx => TriggerAbility();
-    }
-    private void Update()
-    {
-        Move();
-    }
-    private void OnEnable()
-    {
-        playerControls.Gameplay.Enable();
-    }
-    private void OnDisable()
-    {
-        playerControls.Gameplay.Disable();
-    }
-    private void Move()
-    {
-        rb.velocity = new Vector3(movement.x * movementSpeed, rb.velocity.y, rb.velocity.z);
-    }
-    public void TriggerAbility()
-    {
-        switch (gameManager.currentAbility)
-        {
-            //ability 1, gravity 
-            case 1:
-                SetGravity();
-                break;
-            //ability 2: size
-            case 0:
-                if (canResize)
-                    SetSize();
-                //else feedback that u cant 
-                break;
-        }
-        SetWeight();
-        SetMovementSpeed();
-    }
-    private void Floating()
-    {
-
-    }
     private void SetSize()
     {
-        if (checker.GetComponent<CheckerScript>().checkIfColliderEmpty())//todo checker for mini and make size table 
+        if (checker.checkIfColliderEmpty())//todo checker for mini and make size table 
         {
             if (gameManager.abilityActive)
             {
@@ -198,6 +144,57 @@ public class CharacterScript : MonoBehaviour
             gameManager.character1.GetComponent<CharacterScript>().movementSpeed = 5;
             gameManager.character2.GetComponent<CharacterScript>().movementSpeed = 5;
         }
+    }
+
+    void Awake()
+    {
+        statusW = WaterState.CanWalk;
+        canResize = true;
+        checker = GetComponentInChildren<CheckerScript>();
+        gameManager = FindObjectOfType<GameManager>();
+        SetWeight();
+        playerControls = new PlayerControls();
+        playerControls.Gameplay.Move.performed += ctx => movement = ctx.ReadValue<Vector2>(); //lamda expression to preform function
+        playerControls.Gameplay.SwitchCharacter.performed += ctx => gameManager.SwitchCharacter();
+        playerControls.Gameplay.TriggerAbility.performed += ctx => TriggerAbility();
+    }
+    private void Update()
+    {
+        Move();
+    }
+    private void OnEnable()
+    {
+        playerControls.Gameplay.Enable();
+    }
+    private void OnDisable()
+    {
+        playerControls.Gameplay.Disable();
+    }
+    private void Move()
+    {
+        rb.velocity = new Vector3(movement.x * movementSpeed, rb.velocity.y, rb.velocity.z);
+    }
+    public void TriggerAbility()
+    {
+        switch (gameManager.currentAbility)
+        {
+            //ability 1, gravity 
+            case 1:
+                SetGravity();
+                break;
+            //ability 2: size
+            case 0:
+                if (canResize)
+                    SetSize();
+                //else feedback that u cant 
+                break;
+        }
+        SetWeight();
+        SetMovementSpeed();
+    }
+    private void Floating()
+    {
+
     }
 
 }
