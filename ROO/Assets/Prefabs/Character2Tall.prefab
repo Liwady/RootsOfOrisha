@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5239857158213282281}
+  - component: {fileID: 1193149529666252390}
   m_Layer: 0
   m_Name: Character2Tall
   m_TagString: 2
@@ -32,6 +33,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1193149529666252390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2421599816767966083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf40b855a3ae9664ebc1feb9e043fb04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 5
+  canResize: 1
+  rb: {fileID: 0}
+  checker: {fileID: 7777564094651974189}
 --- !u!1 &4859826779041552143
 GameObject:
   m_ObjectHideFlags: 0
@@ -45,7 +62,6 @@ GameObject:
   - component: {fileID: 6295412754409287690}
   - component: {fileID: 5077337265395395722}
   - component: {fileID: 3836591904824226191}
-  - component: {fileID: 6284740664761945734}
   m_Layer: 0
   m_Name: Char2Tall
   m_TagString: 2
@@ -149,21 +165,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &6284740664761945734
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4859826779041552143}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf40b855a3ae9664ebc1feb9e043fb04, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementSpeed: 5
-  canResize: 0
-  rb: {fileID: 3836591904824226191}
 --- !u!1 &7777564094651974189
 GameObject:
   m_ObjectHideFlags: 0
