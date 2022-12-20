@@ -2,26 +2,20 @@ using UnityEngine;
 
 public class CheckerScript : MonoBehaviour
 {
-    private bool isEmpty = true;
-
-    public bool checkIfColliderEmpty()
-    {
-        return isEmpty;
-    }
-
+    public GameObject parent;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Obstacle")
+        if (other.CompareTag("Obstacle"))
         {
-            isEmpty = false;
+            parent.GetComponent<CharacterScript>().canResize = false;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Obstacle")
+        if (other.CompareTag("Obstacle"))
         {
-            isEmpty = true;
+           parent.GetComponent<CharacterScript>().canResize = true;
         }
     }
 }

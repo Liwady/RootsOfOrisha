@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 399073296820576791}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 5, z: 0}
+  m_LocalPosition: {x: 0, y: 4, z: 0}
   m_LocalScale: {x: 0.9, y: 0.4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -97,6 +97,11 @@ MonoBehaviour:
   rb: {fileID: 7303656570058242871}
   checker: {fileID: 7777564094651974189}
   floatCheck: {fileID: 399073296820576791}
+  dead: 0
+  canGrab: 0
+  canMove: 0
+  usedAbility: 0
+  abilityTriggered: 0
   size: 0
   weight: 0
 --- !u!54 &7303656570058242871
@@ -259,9 +264,9 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 3.0601544
+  m_Height: 2.685924
   m_Direction: 1
-  m_Center: {x: 0, y: 0.57922155, z: 0}
+  m_Center: {x: 0, y: 0.39210647, z: 0}
 --- !u!114 &6067309594605572180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,3 +279,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2585dbe2191975d409719dc11ce52292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parent: {fileID: 2421599816767966083}

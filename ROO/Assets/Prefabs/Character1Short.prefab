@@ -51,6 +51,11 @@ MonoBehaviour:
   rb: {fileID: 6145327846324533486}
   checker: {fileID: 2732223418752859479}
   floatCheck: {fileID: 9151791193916582467}
+  dead: 0
+  canGrab: 0
+  canMove: 0
+  usedAbility: 0
+  abilityTriggered: 0
   size: 0
   weight: 0
 --- !u!54 &6145327846324533486
@@ -228,6 +233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2585dbe2191975d409719dc11ce52292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parent: {fileID: 1569109946545100556}
 --- !u!1 &9151791193916582467
 GameObject:
   m_ObjectHideFlags: 0
