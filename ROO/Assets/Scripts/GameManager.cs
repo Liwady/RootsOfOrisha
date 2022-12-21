@@ -41,9 +41,8 @@ public class GameManager : MonoBehaviour
 
     public void ToggleLever()
     {
-        Debug.Log("e");
-        Debug.Log(currentChar.inRangeLever);
-        currentChar.inRangeLever.toggleLever();
+        if(currentChar.inRangeLever != null)
+            currentChar.inRangeLever.ToggleLever();
     }
     public void TriggerAbility()
     {

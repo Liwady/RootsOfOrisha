@@ -1,33 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class lever : MonoBehaviour
 {
     [SerializeField]
     private TriggerAble[] triggeredObjects;
-
+    private CharacterScript character;
     private bool toggled = false;
     private void OnTriggerEnter(Collider other)
     {
-
-        if (other.CompareTag("1") || other.CompareTag("2"))
+        if (other.CompareTag("1") || other.CompareTag("2") && this != null)
         {
-            CharacterScript character = other.GetComponentInParent<CharacterScript>();
+            character = other.GetComponentInParent<CharacterScript>();
             character.inRangeLever = this;
         }
     }
 
-    public void toggleLever()
+    private void OnTriggerExit(Collider other)
+    {
+        if (character.gameObject.CompareTag(other.tag) && character.inRangeLever != null)
+            character.inRangeLever = null;
+    }
+
+    public void ToggleLever()
     {
         if (toggled == true)
-        {
             toggled = false;
-        }
-        else if (toggled == false)
-        {
+        else
             toggled = true;
-        }
     }
 
     private void Update()
