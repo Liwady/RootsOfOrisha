@@ -95,8 +95,8 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            character2.transform.localScale = character2.transform.localScale * 1.2f;
-            character1.transform.localScale = character1.transform.localScale / 1.2f;
+            character2.transform.localScale = character2.transform.localScale * 1.8f;
+            character1.transform.localScale = character1.transform.localScale / 1.8f;
         }
     }
     public void SetWeight()

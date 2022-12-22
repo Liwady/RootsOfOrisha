@@ -104,6 +104,7 @@ MonoBehaviour:
   abilityTriggered: 0
   size: 0
   weight: 0
+  inRangeLever: {fileID: 0}
 --- !u!54 &7303656570058242871
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -147,7 +148,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4859826779041552143}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -246,8 +247,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7777564094651974189}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0.82, z: 0}
+  m_LocalScale: {x: 1.8, y: 1.8, z: 1.8}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8571172681898260092}
@@ -264,9 +265,9 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 2.685924
+  m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0.39210647, z: 0}
+  m_Center: {x: 0, y: -0.007581115, z: 0}
 --- !u!114 &6067309594605572180
 MonoBehaviour:
   m_ObjectHideFlags: 0
