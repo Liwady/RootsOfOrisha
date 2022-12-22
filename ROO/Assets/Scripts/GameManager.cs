@@ -4,13 +4,17 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public int amountOfFruit;
+    public int amountOfEyes;
     public TMP_Text fruitText;
+    public TMP_Text eyesText;
     public TMP_Text abilityText;
     public GameObject character1;
     public GameObject character2;
     public CharacterScript currentChar;
     public int currentAbility;
     public bool abilityActive;
+    public Transform respawnPoint;
+
     private void Awake()
     {
         amountOfFruit = 0;
@@ -22,6 +26,11 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         abilityText.text = currentAbility.ToString();
+    }
+
+    public void RespawnCharacters()
+    {
+        // respawn at respawnPoint
     }
     public void SwitchCharacter()
     {

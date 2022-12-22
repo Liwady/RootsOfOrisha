@@ -15,6 +15,8 @@ public class CharacterScript : MonoBehaviour
     public int weight;
     WaterState statusW;
     public lever inRangeLever;
+    public bool isHoldingCollectible = false; //for other char to collect
+    public CollectibleScript.FruitEye typeEF;
     private enum WaterState
     {
         CanWalk,
