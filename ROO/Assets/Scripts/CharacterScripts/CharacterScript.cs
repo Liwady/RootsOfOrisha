@@ -38,6 +38,7 @@ public class CharacterScript : MonoBehaviour
         playerControls.Gameplay.SwitchAbility.performed += ctx => gameManager.SwitchAbility();
         playerControls.Gameplay.TriggerAbility.performed += ctx => gameManager.TriggerAbility();
         playerControls.Gameplay.ToggleButton.performed += ctx => gameManager.ToggleLever();
+        playerControls.Gameplay.Respawn.performed += ctx => gameManager.RespawnCharacters();
     }
     private void Update()
     {

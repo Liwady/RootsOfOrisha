@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public CharacterScript currentChar;
     public int currentAbility;
     public bool abilityActive;
-    public Transform respawnPoint;
+    public RespawnPoint respawnPoint;
 
     private void Awake()
     {
@@ -30,7 +30,12 @@ public class GameManager : MonoBehaviour
 
     public void RespawnCharacters()
     {
-        // respawn at respawnPoint
+        if (respawnPoint != null)
+        {
+            character1.transform.position = respawnPoint.spawnPoints[0].transform.position;
+            character2.transform.position = respawnPoint.spawnPoints[1].transform.position;
+        }
+        
     }
     public void SwitchCharacter()
     {

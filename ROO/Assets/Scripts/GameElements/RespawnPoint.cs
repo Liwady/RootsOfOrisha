@@ -6,6 +6,7 @@ public class RespawnPoint : MonoBehaviour
 {
     private List<Collider> players = new List<Collider>();
     private GameManager gameManager;
+    public Transform[] spawnPoints;
 
     private void Start()
     {
@@ -26,7 +27,7 @@ public class RespawnPoint : MonoBehaviour
                         //change sprite
                         break;
                     case 2:
-                        enableResapwnPoint();
+                        EnableResapwnPoint();
                         //change sprite
                         break;
 
@@ -35,8 +36,8 @@ public class RespawnPoint : MonoBehaviour
         }
     }
 
-    private void enableResapwnPoint()
+    private void EnableResapwnPoint()
     {
-        gameManager.respawnPoint = this.transform;
+        gameManager.respawnPoint = this;
     }
 }
