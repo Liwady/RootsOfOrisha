@@ -62,6 +62,24 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ToggleButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""eb4d6cfc-3cdb-4870-9c17-df74e3236b8b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Respawn"",
+                    ""type"": ""Button"",
+                    ""id"": ""ba8b450f-d4cd-4799-a944-30815d75d4b2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -196,6 +214,28 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""SwitchAbility"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7d51cba9-c874-47ad-81a8-b0b7aa65b03c"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1bca9d69-5c02-4f60-a5a5-46372a49ced5"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Respawn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -231,6 +271,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Gameplay_SwitchCharacter = m_Gameplay.FindAction("SwitchCharacter", throwIfNotFound: true);
         m_Gameplay_TriggerAbility = m_Gameplay.FindAction("TriggerAbility", throwIfNotFound: true);
         m_Gameplay_SwitchAbility = m_Gameplay.FindAction("SwitchAbility", throwIfNotFound: true);
+        m_Gameplay_ToggleButton = m_Gameplay.FindAction("ToggleButton", throwIfNotFound: true);
+        m_Gameplay_Respawn = m_Gameplay.FindAction("Respawn", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -294,6 +336,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_SwitchCharacter;
     private readonly InputAction m_Gameplay_TriggerAbility;
     private readonly InputAction m_Gameplay_SwitchAbility;
+    private readonly InputAction m_Gameplay_ToggleButton;
+    private readonly InputAction m_Gameplay_Respawn;
     public struct GameplayActions
     {
         private @PlayerControls m_Wrapper;
@@ -302,6 +346,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @SwitchCharacter => m_Wrapper.m_Gameplay_SwitchCharacter;
         public InputAction @TriggerAbility => m_Wrapper.m_Gameplay_TriggerAbility;
         public InputAction @SwitchAbility => m_Wrapper.m_Gameplay_SwitchAbility;
+        public InputAction @ToggleButton => m_Wrapper.m_Gameplay_ToggleButton;
+        public InputAction @Respawn => m_Wrapper.m_Gameplay_Respawn;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -323,6 +369,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @SwitchAbility.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSwitchAbility;
                 @SwitchAbility.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSwitchAbility;
                 @SwitchAbility.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSwitchAbility;
+                @ToggleButton.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnToggleButton;
+                @ToggleButton.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnToggleButton;
+                @ToggleButton.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnToggleButton;
+                @Respawn.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRespawn;
+                @Respawn.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRespawn;
+                @Respawn.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRespawn;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -339,6 +391,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @SwitchAbility.started += instance.OnSwitchAbility;
                 @SwitchAbility.performed += instance.OnSwitchAbility;
                 @SwitchAbility.canceled += instance.OnSwitchAbility;
+                @ToggleButton.started += instance.OnToggleButton;
+                @ToggleButton.performed += instance.OnToggleButton;
+                @ToggleButton.canceled += instance.OnToggleButton;
+                @Respawn.started += instance.OnRespawn;
+                @Respawn.performed += instance.OnRespawn;
+                @Respawn.canceled += instance.OnRespawn;
             }
         }
     }
@@ -367,5 +425,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnSwitchCharacter(InputAction.CallbackContext context);
         void OnTriggerAbility(InputAction.CallbackContext context);
         void OnSwitchAbility(InputAction.CallbackContext context);
+        void OnToggleButton(InputAction.CallbackContext context);
+        void OnRespawn(InputAction.CallbackContext context);
     }
 }

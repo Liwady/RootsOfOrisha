@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 
 public class CharacterScript : MonoBehaviour
 {
@@ -11,11 +10,13 @@ public class CharacterScript : MonoBehaviour
     private GameManager gameManager;
     public GameObject checker;
     public GameObject floatCheck;
-    public bool dead, canGrab, canMove,usedAbility,abilityTriggered;
+    public bool dead, canGrab, canMove, usedAbility, abilityTriggered;
     public int size;
     public int weight;
     WaterState statusW;
-
+    public lever inRangeLever;
+    public bool isHoldingCollectible = false; //for other char to collect
+    public CollectibleScript.FruitEye typeEF;
     private enum WaterState
     {
         CanWalk,
@@ -36,10 +37,12 @@ public class CharacterScript : MonoBehaviour
         playerControls.Gameplay.SwitchCharacter.performed += ctx => gameManager.SwitchCharacter();
         playerControls.Gameplay.SwitchAbility.performed += ctx => gameManager.SwitchAbility();
         playerControls.Gameplay.TriggerAbility.performed += ctx => gameManager.TriggerAbility();
+        playerControls.Gameplay.ToggleButton.performed += ctx => gameManager.ToggleLever();
+        playerControls.Gameplay.Respawn.performed += ctx => gameManager.RespawnCharacters();
     }
     private void Update()
-    { 
-        if(canMove)
+    {
+        if (canMove)
             Move();
         if (gameManager.currentAbility == 1 && gameManager.abilityActive && usedAbility)
             MoveTowardsPlace();
@@ -68,26 +71,40 @@ public class CharacterScript : MonoBehaviour
         }
         else
         {
-            gameManager.abilityActive = true;
+            SetUsedAbility();
             MoveTowardsPlace();
         }
     }
     public void Sizing()
     {
-        if (canResize)//todo checker for mini and make size table 
+
+        if (canResize || usedAbility)//todo checker for mini and make size table 
         {
             if (gameManager.abilityActive)
             {
                 DefaultValuesSize();
                 gameManager.abilityActive = false;
+                usedAbility = false;
             }
             else
             {
                 gameManager.abilityActive = true;
+                SetUsedAbility();
                 gameManager.SetSize();
                 gameManager.SetGravity();
             }
-        }//else feedback
+
+        }
+    }
+    private void SetUsedAbility()
+    {
+
+        usedAbility = true;
+        if (gameObject == gameManager.character1)
+            gameManager.character2.GetComponent<CharacterScript>().usedAbility = false;
+        else
+            gameManager.character1.GetComponent<CharacterScript>().usedAbility = false;
+
     }
     private void MoveTowardsPlace()
     {
