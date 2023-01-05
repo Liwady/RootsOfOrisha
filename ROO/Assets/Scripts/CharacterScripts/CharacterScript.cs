@@ -13,21 +13,21 @@ public class CharacterScript : MonoBehaviour
     public bool dead, canGrab, canMove, usedAbility, abilityTriggered;
     public int size;
     public int weight;
-    WaterState statusW;
+    //private WaterState statusW;
     public lever inRangeLever;
     public bool isHoldingCollectible = false; //for other char to collect
     public CollectibleScript.FruitEye typeEF;
-    private enum WaterState
+    /*private enum WaterState
     {
         CanWalk,
         Sink,
         Die
-    }
+    }*/
 
     void Awake()
     {
         usedAbility = false;
-        statusW = WaterState.CanWalk;
+        //statusW = WaterState.CanWalk;
         canResize = true;
         canMove = true;
         rb = GetComponentInChildren<Rigidbody>();
@@ -71,6 +71,7 @@ public class CharacterScript : MonoBehaviour
         }
         else
         {
+            gameManager.abilityActive =true;
             SetUsedAbility();
             MoveTowardsPlace();
         }
