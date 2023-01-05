@@ -4,13 +4,17 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public int amountOfFruit;
+    public int amountOfEyes;
     public TMP_Text fruitText;
+    public TMP_Text eyesText;
     public TMP_Text abilityText;
     public GameObject character1;
     public GameObject character2;
     public CharacterScript currentChar;
     public int currentAbility;
     public bool abilityActive;
+    public RespawnPoint respawnPoint;
+
     private void Awake()
     {
         amountOfFruit = 0;
@@ -22,6 +26,16 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         abilityText.text = currentAbility.ToString();
+    }
+
+    public void RespawnCharacters()
+    {
+        if (respawnPoint != null)
+        {
+            character1.transform.position = respawnPoint.spawnPoints[0].transform.position;
+            character2.transform.position = respawnPoint.spawnPoints[1].transform.position;
+        }
+        
     }
     public void SwitchCharacter()
     {
@@ -41,9 +55,8 @@ public class GameManager : MonoBehaviour
 
     public void ToggleLever()
     {
-        Debug.Log("e");
-        Debug.Log(currentChar.inRangeLever);
-        currentChar.inRangeLever.toggleLever();
+        if(currentChar.inRangeLever != null)
+            currentChar.inRangeLever.ToggleLever();
     }
     public void TriggerAbility()
     {
@@ -96,8 +109,8 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            character2.transform.localScale = character2.transform.localScale * 1.2f;
-            character1.transform.localScale = character1.transform.localScale / 1.2f;
+            character2.transform.localScale = character2.transform.localScale * 1.8f;
+            character1.transform.localScale = character1.transform.localScale / 1.8f;
         }
     }
     public void SetWeight()
