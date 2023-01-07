@@ -34,8 +34,7 @@ public class GameManager : MonoBehaviour
         {
             character1.transform.position = respawnPoint.spawnPoints[0].transform.position;
             character2.transform.position = respawnPoint.spawnPoints[1].transform.position;
-        }
-        
+        }   
     }
     public void SwitchCharacter()
     {
@@ -52,7 +51,6 @@ public class GameManager : MonoBehaviour
             currentChar = character1.GetComponent<CharacterScript>();
         }
     }
-
  
     public void ToggleLever()
     {

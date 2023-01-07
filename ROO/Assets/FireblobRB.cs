@@ -6,12 +6,10 @@ public class FireblobRB : MonoBehaviour
 {
     private Rigidbody myRB;
     private GameManager gameManager;
-    [SerializeField]
-    private float thrust;
-
     private float startposy;
-
-    void Start()
+    [SerializeField]
+    public int force;
+    private void Awake()
     {
         myRB = this.GetComponent<Rigidbody>();
         gameManager = FindObjectOfType<GameManager>();
@@ -22,17 +20,14 @@ public class FireblobRB : MonoBehaviour
     void Update()
     {
         if (this.transform.position.y < startposy)
-        {
-            myRB.velocity = new Vector3(0, 10, 0);
-        }
+            myRB.velocity = new Vector3(0, force, 0);
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log(other.tag);
         if (other.CompareTag("1") || other.CompareTag("2"))
-        {
             gameManager.RespawnCharacters();
-        }
     }
 
 }
