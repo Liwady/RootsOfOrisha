@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class CharacterScript : MonoBehaviour
 {
@@ -116,8 +117,16 @@ public class CharacterScript : MonoBehaviour
     }
     public void DefaultValuesSize()
     {
-        gameManager.character1.transform.localScale = new Vector3(0.9f, 0.4f, 1);
-        gameManager.character2.transform.localScale = new Vector3(0.8f, 1.6f, 1);
+        if (gameManager.character1.GetComponent<CharacterScript>().usedAbility)
+        {
+            gameManager.character1.transform.localScale /= 1.8f;
+            gameManager.character2.transform.localScale *= 1.8f;
+        }
+        else
+        {
+            gameManager.character1.transform.localScale *= 1.8f;
+            gameManager.character2.transform.localScale /= 1.8f;
+        }
     }
     public void DefaultValuesFloating()
     {

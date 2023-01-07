@@ -51,7 +51,6 @@ public class GameManager : MonoBehaviour
             currentChar = character1.GetComponent<CharacterScript>();
         }
     }
- 
     public void ToggleLever()
     {
         if(currentChar.inRangeLever != null)
@@ -103,13 +102,13 @@ public class GameManager : MonoBehaviour
     {
         if (currentChar.gameObject == character1)
         {
-            character1.transform.localScale = character1.transform.localScale * 1.8f;
-            character2.transform.localScale = character2.transform.localScale / 1.8f;
+            character1.transform.localScale *= 1.8f;
+            character2.transform.localScale /= 1.8f;
         }
         else
         {
-            character2.transform.localScale = character2.transform.localScale * 1.8f;
-            character1.transform.localScale = character1.transform.localScale / 1.8f;
+            character2.transform.localScale *= 1.8f;
+            character1.transform.localScale /= 1.8f;
         }
     }
     public void SetWeight()
@@ -208,5 +207,4 @@ public class GameManager : MonoBehaviour
             character2.GetComponent<CharacterScript>().movementSpeed = 5;
         }
     }
-
 }
