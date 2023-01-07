@@ -26,6 +26,7 @@ public class WaterScript : MonoBehaviour
         if (other.CompareTag("1") || other.CompareTag("2"))
         {
             update = false;
+            gameManager.currentChar.GetComponentInParent<Rigidbody>().drag = 0;
         }
     }
 
@@ -39,6 +40,7 @@ public class WaterScript : MonoBehaviour
             }
             else
             {
+                gameManager.currentChar.GetComponentInParent<Rigidbody>().drag = 10;
                 myWaterBody.isTrigger = true;
             }
         }
