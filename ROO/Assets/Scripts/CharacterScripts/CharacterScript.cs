@@ -18,6 +18,8 @@ public class CharacterScript : MonoBehaviour
     public lever inRangeLever;
     public bool isHoldingCollectible = false; //for other char to collect
     public CollectibleScript.FruitEye typeEF;
+
+    public bool canWalkOnWater = false;
     /*private enum WaterState
     {
         CanWalk,

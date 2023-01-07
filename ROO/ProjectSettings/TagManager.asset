@@ -8,6 +8,7 @@ TagManager:
   - 2
   - Obstacle
   - Checker
+  - Water
   layers:
   - Default
   - TransparentFX

@@ -4,15 +4,43 @@ using UnityEngine;
 
 public class WaterScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private GameManager gameManager;
+    private bool update;
+    [SerializeField]
+    private Collider myWaterBody;
+
+    private void Awake()
     {
-        
+        gameManager = FindObjectOfType<GameManager>();
+    }
+    private void OnTriggerEnter(Collider other)
+    { 
+        if (other.CompareTag("1") || other.CompareTag("2"))
+        {
+            update = true;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerExit(Collider other)
     {
-        
+        if (other.CompareTag("1") || other.CompareTag("2"))
+        {
+            update = false;
+        }
+    }
+
+    private void Update()
+    {
+        if (update)
+        {
+            if (gameManager.currentChar.canWalkOnWater)
+            {
+                myWaterBody.isTrigger = false;
+            }
+            else
+            {
+                myWaterBody.isTrigger = true;
+            }
+        }
     }
 }

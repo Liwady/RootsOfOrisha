@@ -124,6 +124,7 @@ public class GameManager : MonoBehaviour
                 {
                     character1.GetComponent<CharacterScript>().weight = 5;
                     character2.GetComponent<CharacterScript>().weight = 1;
+
                 }
                 else
                 {
@@ -175,39 +176,48 @@ public class GameManager : MonoBehaviour
     }
     public void SetMovementSpeed()
     {
+        var char1 = character1.GetComponent<CharacterScript>();
+        var char2 = character2.GetComponent<CharacterScript>();
         if (abilityActive)
         {
             if (currentChar.gameObject == character1) //char1
             {
                 if (currentAbility == 0)//size change
                 {
-                    character1.GetComponent<CharacterScript>().movementSpeed = 4;
-                    character2.GetComponent<CharacterScript>().movementSpeed = 6;
+                    char1.movementSpeed = 4;
+                    char2.movementSpeed = 6;
+                    char1.canWalkOnWater = false;
                 }
                 else
                 {
-                    character1.GetComponent<CharacterScript>().movementSpeed = 2;
-                    character2.GetComponent<CharacterScript>().canMove = false;
+                    char1.movementSpeed = 2;
+                    char2.canMove = false;
+                    char1.canWalkOnWater = false;
                 }
             }
             else //char2
             {
                 if (currentAbility == 0)//size change
                 {
-                    character1.GetComponent<CharacterScript>().movementSpeed = 3;
-                    character1.GetComponent<CharacterScript>().movementSpeed = 7;
+                    char2.movementSpeed = 3;
+                    char1.movementSpeed = 7;
+                    char1.canWalkOnWater = true;
                 }
                 else
                 {
-                    character1.GetComponent<CharacterScript>().movementSpeed = 3;
-                    character1.GetComponent<CharacterScript>().canMove = false;
+                    char1.movementSpeed = 3;
+                    char2.canMove = false;
+                    char1.canWalkOnWater = false;
                 }
             }
         }
         else
         {
-            character1.GetComponent<CharacterScript>().movementSpeed = 5;
-            character2.GetComponent<CharacterScript>().movementSpeed = 5;
+            char1.movementSpeed = 5;
+            char2.movementSpeed = 5;
+            char1.canWalkOnWater = false;
         }
+
+
     }
 }
