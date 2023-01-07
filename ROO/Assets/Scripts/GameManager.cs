@@ -53,6 +53,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+ 
     public void ToggleLever()
     {
         if(currentChar.inRangeLever != null)
