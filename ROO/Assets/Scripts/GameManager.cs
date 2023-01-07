@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public int currentAbility;
     public bool abilityActive;
     public RespawnPoint respawnPoint;
+    public Camera mainCamera;
 
     private void Awake()
     {
@@ -43,12 +44,14 @@ public class GameManager : MonoBehaviour
             character1.GetComponent<CharacterScript>().enabled = false;
             character2.GetComponent<CharacterScript>().enabled = true;
             currentChar = character2.GetComponent<CharacterScript>();
+            mainCamera.GetComponent<CameraScript>().player = character2;
         }
         else
         {
             character2.GetComponent<CharacterScript>().enabled = false;
             character1.GetComponent<CharacterScript>().enabled = true;
             currentChar = character1.GetComponent<CharacterScript>();
+            mainCamera.GetComponent<CameraScript>().player = character1;
         }
     }
     public void ToggleLever()
