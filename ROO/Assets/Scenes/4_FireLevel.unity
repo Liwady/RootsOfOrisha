@@ -432,6 +432,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MidSizeChecker
       objectReference: {fileID: 0}
+    - target: {fileID: 8571172681898260092, guid: 60e68fdf569e72a4d854d3c928a9a838, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60e68fdf569e72a4d854d3c928a9a838, type: 3}
 --- !u!4 &513491504 stripped
