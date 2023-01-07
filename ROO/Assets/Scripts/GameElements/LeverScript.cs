@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class lever : MonoBehaviour
+public class LeverScript : MonoBehaviour
 {
     [SerializeField]
     private TriggerAble[] triggeredObjects;

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Altar : MonoBehaviour
+public class AltarScript : MonoBehaviour
 {
     private GameManager gameManager;
     [SerializeField]

@@ -15,7 +15,7 @@ public class CharacterScript : MonoBehaviour
     public int size;
     public int weight;
     //private WaterState statusW;
-    public lever inRangeLever;
+    public LeverScript inRangeLever;
     public bool isHoldingCollectible = false; //for other char to collect
     public CollectibleScript.FruitEye typeEF;
 
