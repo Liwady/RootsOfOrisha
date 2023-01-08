@@ -15,8 +15,8 @@ public class Parallax : MonoBehaviour
     private void LateUpdate()
     {
         Vector3 delMovement = cTransform.position - lastCameraPosition;
-        transform.position += delMovement*parallaxEffect;
+        transform.position -= delMovement*parallaxEffect;
         lastCameraPosition = cTransform.position;
-        transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+        transform.position = new Vector3(transform.position.x, transform.position.y, -2);
     }
 }

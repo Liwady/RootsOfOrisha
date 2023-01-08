@@ -104,7 +104,7 @@ ScriptedImporter:
       y: 4
       width: 49993
       height: 2160
-    spriteID: b668fdbcccbc1694c906d308f46934bf
+    spriteID: 503e383147fb67649855b4a5a888bb81
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -182,7 +182,7 @@ ScriptedImporter:
     spriteName: 11_FG_Chandeliers copy
     isGroup: 0
     parentIndex: -1
-    spriteID: b668fdbcccbc1694c906d308f46934bf
+    spriteID: 503e383147fb67649855b4a5a888bb81
     layerID: 2689
     mosaicPosition: {x: 4, y: 4}
     flatten: 0
