@@ -1372,9 +1372,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 405070105}
-  upBound: 46.56
-  downBound: 35.59
-  leftBound: -101.3
+  upBound: 46.09
+  downBound: 35.6
+  leftBound: -101.1
   rightBound: -71.68
   upDownSize: 5
   leftRightSize: 8.8
@@ -1469,9 +1469,17 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 6063233799594760935, guid: 80a7bd4d9ffa8bc48aaaa34d15bd9e23, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.11
+      objectReference: {fileID: 0}
     - target: {fileID: 6543234625776193682, guid: 80a7bd4d9ffa8bc48aaaa34d15bd9e23, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 9197646481278905963, guid: 80a7bd4d9ffa8bc48aaaa34d15bd9e23, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.26
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3397007826434502130, guid: 80a7bd4d9ffa8bc48aaaa34d15bd9e23, type: 3}

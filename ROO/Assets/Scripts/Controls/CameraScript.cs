@@ -1,39 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
-    public GameObject player;        //Public variable to store a reference to the player game object
+    //Public variable to store a reference to the player game object
+    public GameObject player;
     [SerializeField]
-    private float upBound = 10;
-    [SerializeField]
-    private float downBound = -10;
-    [SerializeField]
-    private float leftBound = -10;
-    [SerializeField]
-    private float rightBound = 10;
-
-
-
-    [SerializeField]
-    private float upDownSize = 5;
-    [SerializeField]
-    private float leftRightSize = 14.8f;
-
-    /*[SerializeField]
-    private float offsettUpDown;
-    [SerializeField]
-    private float offsettLeftRight; */
+    private float upBound = 10, rightBound = 10, leftBound = -10, downBound = -10, upDownSize = 5, leftRightSize = 14.8f;
 
     void Update()
     {
         transform.position = player.transform.position + new Vector3(0, 3, -5);
-
         transform.position = new Vector3 //keep camera in boundary
         (
-            Mathf.Clamp(transform.position.x, leftBound+ leftRightSize, rightBound- leftRightSize),
-            Mathf.Clamp(transform.position.y, downBound+ upDownSize, upBound- upDownSize),
+            Mathf.Clamp(transform.position.x, leftBound + leftRightSize, rightBound - leftRightSize),
+            Mathf.Clamp(transform.position.y, downBound + upDownSize, upBound - upDownSize),
             transform.position.z
         );
     }

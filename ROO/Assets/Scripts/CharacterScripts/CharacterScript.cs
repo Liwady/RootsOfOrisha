@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 
 public class CharacterScript : MonoBehaviour
 {
@@ -40,7 +39,6 @@ public class CharacterScript : MonoBehaviour
             Move();
         if (gameManager.currentAbility == 1 && gameManager.abilityActive && usedAbility)
             MoveTowardsPlace();
-
     }
     private void OnEnable()
     {
@@ -66,7 +64,7 @@ public class CharacterScript : MonoBehaviour
         }
         else
         {
-            gameManager.abilityActive =true;
+            gameManager.abilityActive = true;
             SetUsedAbility();
             MoveTowardsPlace();
         }
@@ -143,7 +141,6 @@ public class CharacterScript : MonoBehaviour
                 grabbedObject.transform.position = grabbedObject.transform.position;
                 grabbedObject = null;
                 detectedObject = null;
-
             }
 
             //if  holding nothing -> grab
@@ -154,17 +151,16 @@ public class CharacterScript : MonoBehaviour
                 grabbedObject = detectedObject;
                 grabbedObject.transform.parent = gameObject.GetComponentInChildren<Transform>();
                 grabbedObject.GetComponent<Rigidbody>().isKinematic = true;
-                if(gameObject == gameManager.character1)
+                if (gameObject == gameManager.character1)
                     grabbedObject.transform.position = grabPointS.transform.position;
                 else
                     grabbedObject.transform.position = grabPointL.transform.position;
-
             }
         }
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Statue") && !isHoldingCollectible)
-            detectedObject=other.gameObject;
+            detectedObject = other.gameObject;
     }
 }

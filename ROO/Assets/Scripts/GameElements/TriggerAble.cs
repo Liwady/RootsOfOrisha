@@ -46,7 +46,7 @@ public class TriggerAble : MonoBehaviour
             case Mode.up:
                 if (triggered)
                 {
-                    if (transform.position.y < maxPos.y)
+                    if (transform.localPosition.y < maxPos.y)
                     {
                         transform.Translate(movementVector);
                     }
@@ -59,7 +59,7 @@ public class TriggerAble : MonoBehaviour
             case Mode.down:
                 if (triggered)
                 {
-                    if (transform.position.y > maxPos.y) //max pos downwards 
+                    if (transform.localPosition.y > maxPos.y) //max pos downwards 
                     {
                         transform.Translate(-movementVector);
                     }
@@ -73,7 +73,7 @@ public class TriggerAble : MonoBehaviour
                 if (triggered)
                 {
                     maxPos = new Vector3(0, movementVector.y * gameManager.currentChar.GetComponent<CharacterScript>().weight, 1);
-                    if (transform.position.y > maxPos.y)
+                    if (transform.localPosition.y > maxPos.y)
                     {
                         transform.Translate(-movementVector);
                     }
@@ -87,7 +87,7 @@ public class TriggerAble : MonoBehaviour
                 if (triggered)
                 {
                     maxPos = new Vector3(0, movementVector.y * gameManager.currentChar.GetComponent<CharacterScript>().weight, 1);
-                    if (transform.position.y < maxPos.y)
+                    if (transform.localPosition.y < maxPos.y)
                     {
                         transform.Translate(movementVector);
                     }

@@ -1,19 +1,13 @@
-using System;
 using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public int amountOfFruit;
-    public int amountOfEyes;
-    public TMP_Text fruitText;
-    public TMP_Text eyesText;
-    public TMP_Text abilityText;
-    public GameObject character1;
-    public GameObject character2;
-    public CharacterScript currentChar;
-    public int currentAbility;
+    public int amountOfFruit, amountOfEyes, currentAbility;
     public bool abilityActive;
+    public TMP_Text fruitText, eyesText, abilityText;
+    public GameObject character1, character2;
+    public CharacterScript currentChar;
     public RespawnPoint respawnPoint;
     public Camera mainCamera;
 
@@ -29,14 +23,13 @@ public class GameManager : MonoBehaviour
     {
         abilityText.text = currentAbility.ToString();
     }
-
     public void RespawnCharacters()
     {
         if (respawnPoint != null)
         {
             character1.transform.position = respawnPoint.spawnPoints[0].transform.position;
             character2.transform.position = respawnPoint.spawnPoints[1].transform.position;
-        }   
+        }
     }
     public void SwitchCharacter()
     {
@@ -57,7 +50,7 @@ public class GameManager : MonoBehaviour
     }
     public void ToggleLever()
     {
-        if(currentChar.inRangeLever != null)
+        if (currentChar.inRangeLever != null)
             currentChar.inRangeLever.ToggleLever();
     }
     public void TriggerAbility()
@@ -221,5 +214,4 @@ public class GameManager : MonoBehaviour
 
 
     }
-   
 }
