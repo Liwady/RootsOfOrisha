@@ -9,6 +9,7 @@ TagManager:
   - Obstacle
   - Checker
   - Water
+  - Statue
   layers:
   - Default
   - TransparentFX

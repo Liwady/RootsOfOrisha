@@ -80,6 +80,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Grab"",
+                    ""type"": ""Button"",
+                    ""id"": ""e83aed19-8b07-4492-ae33-47e25f0ecef6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -236,6 +245,28 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Respawn"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9a315b88-a602-4551-adaa-4a57a8636fc1"",
+                    ""path"": ""<Keyboard>/g"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Grab"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ca7055dd-7d50-4dbd-a770-709bec38343f"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Grab"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -273,6 +304,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Gameplay_SwitchAbility = m_Gameplay.FindAction("SwitchAbility", throwIfNotFound: true);
         m_Gameplay_ToggleButton = m_Gameplay.FindAction("ToggleButton", throwIfNotFound: true);
         m_Gameplay_Respawn = m_Gameplay.FindAction("Respawn", throwIfNotFound: true);
+        m_Gameplay_Grab = m_Gameplay.FindAction("Grab", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -338,6 +370,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_SwitchAbility;
     private readonly InputAction m_Gameplay_ToggleButton;
     private readonly InputAction m_Gameplay_Respawn;
+    private readonly InputAction m_Gameplay_Grab;
     public struct GameplayActions
     {
         private @PlayerControls m_Wrapper;
@@ -348,6 +381,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @SwitchAbility => m_Wrapper.m_Gameplay_SwitchAbility;
         public InputAction @ToggleButton => m_Wrapper.m_Gameplay_ToggleButton;
         public InputAction @Respawn => m_Wrapper.m_Gameplay_Respawn;
+        public InputAction @Grab => m_Wrapper.m_Gameplay_Grab;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -375,6 +409,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Respawn.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRespawn;
                 @Respawn.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRespawn;
                 @Respawn.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRespawn;
+                @Grab.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnGrab;
+                @Grab.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnGrab;
+                @Grab.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnGrab;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -397,6 +434,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Respawn.started += instance.OnRespawn;
                 @Respawn.performed += instance.OnRespawn;
                 @Respawn.canceled += instance.OnRespawn;
+                @Grab.started += instance.OnGrab;
+                @Grab.performed += instance.OnGrab;
+                @Grab.canceled += instance.OnGrab;
             }
         }
     }
@@ -427,5 +467,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnSwitchAbility(InputAction.CallbackContext context);
         void OnToggleButton(InputAction.CallbackContext context);
         void OnRespawn(InputAction.CallbackContext context);
+        void OnGrab(InputAction.CallbackContext context);
     }
 }

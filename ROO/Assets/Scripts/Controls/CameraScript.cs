@@ -6,13 +6,13 @@ public class CameraScript : MonoBehaviour
 {
     public GameObject player;        //Public variable to store a reference to the player game object
     [SerializeField]
-    private float upBound;
+    private float upBound = 10;
     [SerializeField]
-    private float downBound;
+    private float downBound = -10;
     [SerializeField]
-    private float leftBound;
+    private float leftBound = -10;
     [SerializeField]
-    private float rightBound;
+    private float rightBound = 10;
 
 
 
