@@ -34,6 +34,7 @@ Transform:
   - {fileID: 6543234625776193682}
   - {fileID: 8004491609211147226}
   - {fileID: 7149609837441873066}
+  - {fileID: 6063233799594760935}
   m_Father: {fileID: 6449930819809177294}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -193,20 +194,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf40b855a3ae9664ebc1feb9e043fb04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 5
-  canResize: 0
-  rb: {fileID: 6370432546291593467}
   checker: {fileID: 7577772200242265956}
   floatCheck: {fileID: 2479419197343652646}
+  grabbedObject: {fileID: 0}
+  detectedObject: {fileID: 0}
+  grabPointS: {fileID: 3349465646915340452}
+  grabPointL: {fileID: 4175236832456458876}
+  rb: {fileID: 6370432546291593467}
   dead: 0
-  canGrab: 0
   canMove: 0
   usedAbility: 0
   abilityTriggered: 0
+  canResize: 0
+  canWalkOnWater: 0
+  isHoldingCollectible: 0
+  movementSpeed: 5
   size: 0
   weight: 0
   inRangeLever: {fileID: 0}
-  isHoldingCollectible: 0
   typeEF: 1
 --- !u!54 &6370432546291593467
 Rigidbody:
@@ -285,6 +290,68 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parent: {fileID: 8618479672060885802}
   obstacles: []
+--- !u!1 &3349465646915340452
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6063233799594760935}
+  m_Layer: 0
+  m_Name: GrabPointS
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6063233799594760935
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3349465646915340452}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.41, y: 1.44, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5325513455797091435}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4175236832456458876
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9197646481278905963}
+  m_Layer: 0
+  m_Name: GrabPointL
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9197646481278905963
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4175236832456458876}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.72, y: -0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6294383202433068221}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5457676653762857262
 GameObject:
   m_ObjectHideFlags: 0
@@ -491,6 +558,7 @@ Transform:
   - {fileID: 1917770902911438444}
   - {fileID: 6759976045285266865}
   - {fileID: 1375531866829887624}
+  - {fileID: 9197646481278905963}
   m_Father: {fileID: 1624821998026881703}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -604,20 +672,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf40b855a3ae9664ebc1feb9e043fb04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 5
-  canResize: 1
-  rb: {fileID: 8741159986390527997}
   checker: {fileID: 2973169435374395972}
   floatCheck: {fileID: 6846987038673374397}
+  grabbedObject: {fileID: 0}
+  detectedObject: {fileID: 0}
+  grabPointS: {fileID: 0}
+  grabPointL: {fileID: 0}
+  rb: {fileID: 8741159986390527997}
   dead: 0
-  canGrab: 0
   canMove: 0
   usedAbility: 0
   abilityTriggered: 0
+  canResize: 1
+  canWalkOnWater: 0
+  isHoldingCollectible: 0
+  movementSpeed: 5
   size: 0
   weight: 0
   inRangeLever: {fileID: 0}
-  isHoldingCollectible: 0
   typeEF: 0
 --- !u!54 &8741159986390527997
 Rigidbody:

@@ -3,38 +3,28 @@ using UnityEngine.TextCore.Text;
 
 public class CharacterScript : MonoBehaviour
 {
-    public float movementSpeed;
-    public bool canResize;
-    public Rigidbody rb;
-    private Vector2 movement;
+
     private PlayerControls playerControls;
     private GameManager gameManager;
-    public GameObject checker;
-    public GameObject floatCheck;
-    public bool dead, canGrab, canMove, usedAbility, abilityTriggered;
-    public int size;
-    public int weight;
-    //private WaterState statusW;
+    public GameObject checker, floatCheck, grabbedObject, detectedObject, grabPointS, grabPointL;
+    public Rigidbody rb;
+    public bool dead, canMove, usedAbility, abilityTriggered, canResize, canWalkOnWater, isHoldingCollectible;
+    public float movementSpeed;
+    public int size, weight;
+    private Vector2 movement;
     public LeverScript inRangeLever;
-    public bool isHoldingCollectible = false; //for other char to collect
     public CollectibleScript.FruitEye typeEF;
-
-    public bool canWalkOnWater = false;
-    /*private enum WaterState
-    {
-        CanWalk,
-        Sink,
-        Die
-    }*/
 
     void Awake()
     {
         usedAbility = false;
-        //statusW = WaterState.CanWalk;
+        canWalkOnWater = false;
+        isHoldingCollectible = false;
         canResize = true;
         canMove = true;
         rb = GetComponentInChildren<Rigidbody>();
         gameManager = FindObjectOfType<GameManager>();
+
         playerControls = new PlayerControls();
         playerControls.Gameplay.Move.performed += ctx => movement = ctx.ReadValue<Vector2>(); //lamda expression to preform function
         playerControls.Gameplay.SwitchCharacter.performed += ctx => gameManager.SwitchCharacter();
@@ -42,6 +32,7 @@ public class CharacterScript : MonoBehaviour
         playerControls.Gameplay.TriggerAbility.performed += ctx => gameManager.TriggerAbility();
         playerControls.Gameplay.ToggleButton.performed += ctx => gameManager.ToggleLever();
         playerControls.Gameplay.Respawn.performed += ctx => gameManager.RespawnCharacters();
+        playerControls.Gameplay.Grab.performed += ctx => GrabObject();
     }
     private void Update()
     {
@@ -49,6 +40,7 @@ public class CharacterScript : MonoBehaviour
             Move();
         if (gameManager.currentAbility == 1 && gameManager.abilityActive && usedAbility)
             MoveTowardsPlace();
+
     }
     private void OnEnable()
     {
@@ -136,5 +128,43 @@ public class CharacterScript : MonoBehaviour
             gameManager.character2.transform.position = new Vector3(gameManager.character1.transform.position.x, gameManager.character2.transform.position.y, 1);
         else
             gameManager.character1.transform.position = new Vector3(gameManager.character2.transform.position.x, gameManager.character1.transform.position.y, 1);
+    }
+    private void GrabObject()
+    {
+        if (detectedObject != null)
+        {
+            //if  holding item -> drop
+            //set bool false, unparent object, grabbed object null
+            if (isHoldingCollectible)
+            {
+                isHoldingCollectible = false;
+                grabbedObject.transform.parent = null;
+                grabbedObject.GetComponent<Rigidbody>().isKinematic = false;
+                grabbedObject.transform.position = grabbedObject.transform.position;
+                grabbedObject = null;
+                detectedObject = null;
+
+            }
+
+            //if  holding nothing -> grab
+            //set bool to true, parent object to player, grabbed object to object 
+            else
+            {
+                isHoldingCollectible = true;
+                grabbedObject = detectedObject;
+                grabbedObject.transform.parent = gameObject.GetComponentInChildren<Transform>();
+                grabbedObject.GetComponent<Rigidbody>().isKinematic = true;
+                if(gameObject == gameManager.character1)
+                    grabbedObject.transform.position = grabPointS.transform.position;
+                else
+                    grabbedObject.transform.position = grabPointL.transform.position;
+
+            }
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Statue") && !isHoldingCollectible)
+            detectedObject=other.gameObject;
     }
 }
