@@ -14,6 +14,13 @@ public class CameraScript : MonoBehaviour
     [SerializeField]
     private float rightBound;
 
+
+
+    [SerializeField]
+    private float upDownSize = 5;
+    [SerializeField]
+    private float leftRightSize = 14.8f;
+
     /*[SerializeField]
     private float offsettUpDown;
     [SerializeField]
@@ -25,8 +32,8 @@ public class CameraScript : MonoBehaviour
 
         transform.position = new Vector3 //keep camera in boundary
         (
-            Mathf.Clamp(transform.position.x, leftBound, rightBound),
-            Mathf.Clamp(transform.position.y, downBound, upBound),
+            Mathf.Clamp(transform.position.x, leftBound+ leftRightSize, rightBound- leftRightSize),
+            Mathf.Clamp(transform.position.y, downBound+ upDownSize, upBound- upDownSize),
             transform.position.z
         );
     }
