@@ -7,7 +7,6 @@ public class Libra : MonoBehaviour
     private LineRenderer lineRenderer;
     [SerializeField]
     private Transform[] points;
-    
 
     void Start()
     {

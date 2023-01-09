@@ -39,6 +39,8 @@ public class GameManager : MonoBehaviour
             character2.GetComponent<CharacterScript>().enabled = true;
             currentChar = character2.GetComponent<CharacterScript>();
             mainCamera.GetComponent<CameraScript>().player = character2;
+            character2.GetComponent<CharacterScript>().canMove = true;
+            character1.GetComponent<CharacterScript>().canMove = false;
         }
         else
         {
@@ -46,6 +48,8 @@ public class GameManager : MonoBehaviour
             character1.GetComponent<CharacterScript>().enabled = true;
             currentChar = character1.GetComponent<CharacterScript>();
             mainCamera.GetComponent<CameraScript>().player = character1;
+            character2.GetComponent<CharacterScript>().canMove = false;
+            character1.GetComponent<CharacterScript>().canMove = true;
         }
     }
     public void ToggleLever()
