@@ -1376,8 +1376,6 @@ MonoBehaviour:
   rightBound: -71.68
   leftBound: -101.1
   downBound: 35.6
-  upDownSize: 5
-  leftRightSize: 8.8
 --- !u!1 &1990911497
 GameObject:
   m_ObjectHideFlags: 0
