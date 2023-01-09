@@ -1,8 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-
-
-
 public class CheckerScript : MonoBehaviour
 {
     public GameObject parent;
@@ -38,26 +35,21 @@ public class CheckerScript : MonoBehaviour
                 {
                     gameManager.amountOfFruit++;
                     gameManager.fruitText.text = gameManager.amountOfFruit.ToString();
-                    
                 }
             }
-
         }
     }
-
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Obstacle"))
         {
             obstacles.Remove(other);
             if (obstacles.Count == 0)
-            {
                 myChar.canResize = true;
-            }
         }
     }
 
-    
+
 }
 
 

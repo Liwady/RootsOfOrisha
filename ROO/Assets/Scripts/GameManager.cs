@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     public bool abilityActive;
     public TMP_Text fruitText, eyesText, abilityText;
     public GameObject character1, character2;
-    public CharacterScript currentChar,otherChar, character1script, character2script;
+    public CharacterScript currentChar, otherChar, character1script, character2script;
     public RespawnPoint respawnPoint;
     public Camera mainCamera;
 
@@ -21,7 +21,6 @@ public class GameManager : MonoBehaviour
         abilityActive = false;
         currentAbility = 0;
         abilityText.text = currentAbility.ToString();
-
     }
     private void Update()
     {
@@ -44,7 +43,6 @@ public class GameManager : MonoBehaviour
             otherChar = currentChar;
             currentChar = character2script;
             mainCamera.GetComponent<CameraScript>().player = character2;
-
         }
         else
         {
@@ -53,7 +51,6 @@ public class GameManager : MonoBehaviour
             otherChar = currentChar;
             currentChar = character1script;
             mainCamera.GetComponent<CameraScript>().player = character1;
-
         }
     }
     public void ToggleLever()
@@ -75,14 +72,12 @@ public class GameManager : MonoBehaviour
                 currentChar.Floating();
                 SetGravity();
                 break;
-
         }
         SetWeight();
         SetMovementSpeed();
     }
     public void SwitchAbility()
     {
-
         if (currentAbility == 0)
         { //size
             if (abilityActive)
@@ -103,7 +98,6 @@ public class GameManager : MonoBehaviour
             }
             currentAbility = 0;
         }
-
     }
     public void SetSize()
     {
@@ -128,7 +122,6 @@ public class GameManager : MonoBehaviour
                 {
                     character1script.weight = 4;
                     character2script.weight = 2;
-
                 }
                 else
                 {
@@ -223,7 +216,5 @@ public class GameManager : MonoBehaviour
             char2.movementSpeed = 5;
             char1.canWalkOnWater = false;
         }
-
-
     }
 }

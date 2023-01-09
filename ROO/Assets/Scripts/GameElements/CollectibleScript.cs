@@ -3,25 +3,19 @@ using UnityEngine;
 public class CollectibleScript : MonoBehaviour
 {
     GameManager gameManager;
-
     public enum FruitEye
     {
         fruit,
         eye
     }
-
     [SerializeField]
     private FruitEye typeEF;
-
 
     private void Awake()
     {
         gameManager = FindObjectOfType<GameManager>();
     }
-
-
-    
-    private void OnCollisionEnter(Collision collision) 
+    private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("1") || collision.gameObject.CompareTag("2"))
         {

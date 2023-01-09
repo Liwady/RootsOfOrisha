@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TriggerAble : MonoBehaviour
@@ -11,28 +9,16 @@ public class TriggerAble : MonoBehaviour
         weightdown,
         weightup,
     }
-
-    GameManager gameManager;
-
     [SerializeField]
     private TriggerAble relatedWeightTriggerable;
-
-    [SerializeField]
-    private Vector3 movementVector;
-    [SerializeField]
-    private Vector3 maxPos;
-
-    private Vector3 originalPos;
-    private Vector3 originalPosLocal;
-
-
-
-
-    private bool triggered;
-
-
     [SerializeField]
     private Mode mode;
+    [SerializeField]
+    private Vector3 movementVector, maxPos;
+
+    GameManager gameManager;
+    private Vector3 originalPos, originalPosLocal;
+    private bool triggered;
 
     private void Start()
     {
@@ -44,9 +30,6 @@ public class TriggerAble : MonoBehaviour
     {
         triggered = _value;
     }
-
-
-
     private void Update()
     {
         switch (mode)
@@ -55,28 +38,22 @@ public class TriggerAble : MonoBehaviour
                 if (triggered)
                 {
                     if (transform.localPosition.y < maxPos.y)
-                    {
                         transform.Translate(movementVector);
-                    }
                 }
                 else if (transform.position.y > originalPos.y)
-                {
                     transform.Translate(-movementVector);
-                }
                 break;
+
             case Mode.down:
                 if (triggered)
                 {
                     if (transform.localPosition.y > maxPos.y) //max pos downwards 
-                    {
                         transform.Translate(-movementVector);
-                    }
                 }
                 else if (transform.position.y < originalPos.y)
-                {
                     transform.Translate(movementVector);
-                }
                 break;
+
             case Mode.weightdown:
                 if (triggered)
                 {
@@ -86,35 +63,27 @@ public class TriggerAble : MonoBehaviour
                     relatedWeightTriggerable.movementVector = this.movementVector;
                     relatedWeightTriggerable.triggered = true;
                     if (transform.localPosition.y > originalPosLocal.y - maxPos.y)
-                    {
                         transform.Translate(-movementVector);
-                    }
                 }
-                else if(transform.position.y < originalPos.y)
+                else if (transform.position.y < originalPos.y)
                 {
                     transform.Translate(movementVector);
                     relatedWeightTriggerable.triggered = false;
-
                 }
                 else if (transform.position.y == originalPos.y)
-                {
                     relatedWeightTriggerable.mode = Mode.weightdown;
-                }
-
                 break;
+
             case Mode.weightup:
                 if (triggered)
                 {
                     maxPos = new Vector3(0, gameManager.currentChar.GetComponent<CharacterScript>().weight, 1);
                     if (transform.localPosition.y < originalPosLocal.y + maxPos.y)
-                    {
                         transform.Translate(movementVector);
-                    }
                 }
                 else if (transform.position.y > originalPos.y)
-                {
                     transform.Translate(-movementVector);
-                }
+
                 relatedWeightTriggerable.mode = Mode.weightdown;
                 relatedWeightTriggerable.maxPos = this.maxPos;
                 relatedWeightTriggerable.movementVector = this.movementVector;

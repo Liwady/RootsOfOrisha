@@ -34,16 +34,12 @@ public class LeverScript : MonoBehaviour
         if (toggled)
         {
             for (int i = 0; i < triggeredObjects.Length; i++)
-            {
                 triggeredObjects[i].Toggle(true);
-            }
         }
         else
         {
             for (int i = 0; i < triggeredObjects.Length; i++)
-            {
                 triggeredObjects[i].Toggle(false);
-            }
         }
     }
 }

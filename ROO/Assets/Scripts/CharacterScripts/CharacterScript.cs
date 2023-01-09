@@ -13,7 +13,7 @@ public class CharacterScript : MonoBehaviour
     private Vector2 movement;
     public LeverScript inRangeLever;
     public CollectibleScript.FruitEye typeEF;
-   
+
 
     void Awake()
     {
@@ -62,14 +62,13 @@ public class CharacterScript : MonoBehaviour
             usedAbility = false;
             gameManager.SetGravity();
         }
-        else if(gameManager.otherChar.isGrounded)
+        else if (gameManager.otherChar.isGrounded)
         {
-            
+
             gameManager.abilityActive = true;
             SetUsedAbility();
             MoveTowardsPlace();
         }
-
     }
     public void Sizing()
     {
@@ -144,7 +143,6 @@ public class CharacterScript : MonoBehaviour
                 grabbedObject = null;
                 detectedObject = null;
             }
-
             //if  holding nothing -> grab
             //set bool to true, parent object to player, grabbed object to object 
             else

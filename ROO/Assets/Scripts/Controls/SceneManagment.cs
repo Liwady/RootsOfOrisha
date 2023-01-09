@@ -1,14 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneManagment : MonoBehaviour
 {
-    public GameObject soundon;
-    public GameObject soundoff;
-
-    
+    public GameObject soundon, soundoff;
 
     public void MainScene()
     {
@@ -18,7 +13,6 @@ public class SceneManagment : MonoBehaviour
     {
         SceneManager.LoadScene(sceneNumber);
     }
-
     public void Quit()
     {
         Debug.Log("test");
@@ -30,7 +24,8 @@ public class SceneManagment : MonoBehaviour
         {
             soundon.SetActive(false);
             soundoff.SetActive(true);
-        }else
+        }
+        else
         {
             soundon.SetActive(true);
             soundoff.SetActive(false);

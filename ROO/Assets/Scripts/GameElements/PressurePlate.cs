@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PressurePlate : MonoBehaviour
@@ -8,9 +6,6 @@ public class PressurePlate : MonoBehaviour
     private TriggerAble[] triggeredObjects;
     [SerializeField]
     private int weightRequirment;
-
-
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("1") || other.CompareTag("2"))
@@ -19,9 +14,7 @@ public class PressurePlate : MonoBehaviour
             if (character.weight >= weightRequirment)
             {
                 for (int i = 0; i < triggeredObjects.Length; i++)
-                {
                     triggeredObjects[i].Toggle(true);
-                }
             }
         }
     }
@@ -34,9 +27,7 @@ public class PressurePlate : MonoBehaviour
             if (character.weight < weightRequirment)
             {
                 for (int i = 0; i < triggeredObjects.Length; i++)
-                {
                     triggeredObjects[i].Toggle(false);
-                }
             }
         }
     }
@@ -46,10 +37,7 @@ public class PressurePlate : MonoBehaviour
         if (other.CompareTag("1") || other.CompareTag("2"))
         {
             for (int i = 0; i < triggeredObjects.Length; i++)
-            {
-                  triggeredObjects[i].Toggle(false);
-            }
-
+                triggeredObjects[i].Toggle(false);
         }
     }
 }

@@ -4,23 +4,11 @@ public class CameraScript : MonoBehaviour
 {
     public GameObject player;        //Public variable to store a reference to the player game object
     [SerializeField]
-    private float upBound;
-    [SerializeField]
-    private float downBound;
-    [SerializeField]
-    private float leftBound;
-    [SerializeField]
-    private float rightBound;
-
-    [SerializeField]
-    private float offsettUpDown;
-    [SerializeField]
-    private float offsettLeftRight; 
+    private float upBound, downBound, leftBound, rightBound, offsettUpDown, offsettLeftRight;
 
     void Update()
     {
         transform.position = player.transform.position + new Vector3(0, 3, -5);
-
         transform.position = new Vector3 //keep camera in boundary
         (
             Mathf.Clamp(transform.position.x, leftBound + offsettLeftRight, rightBound - offsettLeftRight),
