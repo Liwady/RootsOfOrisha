@@ -39,8 +39,7 @@ public class GameManager : MonoBehaviour
             character2.GetComponent<CharacterScript>().enabled = true;
             currentChar = character2.GetComponent<CharacterScript>();
             mainCamera.GetComponent<CameraScript>().player = character2;
-            character2.GetComponent<CharacterScript>().canMove = true;
-            character1.GetComponent<CharacterScript>().canMove = false;
+
         }
         else
         {
@@ -48,8 +47,7 @@ public class GameManager : MonoBehaviour
             character1.GetComponent<CharacterScript>().enabled = true;
             currentChar = character1.GetComponent<CharacterScript>();
             mainCamera.GetComponent<CameraScript>().player = character1;
-            character2.GetComponent<CharacterScript>().canMove = false;
-            character1.GetComponent<CharacterScript>().canMove = true;
+
         }
     }
     public void ToggleLever()
@@ -120,8 +118,8 @@ public class GameManager : MonoBehaviour
             {
                 if (currentAbility == 1)//size change
                 {
-                    character1.GetComponent<CharacterScript>().weight = 5;
-                    character2.GetComponent<CharacterScript>().weight = 1;
+                    character1.GetComponent<CharacterScript>().weight = 4;
+                    character2.GetComponent<CharacterScript>().weight = 2;
 
                 }
                 else
@@ -134,8 +132,8 @@ public class GameManager : MonoBehaviour
             {
                 if (currentAbility == 1)//size change
                 {
-                    character2.GetComponent<CharacterScript>().weight = 4;
-                    character1.GetComponent<CharacterScript>().weight = 2;
+                    character2.GetComponent<CharacterScript>().weight = 5;
+                    character1.GetComponent<CharacterScript>().weight = 1;
                 }
                 else
                 {
@@ -146,8 +144,8 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            character1.GetComponent<CharacterScript>().weight = 4;
-            character2.GetComponent<CharacterScript>().weight = 2;
+            character1.GetComponent<CharacterScript>().weight = 2;
+            character2.GetComponent<CharacterScript>().weight = 4;
         }
     }
     public void SetGravity()
@@ -203,8 +201,8 @@ public class GameManager : MonoBehaviour
                 }
                 else
                 {
-                    char1.movementSpeed = 3;
-                    char2.canMove = false;
+                    char2.movementSpeed = 3;
+                    char1.canMove = false;
                     char1.canWalkOnWater = false;
                 }
             }

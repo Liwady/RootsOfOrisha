@@ -123,9 +123,9 @@ public class CharacterScript : MonoBehaviour
     public void DefaultValuesFloating()
     {
         if (gameManager.currentChar.gameObject == gameManager.character1)
-            gameManager.character2.transform.position = new Vector3(gameManager.character1.transform.position.x, gameManager.character2.transform.position.y);
+            gameManager.character2.transform.position = new Vector3(gameManager.character1.transform.position.x, gameManager.character2.transform.position.y, gameManager.character2.transform.position.z);
         else
-            gameManager.character1.transform.position = new Vector3(gameManager.character2.transform.position.x, gameManager.character1.transform.position.y);
+            gameManager.character1.transform.position = new Vector3(gameManager.character2.transform.position.x, gameManager.character1.transform.position.y, gameManager.character1.transform.position.z);
     }
     private void GrabObject()
     {
