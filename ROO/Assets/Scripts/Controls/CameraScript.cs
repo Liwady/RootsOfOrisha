@@ -2,18 +2,29 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
-    //Public variable to store a reference to the player game object
-    public GameObject player;
+    public GameObject player;        //Public variable to store a reference to the player game object
     [SerializeField]
-    private float upBound = 10, rightBound = 10, leftBound = -10, downBound = -10;
+    private float upBound;
+    [SerializeField]
+    private float downBound;
+    [SerializeField]
+    private float leftBound;
+    [SerializeField]
+    private float rightBound;
+
+    [SerializeField]
+    private float offsettUpDown;
+    [SerializeField]
+    private float offsettLeftRight; 
 
     void Update()
     {
         transform.position = player.transform.position + new Vector3(0, 3, -5);
+
         transform.position = new Vector3 //keep camera in boundary
         (
-            Mathf.Clamp(transform.position.x, leftBound , rightBound),
-            Mathf.Clamp(transform.position.y, downBound , upBound),
+            Mathf.Clamp(transform.position.x, leftBound + offsettLeftRight, rightBound - offsettLeftRight),
+            Mathf.Clamp(transform.position.y, downBound + offsettUpDown, upBound - offsettUpDown),
             transform.position.z
         );
     }

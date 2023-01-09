@@ -7723,10 +7723,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 114788382}
-  upBound: 7.8
-  rightBound: 317.14
-  leftBound: -4.7
-  downBound: 7.5
+  upBound: 15.11
+  downBound: 0.21
+  leftBound: -17.1
+  rightBound: 329.7
+  offsettUpDown: 7.04
+  offsettLeftRight: 9
 --- !u!1 &1609253604
 GameObject:
   m_ObjectHideFlags: 0
