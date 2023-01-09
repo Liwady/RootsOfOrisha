@@ -7,17 +7,21 @@ public class GameManager : MonoBehaviour
     public bool abilityActive;
     public TMP_Text fruitText, eyesText, abilityText;
     public GameObject character1, character2;
-    public CharacterScript currentChar;
+    public CharacterScript currentChar,otherChar, character1script, character2script;
     public RespawnPoint respawnPoint;
     public Camera mainCamera;
 
     private void Awake()
     {
         amountOfFruit = 0;
-        currentChar = character1.GetComponent<CharacterScript>();
+        character1script = character1.GetComponent<CharacterScript>();
+        character2script = character2.GetComponent<CharacterScript>();
+        currentChar = character1script;
+        otherChar = character2script;
         abilityActive = false;
         currentAbility = 0;
         abilityText.text = currentAbility.ToString();
+
     }
     private void Update()
     {
@@ -35,17 +39,19 @@ public class GameManager : MonoBehaviour
     {
         if (currentChar.gameObject == character1)
         {
-            character1.GetComponent<CharacterScript>().enabled = false;
-            character2.GetComponent<CharacterScript>().enabled = true;
-            currentChar = character2.GetComponent<CharacterScript>();
+            character1script.enabled = false;
+            character2script.enabled = true;
+            otherChar = currentChar;
+            currentChar = character2script;
             mainCamera.GetComponent<CameraScript>().player = character2;
 
         }
         else
         {
-            character2.GetComponent<CharacterScript>().enabled = false;
-            character1.GetComponent<CharacterScript>().enabled = true;
-            currentChar = character1.GetComponent<CharacterScript>();
+            character2script.enabled = false;
+            character1script.enabled = true;
+            otherChar = currentChar;
+            currentChar = character1script;
             mainCamera.GetComponent<CameraScript>().player = character1;
 
         }
@@ -69,6 +75,7 @@ public class GameManager : MonoBehaviour
                 currentChar.Floating();
                 SetGravity();
                 break;
+
         }
         SetWeight();
         SetMovementSpeed();
@@ -92,6 +99,7 @@ public class GameManager : MonoBehaviour
             {
                 currentChar.Floating();
                 abilityActive = false;
+                SetMovementSpeed();
             }
             currentAbility = 0;
         }
@@ -118,34 +126,34 @@ public class GameManager : MonoBehaviour
             {
                 if (currentAbility == 1)//size change
                 {
-                    character1.GetComponent<CharacterScript>().weight = 4;
-                    character2.GetComponent<CharacterScript>().weight = 2;
+                    character1script.weight = 4;
+                    character2script.weight = 2;
 
                 }
                 else
                 {
-                    character1.GetComponent<CharacterScript>().weight = 6;
-                    character2.GetComponent<CharacterScript>().weight = 0;
+                    character1script.weight = 6;
+                    character2script.weight = 0;
                 }
             }
             else //char2
             {
                 if (currentAbility == 1)//size change
                 {
-                    character2.GetComponent<CharacterScript>().weight = 5;
-                    character1.GetComponent<CharacterScript>().weight = 1;
+                    character2script.weight = 5;
+                    character1script.weight = 1;
                 }
                 else
                 {
-                    character2.GetComponent<CharacterScript>().weight = 6;
-                    character1.GetComponent<CharacterScript>().weight = 0;
+                    character2script.weight = 6;
+                    character1script.weight = 0;
                 }
             }
         }
         else
         {
-            character1.GetComponent<CharacterScript>().weight = 2;
-            character2.GetComponent<CharacterScript>().weight = 4;
+            character1script.weight = 2;
+            character2script.weight = 4;
         }
     }
     public void SetGravity()
@@ -154,26 +162,26 @@ public class GameManager : MonoBehaviour
         {
             if (currentChar.gameObject == character1)
             {
-                character1.GetComponent<CharacterScript>().GetComponent<Rigidbody>().useGravity = true;
-                character2.GetComponent<CharacterScript>().GetComponent<Rigidbody>().useGravity = false;
+                character1script.GetComponent<Rigidbody>().useGravity = true;
+                character2script.GetComponent<Rigidbody>().useGravity = false;
             }
             else
             {
-                character1.GetComponent<CharacterScript>().GetComponent<Rigidbody>().useGravity = false;
-                character2.GetComponent<CharacterScript>().GetComponent<Rigidbody>().useGravity = true;
+                character1script.GetComponent<Rigidbody>().useGravity = false;
+                character2script.GetComponent<Rigidbody>().useGravity = true;
             }
         }
         else
         {
-            character1.GetComponent<CharacterScript>().GetComponent<Rigidbody>().useGravity = true;
-            character2.GetComponent<CharacterScript>().GetComponent<Rigidbody>().useGravity = true;
+            character1script.GetComponent<Rigidbody>().useGravity = true;
+            character2script.GetComponent<Rigidbody>().useGravity = true;
         }
 
     }
     public void SetMovementSpeed()
     {
-        var char1 = character1.GetComponent<CharacterScript>();
-        var char2 = character2.GetComponent<CharacterScript>();
+        var char1 = character1script;
+        var char2 = character2script;
         char1.canMove = true;
         char2.canMove = true;
         if (abilityActive)

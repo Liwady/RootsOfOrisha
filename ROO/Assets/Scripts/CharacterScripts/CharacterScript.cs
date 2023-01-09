@@ -7,12 +7,13 @@ public class CharacterScript : MonoBehaviour
     private GameManager gameManager;
     public GameObject checker, floatCheck, grabbedObject, detectedObject, grabPointS, grabPointL;
     public Rigidbody rb;
-    public bool dead, canMove, usedAbility, abilityTriggered, canResize, canWalkOnWater, isHoldingCollectible;
+    public bool dead, canMove, usedAbility, abilityTriggered, canResize, canWalkOnWater, isHoldingCollectible, isGrounded;
     public float movementSpeed;
     public int size, weight;
     private Vector2 movement;
     public LeverScript inRangeLever;
     public CollectibleScript.FruitEye typeEF;
+   
 
     void Awake()
     {
@@ -59,11 +60,11 @@ public class CharacterScript : MonoBehaviour
         {
             gameManager.abilityActive = false;
             usedAbility = false;
-            //DefaultValuesFloating();
             gameManager.SetGravity();
         }
-        else
+        else if(gameManager.otherChar.isGrounded)
         {
+            
             gameManager.abilityActive = true;
             SetUsedAbility();
             MoveTowardsPlace();
