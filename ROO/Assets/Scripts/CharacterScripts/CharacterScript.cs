@@ -59,7 +59,7 @@ public class CharacterScript : MonoBehaviour
         {
             gameManager.abilityActive = false;
             usedAbility = false;
-            DefaultValuesFloating();
+            //DefaultValuesFloating();
             gameManager.SetGravity();
         }
         else
@@ -68,6 +68,7 @@ public class CharacterScript : MonoBehaviour
             SetUsedAbility();
             MoveTowardsPlace();
         }
+
     }
     public void Sizing()
     {

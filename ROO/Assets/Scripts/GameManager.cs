@@ -174,6 +174,8 @@ public class GameManager : MonoBehaviour
     {
         var char1 = character1.GetComponent<CharacterScript>();
         var char2 = character2.GetComponent<CharacterScript>();
+        char1.canMove = true;
+        char2.canMove = true;
         if (abilityActive)
         {
             if (currentChar.gameObject == character1) //char1
