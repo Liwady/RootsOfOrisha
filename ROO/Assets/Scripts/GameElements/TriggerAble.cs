@@ -16,6 +16,8 @@ public class TriggerAble : MonoBehaviour
     [SerializeField]
     private Vector3 movementVector, maxPos;
 
+    public GameObject triggeredChar;
+
     GameManager gameManager;
     private Vector3 originalPos, originalPosLocal;
     private bool triggered;

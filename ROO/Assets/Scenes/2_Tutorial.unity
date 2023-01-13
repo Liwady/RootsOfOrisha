@@ -4742,10 +4742,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1626785131}
     m_Modifications:
-    - target: {fileID: -5503087931348499445, guid: 4ddf1a009abbee049911910b0d15b010, type: 3}
-      propertyPath: m_SortingOrder
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 2116499736781344227, guid: 4ddf1a009abbee049911910b0d15b010, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -4790,21 +4786,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2116499736781344284, guid: 4ddf1a009abbee049911910b0d15b010, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2116499736781344284, guid: 4ddf1a009abbee049911910b0d15b010, type: 3}
-      propertyPath: m_Center.z
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2116499736781344286, guid: 4ddf1a009abbee049911910b0d15b010, type: 3}
       propertyPath: m_Name
       value: Gate
-      objectReference: {fileID: 0}
-    - target: {fileID: 2116499736781344287, guid: 4ddf1a009abbee049911910b0d15b010, type: 3}
-      propertyPath: maxPos.y
-      value: -12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ddf1a009abbee049911910b0d15b010, type: 3}

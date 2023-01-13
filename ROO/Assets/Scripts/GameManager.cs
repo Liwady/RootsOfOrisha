@@ -118,7 +118,7 @@ public class GameManager : MonoBehaviour
         {
             if (currentChar.gameObject == character1) //char1
             {
-                if (currentAbility == 1)//size change
+                if (currentAbility == 0)//size change
                 {
                     character1script.weight = 4;
                     character2script.weight = 2;
@@ -131,7 +131,7 @@ public class GameManager : MonoBehaviour
             }
             else //char2
             {
-                if (currentAbility == 1)//size change
+                if (currentAbility == 0)//size change
                 {
                     character2script.weight = 5;
                     character1script.weight = 1;
