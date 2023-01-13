@@ -41,7 +41,7 @@ public class PressurePlate : MonoBehaviour
         {
             if (moved)
             {
-                if (!active && character.weight >= weightRequirment)
+                if (!active && character.weight == weightRequirment)
                 {
                     active = true;
                     moved = false;
@@ -58,6 +58,16 @@ public class PressurePlate : MonoBehaviour
                 moved = false;
                 for (int i = 0; i < triggeredObjects.Length; i++)
                     triggeredObjects[i].Toggle(false);
+            }
+            else if(character.weight == weightRequirment)
+            {
+                active = true;
+                moved = false;
+                for (int i = 0; i < triggeredObjects.Length; i++)
+                {
+                    triggeredObjects[i].GetComponent<TriggerAble>().triggeredChar = other.gameObject;
+                    triggeredObjects[i].Toggle(true);
+                }
             }
         }
     }
