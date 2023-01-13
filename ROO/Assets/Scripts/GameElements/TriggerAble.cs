@@ -15,10 +15,11 @@ public class TriggerAble : MonoBehaviour
     private Mode mode;
     [SerializeField]
     private Vector3 movementVector, maxPos;
-
+    [SerializeField]
+    private bool hasDeathZone;
+    [SerializeField]
+    private GameObject deathZone;
     public GameObject triggeredChar;
-
-    GameManager gameManager;
     private Vector3 originalPos, originalPosLocal;
     private bool triggered;
 
@@ -26,13 +27,12 @@ public class TriggerAble : MonoBehaviour
     {
         originalPos = transform.position;
         originalPosLocal = transform.localPosition;
-        gameManager = FindObjectOfType<GameManager>();
     }
     public void Toggle(bool _value)
     {
         triggered = _value;
     }
-    private void Update()
+    private void ModeSwitch()
     {
         switch (mode)
         {
@@ -43,7 +43,13 @@ public class TriggerAble : MonoBehaviour
                         transform.Translate(movementVector);
                 }
                 else if (transform.position.y > originalPos.y)
+                {
+                    if (hasDeathZone)
+                        deathZone.SetActive(true);
                     transform.Translate(-movementVector);
+                }
+                else if (transform.position.y == originalPos.y && hasDeathZone && deathZone.activeSelf)
+                    deathZone.SetActive(false);
                 break;
 
             case Mode.down:
@@ -59,17 +65,22 @@ public class TriggerAble : MonoBehaviour
             case Mode.weightdown:
                 if (triggered)
                 {
-                    maxPos = new Vector3(0, gameManager.currentChar.GetComponent<CharacterScript>().weight, 1);
+                    maxPos = new Vector3(0, gameObject.GetComponent<PressurePlate>().triggeredChar.GetComponentInParent<CharacterScript>().weight, 1);
                     relatedWeightTriggerable.mode = Mode.weightup;
-                    relatedWeightTriggerable.maxPos = this.maxPos;
-                    relatedWeightTriggerable.movementVector = this.movementVector;
+                    relatedWeightTriggerable.maxPos = maxPos;
+                    relatedWeightTriggerable.movementVector = movementVector;
                     relatedWeightTriggerable.triggered = true;
                     if (transform.localPosition.y > originalPosLocal.y - maxPos.y)
+                    {
+                        if (hasDeathZone)
+                            deathZone.SetActive(true);
                         transform.Translate(-movementVector);
+                    }
                 }
                 else if (transform.position.y < originalPos.y)
                 {
                     transform.Translate(movementVector);
+                    deathZone.SetActive(false);
                     relatedWeightTriggerable.triggered = false;
                 }
                 else if (transform.position.y == originalPos.y)
@@ -79,17 +90,23 @@ public class TriggerAble : MonoBehaviour
             case Mode.weightup:
                 if (triggered)
                 {
-                    maxPos = new Vector3(0, gameManager.currentChar.GetComponent<CharacterScript>().weight, 1);
                     if (transform.localPosition.y < originalPosLocal.y + maxPos.y)
                         transform.Translate(movementVector);
                 }
                 else if (transform.position.y > originalPos.y)
+                {
+                    if (hasDeathZone)
+                        deathZone.SetActive(true);
                     transform.Translate(-movementVector);
-
+                }
                 relatedWeightTriggerable.mode = Mode.weightdown;
-                relatedWeightTriggerable.maxPos = this.maxPos;
-                relatedWeightTriggerable.movementVector = this.movementVector;
+                relatedWeightTriggerable.maxPos = maxPos;
+                relatedWeightTriggerable.movementVector = movementVector;
                 break;
         }
+    }
+    private void Update()
+    {
+        ModeSwitch();
     }
 }

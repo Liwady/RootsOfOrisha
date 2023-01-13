@@ -7,8 +7,7 @@ public class PressurePlate : MonoBehaviour
     [SerializeField]
     private int weightRequirment;
     private bool active, moved;
-    private GameObject triggeredChar;
-
+    public GameObject triggeredChar;
 
     private void Update()
     {
@@ -32,13 +31,11 @@ public class PressurePlate : MonoBehaviour
             }
         }
     }
-
     private void OnTriggerStay(Collider other)
     {
-        CharacterScript character = other.GetComponentInParent<CharacterScript>();
-
         if (other.CompareTag("1") || other.CompareTag("2"))
         {
+            CharacterScript character = other.GetComponentInParent<CharacterScript>();
             if (moved)
             {
                 if (!active && character.weight == weightRequirment)
@@ -59,7 +56,7 @@ public class PressurePlate : MonoBehaviour
                 for (int i = 0; i < triggeredObjects.Length; i++)
                     triggeredObjects[i].Toggle(false);
             }
-            else if(character.weight == weightRequirment)
+            else if (character.weight == weightRequirment)
             {
                 active = true;
                 moved = false;
@@ -71,7 +68,6 @@ public class PressurePlate : MonoBehaviour
             }
         }
     }
-
     private void OnTriggerExit(Collider other)
     {
         moved = true;
