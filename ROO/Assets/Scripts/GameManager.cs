@@ -30,6 +30,8 @@ public class GameManager : MonoBehaviour
     {
         if (respawnPoint != null)
         {
+            character1.GetComponentInChildren<Collider>().isTrigger = false;
+            character2.GetComponentInChildren<Collider>().isTrigger = false;
             character1.transform.position = respawnPoint.spawnPoints[0].transform.position;
             character2.transform.position = respawnPoint.spawnPoints[1].transform.position;
         }

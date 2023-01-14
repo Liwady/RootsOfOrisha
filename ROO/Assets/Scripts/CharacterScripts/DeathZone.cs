@@ -11,6 +11,9 @@ public class DeathZone : MonoBehaviour
     {
 
         if (other.CompareTag("1") || other.CompareTag("2"))
+        {
             gameManager.RespawnCharacters();
+        }
+            
     }
 }
