@@ -10,6 +10,7 @@ TagManager:
   - Checker
   - Water
   - Statue
+  - Boat
   layers:
   - Default
   - TransparentFX

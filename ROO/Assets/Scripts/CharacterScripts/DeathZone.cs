@@ -9,6 +9,7 @@ public class DeathZone : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+
         if (other.CompareTag("1") || other.CompareTag("2"))
             gameManager.RespawnCharacters();
     }

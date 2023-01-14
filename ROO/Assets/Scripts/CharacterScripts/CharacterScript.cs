@@ -5,9 +5,9 @@ public class CharacterScript : MonoBehaviour
 
     private PlayerControls playerControls;
     private GameManager gameManager;
-    public GameObject checker, floatCheck, grabbedObject, detectedObject, grabPointS, grabPointL;
+    public GameObject checker, floatCheck, grabbedObject, detectedObject, grabPointS, grabPointL, grabPointBoat;
     public Rigidbody rb;
-    public bool dead, canMove, usedAbility, abilityTriggered, canResize, canWalkOnWater, isHoldingCollectible, isGrounded;
+    public bool dead, canMove, usedAbility, abilityTriggered, canResize, canWalkOnWater, isHoldingCollectible,isHoldingGrabbable, isGrounded;
     public float movementSpeed;
     public int size, weight;
     private Vector2 movement;
@@ -20,6 +20,7 @@ public class CharacterScript : MonoBehaviour
         usedAbility = false;
         canWalkOnWater = false;
         isHoldingCollectible = false;
+        isHoldingGrabbable = false;
         canResize = true;
         canMove = true;
         rb = GetComponentInChildren<Rigidbody>();
@@ -134,9 +135,9 @@ public class CharacterScript : MonoBehaviour
         {
             //if  holding item -> drop
             //set bool false, unparent object, grabbed object null
-            if (isHoldingCollectible)
+            if (isHoldingGrabbable)
             {
-                isHoldingCollectible = false;
+                isHoldingGrabbable = false;
                 grabbedObject.transform.parent = null;
                 grabbedObject.GetComponent<Rigidbody>().isKinematic = false;
                 grabbedObject.transform.position = grabbedObject.transform.position;
@@ -147,12 +148,30 @@ public class CharacterScript : MonoBehaviour
             //set bool to true, parent object to player, grabbed object to object 
             else
             {
-                isHoldingCollectible = true;
+                float minDistance = 2.5f;
+                isHoldingGrabbable = true;
                 grabbedObject = detectedObject;
                 grabbedObject.transform.parent = gameObject.GetComponentInChildren<Transform>();
                 grabbedObject.GetComponent<Rigidbody>().isKinematic = true;
                 if (gameObject == gameManager.character1)
-                    grabbedObject.transform.position = grabPointS.transform.position;
+                {
+                    if (grabbedObject.CompareTag("Statue"))
+                        grabbedObject.transform.position = grabPointS.transform.position;
+                    else if (grabbedObject.CompareTag("Boat"))
+                    {
+                        Debug.Log(grabbedObject.transform.position.x - transform.position.x);
+                        if (grabbedObject.transform.position.x - transform.position.x < 0 && grabbedObject.transform.position.x - transform.position.x > -minDistance)
+                        {
+                            //left side
+                            grabbedObject.transform.position = new Vector3(grabbedObject.transform.position.x - 0.8f, grabbedObject.transform.position.y, grabbedObject.transform.position.z);
+                        }
+                        if (grabbedObject.transform.position.x - transform.position.x > 0 && grabbedObject.transform.position.x - transform.position.x < minDistance) //right side
+                        {
+                            grabbedObject.transform.position = new Vector3(grabbedObject.transform.position.x + 0.4f, grabbedObject.transform.position.y, grabbedObject.transform.position.z);
+                        }
+                    } 
+                }
+
                 else
                     grabbedObject.transform.position = grabPointL.transform.position;
             }
@@ -160,7 +179,7 @@ public class CharacterScript : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Statue") && !isHoldingCollectible)
+        if (other.CompareTag("Statue") || other.CompareTag("Boat") && !isHoldingGrabbable)
             detectedObject = other.gameObject;
     }
 }

@@ -2,19 +2,23 @@ using UnityEngine;
 
 public class WaterScript : MonoBehaviour
 {
-    private GameManager gameManager;
     private bool update;
     [SerializeField]
     private Collider myWaterBody;
 
-    private void Awake()
-    {
-        gameManager = FindObjectOfType<GameManager>();
-    }
+
+    private CharacterScript myChar = null;
+    
+
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("1") || other.CompareTag("2"))
+        {
             update = true;
+            myChar = other.gameObject.GetComponentInParent<CharacterScript>();
+        }
+            
     }
 
     private void OnTriggerExit(Collider other)
@@ -22,7 +26,7 @@ public class WaterScript : MonoBehaviour
         if (other.CompareTag("1") || other.CompareTag("2"))
         {
             update = false;
-            gameManager.currentChar.GetComponentInParent<Rigidbody>().drag = 0;
+            myChar.GetComponentInParent<Rigidbody>().drag = 0;
         }
     }
 
@@ -30,11 +34,11 @@ public class WaterScript : MonoBehaviour
     {
         if (update)
         {
-            if (gameManager.currentChar.canWalkOnWater)
+            if (myChar.canWalkOnWater)
                 myWaterBody.isTrigger = false;
             else
             {
-                gameManager.currentChar.GetComponentInParent<Rigidbody>().drag = 10;
+                myChar.GetComponentInParent<Rigidbody>().drag = 10;
                 myWaterBody.isTrigger = true;
             }
         }
