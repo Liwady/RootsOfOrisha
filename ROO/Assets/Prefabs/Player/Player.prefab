@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 758533610}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.067, z: 0}
+  m_LocalPosition: {x: 0, y: -1.19, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -220,7 +220,7 @@ CapsuleCollider:
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.15, z: 0}
 --- !u!1 &2479419197343652646
 GameObject:
   m_ObjectHideFlags: 0
@@ -319,15 +319,17 @@ MonoBehaviour:
   detectedObject: {fileID: 0}
   grabPointS: {fileID: 3349465646915340452}
   grabPointL: {fileID: 4175236832456458876}
+  grabPointBoat: {fileID: 0}
   rb: {fileID: 6370432546291593467}
-  dead: 0
+  left: 0
   canMove: 0
   usedAbility: 0
-  abilityTriggered: 0
   canResize: 0
   canWalkOnWater: 0
   isHoldingCollectible: 0
+  isHoldingGrabbable: 0
   isGrounded: 0
+  isOnWater: 0
   movementSpeed: 5
   size: 0
   weight: 0
@@ -434,7 +436,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3349465646915340452}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.41, y: 1.44, z: 0}
+  m_LocalPosition: {x: 2.31, y: 1.67, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -465,7 +467,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4175236832456458876}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.72, y: -0, z: 0}
+  m_LocalPosition: {x: 1.72, y: -0.26, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -481,6 +483,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5457676653762857263}
+  - component: {fileID: 1953299655}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -506,6 +509,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1953299655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5457676653762857262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad15624fbc0d7764d97cb3583526984b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character1: {fileID: 2495353336899580167}
+  character2: {fileID: 8618479672060885802}
+  currentCharacter: {fileID: 0}
+  respawnPoint: {fileID: 0}
+  maxDistanceBetweenPlayers: 0
+  currentAbility: 0
+  abilityActive: 0
+  moveBoth: 0
 --- !u!1 &6846987038673374397
 GameObject:
   m_ObjectHideFlags: 0
@@ -609,7 +632,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7577772200242265956}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.26, z: 0}
+  m_LocalPosition: {x: 0, y: 0.32, z: 0}
   m_LocalScale: {x: 1.8, y: 1.8, z: 1.8}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -671,7 +694,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7712414799298992854}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 1.49, z: 0}
   m_LocalScale: {x: 0.8, y: 1.6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -773,7 +796,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8618479672060885802}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.88, y: 1, z: 0}
+  m_LocalPosition: {x: 2.88, y: 0.77, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -799,18 +822,20 @@ MonoBehaviour:
   detectedObject: {fileID: 0}
   grabPointS: {fileID: 0}
   grabPointL: {fileID: 0}
+  grabPointBoat: {fileID: 0}
   rb: {fileID: 8741159986390527997}
-  dead: 0
+  left: 0
   canMove: 0
   usedAbility: 0
-  abilityTriggered: 0
   canResize: 1
   canWalkOnWater: 0
   isHoldingCollectible: 0
+  isHoldingGrabbable: 0
   isGrounded: 0
+  isOnWater: 0
   movementSpeed: 5
   size: 0
-  weight: 0
+  weight: 1
   inRangeLever: {fileID: 0}
   typeEF: 0
 --- !u!54 &8741159986390527997
@@ -908,6 +933,8 @@ MonoBehaviour:
   points:
   - {fileID: 7149609837441873066}
   - {fileID: 1375531866829887624}
+  maxDistance: 4
+  outOfRange: 0
 --- !u!120 &1525609836
 LineRenderer:
   m_ObjectHideFlags: 0

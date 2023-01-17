@@ -4,12 +4,12 @@ using UnityEngine;
 public class RespawnPoint : MonoBehaviour
 {
     private List<Collider> players = new List<Collider>();
-    private GameManager gameManager;
+    private PlayerManager playerManager;
     public Transform[] spawnPoints;
 
     private void Start()
     {
-        gameManager = FindObjectOfType<GameManager>();
+        playerManager = FindObjectOfType<PlayerManager>();
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -36,6 +36,6 @@ public class RespawnPoint : MonoBehaviour
 
     private void EnableResapwnPoint()
     {
-        gameManager.respawnPoint = this;
+        playerManager.respawnPoint = this;
     }
 }

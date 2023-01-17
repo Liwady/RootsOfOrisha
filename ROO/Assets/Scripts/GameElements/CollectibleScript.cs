@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class CollectibleScript : MonoBehaviour
 {
+    PlayerManager playerManager;
     GameManager gameManager;
     public enum FruitEye
     {
@@ -13,35 +14,36 @@ public class CollectibleScript : MonoBehaviour
 
     private void Awake()
     {
+        playerManager = FindObjectOfType<PlayerManager>();
         gameManager = FindObjectOfType<GameManager>();
     }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("1") || collision.gameObject.CompareTag("2"))
         {
-            if (gameManager.currentChar.isHoldingCollectible == false)
+            if (playerManager.currentCharacter.isHoldingCollectible == false)
             {
-                if (typeEF == FruitEye.eye && gameManager.currentChar.typeEF == FruitEye.eye)
+                if (typeEF == FruitEye.eye && playerManager.currentCharacter.typeEF == FruitEye.eye)
                 {
                     gameManager.amountOfEyes++;
                     gameManager.eyesText.text = gameManager.amountOfFruit.ToString();
                 }
-                else if (typeEF == FruitEye.eye && gameManager.currentChar.typeEF == FruitEye.fruit)
+                else if (typeEF == FruitEye.eye && playerManager.currentCharacter.typeEF == FruitEye.fruit)
                 {
                     //change sprite to holding eye
                     Debug.Log("tt");
-                    gameManager.currentChar.isHoldingCollectible = true;
+                    playerManager.currentCharacter.isHoldingCollectible = true;
                 }
-                else if (typeEF == FruitEye.fruit && gameManager.currentChar.typeEF == FruitEye.fruit)
+                else if (typeEF == FruitEye.fruit && playerManager.currentCharacter.typeEF == FruitEye.fruit)
                 {
                     gameManager.amountOfFruit++;
                     gameManager.fruitText.text = gameManager.amountOfFruit.ToString();
                 }
-                else if (typeEF == FruitEye.fruit && gameManager.currentChar.typeEF == FruitEye.eye)
+                else if (typeEF == FruitEye.fruit && playerManager.currentCharacter.typeEF == FruitEye.eye)
                 {
                     //change sprite to holding fruit
                     Debug.Log("ff");
-                    gameManager.currentChar.isHoldingCollectible = true;
+                    playerManager.currentCharacter.isHoldingCollectible = true;
                 }
                 else
                 {

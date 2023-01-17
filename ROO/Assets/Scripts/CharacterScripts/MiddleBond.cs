@@ -6,6 +6,10 @@ public class MiddleBond : MonoBehaviour
     [SerializeField]
     private Transform[] points;
 
+    [SerializeField]
+    private float maxDistance;
+
+    public bool outOfRange;
     void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
@@ -21,5 +25,9 @@ public class MiddleBond : MonoBehaviour
         {
             lineRenderer.SetPosition(i, points[i].position);
         }
+        if (maxDistance <= Vector3.Distance(points[0].transform.position, points[1].transform.position))
+            outOfRange = true;
+        else
+            outOfRange = false;
     }
 }

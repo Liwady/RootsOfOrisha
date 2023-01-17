@@ -3,14 +3,14 @@ using UnityEngine;
 public class FireblobRB : MonoBehaviour
 {
     private Rigidbody myRB;
-    private GameManager gameManager;
+    private PlayerManager playerManager;
     private float startposy;
     [SerializeField]
     public int force;
     private void Awake()
     {
         myRB = this.GetComponent<Rigidbody>();
-        gameManager = FindObjectOfType<GameManager>();
+        playerManager = FindObjectOfType<PlayerManager>();
         startposy = this.transform.position.y;
     }
 
@@ -25,7 +25,7 @@ public class FireblobRB : MonoBehaviour
     {
         Debug.Log(other.tag);
         if (other.CompareTag("1") || other.CompareTag("2"))
-            gameManager.RespawnCharacters();
+            playerManager.RespawnCharacters();
     }
 
 }

@@ -3,17 +3,14 @@ using UnityEngine;
 public class CharacterScript : MonoBehaviour
 {
 
-    private PlayerControls playerControls;
-    private GameManager gameManager;
+    private PlayerManager playerManager;
     public GameObject checker, floatCheck, grabbedObject, detectedObject, grabPointS, grabPointL, grabPointBoat;
     public Rigidbody rb;
-    public bool dead, canMove, usedAbility, abilityTriggered, canResize, canWalkOnWater, isHoldingCollectible,isHoldingGrabbable, isGrounded;
+    public bool left, canMove, usedAbility, canResize, canWalkOnWater, isHoldingCollectible,isHoldingGrabbable, isGrounded, isOnWater;
     public float movementSpeed;
     public int size, weight;
-    private Vector2 movement;
     public LeverScript inRangeLever;
     public CollectibleScript.FruitEye typeEF;
-
 
     void Awake()
     {
@@ -24,112 +21,24 @@ public class CharacterScript : MonoBehaviour
         canResize = true;
         canMove = true;
         rb = GetComponentInChildren<Rigidbody>();
-        gameManager = FindObjectOfType<GameManager>();
-
-        playerControls = new PlayerControls();
-        playerControls.Gameplay.Move.performed += ctx => movement = ctx.ReadValue<Vector2>(); //lamda expression to preform function
-        playerControls.Gameplay.SwitchCharacter.performed += ctx => gameManager.SwitchCharacter();
-        playerControls.Gameplay.SwitchAbility.performed += ctx => gameManager.SwitchAbility();
-        playerControls.Gameplay.TriggerAbility.performed += ctx => gameManager.TriggerAbility();
-        playerControls.Gameplay.ToggleButton.performed += ctx => gameManager.ToggleLever();
-        playerControls.Gameplay.Respawn.performed += ctx => gameManager.RespawnCharacters();
-        playerControls.Gameplay.Grab.performed += ctx => GrabObject();
+        playerManager = FindObjectOfType<PlayerManager>();
     }
-    private void Update()
+    public void ToggleLever()
     {
-        if (canMove)
-            Move();
-        if (gameManager.currentAbility == 1 && gameManager.abilityActive && usedAbility)
-            MoveTowardsPlace();
+        if (inRangeLever != null)
+            inRangeLever.ToggleLever();
     }
-    private void OnEnable()
+    public void Move(float _movement)
     {
-        playerControls.Gameplay.Enable();
+        rb.velocity = new Vector3(_movement * movementSpeed, rb.velocity.y, rb.velocity.z);
     }
-    private void OnDisable()
-    {
-        playerControls.Gameplay.Disable();
-    }
-    private void Move()
-    {
-        rb.velocity = new Vector3(movement.x * movementSpeed, rb.velocity.y, rb.velocity.z);
-    }
-    public void Floating()
-    {
-        usedAbility = true;
-        if (gameManager.abilityActive)
-        {
-            gameManager.abilityActive = false;
-            usedAbility = false;
-            gameManager.SetGravity();
-        }
-        else if (gameManager.otherChar.isGrounded)
-        {
-
-            gameManager.abilityActive = true;
-            SetUsedAbility();
-            MoveTowardsPlace();
-        }
-    }
-    public void Sizing()
+    public void MoveTowardsPlace(Transform _currentPlayerFloatPoint)
     {
 
-        if (canResize || usedAbility)//todo checker for mini and make size table 
-        {
-            if (gameManager.abilityActive)
-            {
-                DefaultValuesSize();
-                gameManager.abilityActive = false;
-                usedAbility = false;
-            }
-            else
-            {
-                gameManager.abilityActive = true;
-                SetUsedAbility();
-                gameManager.SetSize();
-                gameManager.SetGravity();
-            }
-
-        }
-    }
-    private void SetUsedAbility()
-    {
-
-        usedAbility = true;
-        if (gameObject == gameManager.character1)
-            gameManager.character2.GetComponent<CharacterScript>().usedAbility = false;
-        else
-            gameManager.character1.GetComponent<CharacterScript>().usedAbility = false;
+        transform.position = Vector3.MoveTowards(transform.position, _currentPlayerFloatPoint.position, 5 * Time.deltaTime);
 
     }
-    private void MoveTowardsPlace()
-    {
-        if (gameManager.currentChar.gameObject == gameManager.character1)
-            gameManager.character2.transform.position = Vector3.MoveTowards(gameManager.character2.transform.position, gameManager.character1.GetComponent<CharacterScript>().floatCheck.transform.position, 5 * Time.deltaTime);
-        else
-            gameManager.character1.transform.position = Vector3.MoveTowards(gameManager.character1.transform.position, gameManager.character2.GetComponent<CharacterScript>().floatCheck.transform.position, 5 * Time.deltaTime);
-    }
-    public void DefaultValuesSize()
-    {
-        if (gameManager.character1.GetComponent<CharacterScript>().usedAbility)
-        {
-            gameManager.character1.transform.localScale /= 1.8f;
-            gameManager.character2.transform.localScale *= 1.8f;
-        }
-        else
-        {
-            gameManager.character1.transform.localScale *= 1.8f;
-            gameManager.character2.transform.localScale /= 1.8f;
-        }
-    }
-    public void DefaultValuesFloating()
-    {
-        if (gameManager.currentChar.gameObject == gameManager.character1)
-            gameManager.character2.transform.position = new Vector3(gameManager.character1.transform.position.x, gameManager.character2.transform.position.y, gameManager.character2.transform.position.z);
-        else
-            gameManager.character1.transform.position = new Vector3(gameManager.character2.transform.position.x, gameManager.character1.transform.position.y, gameManager.character1.transform.position.z);
-    }
-    private void GrabObject()
+    public void GrabObject()
     {
         if (detectedObject != null)
         {
@@ -149,17 +58,22 @@ public class CharacterScript : MonoBehaviour
             else
             {
                 float minDistance = 2.5f;
-                isHoldingGrabbable = true;
-                grabbedObject = detectedObject;
-                grabbedObject.transform.parent = gameObject.GetComponentInChildren<Transform>();
-                grabbedObject.GetComponent<Rigidbody>().isKinematic = true;
-                if (gameObject == gameManager.character1)
+                if (gameObject == playerManager.character1)
                 {
-                    if (grabbedObject.CompareTag("Statue"))
-                        grabbedObject.transform.position = grabPointS.transform.position;
-                    else if (grabbedObject.CompareTag("Boat"))
+                    if (detectedObject.CompareTag("Statue"))
                     {
-                        Debug.Log(grabbedObject.transform.position.x - transform.position.x);
+                        isHoldingGrabbable = true;
+                        grabbedObject = detectedObject;
+                        grabbedObject.transform.parent = gameObject.GetComponentInChildren<Transform>();
+                        grabbedObject.GetComponent<Rigidbody>().isKinematic = true;
+                        grabbedObject.transform.position = grabPointS.transform.position;
+                    }
+                    else if (detectedObject.CompareTag("Boat") && isOnWater)
+                    {
+                        isHoldingGrabbable = true;
+                        grabbedObject = detectedObject;
+                        grabbedObject.transform.parent = gameObject.GetComponentInChildren<Transform>();
+                        grabbedObject.GetComponent<Rigidbody>().isKinematic = true;
                         if (grabbedObject.transform.position.x - transform.position.x < 0 && grabbedObject.transform.position.x - transform.position.x > -minDistance)
                         {
                             //left side
@@ -173,7 +87,13 @@ public class CharacterScript : MonoBehaviour
                 }
 
                 else
+                {
+                    isHoldingGrabbable = true;
+                    grabbedObject = detectedObject;
+                    grabbedObject.transform.parent = gameObject.GetComponentInChildren<Transform>();
+                    grabbedObject.GetComponent<Rigidbody>().isKinematic = true;
                     grabbedObject.transform.position = grabPointL.transform.position;
+                }
             }
         }
     }

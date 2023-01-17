@@ -2,17 +2,17 @@ using UnityEngine;
 
 public class DeathZone : MonoBehaviour
 {
-    private GameManager gameManager;
+    private PlayerManager playerManager;
     void Awake()
     {
-        gameManager = FindObjectOfType<GameManager>();
+        playerManager = FindObjectOfType<PlayerManager>();
     }
     private void OnTriggerEnter(Collider other)
     {
 
         if (other.CompareTag("1") || other.CompareTag("2"))
         {
-            gameManager.RespawnCharacters();
+            playerManager.RespawnCharacters();
         }
             
     }
