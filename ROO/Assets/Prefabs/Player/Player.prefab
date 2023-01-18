@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 758533613}
   - component: {fileID: 758533612}
   m_Layer: 0
-  m_Name: Groundcheck
+  m_Name: GroundChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,12 +26,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 758533610}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.19, z: 0}
+  m_LocalPosition: {x: 0, y: -1.74, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5325513455797091435}
-  m_RootOrder: 4
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &758533613
 BoxCollider:
@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 5534346505952088590}
   - component: {fileID: 5318491050376872811}
   m_Layer: 0
-  m_Name: Groundcheck
+  m_Name: GroundChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -85,12 +85,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 63930618172620273}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.067, z: 0}
+  m_LocalPosition: {x: 0, y: -1.187, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6294383202433068221}
-  m_RootOrder: 4
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &5534346505952088590
 BoxCollider:
@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 691460457799110819}
   - component: {fileID: 9173754124976529602}
   m_Layer: 0
-  m_Name: 'CharacterSprite '
+  m_Name: ZoudooRender
   m_TagString: 1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -150,10 +150,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6543234625776193682}
-  - {fileID: 8004491609211147226}
-  - {fileID: 7149609837441873066}
-  - {fileID: 6063233799594760935}
   - {fileID: 758533611}
+  - {fileID: 8004491609211147226}
+  - {fileID: 6063233799594760935}
+  - {fileID: 7149609837441873066}
   m_Father: {fileID: 6449930819809177294}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -232,7 +232,7 @@ GameObject:
   - component: {fileID: 8004491609211147226}
   - component: {fileID: 1836187457567432737}
   m_Layer: 0
-  m_Name: floatCheck
+  m_Name: FloatPointZou
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -251,7 +251,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5325513455797091435}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &1836187457567432737
 CapsuleCollider:
@@ -279,7 +279,7 @@ GameObject:
   - component: {fileID: 7218475947646409770}
   - component: {fileID: 6370432546291593467}
   m_Layer: 0
-  m_Name: 'Character1Short '
+  m_Name: Zoudoo
   m_TagString: 1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -422,7 +422,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6063233799594760935}
   m_Layer: 0
-  m_Name: GrabPointS
+  m_Name: GrabPointZou
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -453,7 +453,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9197646481278905963}
   m_Layer: 0
-  m_Name: GrabPointL
+  m_Name: GrabPointKou
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -540,7 +540,7 @@ GameObject:
   - component: {fileID: 6759976045285266865}
   - component: {fileID: 4684534608679273105}
   m_Layer: 0
-  m_Name: floatCheck
+  m_Name: FloatPointKou
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -559,7 +559,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6294383202433068221}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &4684534608679273105
 CapsuleCollider:
@@ -585,7 +585,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7149609837441873066}
   m_Layer: 0
-  m_Name: connectionCheckS
+  m_Name: ConnectionZou
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -604,7 +604,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5325513455797091435}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7577772200242265956
 GameObject:
@@ -680,7 +680,7 @@ GameObject:
   - component: {fileID: 7835201602056811510}
   - component: {fileID: 5098359651085402623}
   m_Layer: 0
-  m_Name: Char2Tall
+  m_Name: KoubooRender
   m_TagString: 2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -699,10 +699,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1917770902911438444}
-  - {fileID: 6759976045285266865}
-  - {fileID: 1375531866829887624}
-  - {fileID: 9197646481278905963}
   - {fileID: 7971678490027319227}
+  - {fileID: 6759976045285266865}
+  - {fileID: 9197646481278905963}
+  - {fileID: 1375531866829887624}
   m_Father: {fileID: 1624821998026881703}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -782,7 +782,7 @@ GameObject:
   - component: {fileID: 4573311961143902800}
   - component: {fileID: 8741159986390527997}
   m_Layer: 0
-  m_Name: 'Character2Tall '
+  m_Name: Kouboo
   m_TagString: 2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -864,7 +864,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1375531866829887624}
   m_Layer: 0
-  m_Name: connectionCheckL
+  m_Name: ConnectionKou
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -883,7 +883,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6294383202433068221}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9071585423192328861
 GameObject:
