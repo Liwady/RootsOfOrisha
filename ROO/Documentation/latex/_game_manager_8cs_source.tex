@@ -1,0 +1,28 @@
+\hypertarget{_game_manager_8cs_source}{}\doxysection{Game\+Manager.\+cs}
+\label{_game_manager_8cs_source}\index{Assets/Scripts/GameManager.cs@{Assets/Scripts/GameManager.cs}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_game_manager_8cs_source_l00001}00001\ \textcolor{keyword}{using\ }TMPro;}
+\DoxyCodeLine{\Hypertarget{_game_manager_8cs_source_l00002}00002\ \textcolor{keyword}{using\ }UnityEngine;}
+\DoxyCodeLine{\Hypertarget{_game_manager_8cs_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_game_manager_8cs_source_l00004}\mbox{\hyperlink{class_game_manager}{00004}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_game_manager}{GameManager}}\ :\ MonoBehaviour}
+\DoxyCodeLine{\Hypertarget{_game_manager_8cs_source_l00005}00005\ \{}
+\DoxyCodeLine{\Hypertarget{_game_manager_8cs_source_l00006}00006\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{int}\ amountOfFruit,\ amountOfEyes;}
+\DoxyCodeLine{\Hypertarget{_game_manager_8cs_source_l00007}00007\ \ \ \ \ \textcolor{keyword}{public}\ TMP\_Text\ fruitText,\ eyesText,\ abilityText;}
+\DoxyCodeLine{\Hypertarget{_game_manager_8cs_source_l00008}00008\ \ \ \ \ \textcolor{keyword}{public}\ Camera\ mainCamera;}
+\DoxyCodeLine{\Hypertarget{_game_manager_8cs_source_l00009}00009\ \ \ \ \ \textcolor{keyword}{public}\ PlayerManager\ playerManager;}
+\DoxyCodeLine{\Hypertarget{_game_manager_8cs_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{_game_manager_8cs_source_l00011}00011\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ Awake()}
+\DoxyCodeLine{\Hypertarget{_game_manager_8cs_source_l00012}00012\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_game_manager_8cs_source_l00013}00013\ \ \ \ \ \ \ \ \ amountOfFruit\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_game_manager_8cs_source_l00014}00014\ \ \ \ \ \ \ \ \ playerManager\ =\ FindObjectOfType<PlayerManager>();}
+\DoxyCodeLine{\Hypertarget{_game_manager_8cs_source_l00015}00015\ \ \ \ \ \ \ \ \ abilityText.text\ =\ playerManager.currentAbility.ToString();}
+\DoxyCodeLine{\Hypertarget{_game_manager_8cs_source_l00016}00016\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_game_manager_8cs_source_l00017}00017\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ Update()}
+\DoxyCodeLine{\Hypertarget{_game_manager_8cs_source_l00018}00018\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_game_manager_8cs_source_l00019}00019\ \ \ \ \ \ \ \ \ abilityText.text\ =\ playerManager.currentAbility.ToString();}
+\DoxyCodeLine{\Hypertarget{_game_manager_8cs_source_l00020}00020\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_game_manager_8cs_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_game_manager_8cs_source_l00022}00022\ \}}
+
+\end{DoxyCode}

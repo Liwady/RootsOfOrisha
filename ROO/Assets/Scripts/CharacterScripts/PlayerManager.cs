@@ -154,7 +154,6 @@ public class PlayerManager : MonoBehaviour
         {
             if (abilityActive)
             {
-                Debug.Log("test");
                 DefaultValuesSize();
                 abilityActive = false;
                 currentCharacter.usedAbility = false;
@@ -173,14 +172,13 @@ public class PlayerManager : MonoBehaviour
     {
         if (character1script.usedAbility)
         {
-            character1.transform.localScale /= 1.8f;
-            character2.transform.localScale *= 1.8f;
+            character1.transform.localScale /= 1.3f;
+            character2.transform.localScale *= 1.3f;
         }
         else
         {
-            Debug.Log("make character 1 bigger");
-            character1.transform.localScale *= 1.8f;
-            character2.transform.localScale /= 1.8f;
+            character1.transform.localScale *= 1.5f;
+            character2.transform.localScale /= 1.5f;
         }
     }
     public void SetMovementSpeed() 
@@ -270,13 +268,13 @@ public class PlayerManager : MonoBehaviour
     {
         if (currentCharacter == character1script)
         {
-            character1.transform.localScale *= 1.8f;
-            character2.transform.localScale /= 1.8f;
+            character1.transform.localScale *= 1.3f;
+            character2.transform.localScale /= 1.3f;
         }
         else
         {
-            character2.transform.localScale *= 1.8f;
-            character1.transform.localScale /= 1.8f;
+            character2.transform.localScale *= 1.5f;
+            character1.transform.localScale /= 1.5f;
         }
     }
     public void SetGravity()
