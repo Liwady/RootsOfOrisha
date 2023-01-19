@@ -92,7 +92,7 @@ public class PlayerManager : MonoBehaviour
                         currentCharacter.canMove = true;
                         moveBoth = true;
                         currentCharacter.movementSpeed = 5;
-                        otherCharacter.movementSpeed = 2;
+                        otherCharacter.movementSpeed = 4;
                     }
                 }
                 else //if they are walking towards eachother 

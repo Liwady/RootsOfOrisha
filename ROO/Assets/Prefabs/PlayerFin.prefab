@@ -317,6 +317,7 @@ MonoBehaviour:
   isGrounded: 0
   isOnWater: 0
   movementSpeed: 5
+  lastDir: 0
   size: 0
   weight: 0
   inRangeLever: {fileID: 0}
@@ -477,7 +478,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3749462218510402729}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1004,6 +1005,7 @@ MonoBehaviour:
   isGrounded: 0
   isOnWater: 0
   movementSpeed: 5
+  lastDir: 0
   size: 0
   weight: 1
   inRangeLever: {fileID: 0}
