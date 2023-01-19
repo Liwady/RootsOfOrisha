@@ -131,8 +131,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.4284744, y: 1.4027901, z: 2}
-  m_Center: {x: -0.088056564, y: 0.20139503, z: -0.9}
+  m_Size: {x: 2.4284744, y: 1.4027901, z: 10}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3030566040297672279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,7 +148,8 @@ MonoBehaviour:
   triggeredObjects:
   - {fileID: 0}
   - {fileID: 1435521457384562307}
-  weightRequirment: 0
+  weightRequirment: 4
+  triggeredChar: {fileID: 0}
 --- !u!1 &6385440310855333258
 GameObject:
   m_ObjectHideFlags: 0
@@ -246,9 +247,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ace6cf8e93bf4b94298f2a729b9b2ad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  relatedWeightTriggerable: {fileID: 0}
+  mode: 1
   movementVector: {x: 0, y: 0.01, z: 0}
   maxPos: {x: 0, y: 0.2, z: 0}
-  mode: 1
+  hasDeathZone: 0
+  deathZone: {fileID: 0}
+  triggeredChar: {fileID: 0}
 --- !u!1 &6461795648647085385
 GameObject:
   m_ObjectHideFlags: 0
