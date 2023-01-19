@@ -27,7 +27,7 @@ public class PlayerManager : MonoBehaviour
     public int currentAbility;
 
     [SerializeField]
-    private bool abilityActive, moveBoth;
+    private bool abilityActive, moveBoth, hasReachedMax;
 
     private void Awake()
     {
@@ -46,66 +46,90 @@ public class PlayerManager : MonoBehaviour
         playerControls.Gameplay.ToggleButton.performed += ctx => DoToggleLever();
         playerControls.Gameplay.Respawn.performed += ctx => RespawnCharacters();
         playerControls.Gameplay.Grab.performed += ctx => DoGrab();
+        playerControls.Gameplay.MoveTogether.performed += ctx => MoveTogether();
         playerControls.Gameplay.Enable();
     }
     private void Update()
     {
         if (middleBond.outOfRange)
-            MaxReached();
+            MaxReached(true);
+        else if (hasReachedMax)
+            MaxReached(false);
+
+        if (currentCharacter.canMove)
+            Move();
+
+        if (currentAbility == 1 && abilityActive)
+            UpdateFloating();
+    }
+    private void MoveTogether()
+    {
+        if (!moveBoth)
+            moveBoth = true;
+        else
+            moveBoth = false;
+    }
+    private void MaxReached(bool r)
+    {
+        if (r)
+        {
+            hasReachedMax = true;
+            SetLeftRight();
+            if (currentAbility == 0 && abilityActive) //sizing ability active
+            {
+
+                if ((currentCharacter.left && movement.x < 0) || (!currentCharacter.left && movement.x > 0)) //if they move away from eachother
+                {
+                    if (currentCharacter.usedAbility) //if character 1 used the ability
+                    {
+                        currentCharacter.canMove = true;
+                        moveBoth = true;
+                        currentCharacter.movementSpeed = 2;
+                        otherCharacter.movementSpeed = 1;
+                    }
+                    else // if char 2 used ability 
+                    {
+                        currentCharacter.canMove = true;
+                        moveBoth = true;
+                        currentCharacter.movementSpeed = 5;
+                        otherCharacter.movementSpeed = 2;
+                    }
+                }
+                else //if they are walking towards eachother 
+                {
+                    moveBoth = false;
+                    currentCharacter.canMove = true;
+                }
+            }
+            else //ability not active
+            {
+                if (currentCharacter.left && movement.x > 0 || !currentCharacter.left && movement.x < 0) //if the character is left of the other character
+                    currentCharacter.canMove = true;
+                else //if the character is right of the other character 
+                    currentCharacter.canMove = false;
+            }
+        }
         else
         {
+            hasReachedMax = false;
             moveBoth = false;
             currentCharacter.canMove = true;
         }
-        if (currentCharacter.canMove)
-        {
-            currentCharacter.Move(movement.x);
-            if (moveBoth)
-                otherCharacter.Move(movement.x);
-        }
-        if (currentAbility == 1 && abilityActive && currentCharacter.usedAbility)
-            otherCharacter.MoveTowardsPlace(currentCharacter.floatCheck.transform);
-    }
 
-    //if ablity active is true but not used ability im smallest
-    private void MaxReached() 
+    }
+    private void Move()
     {
-        SetLeftRight();
-        if (currentAbility == 0 && abilityActive) //sizing ability active
-        {
-
-            if ((currentCharacter.left && movement.x < 0) || (!currentCharacter.left && movement.x > 0)) //if they move away from eachother
-            {
-                if (currentCharacter.usedAbility) //if character 1 used the ability
-                {
-                    currentCharacter.canMove = true;
-                    moveBoth = true;
-                    currentCharacter.movementSpeed = 2;
-                    otherCharacter.movementSpeed = 1;
-                }
-                else // if char 2 used ability 
-                {
-                    currentCharacter.canMove = true;
-                    moveBoth = true;
-                    currentCharacter.movementSpeed = 5;
-                    otherCharacter.movementSpeed = 2;
-                }
-            }
-            else //if they are walking towards eachother 
-            {
-                moveBoth = false;
-                currentCharacter.canMove = true;
-            }
-        }
-        else //ability not active
-        {
-            if (currentCharacter.left && movement.x > 0 || !currentCharacter.left && movement.x < 0) //if the character is left of the other character
-                currentCharacter.canMove = true;
-            else //if the character is right of the other character 
-                currentCharacter.canMove = false;
-        }
+        currentCharacter.Move(movement.x);
+        if (moveBoth)
+            otherCharacter.Move(movement.x);
     }
-
+    private void UpdateFloating()
+    {
+        if (currentCharacter.usedAbility)
+            otherCharacter.MoveTowardsPlace(currentCharacter.floatCheck.transform);
+        else
+            currentCharacter.MoveTowardsPlace(otherCharacter.floatCheck.transform);
+    }
     private void SetLeftRight()
     {
         if (character1.transform.position.x > character2.transform.position.x)
@@ -181,7 +205,7 @@ public class PlayerManager : MonoBehaviour
             character2.transform.localScale /= 1.5f;
         }
     }
-    public void SetMovementSpeed() 
+    public void SetMovementSpeed()
     {
         character1script.canMove = true;
         character2script.canMove = true;
@@ -307,25 +331,33 @@ public class PlayerManager : MonoBehaviour
             character2.GetComponentInChildren<Collider>().isTrigger = false;
             character1.transform.position = respawnPoint.spawnPoints[0].transform.position;
             character2.transform.position = respawnPoint.spawnPoints[1].transform.position;
+            abilityActive = false;
+            SetGravity();
+            character1script.usedAbility = false;
+            character2script.usedAbility = false;
         }
     }
     public void SwitchCharacter()
     {
         if (currentCharacter == character1script)
         {
-            character1script.enabled = false;
-            character2script.enabled = true;
+            character1script.canMove = false;
+            character2script.canMove = true;
             otherCharacter = currentCharacter;
             currentCharacter = character2script;
             camScript.player = character2;
+            character1script.EyePoint.GetComponent<MeshRenderer>().enabled = false;
+            character2script.EyePoint.GetComponent<MeshRenderer>().enabled = true;
         }
         else
         {
-            character2script.enabled = false;
-            character1script.enabled = true;
+            character2script.canMove = false;
+            character1script.canMove = true;
             otherCharacter = currentCharacter;
             currentCharacter = character1script;
             camScript.player = character1;
+            character1script.EyePoint.GetComponent<MeshRenderer>().enabled = true;
+            character2script.EyePoint.GetComponent<MeshRenderer>().enabled = false;
         }
     }
     public void DoToggleLever()

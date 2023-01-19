@@ -3294,6 +3294,10 @@ PrefabInstance:
       propertyPath: respawnPoint
       value: 
       objectReference: {fileID: 993782014}
+    - target: {fileID: 5231297329566606148, guid: 5a16536b487c4d148b90c7a214a01ce2, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5759162792689906042, guid: 5a16536b487c4d148b90c7a214a01ce2, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -15467,8 +15471,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5.954651, y: 0.3734932, z: 10}
-  m_Center: {x: 0.12298584, y: -2.6395783, z: 0}
+  m_Size: {x: 5.59, y: 0.49, z: 10}
+  m_Center: {x: 0.12298584, y: -2.75, z: 0}
 --- !u!1 &1591962772874988603
 GameObject:
   m_ObjectHideFlags: 0
@@ -15972,7 +15976,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 6, y: 0.4, z: 10}
-  m_Center: {x: 0, y: -3.1, z: 0}
+  m_Center: {x: 0, y: -3.28, z: 0}
 --- !u!4 &3047856368024774894
 Transform:
   m_ObjectHideFlags: 0
@@ -18006,8 +18010,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 6, y: 0.4, z: 10}
-  m_Center: {x: 0, y: -2.7, z: 0}
+  m_Size: {x: 5.64, y: 0.9, z: 10}
+  m_Center: {x: 0, y: -2.98, z: 0}
 --- !u!212 &7461032890464702429
 SpriteRenderer:
   m_ObjectHideFlags: 0

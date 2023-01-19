@@ -55,6 +55,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""MoveTogether"",
+                    ""type"": ""Button"",
+                    ""id"": ""f483e2c6-98c0-4916-8918-e12f47045d8e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""SwitchAbility"",
                     ""type"": ""Button"",
                     ""id"": ""768daa8b-129b-42ef-9386-53398d00c04a"",
@@ -267,6 +276,28 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Grab"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""44ced147-57fc-4c37-92cd-e5a511ed5449"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveTogether"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e6a5f8e9-9c7d-43e1-87ca-0bc6faaba757"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveTogether"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -301,6 +332,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Gameplay_Move = m_Gameplay.FindAction("Move", throwIfNotFound: true);
         m_Gameplay_SwitchCharacter = m_Gameplay.FindAction("SwitchCharacter", throwIfNotFound: true);
         m_Gameplay_TriggerAbility = m_Gameplay.FindAction("TriggerAbility", throwIfNotFound: true);
+        m_Gameplay_MoveTogether = m_Gameplay.FindAction("MoveTogether", throwIfNotFound: true);
         m_Gameplay_SwitchAbility = m_Gameplay.FindAction("SwitchAbility", throwIfNotFound: true);
         m_Gameplay_ToggleButton = m_Gameplay.FindAction("ToggleButton", throwIfNotFound: true);
         m_Gameplay_Respawn = m_Gameplay.FindAction("Respawn", throwIfNotFound: true);
@@ -367,6 +399,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Move;
     private readonly InputAction m_Gameplay_SwitchCharacter;
     private readonly InputAction m_Gameplay_TriggerAbility;
+    private readonly InputAction m_Gameplay_MoveTogether;
     private readonly InputAction m_Gameplay_SwitchAbility;
     private readonly InputAction m_Gameplay_ToggleButton;
     private readonly InputAction m_Gameplay_Respawn;
@@ -378,6 +411,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_Gameplay_Move;
         public InputAction @SwitchCharacter => m_Wrapper.m_Gameplay_SwitchCharacter;
         public InputAction @TriggerAbility => m_Wrapper.m_Gameplay_TriggerAbility;
+        public InputAction @MoveTogether => m_Wrapper.m_Gameplay_MoveTogether;
         public InputAction @SwitchAbility => m_Wrapper.m_Gameplay_SwitchAbility;
         public InputAction @ToggleButton => m_Wrapper.m_Gameplay_ToggleButton;
         public InputAction @Respawn => m_Wrapper.m_Gameplay_Respawn;
@@ -400,6 +434,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @TriggerAbility.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnTriggerAbility;
                 @TriggerAbility.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnTriggerAbility;
                 @TriggerAbility.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnTriggerAbility;
+                @MoveTogether.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMoveTogether;
+                @MoveTogether.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMoveTogether;
+                @MoveTogether.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMoveTogether;
                 @SwitchAbility.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSwitchAbility;
                 @SwitchAbility.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSwitchAbility;
                 @SwitchAbility.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSwitchAbility;
@@ -425,6 +462,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @TriggerAbility.started += instance.OnTriggerAbility;
                 @TriggerAbility.performed += instance.OnTriggerAbility;
                 @TriggerAbility.canceled += instance.OnTriggerAbility;
+                @MoveTogether.started += instance.OnMoveTogether;
+                @MoveTogether.performed += instance.OnMoveTogether;
+                @MoveTogether.canceled += instance.OnMoveTogether;
                 @SwitchAbility.started += instance.OnSwitchAbility;
                 @SwitchAbility.performed += instance.OnSwitchAbility;
                 @SwitchAbility.canceled += instance.OnSwitchAbility;
@@ -464,6 +504,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnSwitchCharacter(InputAction.CallbackContext context);
         void OnTriggerAbility(InputAction.CallbackContext context);
+        void OnMoveTogether(InputAction.CallbackContext context);
         void OnSwitchAbility(InputAction.CallbackContext context);
         void OnToggleButton(InputAction.CallbackContext context);
         void OnRespawn(InputAction.CallbackContext context);

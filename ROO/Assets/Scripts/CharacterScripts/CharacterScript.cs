@@ -4,10 +4,10 @@ public class CharacterScript : MonoBehaviour
 {
 
     private PlayerManager playerManager;
-    public GameObject checker, floatCheck, grabbedObject, detectedObject, grabPointS, grabPointL, grabPointBoat;
+    public GameObject checker, floatCheck, grabbedObject, detectedObject, grabPoint, grabPointBoat, EyePoint;
     public Rigidbody rb;
-    public bool left, canMove, usedAbility, canResize, canWalkOnWater, isHoldingCollectible,isHoldingGrabbable, isGrounded, isOnWater;
-    public float movementSpeed;
+    public bool left, canMove, usedAbility, canResize, canWalkOnWater, isHoldingCollectible, isHoldingGrabbable, isGrounded, isOnWater;
+    public float movementSpeed,lastDir;
     public int size, weight;
     public LeverScript inRangeLever;
     public CollectibleScript.FruitEye typeEF;
@@ -28,9 +28,18 @@ public class CharacterScript : MonoBehaviour
         if (inRangeLever != null)
             inRangeLever.ToggleLever();
     }
-    public void Move(float _movement)
+    public void Move(float movement)
     {
-        rb.velocity = new Vector3(_movement * movementSpeed, rb.velocity.y, rb.velocity.z);
+        Rotate(movement);
+        rb.velocity = new Vector3(movement * movementSpeed, rb.velocity.y, rb.velocity.z);
+        lastDir = movement;
+    }
+    public void Rotate(float movement)
+    {
+        if (movement < 0 && lastDir < 0)
+            transform.eulerAngles = new Vector3(0, -140, 0);
+        else if(movement > 0 && lastDir > 0)
+            transform.eulerAngles = new Vector3(0, 140, 0);
     }
     public void MoveTowardsPlace(Transform _currentPlayerFloatPoint)
     {
@@ -66,7 +75,7 @@ public class CharacterScript : MonoBehaviour
                         grabbedObject = detectedObject;
                         grabbedObject.transform.parent = gameObject.GetComponentInChildren<Transform>();
                         grabbedObject.GetComponent<Rigidbody>().isKinematic = true;
-                        grabbedObject.transform.position = grabPointS.transform.position;
+                        grabbedObject.transform.position = grabPoint.transform.position;
                     }
                     else if (detectedObject.CompareTag("Boat") && isOnWater)
                     {
@@ -83,7 +92,7 @@ public class CharacterScript : MonoBehaviour
                         {
                             grabbedObject.transform.position = new Vector3(grabbedObject.transform.position.x + 0.4f, grabbedObject.transform.position.y, grabbedObject.transform.position.z);
                         }
-                    } 
+                    }
                 }
 
                 else
@@ -92,7 +101,7 @@ public class CharacterScript : MonoBehaviour
                     grabbedObject = detectedObject;
                     grabbedObject.transform.parent = gameObject.GetComponentInChildren<Transform>();
                     grabbedObject.GetComponent<Rigidbody>().isKinematic = true;
-                    grabbedObject.transform.position = grabPointL.transform.position;
+                    grabbedObject.transform.position = grabPoint.transform.position;
                 }
             }
         }

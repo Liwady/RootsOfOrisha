@@ -33,6 +33,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "MoveTogether",
+                    "type": "Button",
+                    "id": "f483e2c6-98c0-4916-8918-e12f47045d8e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "SwitchAbility",
                     "type": "Button",
                     "id": "768daa8b-129b-42ef-9386-53398d00c04a",
@@ -243,6 +252,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Grab",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "44ced147-57fc-4c37-92cd-e5a511ed5449",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveTogether",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e6a5f8e9-9c7d-43e1-87ca-0bc6faaba757",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveTogether",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
