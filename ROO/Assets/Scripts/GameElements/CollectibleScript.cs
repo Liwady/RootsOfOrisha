@@ -17,7 +17,7 @@ public class CollectibleScript : MonoBehaviour
         playerManager = FindObjectOfType<PlayerManager>();
         gameManager = FindObjectOfType<GameManager>();
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision) //checks if a player collided with the collectible, and sets the player to the appropiate state
     {
         if (collision.gameObject.CompareTag("1") || collision.gameObject.CompareTag("2"))
         {

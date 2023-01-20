@@ -8,11 +8,7 @@ public class WaterScript : MonoBehaviour
     private Collider myCharCo;
 
 
-    private void Awake()
-    {
-
-    }
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other) //checks if something enters the Water collider
     {
         if (other.CompareTag("1") || other.CompareTag("2"))
         {
@@ -22,7 +18,7 @@ public class WaterScript : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider other) //checks if something leaves the Water collider
     {
         if (other.CompareTag("1") || other.CompareTag("2"))
         {

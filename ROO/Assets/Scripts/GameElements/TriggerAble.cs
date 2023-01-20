@@ -28,11 +28,11 @@ public class TriggerAble : MonoBehaviour
         originalPos = transform.position;
         originalPosLocal = transform.localPosition;
     }
-    public void Toggle(bool _value)
+    public void Toggle(bool _value) //sets the triggered value
     {
         triggered = _value;
     }
-    private void ModeSwitch()
+    private void ModeSwitch() //depending on which mode the TriggerAble is executes the corresponding code
     {
         switch (mode)
         {
