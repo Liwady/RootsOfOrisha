@@ -11,7 +11,7 @@ public class RespawnPoint : MonoBehaviour
     {
         playerManager = FindObjectOfType<PlayerManager>();
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other) //checks if both players reached the respawnpoint
     {
         if (other.CompareTag("1") || other.CompareTag("2"))
         {
@@ -34,7 +34,7 @@ public class RespawnPoint : MonoBehaviour
         }
     }
 
-    private void EnableResapwnPoint()
+    private void EnableResapwnPoint() //enables the respawnPoint
     {
         playerManager.respawnPoint = this;
     }

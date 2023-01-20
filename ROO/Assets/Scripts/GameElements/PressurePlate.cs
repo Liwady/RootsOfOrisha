@@ -14,7 +14,7 @@ public class PressurePlate : MonoBehaviour
         for (int i = 0; i < triggeredObjects.Length; i++)
             triggeredChar = triggeredObjects[0].GetComponent<TriggerAble>().triggeredChar;
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other) //checks if something steps on the pressure plate
     {
         moved = false;
         if (other.CompareTag("1") || other.CompareTag("2"))
@@ -31,7 +31,7 @@ public class PressurePlate : MonoBehaviour
             }
         }
     }
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerStay(Collider other) //checks if something is on the pressure plate
     {
         if (other.CompareTag("1") || other.CompareTag("2"))
         {
@@ -68,7 +68,7 @@ public class PressurePlate : MonoBehaviour
             }
         }
     }
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider other) //checks if something leaves the pressure plate
     {
         moved = true;
         if ((other.CompareTag("1") || other.CompareTag("2")) && triggeredChar == other.gameObject)

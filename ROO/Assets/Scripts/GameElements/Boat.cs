@@ -5,7 +5,7 @@ using UnityEngine;
 public class Boat : MonoBehaviour
 {
     private PlayerManager playerManager;
-    private bool updateing = false;
+    private bool updating = false;
     public GameObject myPlayer;
 
 
@@ -15,25 +15,25 @@ public class Boat : MonoBehaviour
         playerManager = FindObjectOfType<PlayerManager>();
         myPlayer = playerManager.character2;
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other) //checks if player 2 entered the boat
     {
         if (other.CompareTag("2"))
         {
-            updateing = true;
+            updating = true;
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider other) //checks if player 2 exited the boat
     {
         if (other.CompareTag("2"))
         {
-            updateing = false;
+            updating = false;
         }
     }
 
     private void Update()
     {
-        if (updateing && myPlayer != null)
+        if (updating && myPlayer != null)
         {
             if (playerManager.currentCharacter.gameObject.CompareTag("1"))
             {
