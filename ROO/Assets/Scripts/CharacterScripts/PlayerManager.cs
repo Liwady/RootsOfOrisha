@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    public GameObject character1, character2,sizeC1,sizeC2;
+    public GameObject character1, character2, sizeC1, sizeC2;
 
     private CharacterScript character1script;
     private CharacterScript character2script;
@@ -329,19 +329,22 @@ public class PlayerManager : MonoBehaviour
         {
             if (currentCharacter == character1script)
             {
-                character1.transform.position = new Vector3(respawnPoint.spawnPoints[0].transform.position.x, respawnPoint.spawnPoints[0].transform.position.x, 0);
-                character2.transform.position = new Vector3(respawnPoint.spawnPoints[1].transform.position.x, respawnPoint.spawnPoints[0].transform.position.x, 1);
+                character1.transform.position = new Vector3(respawnPoint.spawnPoints[0].transform.position.x, respawnPoint.spawnPoints[0].transform.position.y, 0);
+                character2.transform.position = new Vector3(respawnPoint.spawnPoints[1].transform.position.x, respawnPoint.spawnPoints[1].transform.position.y, 1);
             }
             else
             {
-                character1.transform.position = new Vector3(respawnPoint.spawnPoints[0].transform.position.x, respawnPoint.spawnPoints[0].transform.position.x, 1);
-                character2.transform.position = new Vector3(respawnPoint.spawnPoints[1].transform.position.x, respawnPoint.spawnPoints[0].transform.position.x, 0);
+                character1.transform.position = new Vector3(respawnPoint.spawnPoints[0].transform.position.x, respawnPoint.spawnPoints[0].transform.position.y, 1);
+                character2.transform.position = new Vector3(respawnPoint.spawnPoints[1].transform.position.x, respawnPoint.spawnPoints[1].transform.position.y, 0);
 
             }
             abilityActive = false;
-            SetGravity();
+
             SetMovementSpeed();
-            DefaultValuesSize();
+            if (currentAbility == 0)
+                DefaultValuesSize();
+            else
+                SetGravity();
             character1script.usedAbility = false;
             character2script.usedAbility = false;
         }
