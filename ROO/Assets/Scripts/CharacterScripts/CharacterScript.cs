@@ -6,8 +6,8 @@ public class CharacterScript : MonoBehaviour
     private PlayerManager playerManager;
     public GameObject checker, floatCheck, grabbedObject, detectedObject, grabPoint, grabPointBoat, EyePoint;
     public Rigidbody rb;
-    public bool left, canMove, usedAbility, canResize, canWalkOnWater, isHoldingCollectible, isHoldingGrabbable, isGrounded, isOnWater;
-    public float movementSpeed,lastDir;
+    public bool left, canMove, usedAbility, canResize, canWalkOnWater, isHoldingCollectible, isHoldingGrabbable, isGrounded, isOnWater, hitWhileFloating;
+    public float movementSpeed, lastDir;
     public int size, weight;
     public LeverScript inRangeLever;
     public CollectibleScript.FruitEye typeEF;
@@ -38,13 +38,15 @@ public class CharacterScript : MonoBehaviour
     {
         if (movement < 0 && lastDir < 0)
             transform.eulerAngles = new Vector3(0, -140, 0);
-        else if(movement > 0 && lastDir > 0)
+        else if (movement > 0 && lastDir > 0)
             transform.eulerAngles = new Vector3(0, 140, 0);
     }
     public void MoveTowardsPlace(Transform _currentPlayerFloatPoint)
     {
-
-        transform.position = Vector3.MoveTowards(transform.position, _currentPlayerFloatPoint.position, 5 * Time.deltaTime);
+        if (!hitWhileFloating)
+            transform.position = Vector3.MoveTowards(transform.position, _currentPlayerFloatPoint.position, 5 * Time.deltaTime);
+        else
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(_currentPlayerFloatPoint.position.x, transform.position.y, _currentPlayerFloatPoint.position.z), 5 * Time.deltaTime);
 
     }
     public void GrabObject()

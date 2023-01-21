@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    public GameObject character1, character2;
+    public GameObject character1, character2,sizeC1,sizeC2;
 
     private CharacterScript character1script;
     private CharacterScript character2script;
@@ -196,13 +196,13 @@ public class PlayerManager : MonoBehaviour
     {
         if (character1script.usedAbility)
         {
-            character1.transform.localScale /= 1.3f;
-            character2.transform.localScale *= 1.3f;
+            sizeC1.transform.localScale /= 1.3f;
+            sizeC2.transform.localScale *= 1.3f;
         }
         else
         {
-            character1.transform.localScale *= 1.5f;
-            character2.transform.localScale /= 1.5f;
+            sizeC1.transform.localScale *= 1.5f;
+            sizeC2.transform.localScale /= 1.5f;
         }
     }
     public void SetMovementSpeed()
@@ -292,13 +292,13 @@ public class PlayerManager : MonoBehaviour
     {
         if (currentCharacter == character1script)
         {
-            character1.transform.localScale *= 1.3f;
-            character2.transform.localScale /= 1.3f;
+            sizeC1.transform.localScale *= 1.3f;
+            sizeC2.transform.localScale /= 1.3f;
         }
         else
         {
-            character2.transform.localScale *= 1.5f;
-            character1.transform.localScale /= 1.5f;
+            sizeC2.transform.localScale *= 1.5f;
+            sizeC1.transform.localScale /= 1.5f;
         }
     }
     public void SetGravity()
@@ -327,12 +327,21 @@ public class PlayerManager : MonoBehaviour
     {
         if (respawnPoint != null)
         {
-            character1.GetComponentInChildren<Collider>().isTrigger = false;
-            character2.GetComponentInChildren<Collider>().isTrigger = false;
-            character1.transform.position = respawnPoint.spawnPoints[0].transform.position;
-            character2.transform.position = respawnPoint.spawnPoints[1].transform.position;
+            if (currentCharacter == character1script)
+            {
+                character1.transform.position = new Vector3(respawnPoint.spawnPoints[0].transform.position.x, respawnPoint.spawnPoints[0].transform.position.x, 0);
+                character2.transform.position = new Vector3(respawnPoint.spawnPoints[1].transform.position.x, respawnPoint.spawnPoints[0].transform.position.x, 1);
+            }
+            else
+            {
+                character1.transform.position = new Vector3(respawnPoint.spawnPoints[0].transform.position.x, respawnPoint.spawnPoints[0].transform.position.x, 1);
+                character2.transform.position = new Vector3(respawnPoint.spawnPoints[1].transform.position.x, respawnPoint.spawnPoints[0].transform.position.x, 0);
+
+            }
             abilityActive = false;
             SetGravity();
+            SetMovementSpeed();
+            DefaultValuesSize();
             character1script.usedAbility = false;
             character2script.usedAbility = false;
         }
@@ -343,6 +352,9 @@ public class PlayerManager : MonoBehaviour
         {
             character1script.canMove = false;
             character2script.canMove = true;
+            character1.transform.position = new Vector3(character1.transform.position.x, character1.transform.position.y, 1);
+            character2.transform.position = new Vector3(character2.transform.position.x, character2.transform.position.y, 0);
+
             otherCharacter = currentCharacter;
             currentCharacter = character2script;
             camScript.player = character2;
@@ -353,6 +365,8 @@ public class PlayerManager : MonoBehaviour
         {
             character2script.canMove = false;
             character1script.canMove = true;
+            character1.transform.position = new Vector3(character1.transform.position.x, character1.transform.position.y, 0);
+            character2.transform.position = new Vector3(character2.transform.position.x, character2.transform.position.y, 1);
             otherCharacter = currentCharacter;
             currentCharacter = character1script;
             camScript.player = character1;

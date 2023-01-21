@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
         amountOfFruit = 0;
         lightCount = 0;
         playerManager = FindObjectOfType<PlayerManager>();
+        //GetComponent<Camera>().GetComponent<CameraScript>().currentLevel=currentScene;
         //abilityText.text = playerManager.currentAbility.ToString();
     }
     private void Update()

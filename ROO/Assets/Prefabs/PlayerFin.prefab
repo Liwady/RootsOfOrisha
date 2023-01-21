@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 311091473030428094}
   - component: {fileID: 311091473030428088}
   - component: {fileID: 311091473030428089}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GroundChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,12 +26,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 311091473030428095}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.01000005, z: 0}
+  m_LocalPosition: {x: -0.19000113, y: 0.06399983, z: 0.159001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5600576118367110206}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &311091473030428088
 BoxCollider:
@@ -44,8 +44,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.2609253, y: 0.10718775, z: 1}
-  m_Center: {x: 0.014785767, y: 0.062083006, z: 0}
+  m_Size: {x: 0.66260964, y: 0.07138053, z: 1}
+  m_Center: {x: 0.21562795, y: 0.10922013, z: 0.00000000767131}
 --- !u!114 &311091473030428089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,7 +70,7 @@ GameObject:
   - component: {fileID: 7705710992170461166}
   - component: {fileID: 5232279899995449947}
   - component: {fileID: 5592955501330119486}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GroundChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,12 +85,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 338359882353001892}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.07999992, z: 0}
-  m_LocalScale: {x: 0.90000004, y: 0.9, z: 0.90000004}
+  m_LocalPosition: {x: 0, y: 0.034999847, z: 0}
+  m_LocalScale: {x: 0.90000015, y: 0.9, z: 0.90000015}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 8248979300278442496}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &5232279899995449947
 BoxCollider:
@@ -103,8 +103,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.2609253, y: 0.10718775, z: 1}
-  m_Center: {x: 0, y: -0.06, z: 0}
+  m_Size: {x: 1.4012642, y: 0.10718775, z: 1.254866}
+  m_Center: {x: 0.016760886, y: -0.05999997, z: -0.12743285}
 --- !u!114 &5592955501330119486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,8 +129,10 @@ GameObject:
   - component: {fileID: 5600576118367110206}
   - component: {fileID: 5600576118367110211}
   - component: {fileID: 5600576118367110204}
-  - component: {fileID: 5600576118367110205}
-  m_Layer: 0
+  - component: {fileID: 3385895606351541715}
+  - component: {fileID: 1914807799828778678}
+  - component: {fileID: 4156111777959221230}
+  m_Layer: 8
   m_Name: ZoudooRender
   m_TagString: 1
   m_Icon: {fileID: 0}
@@ -145,14 +147,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1319675764204399525}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.8, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6818174076205066439}
-  - {fileID: 311091473030428094}
   - {fileID: 7451694108513111295}
   - {fileID: 232814552855263491}
+  - {fileID: 311091473030428094}
   m_Father: {fileID: 6761022221231462043}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -206,8 +208,8 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1319675764204399525}
   m_Mesh: {fileID: -4340276120514848051, guid: c771f443c76f473469b2f18d4f0d28a2, type: 3}
---- !u!64 &5600576118367110205
-MeshCollider:
+--- !u!136 &3385895606351541715
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -216,10 +218,37 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -4340276120514848051, guid: c771f443c76f473469b2f18d4f0d28a2, type: 3}
+  m_Radius: 0.1350318
+  m_Height: 0.31367588
+  m_Direction: 1
+  m_Center: {x: 0.0037363318, y: 0.5974274, z: 0.012516409}
+--- !u!135 &1914807799828778678
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1319675764204399525}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.43435514
+  m_Center: {x: -0.011274567, y: 1.1260176, z: 0.28145686}
+--- !u!136 &4156111777959221230
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1319675764204399525}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.14649051
+  m_Height: 0.5638307
+  m_Direction: 0
+  m_Center: {x: 0.0030284144, y: 0.2853843, z: 0.11527017}
 --- !u!1 &2754393812832101235
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,7 +258,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7729464208256396175}
-  m_Layer: 0
+  - component: {fileID: 1620452706}
+  - component: {fileID: 1620452707}
+  m_Layer: 8
   m_Name: FloatPointZou
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -244,13 +275,39 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2754393812832101235}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.5, z: 0}
+  m_LocalPosition: {x: -0.23, y: 3.02, z: 0.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 6761022221231462043}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1620452706
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2754393812832101235}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5079526, y: 0.13, z: 0.55451894}
+  m_Center: {x: 0.23273456, y: 0.12, z: -0.2227339}
+--- !u!114 &1620452707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2754393812832101235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3674e3742918fe46ab9f72b430d0f50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myChar: {fileID: 6952455748345242751}
 --- !u!1 &2805881829371660626
 GameObject:
   m_ObjectHideFlags: 0
@@ -262,7 +319,7 @@ GameObject:
   - component: {fileID: 6761022221231462043}
   - component: {fileID: 6952455748345242751}
   - component: {fileID: 6645460019927828654}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Zoudoo
   m_TagString: 1
   m_Icon: {fileID: 0}
@@ -316,6 +373,7 @@ MonoBehaviour:
   isHoldingGrabbable: 0
   isGrounded: 0
   isOnWater: 0
+  hitWhileFloating: 0
   movementSpeed: 5
   lastDir: 0
   size: 0
@@ -347,7 +405,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5797776558582866610}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GrabPointZou
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -379,8 +437,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2219274552470025785}
   - component: {fileID: 8799157612092226671}
-  - component: {fileID: 8799157612092226670}
-  m_Layer: 0
+  - component: {fileID: 2503595841680916965}
+  - component: {fileID: 4127660945482198303}
+  m_Layer: 7
   m_Name: MidSizeChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -416,8 +475,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parent: {fileID: 8343979968015549311}
   obstacles: []
---- !u!64 &8799157612092226670
-MeshCollider:
+--- !u!65 &2503595841680916965
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -426,10 +485,23 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: -1
-  m_Mesh: {fileID: 3586968269189368080, guid: 7e4729deafab809419855bf190477c7e, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 1.1950136, y: 0.13672441, z: 1.099294}
+  m_Center: {x: 0.02538843, y: 0.050304983, z: -0.093657605}
+--- !u!136 &4127660945482198303
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3248196847086197265}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.8488512
+  m_Height: 1.7112527
+  m_Direction: 1
+  m_Center: {x: 0.0048780534, y: 1.0027779, z: -0.106927805}
 --- !u!1 &3749462218510402729
 GameObject:
   m_ObjectHideFlags: 0
@@ -441,7 +513,7 @@ GameObject:
   - component: {fileID: 3774568142041129629}
   - component: {fileID: 5968718343151557543}
   - component: {fileID: 5231297329566606148}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EyePointKou
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -461,7 +533,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8248979300278442496}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5968718343151557543
 MeshFilter:
@@ -522,7 +594,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8932224336880195134}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GrabPointKou
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -554,9 +626,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5759162792689906042}
   - component: {fileID: 311091472381969554}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: PlayerFin
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -570,7 +642,7 @@ Transform:
   m_GameObject: {fileID: 5759162792689906043}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -91.3, y: 35.9, z: 1}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6761022221231462043}
@@ -593,6 +665,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   character1: {fileID: 2805881829371660626}
   character2: {fileID: 8343979968015549311}
+  sizeC1: {fileID: 1319675764204399525}
+  sizeC2: {fileID: 8171069620508272218}
   currentCharacter: {fileID: 0}
   respawnPoint: {fileID: 0}
   maxDistanceBetweenPlayers: 10
@@ -609,7 +683,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6449570756366380516}
-  m_Layer: 0
+  - component: {fileID: 1461789727}
+  - component: {fileID: 1461789726}
+  m_Layer: 7
   m_Name: FloatPointKou
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -624,13 +700,39 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6580984343290934504}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 5, z: 0}
+  m_LocalPosition: {x: 0, y: 7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1359452619129881330}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1461789727
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6580984343290934504}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.63513434, y: 0.2587037, z: 1.5560619}
+  m_Center: {x: -0.015385688, y: -4.2275963, z: -0.005342424}
+--- !u!114 &1461789726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6580984343290934504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3674e3742918fe46ab9f72b430d0f50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myChar: {fileID: 4262255675105671685}
 --- !u!1 &6595179946316988298
 GameObject:
   m_ObjectHideFlags: 0
@@ -640,7 +742,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7451694108513111295}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ConnectionZou
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -660,7 +762,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5600576118367110206}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7700120162220597903
 GameObject:
@@ -673,7 +775,7 @@ GameObject:
   - component: {fileID: 232814552855263491}
   - component: {fileID: 5430459475076300965}
   - component: {fileID: 5682681027893707623}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EyePointZou
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -693,7 +795,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5600576118367110206}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5430459475076300965
 MeshFilter:
@@ -755,8 +857,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6818174076205066439}
   - component: {fileID: 418739897536807112}
-  - component: {fileID: 6818174076205066438}
-  m_Layer: 0
+  - component: {fileID: 6736215305416349882}
+  - component: {fileID: 5211545374468921008}
+  - component: {fileID: 6696280994638813238}
+  m_Layer: 8
   m_Name: MidSizeChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -771,7 +875,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7888230261510555441}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.05000013, z: -0}
+  m_LocalPosition: {x: -0, y: 0.026, z: -0}
   m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -792,8 +896,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parent: {fileID: 2805881829371660626}
   obstacles: []
---- !u!64 &6818174076205066438
-MeshCollider:
+--- !u!136 &6736215305416349882
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -802,10 +906,37 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -4340276120514848051, guid: c771f443c76f473469b2f18d4f0d28a2, type: 3}
+  m_Radius: 0.1350318
+  m_Height: 0.31367588
+  m_Direction: 1
+  m_Center: {x: 0.0037363318, y: 0.5974274, z: 0.012516409}
+--- !u!136 &5211545374468921008
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7888230261510555441}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.14649051
+  m_Height: 0.5638307
+  m_Direction: 0
+  m_Center: {x: 0.0030284144, y: 0.2853843, z: 0.11527017}
+--- !u!135 &6696280994638813238
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7888230261510555441}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.43435514
+  m_Center: {x: -0.011274567, y: 1.1260176, z: 0.28145686}
 --- !u!1 &8171069620508272218
 GameObject:
   m_ObjectHideFlags: 0
@@ -817,8 +948,9 @@ GameObject:
   - component: {fileID: 8248979300278442496}
   - component: {fileID: 8901758400711945935}
   - component: {fileID: 613975524168385890}
-  - component: {fileID: 8171069620508272217}
-  m_Layer: 0
+  - component: {fileID: 820421650279173571}
+  - component: {fileID: 3217697540551982267}
+  m_Layer: 7
   m_Name: KoubooRender
   m_TagString: 2
   m_Icon: {fileID: 0}
@@ -838,9 +970,9 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2219274552470025785}
-  - {fileID: 7705710992170461166}
   - {fileID: 1677563348175544541}
   - {fileID: 3774568142041129629}
+  - {fileID: 7705710992170461166}
   m_Father: {fileID: 1359452619129881330}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -894,8 +1026,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &8171069620508272217
-MeshCollider:
+--- !u!136 &820421650279173571
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -904,10 +1036,23 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 3586968269189368080, guid: 7e4729deafab809419855bf190477c7e, type: 3}
+  m_Radius: 0.8488512
+  m_Height: 1.7112527
+  m_Direction: 1
+  m_Center: {x: 0.0048780534, y: 1.0027779, z: -0.106927805}
+--- !u!65 &3217697540551982267
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8171069620508272218}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1950136, y: 0.13672441, z: 1.099294}
+  m_Center: {x: 0.02538843, y: 0.050304983, z: -0.093657605}
 --- !u!1 &8329291641448810708
 GameObject:
   m_ObjectHideFlags: 0
@@ -917,7 +1062,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1677563348175544541}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ConnectionKou
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -937,7 +1082,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8248979300278442496}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8343979968015549311
 GameObject:
@@ -950,7 +1095,7 @@ GameObject:
   - component: {fileID: 1359452619129881330}
   - component: {fileID: 4262255675105671685}
   - component: {fileID: 9016187462224811944}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Kouboo
   m_TagString: 2
   m_Icon: {fileID: 0}
@@ -965,7 +1110,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8343979968015549311}
   m_LocalRotation: {x: 0, y: 0.9396927, z: 0, w: 0.34202018}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1004,6 +1149,7 @@ MonoBehaviour:
   isHoldingGrabbable: 0
   isGrounded: 0
   isOnWater: 0
+  hitWhileFloating: 0
   movementSpeed: 5
   lastDir: 0
   size: 0
@@ -1037,7 +1183,7 @@ GameObject:
   - component: {fileID: 6397671802904438060}
   - component: {fileID: 2765619122846046476}
   - component: {fileID: 311091471601700153}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Connection
   m_TagString: Untagged
   m_Icon: {fileID: 0}

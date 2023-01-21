@@ -11,6 +11,7 @@ TagManager:
   - Water
   - Statue
   - Boat
+  - ActivePlayer
   layers:
   - Default
   - TransparentFX
@@ -18,9 +19,9 @@ TagManager:
   - 
   - Water
   - UI
-  - Player
   - Obstacles
-  - 
+  - Player
+  - ActivePlayer
   - 
   - 
   - 

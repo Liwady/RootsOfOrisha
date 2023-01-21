@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
-    public GameObject player;        //Public variable to store a reference to the player game object
+    public GameObject player,switchPoint;        //Public variable to store a reference to the player game object
     [SerializeField]
     private float upBound, downBound, leftBound, rightBound, offsettUpDown, offsettLeftRight;
+    public int currentLevel=1;
+    private bool switchBounds;
 
     void Update()
     {
@@ -15,8 +17,35 @@ public class CameraScript : MonoBehaviour
             Mathf.Clamp(transform.position.y, downBound + offsettUpDown, upBound - offsettUpDown),
             transform.position.z
         );
+        if(currentLevel == 1)
+        {
+            switchBounds = switchPoint.GetComponent<CameraSwitch>().switchBounds;
+            Level1();
+        }
+        
     }
+    private void Level1()
+    {
+        if(switchBounds)
+        {
+            upBound = 15;
+            downBound = 0.2f;
+            leftBound = 0.16f;
+            rightBound = 78;
+            offsettLeftRight = 9;
+            offsettUpDown = 6.4f;
+        }
+        else
+        {
+            upBound = 30;
+            downBound = 0.2f;
+            leftBound = -0.4f;
+            rightBound = 26;
+            offsettLeftRight = 11.3f;
+            offsettUpDown = 6.4f;
+        }
 
+    }
     private void OnDrawGizmos()
     {
         //draw a box around camera boundry

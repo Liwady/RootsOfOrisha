@@ -23,7 +23,6 @@ public class FireblobRB : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) //checks if the player collided with the fireblob
     {
-        Debug.Log(other.tag);
         if (other.CompareTag("1") || other.CompareTag("2"))
             playerManager.RespawnCharacters();
     }
