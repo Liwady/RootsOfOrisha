@@ -5,7 +5,7 @@ public class CameraScript : MonoBehaviour
     public GameObject player,switchPoint;        //Public variable to store a reference to the player game object
     [SerializeField]
     private float upBound, downBound, leftBound, rightBound, offsettUpDown, offsettLeftRight;
-    public int currentLevel=1;
+    public int currentLevel=0;
     private bool switchBounds;
 
     void Update()
@@ -13,7 +13,7 @@ public class CameraScript : MonoBehaviour
         if(currentLevel==1 && !switchBounds)
             transform.position = player.transform.position + new Vector3(0, 6, -5);
         else
-            transform.position = player.transform.position + new Vector3(0, 4, -5);
+            transform.position = player.transform.position + new Vector3(0, 5, -5);
         transform.position = new Vector3 //keep camera in boundary
         (
             Mathf.Clamp(transform.position.x, leftBound + offsettLeftRight, rightBound - offsettLeftRight),

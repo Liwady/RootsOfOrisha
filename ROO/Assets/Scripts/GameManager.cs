@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        currentScene = 1;
+        currentScene = 0;
         amountOfFruit = 0;
         lightCount = 0;
         playerManager = FindObjectOfType<PlayerManager>();

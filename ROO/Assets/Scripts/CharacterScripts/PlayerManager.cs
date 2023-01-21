@@ -24,13 +24,14 @@ public class PlayerManager : MonoBehaviour
     private MiddleBond middleBond;
 
     [HideInInspector]
-    public int currentAbility;
+    public int currentAbility, currentLevel, depth;
 
     [SerializeField]
     private bool abilityActive, moveBoth, hasReachedMax;
 
     private void Awake()
     {
+        currentLevel = 0;
         camScript = FindObjectOfType<CameraScript>();
         middleBond = FindObjectOfType<MiddleBond>();
         character1script = character1.GetComponent<CharacterScript>();
@@ -48,9 +49,16 @@ public class PlayerManager : MonoBehaviour
         playerControls.Gameplay.Grab.performed += ctx => DoGrab();
         playerControls.Gameplay.MoveTogether.performed += ctx => MoveTogether();
         playerControls.Gameplay.Enable();
+
+        if (currentLevel == 0)
+            depth = 2;
+        else
+            depth = 1;
+        SetDepth();
     }
     private void Update()
     {
+
         if (middleBond.outOfRange)
             MaxReached(true);
         else if (hasReachedMax)
@@ -61,6 +69,11 @@ public class PlayerManager : MonoBehaviour
 
         if (currentAbility == 1 && abilityActive)
             UpdateFloating();
+    }
+    private void SetDepth()
+    {
+        otherCharacter.floatCheck.transform.position = new Vector3(otherCharacter.floatCheck.transform.position.x, otherCharacter.floatCheck.transform.position.y, 0);
+        currentCharacter.floatCheck.transform.position = new Vector3(currentCharacter.floatCheck.transform.position.x, currentCharacter.floatCheck.transform.position.y, depth);
     }
     private void MoveTogether()
     {
@@ -168,6 +181,7 @@ public class PlayerManager : MonoBehaviour
         {
             abilityActive = true;
             SetUsedAbility();
+            SetDepth();
             otherCharacter.MoveTowardsPlace(currentCharacter.floatCheck.transform);
         }
     }
@@ -330,11 +344,11 @@ public class PlayerManager : MonoBehaviour
             if (currentCharacter == character1script)
             {
                 character1.transform.position = new Vector3(respawnPoint.spawnPoints[0].transform.position.x, respawnPoint.spawnPoints[0].transform.position.y, 0);
-                character2.transform.position = new Vector3(respawnPoint.spawnPoints[1].transform.position.x, respawnPoint.spawnPoints[1].transform.position.y, 1);
+                character2.transform.position = new Vector3(respawnPoint.spawnPoints[1].transform.position.x, respawnPoint.spawnPoints[1].transform.position.y, depth);
             }
             else
             {
-                character1.transform.position = new Vector3(respawnPoint.spawnPoints[0].transform.position.x, respawnPoint.spawnPoints[0].transform.position.y, 1);
+                character1.transform.position = new Vector3(respawnPoint.spawnPoints[0].transform.position.x, respawnPoint.spawnPoints[0].transform.position.y, depth);
                 character2.transform.position = new Vector3(respawnPoint.spawnPoints[1].transform.position.x, respawnPoint.spawnPoints[1].transform.position.y, 0);
 
             }
@@ -355,11 +369,11 @@ public class PlayerManager : MonoBehaviour
         {
             character1script.canMove = false;
             character2script.canMove = true;
-            character1.transform.position = new Vector3(character1.transform.position.x, character1.transform.position.y, 1);
+            character1.transform.position = new Vector3(character1.transform.position.x, character1.transform.position.y, depth);
             character2.transform.position = new Vector3(character2.transform.position.x, character2.transform.position.y, 0);
-
             otherCharacter = currentCharacter;
             currentCharacter = character2script;
+            SetDepth();
             camScript.player = character2;
             character1script.EyePoint.GetComponent<MeshRenderer>().enabled = false;
             character2script.EyePoint.GetComponent<MeshRenderer>().enabled = true;
@@ -369,9 +383,10 @@ public class PlayerManager : MonoBehaviour
             character2script.canMove = false;
             character1script.canMove = true;
             character1.transform.position = new Vector3(character1.transform.position.x, character1.transform.position.y, 0);
-            character2.transform.position = new Vector3(character2.transform.position.x, character2.transform.position.y, 1);
+            character2.transform.position = new Vector3(character2.transform.position.x, character2.transform.position.y, depth);
             otherCharacter = currentCharacter;
             currentCharacter = character1script;
+            SetDepth();
             camScript.player = character1;
             character1script.EyePoint.GetComponent<MeshRenderer>().enabled = true;
             character2script.EyePoint.GetComponent<MeshRenderer>().enabled = false;
