@@ -31,7 +31,7 @@ public class PlayerManager : MonoBehaviour
 
     private void Awake()
     {
-        currentLevel = 0;
+        currentLevel = 1;
         camScript = FindObjectOfType<CameraScript>();
         middleBond = FindObjectOfType<MiddleBond>();
         character1script = character1.GetComponent<CharacterScript>();

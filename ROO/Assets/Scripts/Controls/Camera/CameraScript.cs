@@ -5,7 +5,7 @@ public class CameraScript : MonoBehaviour
     public GameObject player,switchPoint;        //Public variable to store a reference to the player game object
     [SerializeField]
     private float upBound, downBound, leftBound, rightBound, offsettUpDown, offsettLeftRight;
-    public int currentLevel=0;
+    public int currentLevel;
     private bool switchBounds;
 
     void Update()
