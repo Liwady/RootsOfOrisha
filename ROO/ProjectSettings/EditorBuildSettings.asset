@@ -18,15 +18,15 @@ EditorBuildSettings:
     path: Assets/Scenes/3_Map.unity
     guid: aec5c18c925dc5f49802d19f151000fa
   - enabled: 0
-    path: Assets/Scenes/4_FireLevel.unity
+    path: Assets/Scenes/3_FireLevel.unity
     guid: 9369d2aa5af24524698c90b869fe54d2
   - enabled: 0
-    path: Assets/Scenes/5_EarthLevel.unity
+    path: Assets/Scenes/4_EarthLevel.unity
     guid: 5c045ec5f7cb07744986f7bf5ed6e512
   - enabled: 0
-    path: Assets/Scenes/6_WaterLevel.unity
+    path: Assets/Scenes/5_WaterLevel.unity
     guid: 91d864fd39ff94a42bb7f2120d32b761
   - enabled: 0
-    path: Assets/Scenes/7_End.unity
+    path: Assets/Scenes/6_End.unity
     guid: ecb75089a387ce54c8ddac0a6ec75a0a
   m_configObjects: {}

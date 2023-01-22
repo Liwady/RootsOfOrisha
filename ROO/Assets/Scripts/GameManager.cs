@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public int amountOfFruit, amountOfEyes;
+    public int amountOfFruit, amountOfEyes, lightCount, distance2Ani, currentScene;
     public TMP_Text fruitText, eyesText, abilityText;
     public Camera mainCamera;
     public PlayerManager playerManager;
     public Animator animator;
     public List<GameObject> lights;
-    public int lightCount,distance2Ani;
-    public int currentScene;
+    private float previousTimeScale;
+    public GameObject pauseMenu;
+    public bool isPaused;
+
 
 
     private void Awake()
@@ -29,7 +31,23 @@ public class GameManager : MonoBehaviour
             StartFireAnimation();
         //abilityText.text = playerManager.currentAbility.ToString();
     }
+    public void Pause()
+    {
+        if(Time.timeScale > 0)
+        {
+            previousTimeScale = Time.timeScale;
+            Time.timeScale = 0;
+            pauseMenu.SetActive(true);
+            isPaused = true;
 
+        }
+        else if (Time.timeScale == 0)
+        {
+            Time.timeScale = previousTimeScale;
+            pauseMenu.SetActive(false);
+            isPaused = false;
+        }
+    }
     private void StartFireAnimation()
     {if (lightCount < lights.Count)
         {

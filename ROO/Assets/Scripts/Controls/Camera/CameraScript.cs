@@ -11,9 +11,9 @@ public class CameraScript : MonoBehaviour
     void Update()
     {
         if(currentLevel==1 && !switchBounds)
-            transform.position = player.transform.position + new Vector3(0, 6, -5);
+            transform.position = player.transform.position + new Vector3(0, 6, -6);
         else
-            transform.position = player.transform.position + new Vector3(0, 5, -5);
+            transform.position = player.transform.position + new Vector3(0, 5, -6);
         transform.position = new Vector3 //keep camera in boundary
         (
             Mathf.Clamp(transform.position.x, leftBound + offsettLeftRight, rightBound - offsettLeftRight),

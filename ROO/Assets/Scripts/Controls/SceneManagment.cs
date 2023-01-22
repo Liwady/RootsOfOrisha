@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneManagment : MonoBehaviour
 {
-    public GameObject soundon, soundoff;
+    public GameObject soundon, soundoff,controlScreen,pauseScreen;
 
     public void MainScene()
     {
@@ -30,5 +30,15 @@ public class SceneManagment : MonoBehaviour
             soundon.SetActive(true);
             soundoff.SetActive(false);
         }
+    }
+    public void EnableControlScreen()
+    {
+        pauseScreen.SetActive(false);
+        controlScreen.SetActive(true);
+    }
+    public void EnablePauseScreen()
+    {
+        pauseScreen.SetActive(true);
+        controlScreen.SetActive(false);
     }
 }

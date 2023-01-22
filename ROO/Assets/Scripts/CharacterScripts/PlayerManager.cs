@@ -2,63 +2,32 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
+    [HideInInspector]
     public GameObject character1, character2, sizeC1, sizeC2;
-
-    private CharacterScript character1script;
-    private CharacterScript character2script;
-
     [HideInInspector]
     public CharacterScript currentCharacter;
-    private CharacterScript otherCharacter;
-
-    public RespawnPoint respawnPoint;
-
-    private Vector2 movement;
-
-    private CameraScript camScript;
-    private PlayerControls playerControls;
-
-    [SerializeField]
-    private float maxDistanceBetweenPlayers;
-
-    private MiddleBond middleBond;
-
     [HideInInspector]
     public int currentAbility, currentLevel, depth;
 
+    private CharacterScript character1script, character2script, otherCharacter;
+    private CameraScript camScript;
+    private GameManager gameManager;
+    private PlayerControls playerControls;
+    private MiddleBond middleBond;
+    private Vector2 movement;
+
+    public RespawnPoint respawnPoint;
     [SerializeField]
     private bool abilityActive, moveBoth, hasReachedMax;
 
     private void Awake()
     {
-        currentLevel = 1;
-        camScript = FindObjectOfType<CameraScript>();
-        middleBond = FindObjectOfType<MiddleBond>();
-        character1script = character1.GetComponent<CharacterScript>();
-        character2script = character2.GetComponent<CharacterScript>();
-        currentCharacter = character1script;
-        otherCharacter = character2script;
-        abilityActive = false;
-        playerControls = new PlayerControls();
-        playerControls.Gameplay.Move.performed += ctx => movement = ctx.ReadValue<Vector2>(); //lamda expression to preform function
-        playerControls.Gameplay.SwitchCharacter.performed += ctx => SwitchCharacter();
-        playerControls.Gameplay.SwitchAbility.performed += ctx => SwitchAbility();
-        playerControls.Gameplay.TriggerAbility.performed += ctx => TriggerAbility();
-        playerControls.Gameplay.ToggleButton.performed += ctx => DoToggleLever();
-        playerControls.Gameplay.Respawn.performed += ctx => RespawnCharacters();
-        playerControls.Gameplay.Grab.performed += ctx => DoGrab();
-        playerControls.Gameplay.MoveTogether.performed += ctx => MoveTogether();
-        playerControls.Gameplay.Enable();
-
-        if (currentLevel == 0)
-            depth = 2;
-        else
-            depth = 1;
+        Initialize();
+        PlayerControlsGameplay();
         SetDepth();
     }
     private void Update()
     {
-
         if (middleBond.outOfRange)
             MaxReached(true);
         else if (hasReachedMax)
@@ -70,17 +39,46 @@ public class PlayerManager : MonoBehaviour
         if (currentAbility == 1 && abilityActive)
             UpdateFloating();
     }
+    private void Initialize()
+    {
+        camScript = FindObjectOfType<CameraScript>();
+        middleBond = FindObjectOfType<MiddleBond>();
+        gameManager = FindObjectOfType<GameManager>();
+        character1script = character1.GetComponent<CharacterScript>();
+        character2script = character2.GetComponent<CharacterScript>();
+        currentCharacter = character1script;
+        otherCharacter = character2script;
+        abilityActive = false;
+        currentLevel = gameManager.currentScene;
+
+        if (currentLevel == 0)
+            depth = 2;
+        else
+            depth = 1;
+    }
+    private void PlayerControlsGameplay()
+    {
+        playerControls = new PlayerControls();
+        playerControls.Gameplay.Move.performed += ctx => movement = ctx.ReadValue<Vector2>(); //lamda expression to preform function
+        playerControls.Gameplay.SwitchCharacter.performed += ctx => SwitchCharacter();
+        playerControls.Gameplay.SwitchAbility.performed += ctx => SwitchAbility();
+        playerControls.Gameplay.TriggerAbility.performed += ctx => TriggerAbility();
+        playerControls.Gameplay.ToggleButton.performed += ctx => DoToggleLever();
+        playerControls.Gameplay.Respawn.performed += ctx => RespawnCharacters();
+        playerControls.Gameplay.Grab.performed += ctx => DoGrab();
+        playerControls.Gameplay.MoveTogether.performed += ctx => MoveTogether();
+        playerControls.Gameplay.Pause.performed += ctx => DoPause();
+        playerControls.Gameplay.Enable();
+    }
+    private void PlayerControlsUI()
+    {
+        playerControls.UI.Pause.performed += ctx => DoPause();
+        playerControls.UI.Enable();
+    }
     private void SetDepth()
     {
         otherCharacter.floatCheck.transform.position = new Vector3(otherCharacter.floatCheck.transform.position.x, otherCharacter.floatCheck.transform.position.y, 0);
         currentCharacter.floatCheck.transform.position = new Vector3(currentCharacter.floatCheck.transform.position.x, currentCharacter.floatCheck.transform.position.y, depth);
-    }
-    private void MoveTogether()
-    {
-        if (!moveBoth)
-            moveBoth = true;
-        else
-            moveBoth = false;
     }
     private void MaxReached(bool r)
     {
@@ -130,19 +128,6 @@ public class PlayerManager : MonoBehaviour
         }
 
     }
-    private void Move()
-    {
-        currentCharacter.Move(movement.x);
-        if (moveBoth)
-            otherCharacter.Move(movement.x);
-    }
-    private void UpdateFloating()
-    {
-        if (currentCharacter.usedAbility)
-            otherCharacter.MoveTowardsPlace(currentCharacter.floatCheck.transform);
-        else
-            currentCharacter.MoveTowardsPlace(otherCharacter.floatCheck.transform);
-    }
     private void SetLeftRight()
     {
         if (character1.transform.position.x > character2.transform.position.x)
@@ -156,9 +141,25 @@ public class PlayerManager : MonoBehaviour
             character2script.left = false;
         }
     }
-    private void DoGrab()
+    private void Move()
     {
-        currentCharacter.GrabObject();
+        currentCharacter.Move(movement.x);
+        if (moveBoth)
+            otherCharacter.Move(movement.x);
+    }
+    private void MoveTogether()
+    {
+        if (!moveBoth)
+            moveBoth = true;
+        else
+            moveBoth = false;
+    }
+    private void UpdateFloating()
+    {
+        if (currentCharacter.usedAbility)
+            otherCharacter.MoveTowardsPlace(currentCharacter.floatCheck.transform);
+        else
+            currentCharacter.MoveTowardsPlace(otherCharacter.floatCheck.transform);
     }
     private void SetUsedAbility()
     {
@@ -205,6 +206,10 @@ public class PlayerManager : MonoBehaviour
             }
 
         }
+    }
+    private void DoGrab()
+    {
+        currentCharacter.GrabObject();
     }
     public void DefaultValuesSize()
     {
@@ -416,8 +421,8 @@ public class PlayerManager : MonoBehaviour
     }
     public void SwitchAbility()
     {
-        if (currentAbility == 0)
-        { //size
+        if (currentAbility == 0)//size
+        {
             if (abilityActive)
             {
                 Sizing();
@@ -426,8 +431,8 @@ public class PlayerManager : MonoBehaviour
             }
             currentAbility = 1;
         }
-        else
-        {  //float
+        else//float
+        {
             if (abilityActive)
             {
                 Floating();
@@ -435,6 +440,22 @@ public class PlayerManager : MonoBehaviour
                 SetMovementSpeed();
             }
             currentAbility = 0;
+        }
+    }
+    public void DoPause()
+    {
+        gameManager.Pause();
+        if(gameManager.isPaused)
+        {
+            playerControls.Gameplay.Disable();
+            gameObject.SetActive(false);
+            PlayerControlsUI();
+        }
+        else
+        {
+            gameObject.SetActive(true);
+            playerControls.Gameplay.Enable();
+            playerControls.UI.Disable();
         }
     }
 }
