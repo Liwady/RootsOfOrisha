@@ -1,23 +1,61 @@
-using System.Collections;
+
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SceneManagment : MonoBehaviour
 {
-    public GameObject soundon, soundoff, optionsScreen, pauseScreen, settingsButton, continueButton ,settingsChild, controlsChild, creditsChild, currentButton;
+    public GameObject soundon, soundoff, optionsScreen, pauseScreen, settingsObject, controlsObject, creditsObject, continueObject, settingsChild, controlsChild, creditsChild, currentButtonObject,
+        musicObject, sfxObject, brightnessObject, musicSource, SFXSource;
     private EventSystem eventSystem;
+    public PostProcessProfile brightness;
+    public PostProcessLayer layer;
+    private AutoExposure exp;
     public PlayerManager playerManager;
-    public int currentScreen;//0=pause, 1=options, 2=child of options
+    private Button sfxButton, musicButton, brightnessButton, settingsButton, currentButton, creditsButton, controlsButton;
+    private Slider slider;
+    private Vector2 valueS;
+    private bool atSlider, start;
+    public int currentScreen,currentSlider;//0=pause, 1=options, 2=child of options, 3=child of settings
     private void Awake()
     {
         eventSystem = FindObjectOfType<EventSystem>();
-        currentButton = eventSystem.firstSelectedGameObject;
+        brightness.TryGetSettings(out exp);
+        currentButtonObject = eventSystem.firstSelectedGameObject;
+        start = true;
+        atSlider = false;
+        currentScreen = 0;
+        currentSlider = 0;
+        SetButtons();
+        PlayerControlsUI();
+    }
+    private void PlayerControlsUI()
+    {
         playerManager.playerControls.UI.Back.performed += ctx => GoBack();
         playerManager.playerControls.UI.Click.performed += ctx => ClickButton();
         playerManager.playerControls.UI.Navigate.performed += ctx => GetCurrentButton();
-        currentScreen = 0;
+        playerManager.playerControls.UI.Enable();
+    }
+    private void Update()
+    {
+        if (atSlider)
+        {
+            playerManager.playerControls.UI.Navigate.performed += ctx => valueS = ctx.ReadValue<Vector2>();
+            slider.value += valueS.x;
+        }
+
+    }
+    private void SetButtons()
+    {
+        sfxButton = sfxObject.GetComponent<Button>();
+        musicButton = musicObject.GetComponent<Button>();
+        brightnessButton = brightnessObject.GetComponent<Button>();
+        settingsButton = settingsObject.GetComponent<Button>();
+        currentButton = currentButtonObject.GetComponent<Button>();
+        creditsButton = creditsObject.GetComponent<Button>();
+        controlsButton = controlsObject.GetComponent<Button>();
     }
     public void PlayScene(int sceneNumber)
     {
@@ -44,14 +82,22 @@ public class SceneManagment : MonoBehaviour
     {
         pauseScreen.SetActive(false);
         optionsScreen.SetActive(true);
-        eventSystem.SetSelectedGameObject(settingsButton);
+        controlsChild.SetActive(false);
+        creditsChild.SetActive(false);
+        settingsChild.SetActive(false);
+        controlsButton.enabled = true;
+        creditsButton.enabled = true;
+        settingsButton.enabled = true;
+        eventSystem.SetSelectedGameObject(settingsObject);
+        GetCurrentButton();
         currentScreen = 1;
     }
     private void GoToPauseScreen()
     {
         pauseScreen.SetActive(true);
         optionsScreen.SetActive(false);
-        eventSystem.SetSelectedGameObject(continueButton);
+        eventSystem.SetSelectedGameObject(continueObject);
+        GetCurrentButton();
         currentScreen = 0;
     }
     public void EnableButtonChildren(int button)
@@ -59,10 +105,7 @@ public class SceneManagment : MonoBehaviour
         switch (button)
         {
             case 0: //settings
-                controlsChild.SetActive(false);
-                settingsChild.SetActive(true);
-                creditsChild.SetActive(false);
-                currentScreen = 2;
+                GoToSettingsScreen();
                 break;
             case 1://controls
                 controlsChild.SetActive(true);
@@ -77,8 +120,24 @@ public class SceneManagment : MonoBehaviour
                 currentScreen = 1;
                 break;
         }
-        
-
+    }
+    private void GoToSettingsScreen()
+    {
+        //change sprite with red line under it for settings 
+        controlsChild.SetActive(false);
+        creditsChild.SetActive(false);
+        settingsChild.SetActive(true);
+        controlsButton.enabled = false;
+        creditsButton.enabled = false;
+        settingsButton.enabled = false;
+        if(currentSlider==1)
+            eventSystem.SetSelectedGameObject(sfxObject);
+        else if(currentSlider==2)
+            eventSystem.SetSelectedGameObject(brightnessObject);
+        else
+            eventSystem.SetSelectedGameObject(musicObject);
+        GetCurrentButton();
+        currentScreen = 2;
     }
     public void Unpause()
     {
@@ -97,15 +156,84 @@ public class SceneManagment : MonoBehaviour
             case 2://child of options screen
                 GoToOptionsScreen();
                 break;
+            case 3:
+                GoToSettingsScreen();
+                break;
+
         }
     }
     private void ClickButton()
     {
-        currentButton.GetComponent<Button>().onClick.Invoke();
+        currentButton.onClick.Invoke();
     }
     private void GetCurrentButton()
     {
-        currentButton = eventSystem.currentSelectedGameObject;
+        currentButtonObject = eventSystem.currentSelectedGameObject;
+        currentButton = currentButtonObject.GetComponent<Button>();
     }
-
+    public void SliderButton(int button)
+    {
+        currentSlider=button;
+        if (!start)
+            DeactivateSlider();
+        else
+            ActivateSlider(currentSlider);
+    }
+    private void ActivateSlider(int button)
+    {
+        switch (button)
+        {
+            case 0: //music
+                musicButton.enabled = true;
+                sfxButton.enabled = false;
+                brightnessButton.enabled = false;
+                eventSystem.SetSelectedGameObject(musicObject);
+                break;
+            case 1://sfx
+                musicButton.enabled = false;
+                sfxButton.enabled = true;
+                brightnessButton.enabled = false;
+                eventSystem.SetSelectedGameObject(sfxObject);
+                break;
+            case 2://brightness
+                musicButton.enabled = false;
+                sfxButton.enabled = false;
+                brightnessButton.enabled = true;
+                eventSystem.SetSelectedGameObject(brightnessObject);
+                break;
+        }
+        GetCurrentButton();
+        slider = currentButton.GetComponentInChildren<Slider>();
+        slider.enabled = true;
+        atSlider = true;
+        start = false;
+        currentScreen = 3;
+    }
+    private void DeactivateSlider()
+    {
+        atSlider = false;
+        start = true;
+        valueS = Vector2.zero;
+        slider.enabled = false;
+        slider = null;
+        musicButton.enabled = true;
+        sfxButton.enabled = true;
+        brightnessButton.enabled = true;
+        GoBack();
+    }
+    public void SetMusicVolume()
+    {
+        musicSource.GetComponent<AudioSource>().volume = (slider.value / 100);
+    }
+    public void SetSFXVolume()
+    {
+        SFXSource.GetComponent<AudioSource>().volume = (slider.value / 100);
+    }
+    public void SetBrightness()//5=1 brighness 10=2 brightness 0=0.2f
+    {
+        if (valueS != null)
+            exp.keyValue.value = (slider.value*0.2f);
+        else
+            exp.keyValue.value = 0.2f;
+    }
 }

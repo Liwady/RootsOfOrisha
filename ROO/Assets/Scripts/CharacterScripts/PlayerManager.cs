@@ -446,10 +446,7 @@ public class PlayerManager : MonoBehaviour
     {
         gameManager.Pause();
         if(gameManager.isPaused)
-        {
             playerControls.Gameplay.Disable();
-            playerControls.UI.Enable();
-        }
         else
         {
             playerControls.Gameplay.Enable();
