@@ -12,7 +12,7 @@ public class PlayerManager : MonoBehaviour
     private CharacterScript character1script, character2script, otherCharacter;
     private CameraScript camScript;
     private GameManager gameManager;
-    private PlayerControls playerControls;
+    public PlayerControls playerControls;
     private MiddleBond middleBond;
     private Vector2 movement;
 
@@ -72,7 +72,7 @@ public class PlayerManager : MonoBehaviour
     }
     private void PlayerControlsUI()
     {
-        playerControls.UI.Pause.performed += ctx => DoPause();
+        playerControls.Gameplay.Disable();
         playerControls.UI.Enable();
     }
     private void SetDepth()
@@ -448,12 +448,10 @@ public class PlayerManager : MonoBehaviour
         if(gameManager.isPaused)
         {
             playerControls.Gameplay.Disable();
-            gameObject.SetActive(false);
-            PlayerControlsUI();
+            playerControls.UI.Enable();
         }
         else
         {
-            gameObject.SetActive(true);
             playerControls.Gameplay.Enable();
             playerControls.UI.Disable();
         }
