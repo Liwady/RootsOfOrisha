@@ -31,7 +31,7 @@ public class CharacterScript : MonoBehaviour
     public void Move(float movement)
     {
         Rotate(movement);
-        rb.velocity = new Vector3(movement * movementSpeed, rb.velocity.y, rb.velocity.z);
+        rb.velocity = new Vector3(movement * movementSpeed, rb.velocity.y);
         lastDir = movement;
     }
     public void Rotate(float movement)

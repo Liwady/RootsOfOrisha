@@ -24,7 +24,7 @@ public class PlayerManager : MonoBehaviour
     {
         Initialize();
         PlayerControlsGameplay();
-        SetDepth();
+        //SetDepth();
     }
     private void Update()
     {
@@ -70,16 +70,7 @@ public class PlayerManager : MonoBehaviour
         playerControls.Gameplay.Pause.performed += ctx => DoPause();
         playerControls.Gameplay.Enable();
     }
-    private void PlayerControlsUI()
-    {
-        playerControls.Gameplay.Disable();
-        playerControls.UI.Enable();
-    }
-    private void SetDepth()
-    {
-        otherCharacter.floatCheck.transform.position = new Vector3(otherCharacter.floatCheck.transform.position.x, otherCharacter.floatCheck.transform.position.y, 0);
-        currentCharacter.floatCheck.transform.position = new Vector3(currentCharacter.floatCheck.transform.position.x, currentCharacter.floatCheck.transform.position.y, depth);
-    }
+
     private void MaxReached(bool r)
     {
         if (r)
@@ -171,18 +162,27 @@ public class PlayerManager : MonoBehaviour
     }
     public void Floating()
     {
-        currentCharacter.usedAbility = true;
+
         if (abilityActive)
         {
+            if (currentCharacter.usedAbility)
+            {
+                otherCharacter.transform.position = new Vector3(otherCharacter.transform.position.x, otherCharacter.transform.position.y, depth);
+                currentCharacter.usedAbility = false;
+            }
+            else
+            {
+                currentCharacter.transform.position = new Vector3(currentCharacter.transform.position.x, currentCharacter.transform.position.y, -depth);
+                otherCharacter.usedAbility = false;
+            }
             abilityActive = false;
-            currentCharacter.usedAbility = false;
+            
             SetGravity();
-        }
+            }
         else if (otherCharacter.isGrounded)
         {
             abilityActive = true;
             SetUsedAbility();
-            SetDepth();
             otherCharacter.MoveTowardsPlace(currentCharacter.floatCheck.transform);
         }
     }
@@ -375,10 +375,9 @@ public class PlayerManager : MonoBehaviour
             character1script.canMove = false;
             character2script.canMove = true;
             character1.transform.position = new Vector3(character1.transform.position.x, character1.transform.position.y, depth);
-            character2.transform.position = new Vector3(character2.transform.position.x, character2.transform.position.y, 0);
+            character2.transform.position = new Vector3(character2.transform.position.x, character2.transform.position.y, -depth);
             otherCharacter = currentCharacter;
             currentCharacter = character2script;
-            SetDepth();
             camScript.player = character2;
             character1script.EyePoint.GetComponent<MeshRenderer>().enabled = false;
             character2script.EyePoint.GetComponent<MeshRenderer>().enabled = true;
@@ -387,11 +386,10 @@ public class PlayerManager : MonoBehaviour
         {
             character2script.canMove = false;
             character1script.canMove = true;
-            character1.transform.position = new Vector3(character1.transform.position.x, character1.transform.position.y, 0);
+            character1.transform.position = new Vector3(character1.transform.position.x, character1.transform.position.y, -depth);
             character2.transform.position = new Vector3(character2.transform.position.x, character2.transform.position.y, depth);
             otherCharacter = currentCharacter;
             currentCharacter = character1script;
-            SetDepth();
             camScript.player = character1;
             character1script.EyePoint.GetComponent<MeshRenderer>().enabled = true;
             character2script.EyePoint.GetComponent<MeshRenderer>().enabled = false;
