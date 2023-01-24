@@ -1,6 +1,7 @@
 
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Rendering;
 using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -12,13 +13,15 @@ public class SceneManagment : MonoBehaviour
     private EventSystem eventSystem;
     public PostProcessProfile brightness;
     public PostProcessLayer layer;
-    private AutoExposure exp;
+    private ColorGrading exp;
     public PlayerManager playerManager;
     private Button sfxButton, musicButton, brightnessButton, settingsButton, currentButton, creditsButton, controlsButton;
     private Slider slider;
-    private Vector2 valueS;
+    public Vector2 valueS;
+    public int old;
+    private float time;
     private bool atSlider, start;
-    public int currentScreen,currentSlider;//0=pause, 1=options, 2=child of options, 3=child of settings
+    public int currentScreen, currentSlider;//0=pause, 1=options, 2=child of options, 3=child of settings
     private void Awake()
     {
         eventSystem = FindObjectOfType<EventSystem>();
@@ -30,21 +33,37 @@ public class SceneManagment : MonoBehaviour
         currentSlider = 0;
         SetButtons();
         PlayerControlsUI();
+        time = 0;
     }
     private void PlayerControlsUI()
     {
         playerManager.playerControls.UI.Back.performed += ctx => GoBack();
         playerManager.playerControls.UI.Click.performed += ctx => ClickButton();
         playerManager.playerControls.UI.Navigate.performed += ctx => GetCurrentButton();
+        playerManager.playerControls.UI.Navigate.performed += ctx => valueS = ctx.ReadValue<Vector2>();
         playerManager.playerControls.UI.Enable();
     }
     private void Update()
     {
         if (atSlider)
         {
-            playerManager.playerControls.UI.Navigate.performed += ctx => valueS = ctx.ReadValue<Vector2>();
-            slider.value += valueS.x;
+            SliderValue();
         }
+
+    }
+    private void SliderValue()
+    {
+        if (playerManager.playerControls.UI.Navigate.WasPerformedThisFrame() && time > Time.unscaledDeltaTime)
+        {
+            if (valueS.x > 0)
+                old++;
+            else if (valueS.x < 0)
+                old--;
+            slider.value = old;
+            time = 0;
+        }
+        else
+            time += Time.unscaledDeltaTime;
 
     }
     private void SetButtons()
@@ -130,9 +149,9 @@ public class SceneManagment : MonoBehaviour
         controlsButton.enabled = false;
         creditsButton.enabled = false;
         settingsButton.enabled = false;
-        if(currentSlider==1)
+        if (currentSlider == 1)
             eventSystem.SetSelectedGameObject(sfxObject);
-        else if(currentSlider==2)
+        else if (currentSlider == 2)
             eventSystem.SetSelectedGameObject(brightnessObject);
         else
             eventSystem.SetSelectedGameObject(musicObject);
@@ -173,7 +192,7 @@ public class SceneManagment : MonoBehaviour
     }
     public void SliderButton(int button)
     {
-        currentSlider=button;
+        currentSlider = button;
         if (!start)
             DeactivateSlider();
         else
@@ -205,6 +224,7 @@ public class SceneManagment : MonoBehaviour
         GetCurrentButton();
         slider = currentButton.GetComponentInChildren<Slider>();
         slider.enabled = true;
+        old = (int)slider.value;
         atSlider = true;
         start = false;
         currentScreen = 3;
@@ -229,11 +249,12 @@ public class SceneManagment : MonoBehaviour
     {
         SFXSource.GetComponent<AudioSource>().volume = (slider.value / 100);
     }
-    public void SetBrightness()//5=1 brighness 10=2 brightness 0=0.2f
+    public void SetBrightness()//5=1.5 brighness 10=2 brightness 0=1
     {
+        
         if (valueS != null)
-            exp.keyValue.value = (slider.value*0.2f);
+            exp.postExposure.value = 0.8f+(slider.value/10);
         else
-            exp.keyValue.value = 0.2f;
+            exp.postExposure.value =  0.8f;
     }
 }
