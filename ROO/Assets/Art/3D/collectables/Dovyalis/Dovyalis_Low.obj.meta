@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: 4802f52c724b0474c95eab8139a0a89d
+guid: 6e4d876017932cc4d95301cba8121a39
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dovyalis_LowMat
+    second: {fileID: 2100000, guid: 83dbb3bc4b4be4645b78e9ce0c8686be, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

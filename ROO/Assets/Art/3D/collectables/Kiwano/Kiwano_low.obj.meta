@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: f1193774b0f9691418b955aa2178a1ff
+guid: 6af0054ad2cdc8c4cb9fcdaf6ff588e2
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Kiwano_LowMat
+    second: {fileID: 2100000, guid: 65280933f4356bc4295f0e8f1b681398, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

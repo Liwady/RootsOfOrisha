@@ -70,7 +70,6 @@ public class PlayerManager : MonoBehaviour
         playerControls.Gameplay.Pause.performed += ctx => DoPause();
         playerControls.Gameplay.Enable();
     }
-
     private void MaxReached(bool r)
     {
         if (r)
@@ -176,9 +175,9 @@ public class PlayerManager : MonoBehaviour
                 otherCharacter.usedAbility = false;
             }
             abilityActive = false;
-            
+
             SetGravity();
-            }
+        }
         else if (otherCharacter.isGrounded)
         {
             abilityActive = true;
@@ -443,8 +442,11 @@ public class PlayerManager : MonoBehaviour
     public void DoPause()
     {
         gameManager.Pause();
-        if(gameManager.isPaused)
+        if (gameManager.isPaused)
+        {
             playerControls.Gameplay.Disable();
+            playerControls.UI.Enable();
+        }
         else
         {
             playerControls.Gameplay.Enable();

@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: 71d9ea8e6bd30be4aa636b15ac34790b
+guid: ec32e8dd14efd354687b11e3c9922079
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ube_LowMat
+    second: {fileID: 2100000, guid: bd28dc98884a1ca4b8b285cd6ad00fca, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

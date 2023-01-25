@@ -1,7 +1,7 @@
 
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.Rendering;
 using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -11,6 +11,7 @@ public class SceneManagment : MonoBehaviour
     public GameObject soundon, soundoff, optionsScreen, pauseScreen, settingsObject, controlsObject, creditsObject, continueObject, settingsChild, controlsChild, creditsChild, currentButtonObject,
         musicObject, sfxObject, brightnessObject, musicSource, SFXSource;
     private EventSystem eventSystem;
+    public List<Sprite> scroller;
     public PostProcessProfile brightness;
     public PostProcessLayer layer;
     private ColorGrading exp;
@@ -24,16 +25,19 @@ public class SceneManagment : MonoBehaviour
     public int currentScreen, currentSlider;//0=pause, 1=options, 2=child of options, 3=child of settings
     private void Awake()
     {
-        eventSystem = FindObjectOfType<EventSystem>();
         brightness.TryGetSettings(out exp);
-        currentButtonObject = eventSystem.firstSelectedGameObject;
         start = true;
         atSlider = false;
         currentScreen = 0;
         currentSlider = 0;
+        time = 0;
+    }
+    private void Start()
+    {
+        eventSystem = FindObjectOfType<EventSystem>();
+        currentButtonObject = eventSystem.firstSelectedGameObject;
         SetButtons();
         PlayerControlsUI();
-        time = 0;
     }
     private void PlayerControlsUI()
     {
@@ -41,7 +45,6 @@ public class SceneManagment : MonoBehaviour
         playerManager.playerControls.UI.Click.performed += ctx => ClickButton();
         playerManager.playerControls.UI.Navigate.performed += ctx => GetCurrentButton();
         playerManager.playerControls.UI.Navigate.performed += ctx => valueS = ctx.ReadValue<Vector2>();
-        playerManager.playerControls.UI.Enable();
     }
     private void Update()
     {
@@ -59,6 +62,12 @@ public class SceneManagment : MonoBehaviour
                 old++;
             else if (valueS.x < 0)
                 old--;
+
+            if (old <= 0)
+                old = 0;
+            else if (old >= 10)
+                old = 10;
+
             slider.value = old;
             time = 0;
         }
@@ -223,6 +232,8 @@ public class SceneManagment : MonoBehaviour
         }
         GetCurrentButton();
         slider = currentButton.GetComponentInChildren<Slider>();
+        slider.GetComponentInChildren<Image>().sprite = scroller[0];
+        slider.transform.GetChild(1).gameObject.GetComponentInChildren<Image>().sprite = scroller[2];
         slider.enabled = true;
         old = (int)slider.value;
         atSlider = true;
@@ -235,6 +246,8 @@ public class SceneManagment : MonoBehaviour
         start = true;
         valueS = Vector2.zero;
         slider.enabled = false;
+        slider.GetComponentInChildren<Image>().sprite = scroller[1];
+        slider.transform.GetChild(1).gameObject.GetComponentInChildren<Image>().sprite = scroller[3];
         slider = null;
         musicButton.enabled = true;
         sfxButton.enabled = true;
@@ -243,18 +256,28 @@ public class SceneManagment : MonoBehaviour
     }
     public void SetMusicVolume()
     {
-        musicSource.GetComponent<AudioSource>().volume = (slider.value / 100);
+        if (slider.value == 0)
+            musicSource.GetComponent<AudioSource>().volume = 0;
+        else
+            musicSource.GetComponent<AudioSource>().volume = (slider.value / 100);
     }
     public void SetSFXVolume()
     {
-        SFXSource.GetComponent<AudioSource>().volume = (slider.value / 100);
+        if (slider.value == 0)
+            SFXSource.GetComponent<AudioSource>().volume = 0;
+        else
+            SFXSource.GetComponent<AudioSource>().volume = (slider.value / 100);
     }
     public void SetBrightness()//5=1.5 brighness 10=2 brightness 0=1
     {
-        
-        if (valueS != null)
-            exp.postExposure.value = 0.8f+(slider.value/10);
-        else
-            exp.postExposure.value =  0.8f;
+        float value = slider.value;
+
+        if (slider.value == 0)
+            value = 0 / 8f;
+        else if (slider.value <= 10 && slider.value > 0)
+            value = 0.8f + (slider.value / 10);
+
+
+        exp.postExposure.value = value;
     }
 }
