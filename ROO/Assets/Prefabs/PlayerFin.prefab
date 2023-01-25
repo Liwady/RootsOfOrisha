@@ -167,8 +167,8 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1319675764204399525}
   m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
@@ -668,11 +668,10 @@ MonoBehaviour:
   sizeC1: {fileID: 1319675764204399525}
   sizeC2: {fileID: 8171069620508272218}
   currentCharacter: {fileID: 0}
-  respawnPoint: {fileID: 0}
-  maxDistanceBetweenPlayers: 10
   currentAbility: 0
   currentLevel: 0
   depth: 0
+  respawnPoint: {fileID: 0}
   abilityActive: 0
   moveBoth: 0
   hasReachedMax: 0
@@ -986,7 +985,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8171069620508272218}
-  m_Mesh: {fileID: 3586968269189368080, guid: 7e4729deafab809419855bf190477c7e, type: 3}
+  m_Mesh: {fileID: 868885573559027035, guid: 6c1de2f7b28b8df439e7870d2abd71cc, type: 3}
 --- !u!23 &613975524168385890
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -995,8 +994,8 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8171069620508272218}
   m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
@@ -1007,7 +1006,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -1920321747313012603, guid: 7e4729deafab809419855bf190477c7e, type: 3}
+  - {fileID: 2100000, guid: 2bae6384ea2602a41a084a772b07149a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1244,7 +1243,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 266b4990097191c4bba693eade5eb49c, type: 2}
+  - {fileID: 2100000, guid: 1ada57a3754d0384489d7ad284dea12d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1318,7 +1317,7 @@ LineRenderer:
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
-    textureMode: 0
+    textureMode: 3
     shadowBias: 0.5
     generateLightingData: 0
   m_UseWorldSpace: 1

@@ -22,29 +22,26 @@ public class SceneManagment : MonoBehaviour
     public int old;
     private float time;
     private bool atSlider, start;
-    public int currentScreen, currentSlider;//0=pause, 1=options, 2=child of options, 3=child of settings
+    public bool startGame;
+    public int currentScreen, currentSlider,currentScene;//0=pause, 1=options, 2=child of options, 3=child of settings
     private void Awake()
     {
+        startGame = true;
         brightness.TryGetSettings(out exp);
         start = true;
         atSlider = false;
         currentScreen = 0;
         currentSlider = 0;
+        currentScene = 0;
         time = 0;
     }
+
     private void Start()
     {
         eventSystem = FindObjectOfType<EventSystem>();
         currentButtonObject = eventSystem.firstSelectedGameObject;
         SetButtons();
         PlayerControlsUI();
-    }
-    private void PlayerControlsUI()
-    {
-        playerManager.playerControls.UI.Back.performed += ctx => GoBack();
-        playerManager.playerControls.UI.Click.performed += ctx => ClickButton();
-        playerManager.playerControls.UI.Navigate.performed += ctx => GetCurrentButton();
-        playerManager.playerControls.UI.Navigate.performed += ctx => valueS = ctx.ReadValue<Vector2>();
     }
     private void Update()
     {
@@ -54,36 +51,12 @@ public class SceneManagment : MonoBehaviour
         }
 
     }
-    private void SliderValue()
+    private void PlayerControlsUI()
     {
-        if (playerManager.playerControls.UI.Navigate.WasPerformedThisFrame() && time > Time.unscaledDeltaTime)
-        {
-            if (valueS.x > 0)
-                old++;
-            else if (valueS.x < 0)
-                old--;
-
-            if (old <= 0)
-                old = 0;
-            else if (old >= 10)
-                old = 10;
-
-            slider.value = old;
-            time = 0;
-        }
-        else
-            time += Time.unscaledDeltaTime;
-
-    }
-    private void SetButtons()
-    {
-        sfxButton = sfxObject.GetComponent<Button>();
-        musicButton = musicObject.GetComponent<Button>();
-        brightnessButton = brightnessObject.GetComponent<Button>();
-        settingsButton = settingsObject.GetComponent<Button>();
-        currentButton = currentButtonObject.GetComponent<Button>();
-        creditsButton = creditsObject.GetComponent<Button>();
-        controlsButton = controlsObject.GetComponent<Button>();
+        playerManager.playerControls.UI.Back.performed += ctx => GoBack();
+        playerManager.playerControls.UI.Click.performed += ctx => ClickButton();
+        playerManager.playerControls.UI.Navigate.performed += ctx => GetCurrentButton();
+        playerManager.playerControls.UI.Navigate.performed += ctx => valueS = ctx.ReadValue<Vector2>();
     }
     public void PlayScene(int sceneNumber)
     {
@@ -106,6 +79,37 @@ public class SceneManagment : MonoBehaviour
             soundoff.SetActive(false);
         }
     }
+    private void SetButtons()
+    {
+        sfxButton = sfxObject.GetComponent<Button>();
+        musicButton = musicObject.GetComponent<Button>();
+        brightnessButton = brightnessObject.GetComponent<Button>();
+        settingsButton = settingsObject.GetComponent<Button>();
+        currentButton = currentButtonObject.GetComponent<Button>();
+        creditsButton = creditsObject.GetComponent<Button>();
+        controlsButton = controlsObject.GetComponent<Button>();
+    }
+    private void ClickButton()
+    {
+        currentButton.onClick.Invoke();
+    }
+    private void GetCurrentButton()
+    {
+        currentButtonObject = eventSystem.currentSelectedGameObject;
+        currentButton = currentButtonObject.GetComponent<Button>();
+    }
+    public void Unpause()
+    {
+        playerManager.DoPause();
+    }
+    public void GoToPauseScreen()
+    {
+        pauseScreen.SetActive(true);
+        optionsScreen.SetActive(false);
+        eventSystem.SetSelectedGameObject(continueObject);
+        GetCurrentButton();
+        currentScreen=0;
+    }
     public void GoToOptionsScreen()
     {
         pauseScreen.SetActive(false);
@@ -120,13 +124,23 @@ public class SceneManagment : MonoBehaviour
         GetCurrentButton();
         currentScreen = 1;
     }
-    private void GoToPauseScreen()
+    private void GoToSettingsScreen()
     {
-        pauseScreen.SetActive(true);
-        optionsScreen.SetActive(false);
-        eventSystem.SetSelectedGameObject(continueObject);
+        //change sprite with red line under it for settings 
+        controlsChild.SetActive(false);
+        creditsChild.SetActive(false);
+        settingsChild.SetActive(true);
+        controlsButton.enabled = false;
+        creditsButton.enabled = false;
+        settingsButton.enabled = false;
+        if (currentSlider == 1)
+            eventSystem.SetSelectedGameObject(sfxObject);
+        else if (currentSlider == 2)
+            eventSystem.SetSelectedGameObject(brightnessObject);
+        else
+            eventSystem.SetSelectedGameObject(musicObject);
         GetCurrentButton();
-        currentScreen = 0;
+        currentScreen = 2;
     }
     public void EnableButtonChildren(int button)
     {
@@ -149,28 +163,6 @@ public class SceneManagment : MonoBehaviour
                 break;
         }
     }
-    private void GoToSettingsScreen()
-    {
-        //change sprite with red line under it for settings 
-        controlsChild.SetActive(false);
-        creditsChild.SetActive(false);
-        settingsChild.SetActive(true);
-        controlsButton.enabled = false;
-        creditsButton.enabled = false;
-        settingsButton.enabled = false;
-        if (currentSlider == 1)
-            eventSystem.SetSelectedGameObject(sfxObject);
-        else if (currentSlider == 2)
-            eventSystem.SetSelectedGameObject(brightnessObject);
-        else
-            eventSystem.SetSelectedGameObject(musicObject);
-        GetCurrentButton();
-        currentScreen = 2;
-    }
-    public void Unpause()
-    {
-        playerManager.DoPause();
-    }
     private void GoBack()
     {
         switch (currentScreen)
@@ -185,19 +177,35 @@ public class SceneManagment : MonoBehaviour
                 GoToOptionsScreen();
                 break;
             case 3:
+                if(atSlider)
+                    DeactivateSlider();
                 GoToSettingsScreen();
                 break;
-
+            case 4:
+                PlayScene(0);
+                break;
         }
     }
-    private void ClickButton()
+    private void SliderValue()
     {
-        currentButton.onClick.Invoke();
-    }
-    private void GetCurrentButton()
-    {
-        currentButtonObject = eventSystem.currentSelectedGameObject;
-        currentButton = currentButtonObject.GetComponent<Button>();
+        if (playerManager.playerControls.UI.Navigate.WasPerformedThisFrame() && time > Time.unscaledDeltaTime)
+        {
+            if (valueS.x > 0)
+                old++;
+            else if (valueS.x < 0)
+                old--;
+
+            if (old <= 0)
+                old = 0;
+            else if (old >= 10)
+                old = 10;
+
+            slider.value = old;
+            time = 0;
+        }
+        else
+            time += Time.unscaledDeltaTime;
+
     }
     public void SliderButton(int button)
     {
