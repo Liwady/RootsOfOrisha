@@ -18,7 +18,6 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        currentScene = 0;
         amountOfFruit = 0;
         SetCurrentScene();
     }

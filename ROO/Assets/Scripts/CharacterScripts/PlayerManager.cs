@@ -6,7 +6,7 @@ public class PlayerManager : MonoBehaviour
     public GameObject character1, character2, sizeC1, sizeC2;
     [HideInInspector]
     public CharacterScript currentCharacter;
-    [HideInInspector]
+    
     public int currentAbility, currentLevel, depth;
 
     private CharacterScript character1script, character2script, otherCharacter;
@@ -49,7 +49,9 @@ public class PlayerManager : MonoBehaviour
         currentCharacter = character1script;
         otherCharacter = character2script;
         abilityActive = false;
-        currentLevel = gameManager.currentScene;
+        SetMovementSpeed();
+        SetWeight();
+
 
         if (currentLevel == 0)
             depth = 2;
@@ -139,10 +141,14 @@ public class PlayerManager : MonoBehaviour
     }
     private void MoveTogether()
     {
-        if (!moveBoth)
-            moveBoth = true;
-        else
-            moveBoth = false;
+        if (!abilityActive)
+        {
+            SetMovementSpeed();
+            if (!moveBoth)
+                moveBoth = true;
+            else
+                moveBoth = false;
+        }//feedback cant move together rn 
     }
     private void UpdateFloating()
     {
@@ -401,6 +407,8 @@ public class PlayerManager : MonoBehaviour
     public void TriggerAbility()
     {
         currentCharacter.canMove = true;
+        if(moveBoth)
+            moveBoth = false;
         switch (currentAbility)
         {
             // size

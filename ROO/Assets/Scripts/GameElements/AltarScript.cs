@@ -7,16 +7,22 @@ public class AltarScript : MonoBehaviour
     private int fruitRequirment, eyeRequirment;
     [SerializeField]
     private TriggerAble gate;
+    private Animator animator;
 
     private void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
+        animator = GetComponentInChildren<Animator>();
     }
     private void OnTriggerEnter(Collider other)
     {
         if (gameManager.amountOfFruit >= fruitRequirment && gameManager.eyeColl)
-            //change sprite
-            gate.Toggle(true);
-            //change what camera can see
+        {
+            animator.SetTrigger("Start");
+            if (gate != null)
+                gate.Toggle(true);
+        }
+
+        //change what camera can see
     }
 }

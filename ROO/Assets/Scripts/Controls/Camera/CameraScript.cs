@@ -23,7 +23,7 @@ public class CameraScript : MonoBehaviour
         if(currentLevel == 1)
         {
             switchBounds = switchPoint.GetComponent<CameraSwitch>().switchBounds;
-            Level1();
+            //Level1();
         }
         
     }
@@ -35,8 +35,8 @@ public class CameraScript : MonoBehaviour
             downBound = 0.2f;
             leftBound = 0.16f;
             rightBound = 78;
-            offsettLeftRight = 9;
-            offsettUpDown = 6.4f;
+            offsettLeftRight = 11.18f;
+            offsettUpDown = 6.33f;
         }
         else
         {

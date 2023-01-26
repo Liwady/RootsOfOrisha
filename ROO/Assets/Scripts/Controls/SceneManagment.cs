@@ -11,7 +11,7 @@ public class SceneManagment : MonoBehaviour
     [SerializeField]
     private GameObject soundon, soundoff, optionsScreen, pauseScreen, settingsObject, controlsObject, creditsObject, continueObject, settingsChild, controlsChild, creditsChild, currentButtonObject, musicObject, sfxObject, brightnessObject, musicSource, SFXSource;
     [SerializeField]
-    private List<Sprite> scroller,activeSlider;
+    private List<Sprite> scroller, activeSlider;
     [SerializeField]
     private PostProcessProfile brightness;
     [SerializeField]
@@ -20,7 +20,9 @@ public class SceneManagment : MonoBehaviour
     [SerializeField]
     private PlayerManager playerManager;
     [SerializeField]
-    private int old, currentScreen, currentSlider, currentScene;//0=pause, 1=options, 2=child of options, 3=child of settings
+    private GameManager gameManager;
+    [SerializeField]
+    private int old, currentScreen, currentSlider;//0=pause, 1=options, 2=child of options, 3=child of settings
 
     private SpriteState ss;
     private EventSystem eventSystem;
@@ -40,7 +42,6 @@ public class SceneManagment : MonoBehaviour
         atSlider = false;
         currentScreen = 0;
         currentSlider = 0;
-        currentScene = 0;
         time = 0;
     }
     private void Start()
@@ -320,8 +321,31 @@ public class SceneManagment : MonoBehaviour
         exp.postExposure.value = value;
     }
 
-    private void SetActiveSlider()
-    {
 
+    public void GoNextScene(bool eshu)
+    {
+        if (!eshu)
+            switch (gameManager.currentScene)
+            {
+                case 0: //tutorial
+                    gameManager.currentScene = 1;
+                    PlayScene(2);
+                    break;
+                case 1://FireLevel
+                    gameManager.currentScene = 2;
+                    PlayScene(3);
+                    break;
+                case 2://EarthLevel
+                    gameManager.currentScene = 3;
+                    PlayScene(4);
+                    break;
+                case 3://WaterLevel
+                    gameManager.currentScene = 4;
+                    PlayScene(5);
+                    break;
+            }
+        else
+            PlayScene(6);//go to Eshu
+        
     }
 }
