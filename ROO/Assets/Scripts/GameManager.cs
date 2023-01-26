@@ -23,9 +23,8 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        if (currentScene == 0)
+        if (currentScene == 0 && !isPaused)
             animationManager.StartFireAnimation(playerManager.currentCharacter.transform.position, distance2Ani);
-        //abilityText.text = playerManager.currentAbility.ToString();
     }
     private void SetCurrentScene()
     {
@@ -39,7 +38,23 @@ public class GameManager : MonoBehaviour
             previousTimeScale = Time.timeScale;
             Time.timeScale = 0;
             sceneManagment.GoToPauseScreen();
-            sceneManagment.startGame = false;
+            isPaused = true;
+
+        }
+        else if (Time.timeScale == 0)
+        {
+            Time.timeScale = previousTimeScale;
+            pauseMenu.SetActive(false);
+            isPaused = false;
+        }
+    }
+    public void StartGame()
+    {
+        if (Time.timeScale > 0)
+        {
+            previousTimeScale = Time.timeScale;
+            Time.timeScale = 0;
+            sceneManagment.GoToStartScreen(true);
             isPaused = true;
 
         }

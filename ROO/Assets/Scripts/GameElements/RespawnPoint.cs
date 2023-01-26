@@ -5,7 +5,6 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class RespawnPoint : MonoBehaviour
 {
-    private readonly List<Collider> players = new();
     private PlayerManager playerManager;
     private GameObject Lplayer;
     public Transform[] spawnPoints;

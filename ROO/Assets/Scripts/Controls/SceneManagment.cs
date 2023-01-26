@@ -9,13 +9,11 @@ using UnityEngine.UI;
 public class SceneManagment : MonoBehaviour
 {
     [SerializeField]
-    private GameObject soundon, soundoff, optionsScreen, pauseScreen, settingsObject, controlsObject, creditsObject, continueObject, settingsChild, controlsChild, creditsChild, currentButtonObject, musicObject, sfxObject, brightnessObject, musicSource, SFXSource;
+    private GameObject soundon, soundoff, startObject, startScreen, optionsScreen, pauseScreen, settingsObject, controlsObject, creditsObject, continueObject, settingsChild, controlsChild, creditsChild, currentButtonObject, musicObject, sfxObject, brightnessObject, musicSource, SFXSource;
     [SerializeField]
     private List<Sprite> scroller, activeSlider;
     [SerializeField]
     private PostProcessProfile brightness;
-    [SerializeField]
-    private PostProcessLayer layer;
     private ColorGrading exp;
     [SerializeField]
     private PlayerManager playerManager;
@@ -113,7 +111,25 @@ public class SceneManagment : MonoBehaviour
     //NAVIGATION
     public void Unpause()
     {
+        if (startGame)
+        {
+            startGame = false;
+            startScreen.SetActive(false); 
+        }
         playerManager.DoPause();
+
+    }
+    public void GoToStartScreen(bool first)
+    {
+        startScreen.SetActive(true);
+        optionsScreen.SetActive(false);
+        pauseScreen.SetActive(false);
+        if (!first)
+        {
+            eventSystem.SetSelectedGameObject(startObject);
+            GetCurrentButton();
+        }
+        currentScreen = 0;
     }
     public void GoToPauseScreen()
     {
@@ -125,6 +141,8 @@ public class SceneManagment : MonoBehaviour
     }
     public void GoToOptionsScreen()
     {
+        if (startGame)
+            startScreen.SetActive(false);
         pauseScreen.SetActive(false);
         optionsScreen.SetActive(true);
         controlsChild.SetActive(false);
@@ -184,7 +202,10 @@ public class SceneManagment : MonoBehaviour
                 Unpause();
                 break;
             case 1://optionsscreen
-                GoToPauseScreen();
+                if (startGame)
+                    GoToStartScreen(false);
+                else
+                    GoToPauseScreen();
                 break;
             case 2://child of options screen
                 GoToOptionsScreen();
@@ -299,7 +320,7 @@ public class SceneManagment : MonoBehaviour
         if (slider.value == 0)
             musicSource.GetComponent<AudioSource>().volume = 0;
         else
-            musicSource.GetComponent<AudioSource>().volume = (slider.value / 100);
+            musicSource.GetComponent<AudioSource>().volume = (slider.value / 10);
     }
     public void SetSFXVolume()
     {
@@ -320,8 +341,6 @@ public class SceneManagment : MonoBehaviour
 
         exp.postExposure.value = value;
     }
-
-
     public void GoNextScene(bool eshu)
     {
         if (!eshu)
@@ -346,6 +365,6 @@ public class SceneManagment : MonoBehaviour
             }
         else
             PlayScene(6);//go to Eshu
-        
+
     }
 }

@@ -24,10 +24,12 @@ public class PlayerManager : MonoBehaviour
     {
         Initialize();
         PlayerControlsGameplay();
-        //SetDepth();
+        if (gameManager.currentScene == 0)
+            StartGame();
     }
     private void Update()
     {
+        
         if (middleBond.outOfRange)
             MaxReached(true);
         else if (hasReachedMax)
@@ -450,6 +452,20 @@ public class PlayerManager : MonoBehaviour
     public void DoPause()
     {
         gameManager.Pause();
+        if (gameManager.isPaused)
+        {
+            playerControls.Gameplay.Disable();
+            playerControls.UI.Enable();
+        }
+        else
+        {
+            playerControls.Gameplay.Enable();
+            playerControls.UI.Disable();
+        }
+    }
+    public void StartGame()
+    {
+        gameManager.StartGame();
         if (gameManager.isPaused)
         {
             playerControls.Gameplay.Disable();
