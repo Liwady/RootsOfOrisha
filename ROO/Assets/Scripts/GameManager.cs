@@ -1,38 +1,34 @@
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public int amountOfFruit, amountOfEyes, lightCount, distance2Ani, currentScene;
-    public TMP_Text fruitText, eyesText, abilityText;
-    public Camera mainCamera;
+    [SerializeField]
+    private int distance2Ani;
+    public int amountOfFruit, ability, character, together;
+    public bool eyeColl;
+    public int currentScene;
+
     public PlayerManager playerManager;
     public SceneManagment sceneManagment;
-    public Animator animator;
-    public List<GameObject> lights;
-    private float previousTimeScale;
+    public AnimationManager animationManager;
+
     public GameObject pauseMenu;
     public bool isPaused;
-
-
+    private float previousTimeScale;
 
     private void Awake()
     {
         currentScene = 0;
         amountOfFruit = 0;
-        lightCount = 0;
-        playerManager = FindObjectOfType<PlayerManager>();
-        setCurrentScene();
-        //abilityText.text = playerManager.currentAbility.ToString();
+        SetCurrentScene();
     }
     private void Update()
     {
         if (currentScene == 0)
-            StartFireAnimation();
+            animationManager.StartFireAnimation(playerManager.currentCharacter.transform.position, distance2Ani);
         //abilityText.text = playerManager.currentAbility.ToString();
     }
-    private void setCurrentScene()
+    private void SetCurrentScene()
     {
         //currentScene= sceneManagment.currentScene;
         //GetComponent<Camera>().GetComponent<CameraScript>().currentLevel = currentScene;
@@ -55,17 +51,21 @@ public class GameManager : MonoBehaviour
             isPaused = false;
         }
     }
-    private void StartFireAnimation()
+    //set values so the sprite manager can use them and we can keep the info in the game manager. 
+    public void UpdateEye(bool col)
     {
-        if (lightCount < lights.Count)
-        {
-            //Debug.Log(Vector3.Distance(playerManager.currentCharacter.transform.position, lights[lightCount].transform.position));
-            if (Vector3.Distance(playerManager.currentCharacter.transform.position, lights[lightCount].transform.position) < distance2Ani)
-            {
-                animator = lights[lightCount].GetComponentInChildren<Animator>();
-                animator.SetTrigger("Start");
-                lightCount++;
-            }
-        }
+        eyeColl = col;
+        animationManager.ChangeEyeSprite(eyeColl);
+    }
+    public void UpdateFruit(int fruit)
+    {
+        amountOfFruit = fruit;
+        animationManager.ChangeFruitSprite(amountOfFruit);
+    }
+    public void UpdateMechanics(int ability, int character, bool together)
+    {
+        //set
+        //spriteManager.ChangeMechanicsSprite()
+        //todo
     }
 }

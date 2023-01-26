@@ -8,22 +8,30 @@ using UnityEngine.UI;
 
 public class SceneManagment : MonoBehaviour
 {
-    public GameObject soundon, soundoff, optionsScreen, pauseScreen, settingsObject, controlsObject, creditsObject, continueObject, settingsChild, controlsChild, creditsChild, currentButtonObject,
-        musicObject, sfxObject, brightnessObject, musicSource, SFXSource;
-    private EventSystem eventSystem;
-    public List<Sprite> scroller;
-    public PostProcessProfile brightness;
-    public PostProcessLayer layer;
+    [SerializeField]
+    private GameObject soundon, soundoff, optionsScreen, pauseScreen, settingsObject, controlsObject, creditsObject, continueObject, settingsChild, controlsChild, creditsChild, currentButtonObject, musicObject, sfxObject, brightnessObject, musicSource, SFXSource;
+    [SerializeField]
+    private List<Sprite> scroller,activeSlider;
+    [SerializeField]
+    private PostProcessProfile brightness;
+    [SerializeField]
+    private PostProcessLayer layer;
     private ColorGrading exp;
-    public PlayerManager playerManager;
+    [SerializeField]
+    private PlayerManager playerManager;
+    [SerializeField]
+    private int old, currentScreen, currentSlider, currentScene;//0=pause, 1=options, 2=child of options, 3=child of settings
+
+    private SpriteState ss;
+    private EventSystem eventSystem;
     private Button sfxButton, musicButton, brightnessButton, settingsButton, currentButton, creditsButton, controlsButton;
     private Slider slider;
-    public Vector2 valueS;
-    public int old;
+    private Vector2 valueS;
     private float time;
     private bool atSlider, start;
     public bool startGame;
-    public int currentScreen, currentSlider,currentScene;//0=pause, 1=options, 2=child of options, 3=child of settings
+
+
     private void Awake()
     {
         startGame = true;
@@ -35,9 +43,9 @@ public class SceneManagment : MonoBehaviour
         currentScene = 0;
         time = 0;
     }
-
     private void Start()
     {
+        ss = new SpriteState();
         eventSystem = FindObjectOfType<EventSystem>();
         currentButtonObject = eventSystem.firstSelectedGameObject;
         SetButtons();
@@ -79,6 +87,8 @@ public class SceneManagment : MonoBehaviour
             soundoff.SetActive(false);
         }
     }
+
+    //BUTTONS
     private void SetButtons()
     {
         sfxButton = sfxObject.GetComponent<Button>();
@@ -98,6 +108,8 @@ public class SceneManagment : MonoBehaviour
         currentButtonObject = eventSystem.currentSelectedGameObject;
         currentButton = currentButtonObject.GetComponent<Button>();
     }
+
+    //NAVIGATION
     public void Unpause()
     {
         playerManager.DoPause();
@@ -108,7 +120,7 @@ public class SceneManagment : MonoBehaviour
         optionsScreen.SetActive(false);
         eventSystem.SetSelectedGameObject(continueObject);
         GetCurrentButton();
-        currentScreen=0;
+        currentScreen = 0;
     }
     public void GoToOptionsScreen()
     {
@@ -116,7 +128,7 @@ public class SceneManagment : MonoBehaviour
         optionsScreen.SetActive(true);
         controlsChild.SetActive(false);
         creditsChild.SetActive(false);
-        settingsChild.SetActive(false);
+        settingsChild.SetActive(true);
         controlsButton.enabled = true;
         creditsButton.enabled = true;
         settingsButton.enabled = true;
@@ -177,7 +189,7 @@ public class SceneManagment : MonoBehaviour
                 GoToOptionsScreen();
                 break;
             case 3:
-                if(atSlider)
+                if (atSlider)
                     DeactivateSlider();
                 GoToSettingsScreen();
                 break;
@@ -186,6 +198,8 @@ public class SceneManagment : MonoBehaviour
                 break;
         }
     }
+
+    //SLIDERS
     private void SliderValue()
     {
         if (playerManager.playerControls.UI.Navigate.WasPerformedThisFrame() && time > Time.unscaledDeltaTime)
@@ -224,21 +238,25 @@ public class SceneManagment : MonoBehaviour
                 sfxButton.enabled = false;
                 brightnessButton.enabled = false;
                 eventSystem.SetSelectedGameObject(musicObject);
+                ss.selectedSprite = activeSlider[0];
                 break;
             case 1://sfx
                 musicButton.enabled = false;
                 sfxButton.enabled = true;
                 brightnessButton.enabled = false;
                 eventSystem.SetSelectedGameObject(sfxObject);
+                ss.selectedSprite = activeSlider[1];
                 break;
             case 2://brightness
                 musicButton.enabled = false;
                 sfxButton.enabled = false;
                 brightnessButton.enabled = true;
                 eventSystem.SetSelectedGameObject(brightnessObject);
+                ss.selectedSprite = activeSlider[2];
                 break;
         }
         GetCurrentButton();
+        currentButton.spriteState = ss;
         slider = currentButton.GetComponentInChildren<Slider>();
         slider.GetComponentInChildren<Image>().sprite = scroller[0];
         slider.transform.GetChild(1).gameObject.GetComponentInChildren<Image>().sprite = scroller[2];
@@ -257,6 +275,19 @@ public class SceneManagment : MonoBehaviour
         slider.GetComponentInChildren<Image>().sprite = scroller[1];
         slider.transform.GetChild(1).gameObject.GetComponentInChildren<Image>().sprite = scroller[3];
         slider = null;
+        switch (currentSlider)
+        {
+            case 0: //music
+                ss.selectedSprite = activeSlider[3];
+                break;
+            case 1://sfx
+                ss.selectedSprite = activeSlider[4];
+                break;
+            case 2://brightness
+                ss.selectedSprite = activeSlider[5];
+                break;
+        }
+        currentButton.spriteState = ss;
         musicButton.enabled = true;
         sfxButton.enabled = true;
         brightnessButton.enabled = true;
@@ -287,5 +318,10 @@ public class SceneManagment : MonoBehaviour
 
 
         exp.postExposure.value = value;
+    }
+
+    private void SetActiveSlider()
+    {
+
     }
 }

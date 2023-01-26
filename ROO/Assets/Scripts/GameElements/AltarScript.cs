@@ -14,7 +14,7 @@ public class AltarScript : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (gameManager.amountOfFruit >= fruitRequirment && gameManager.amountOfEyes >= eyeRequirment)
+        if (gameManager.amountOfFruit >= fruitRequirment && gameManager.eyeColl)
             //change sprite
             gate.Toggle(true);
             //change what camera can see
