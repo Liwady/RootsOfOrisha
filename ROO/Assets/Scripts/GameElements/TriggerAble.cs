@@ -18,15 +18,24 @@ public class TriggerAble : MonoBehaviour
     [SerializeField]
     private bool hasDeathZone;
     [SerializeField]
-    private GameObject deathZone;
+    private GameObject deathZone, wheel;
     public GameObject triggeredChar;
     private Vector3 originalPos, originalPosLocal;
-    private bool triggered;
+    private bool triggered, hasWheel;
+    private Wheel wheelScript;
 
     private void Start()
     {
         originalPos = transform.position;
         originalPosLocal = transform.localPosition;
+        if (wheel != null)
+        {
+            
+            wheelScript = wheel.GetComponent<Wheel>();
+            Debug.Log(wheelScript);
+            hasWheel = true;
+        }
+            
     }
     public void Toggle(bool _value) //sets the triggered value
     {
@@ -61,7 +70,6 @@ public class TriggerAble : MonoBehaviour
                 else if (transform.position.y < originalPos.y)
                     transform.Translate(movementVector);
                 break;
-
             case Mode.weightdown:
                 if (triggered)
                 {
@@ -74,14 +82,33 @@ public class TriggerAble : MonoBehaviour
                     {
                         if (hasDeathZone)
                             deathZone.SetActive(true);
+                        if (hasWheel)
+                        {
+                            wheelScript.RotateWheelForward(false);
+
+                        }
                         transform.Translate(-movementVector);
+                        if (transform.localPosition.y < originalPosLocal.y - maxPos.y)
+                            transform.localPosition = new Vector3(transform.localPosition.x, originalPosLocal.y - maxPos.y, transform.localPosition.z);
+                        
+                    }
+                    else if (transform.localPosition.y < originalPosLocal.y - maxPos.y)
+                    {
+                        if (hasDeathZone)
+                            deathZone.SetActive(false);
+                        if (hasWheel)
+                            wheelScript.RotateWheelForward(true);
+                        transform.Translate(movementVector);
                     }
                 }
                 else if (transform.position.y < originalPos.y)
                 {
                     transform.Translate(movementVector);
-                    deathZone.SetActive(false);
                     relatedWeightTriggerable.triggered = false;
+                    if (hasDeathZone)
+                        deathZone.SetActive(false);
+                    if (hasWheel)
+                        wheelScript.RotateWheelForward(true);
                 }
                 else if (transform.position.y == originalPos.y)
                     relatedWeightTriggerable.mode = Mode.weightdown;
@@ -92,6 +119,10 @@ public class TriggerAble : MonoBehaviour
                 {
                     if (transform.localPosition.y < originalPosLocal.y + maxPos.y)
                         transform.Translate(movementVector);
+                    else if (transform.localPosition.y > originalPosLocal.y + maxPos.y)
+                    {
+                        transform.Translate(-movementVector);
+                    }
                 }
                 else if (transform.position.y > originalPos.y)
                 {

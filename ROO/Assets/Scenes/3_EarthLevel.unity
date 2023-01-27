@@ -487,6 +487,7 @@ MonoBehaviour:
   maxPos: {x: 0, y: 0, z: 0}
   hasDeathZone: 0
   deathZone: {fileID: 0}
+  wheel: {fileID: 0}
   triggeredChar: {fileID: 0}
 --- !u!65 &80544899
 BoxCollider:
@@ -3397,6 +3398,7 @@ MonoBehaviour:
   maxPos: {x: 0, y: 0, z: 0}
   hasDeathZone: 0
   deathZone: {fileID: 0}
+  wheel: {fileID: 1433764491}
   triggeredChar: {fileID: 0}
 --- !u!65 &871985150
 BoxCollider:
@@ -3680,6 +3682,7 @@ MonoBehaviour:
   maxPos: {x: 0, y: 0, z: 0}
   hasDeathZone: 0
   deathZone: {fileID: 0}
+  wheel: {fileID: 1952686682}
   triggeredChar: {fileID: 0}
 --- !u!114 &972523322
 MonoBehaviour:
@@ -4387,6 +4390,7 @@ MonoBehaviour:
   maxPos: {x: 0, y: 8.8, z: 1}
   hasDeathZone: 1
   deathZone: {fileID: 1359563190}
+  wheel: {fileID: 0}
   triggeredChar: {fileID: 0}
 --- !u!65 &1124282685
 BoxCollider:
@@ -4825,6 +4829,7 @@ MonoBehaviour:
   maxPos: {x: 0, y: 0, z: 0}
   hasDeathZone: 0
   deathZone: {fileID: 0}
+  wheel: {fileID: 0}
   triggeredChar: {fileID: 0}
 --- !u!65 &1172086134
 BoxCollider:
@@ -5709,6 +5714,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1433764492}
   - component: {fileID: 1433764493}
+  - component: {fileID: 1433764494}
   m_Layer: 0
   m_Name: Wheel_3
   m_TagString: Untagged
@@ -5783,6 +5789,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1433764494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1433764491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdcae6d96eacfa1439d28f0a39814843, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 1
 --- !u!1 &1446095186
 GameObject:
   m_ObjectHideFlags: 0
@@ -7170,6 +7189,7 @@ MonoBehaviour:
   maxPos: {x: 0, y: 0.02, z: 0}
   hasDeathZone: 0
   deathZone: {fileID: 0}
+  wheel: {fileID: 0}
   triggeredChar: {fileID: 0}
 --- !u!212 &1892599677
 SpriteRenderer:
@@ -7328,6 +7348,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1952686683}
   - component: {fileID: 1952686684}
+  - component: {fileID: 1952686685}
   m_Layer: 0
   m_Name: Wheel_1
   m_TagString: Untagged
@@ -7402,6 +7423,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1952686685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1952686682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdcae6d96eacfa1439d28f0a39814843, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 1
 --- !u!1 &1971193108
 GameObject:
   m_ObjectHideFlags: 0
@@ -7639,6 +7673,7 @@ MonoBehaviour:
   maxPos: {x: 0, y: 8.8, z: 1}
   hasDeathZone: 1
   deathZone: {fileID: 148331926}
+  wheel: {fileID: 0}
   triggeredChar: {fileID: 0}
 --- !u!65 &2038953457
 BoxCollider:
