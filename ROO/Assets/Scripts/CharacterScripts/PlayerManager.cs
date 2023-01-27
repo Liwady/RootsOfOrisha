@@ -238,7 +238,7 @@ public class PlayerManager : MonoBehaviour
         character2script.canMove = true;
         if (abilityActive)
         {
-            if (currentCharacter == character1script) //character1script
+            if (character1script.usedAbility) //character1script
             {
                 if (currentAbility == 0)//size change
                 {
@@ -282,7 +282,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (abilityActive)
         {
-            if (currentCharacter == character1script) //character1script
+            if (character1script.usedAbility) //character1script
             {
                 if (currentAbility == 0)//size change
                 {
@@ -332,7 +332,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (currentAbility == 1 && abilityActive)
         {
-            if (currentCharacter == character1script)
+            if (character1script.usedAbility)
             {
                 character1script.rb.useGravity = true;
                 character2script.rb.useGravity = false;
