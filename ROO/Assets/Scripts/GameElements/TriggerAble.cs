@@ -65,7 +65,7 @@ public class TriggerAble : MonoBehaviour
             case Mode.weightdown:
                 if (triggered)
                 {
-                    maxPos = new Vector3(0, gameObject.GetComponent<PressurePlate>().triggeredChar.GetComponentInParent<CharacterScript>().weight, 1);
+                    maxPos = new Vector3(0, triggeredChar.GetComponentInParent<CharacterScript>().weight, 1);
                     relatedWeightTriggerable.mode = Mode.weightup;
                     relatedWeightTriggerable.maxPos = maxPos;
                     relatedWeightTriggerable.movementVector = movementVector;
