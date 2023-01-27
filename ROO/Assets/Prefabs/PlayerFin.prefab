@@ -85,7 +85,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 338359882353001892}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.034999847, z: 0}
+  m_LocalPosition: {x: 0, y: -0.007, z: 0}
   m_LocalScale: {x: 0.90000015, y: 0.9, z: 0.90000015}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -686,6 +686,7 @@ GameObject:
   - component: {fileID: 6449570756366380516}
   - component: {fileID: 1461789727}
   - component: {fileID: 1461789726}
+  - component: {fileID: 1508439172074778523}
   m_Layer: 7
   m_Name: FloatPointKou
   m_TagString: Untagged
@@ -717,7 +718,7 @@ BoxCollider:
   m_GameObject: {fileID: 6580984343290934504}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.63513434, y: 0.3016343, z: 1.5560619}
   m_Center: {x: -0.015385688, y: -3.8, z: -0.005342424}
@@ -734,6 +735,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myChar: {fileID: 4262255675105671685}
+--- !u!135 &1508439172074778523
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6580984343290934504}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.07
+  m_Center: {x: 0, y: -4.3, z: 0.27}
 --- !u!1 &6595179946316988298
 GameObject:
   m_ObjectHideFlags: 0
@@ -1038,10 +1052,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.8488512
+  m_Radius: 0.93
   m_Height: 1.7112527
   m_Direction: 1
-  m_Center: {x: 0.0048780534, y: 1.0027779, z: -0.106927805}
+  m_Center: {x: 0.0048780534, y: 0.96, z: 0.07}
 --- !u!65 &3217697540551982267
 BoxCollider:
   m_ObjectHideFlags: 0
