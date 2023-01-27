@@ -119,6 +119,7 @@ public class PlayerManager : MonoBehaviour
             hasReachedMax = false;
             moveBoth = false;
             currentCharacter.canMove = true;
+            SetMovementSpeed();
         }
 
     }

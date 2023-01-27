@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
-    public GameObject player,switchPoint;        //Public variable to store a reference to the player game object
+    public GameObject player,switchPoint,connection;        //Public variable to store a reference to the player game object
     [SerializeField]
     private float upBound, downBound, leftBound, rightBound, offsettUpDown, offsettLeftRight;
     public int currentLevel;

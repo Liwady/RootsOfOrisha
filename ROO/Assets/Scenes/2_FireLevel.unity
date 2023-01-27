@@ -14871,7 +14871,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5878054620091603542, guid: 0ddfcda33a8444d448cf8cfbaf761b18, type: 3}
       propertyPath: m_IsTrigger
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5878054620091603544, guid: 0ddfcda33a8444d448cf8cfbaf761b18, type: 3}
       propertyPath: m_RootOrder
@@ -20444,6 +20444,10 @@ PrefabInstance:
       propertyPath: respawnPoint
       value: 
       objectReference: {fileID: 2145037399}
+    - target: {fileID: 2765619122846046476, guid: 5a16536b487c4d148b90c7a214a01ce2, type: 3}
+      propertyPath: maxDistance
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3774568142041129629, guid: 5a16536b487c4d148b90c7a214a01ce2, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.5
@@ -20518,11 +20522,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5759162792689906042, guid: 5a16536b487c4d148b90c7a214a01ce2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 73
+      value: 3.3
       objectReference: {fileID: 0}
     - target: {fileID: 5759162792689906042, guid: 5a16536b487c4d148b90c7a214a01ce2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.1
+      value: 17.5
       objectReference: {fileID: 0}
     - target: {fileID: 5759162792689906042, guid: 5a16536b487c4d148b90c7a214a01ce2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -21569,7 +21573,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1428691866}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 53.76, y: -2.66, z: 0}
+  m_LocalPosition: {x: 57.08, y: 0.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -22383,6 +22387,11 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4521404770085940, guid: 89956e675b749204c8e10395ce2b5fb9, type: 3}
   m_PrefabInstance: {fileID: 1617742078}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1587209618 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8770064192199357128, guid: 5a16536b487c4d148b90c7a214a01ce2, type: 3}
+  m_PrefabInstance: {fileID: 1179458370}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1591736964
 GameObject:
@@ -40749,6 +40758,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1276908490}
   switchPoint: {fileID: 514966964}
+  connection: {fileID: 1587209618}
   upBound: 15
   downBound: 0.2
   leftBound: 0.16
@@ -91165,6 +91175,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 662793848}
     m_Modifications:
+    - target: {fileID: 1921590192089562743, guid: df83879d10ff7444a8d96a3003decd90, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1921590192089562743, guid: df83879d10ff7444a8d96a3003decd90, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 2560
+      objectReference: {fileID: 0}
+    - target: {fileID: 1921590192089562743, guid: df83879d10ff7444a8d96a3003decd90, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1440
+      objectReference: {fileID: 0}
     - target: {fileID: 6797921036377792965, guid: df83879d10ff7444a8d96a3003decd90, type: 3}
       propertyPath: m_Name
       value: UICanvas

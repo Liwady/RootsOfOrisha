@@ -34,7 +34,6 @@ public class SceneManagment : MonoBehaviour
 
     private void Awake()
     {
-        startGame = true;
         brightness.TryGetSettings(out exp);
         start = true;
         atSlider = false;

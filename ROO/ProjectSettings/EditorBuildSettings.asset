@@ -6,24 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/0_Intro.unity
-    guid: b3e5173fbbebc774e9c38033e02d1fb2
-  - enabled: 1
-    path: Assets/Scenes/1_Tutorial.unity
-    guid: 2de4ae98a782a6d4b88fa7ae0dde5c07
-  - enabled: 1
     path: Assets/Scenes/2_FireLevel.unity
     guid: 9369d2aa5af24524698c90b869fe54d2
-  - enabled: 1
-    path: Assets/Scenes/3_EarthLevel.unity
-    guid: 5c045ec5f7cb07744986f7bf5ed6e512
-  - enabled: 1
-    path: Assets/Scenes/4_WaterLevel.unity
-    guid: 91d864fd39ff94a42bb7f2120d32b761
-  - enabled: 1
-    path: Assets/Scenes/5_End.unity
-    guid: ecb75089a387ce54c8ddac0a6ec75a0a
-  - enabled: 1
-    path: Assets/Scenes/6_Eshu.unity
-    guid: 539715817f258a340acc9cf088f1d11f
   m_configObjects: {}
