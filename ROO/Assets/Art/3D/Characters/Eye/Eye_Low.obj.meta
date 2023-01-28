@@ -3,7 +3,12 @@ guid: f6b9f80caf5b4d0419dbdf6b879e4cb8
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Eye_LowMat
+    second: {fileID: 2100000, guid: 8aec03134da544543a575bc962f67f7d, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -3,7 +3,12 @@ guid: 6c1de2f7b28b8df439e7870d2abd71cc
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Char02_LowMat
+    second: {fileID: 2100000, guid: 2bae6384ea2602a41a084a772b07149a, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

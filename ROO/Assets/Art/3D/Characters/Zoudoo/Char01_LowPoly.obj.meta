@@ -3,7 +3,12 @@ guid: c771f443c76f473469b2f18d4f0d28a2
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: C_LowMat
+    second: {fileID: 2100000, guid: 2a372101cfa8b1f4aae368f5d055a419, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -49,7 +54,7 @@ ModelImporter:
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    keepQuads: 0
+    keepQuads: 1
     weldVertices: 1
     bakeAxisConversion: 0
     preserveHierarchy: 0

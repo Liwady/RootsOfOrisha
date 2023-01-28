@@ -3,7 +3,12 @@ guid: 1fc896c71cc0f074a8db62f673330480
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Chain_LowMat
+    second: {fileID: 2100000, guid: 1ada57a3754d0384489d7ad284dea12d, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
