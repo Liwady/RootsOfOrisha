@@ -31,15 +31,31 @@ public class TriggerAble : MonoBehaviour
         originalPosLocal = transform.localPosition;
         if (wheel != null)
         {
-            
             wheelScript = wheel.GetComponent<Wheel>();
-            Debug.Log(wheelScript);
             hasWheel = true;
         }
             
     }
     public void Toggle(bool _value) //sets the triggered value
     {
+        if (mode == Mode.up && triggered == true && relatedWeightTriggerable != null && relatedWeightTriggerable.triggered == true)
+        {
+            if (weightOnMe > relatedWeightTriggerable.weightOnMe)
+            {
+                weightOnMe -= relatedWeightTriggerable.weightOnMe;
+                relatedWeightTriggerable.weightOnMe = 0;
+                mode = Mode.down;
+            }
+            else if (weightOnMe < relatedWeightTriggerable.weightOnMe)
+            {
+                relatedWeightTriggerable.weightOnMe -= weightOnMe;
+                weightOnMe = 0;
+            }
+            else if (weightOnMe == relatedWeightTriggerable.weightOnMe)
+            {
+                Debug.Log("same weight");
+            } 
+        }
         triggered = _value;
     }
     private void ModeSwitch() //depending on which mode the TriggerAble is executes the corresponding code
@@ -84,10 +100,7 @@ public class TriggerAble : MonoBehaviour
                         if (hasDeathZone)
                             deathZone.SetActive(true);
                         if (hasWheel)
-                        {
                             wheelScript.RotateWheelForward(false);
-
-                        }
                         transform.Translate(-movementVector);
                         if (transform.localPosition.y < originalPosLocal.y - maxPos.y)
                             transform.localPosition = new Vector3(transform.localPosition.x, originalPosLocal.y - maxPos.y, transform.localPosition.z);
@@ -100,6 +113,8 @@ public class TriggerAble : MonoBehaviour
                         if (hasWheel)
                             wheelScript.RotateWheelForward(true);
                         transform.Translate(movementVector);
+                        if (transform.localPosition.y > originalPosLocal.y)
+                            transform.localPosition = new Vector3(transform.localPosition.x, originalPosLocal.y, transform.localPosition.z);
                     }
                 }
                 else if (transform.position.y < originalPos.y)
@@ -114,7 +129,6 @@ public class TriggerAble : MonoBehaviour
                 else if (transform.position.y == originalPos.y)
                     relatedWeightTriggerable.mode = Mode.weightdown;
                 break;
-
             case Mode.weightup:
                 if (triggered)
                 {

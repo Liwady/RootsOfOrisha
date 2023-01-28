@@ -4,13 +4,14 @@ public class CharacterScript : MonoBehaviour
 {
 
     private PlayerManager playerManager;
-    public GameObject checker, floatCheck, grabbedObject, detectedObject, grabPoint, grabPointBoat, EyePoint;
+    public GameObject checker, floatCheck, grabbedObject, detectedObject, grabPoint, grabPointBoat, EyePoint, myRender;
     public Rigidbody rb;
     public bool left, canMove, usedAbility, canResize, canWalkOnWater, isHoldingCollectible, isHoldingGrabbable, isGrounded, isOnWater, hitWhileFloating;
-    public float movementSpeed, lastDir;
+    public float movementSpeed, lastDir, grabPointPosLeft = 1.9f, grabPointPosRight = -1.9f;
     public int size, weight;
     public LeverScript inRangeLever;
     public CollectibleScript.FruitEye typeEF;
+    
 
     void Awake()
     {
@@ -31,15 +32,16 @@ public class CharacterScript : MonoBehaviour
     public void Move(float movement)
     {
         Rotate(movement);
+        MoveGrabPoint(movement);
         rb.velocity = new Vector3(movement * movementSpeed, rb.velocity.y);
         lastDir = movement;
     }
     public void Rotate(float movement)
     {
         if (movement < 0 && lastDir < 0)
-            transform.eulerAngles = new Vector3(0, -140, 0);
+            myRender.transform.eulerAngles = new Vector3(0, -140, 0);
         else if (movement > 0 && lastDir > 0)
-            transform.eulerAngles = new Vector3(0, 140, 0);
+            myRender.transform.eulerAngles = new Vector3(0, 140, 0);
     }
     public void MoveTowardsPlace(Transform _currentPlayerFloatPoint)
     {
@@ -48,6 +50,16 @@ public class CharacterScript : MonoBehaviour
         else
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(_currentPlayerFloatPoint.position.x, transform.position.y, _currentPlayerFloatPoint.position.z), 5 * Time.deltaTime);
 
+    }
+
+    public void MoveGrabPoint(float movement)
+    {
+        if (movement < 0 && lastDir < 0)
+            grabPoint.transform.localPosition = new Vector3(grabPointPosLeft, grabPoint.transform.localPosition.y, grabPoint.transform.localPosition.z);
+        else if (movement > 0 && lastDir > 0)
+            grabPoint.transform.localPosition = new Vector3(grabPointPosRight, grabPoint.transform.localPosition.y, grabPoint.transform.localPosition.z);
+        if (grabbedObject != null)
+            grabbedObject.transform.position = grabPoint.transform.position;
     }
     public void GrabObject()
     {
@@ -96,7 +108,6 @@ public class CharacterScript : MonoBehaviour
                         }
                     }
                 }
-
                 else
                 {
                     isHoldingGrabbable = true;

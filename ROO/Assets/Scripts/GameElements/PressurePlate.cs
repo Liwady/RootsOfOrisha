@@ -12,6 +12,7 @@ public class PressurePlate : MonoBehaviour
     private List<CharacterScript> characterScripts = new List<CharacterScript>();
     public int weightOnMe;
     private PlayerManager playerManager;
+    private bool statueOn;
     private void Awake()
     {
         playerManager = FindObjectOfType<PlayerManager>();
@@ -25,6 +26,7 @@ public class PressurePlate : MonoBehaviour
         if (other.CompareTag("Statue"))
         {
             active = true;
+            statueOn = true;
             for (int i = 0; i < triggeredObjects.Length; i++)
             {
                 triggeredObjects[i].GetComponent<TriggerAble>().triggeredChar = other.gameObject;
@@ -55,10 +57,8 @@ public class PressurePlate : MonoBehaviour
     private void OnTriggerStay(Collider other) //checks if something is on the pressure plate
     {
         if (other.CompareTag("Statue"))
-        {
             return;
-        }
-        if (other.CompareTag("1") || other.CompareTag("2"))
+        else if (other.CompareTag("1") || other.CompareTag("2") && !statueOn )
         {
             CharacterScript character = other.GetComponentInParent<CharacterScript>();
             if (moved)
@@ -98,8 +98,11 @@ public class PressurePlate : MonoBehaviour
     private void OnTriggerExit(Collider other) //checks if something leaves the pressure plate
     {
         moved = true;
-       
-        if ((other.CompareTag("1") || other.CompareTag("Statue") || other.CompareTag("2")) /*&& triggeredChar == other.gameObject*/)
+        if (other.CompareTag("Statue") && statueOn)
+            statueOn = false;
+        else if (statueOn)
+            return;
+        else if ((other.CompareTag("1") || other.CompareTag("Statue") || other.CompareTag("2")) /*&& triggeredChar == other.gameObject*/)
         {
             CharacterScript character = other.GetComponentInParent<CharacterScript>();
             if (characterScripts.Contains(character))
@@ -115,8 +118,6 @@ public class PressurePlate : MonoBehaviour
                 else
                     weightOnMe -= character.weight;
             }
-                
-
             characterScripts.Remove(other.GetComponentInParent<CharacterScript>());
             if (characterScripts.Count == 0)
             {
