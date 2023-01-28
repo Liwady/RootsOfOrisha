@@ -13,13 +13,15 @@ public class GameManager : MonoBehaviour
     public AnimationManager animationManager;
 
     public GameObject pauseMenu;
-    public bool isPaused;
+    public bool isPaused,tutorial;
     private float previousTimeScale;
 
     private void Awake()
     {
         amountOfFruit = 0;
         SetCurrentScene();
+        if(currentScene == 0)
+            tutorial = true;
     }
     private void Update()
     {
@@ -76,10 +78,14 @@ public class GameManager : MonoBehaviour
         amountOfFruit = fruit;
         animationManager.ChangeFruitSprite(amountOfFruit);
     }
-    public void UpdateMechanics(int ability, int character, bool together)
+    // option 0 = switch ability, option 1 = switch character, option 2 = trigger ability
+    public void UpdateMechanics(int option, bool reset)
     {
-        //set
-        //spriteManager.ChangeMechanicsSprite()
-        //todo
+        animationManager.ChangeMechanicsSprite(tutorial, option, playerManager.currentAbility == 0, reset);
+    }
+
+    public void UpdateConnection(int num)
+    {
+        animationManager.SwapConnectionSprite(num);
     }
 }

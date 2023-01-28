@@ -6,7 +6,8 @@ public class PlayerManager : MonoBehaviour
     public GameObject character1, character2, sizeC1, sizeC2;
     [HideInInspector]
     public CharacterScript currentCharacter;
-    
+
+
     public int currentAbility, currentLevel, depth;
 
     public CharacterScript character1script, character2script, otherCharacter;
@@ -148,9 +149,20 @@ public class PlayerManager : MonoBehaviour
         {
             SetMovementSpeed();
             if (!moveBoth)
+            {
+                gameManager.UpdateConnection(0);
+
                 moveBoth = true;
+            }
             else
+            {
+                if (currentCharacter == character1script)
+                    gameManager.UpdateConnection(1);
+                else
+                    gameManager.UpdateConnection(2);
+                
                 moveBoth = false;
+            }
         }//feedback cant move together rn 
     }
     private void UpdateFloating()
@@ -170,7 +182,6 @@ public class PlayerManager : MonoBehaviour
     }
     public void Floating()
     {
-
         if (abilityActive)
         {
             if (currentCharacter.usedAbility)
@@ -184,19 +195,18 @@ public class PlayerManager : MonoBehaviour
                 otherCharacter.usedAbility = false;
             }
             abilityActive = false;
-
-            SetGravity();
+            gameManager.UpdateMechanics(2, true);
         }
         else if (otherCharacter.isGrounded)
         {
             abilityActive = true;
             SetUsedAbility();
             otherCharacter.MoveTowardsPlace(currentCharacter.floatCheck.transform);
+            gameManager.UpdateMechanics(2, false);
         }
     }
     public void Sizing()
     {
-
         if (currentCharacter.canResize || currentCharacter.usedAbility)//todo checker for mini and make size table 
         {
             if (abilityActive)
@@ -204,15 +214,15 @@ public class PlayerManager : MonoBehaviour
                 DefaultValuesSize();
                 abilityActive = false;
                 currentCharacter.usedAbility = false;
+                gameManager.UpdateMechanics(2, true);
             }
             else
             {
                 abilityActive = true;
                 SetUsedAbility();
                 SetSize();
-                SetGravity();
+                gameManager.UpdateMechanics(2, false);
             }
-
         }
     }
     private void DoGrab()
@@ -234,8 +244,11 @@ public class PlayerManager : MonoBehaviour
     }
     public void SetMovementSpeed()
     {
-        character1script.canMove = true;
-        character2script.canMove = true;
+        if(currentCharacter==character1script)
+            character1script.canMove = true;
+        else
+            character2script.canMove = true;
+
         if (abilityActive)
         {
             if (character1script.usedAbility) //character1script
@@ -389,6 +402,7 @@ public class PlayerManager : MonoBehaviour
             camScript.player = character2;
             character1script.EyePoint.GetComponent<MeshRenderer>().enabled = false;
             character2script.EyePoint.GetComponent<MeshRenderer>().enabled = true;
+            gameManager.UpdateConnection(2);
         }
         else
         {
@@ -401,7 +415,9 @@ public class PlayerManager : MonoBehaviour
             camScript.player = character1;
             character1script.EyePoint.GetComponent<MeshRenderer>().enabled = true;
             character2script.EyePoint.GetComponent<MeshRenderer>().enabled = false;
+            gameManager.UpdateConnection(1);
         }
+        gameManager.UpdateMechanics(1, false);
     }
     public void DoToggleLever()
     {
@@ -409,9 +425,9 @@ public class PlayerManager : MonoBehaviour
     }
     public void TriggerAbility()
     {
-        currentCharacter.canMove = true;
-        if(moveBoth)
+        if(moveBoth) //disable move together if triggering ability 
             moveBoth = false;
+
         switch (currentAbility)
         {
             // size
@@ -421,35 +437,28 @@ public class PlayerManager : MonoBehaviour
             // float
             case 1:
                 Floating();
-                SetGravity();
                 break;
         }
+        SetGravity();
         SetWeight();
         SetMovementSpeed();
+
     }
     public void SwitchAbility()
     {
+        if (abilityActive)
+        {
+            TriggerAbility();
+            abilityActive = false;
+            gameManager.UpdateMechanics(2, true);//deactivate trigger ability ani
+        }
+
         if (currentAbility == 0)//size
-        {
-            if (abilityActive)
-            {
-                Sizing();
-                SetGravity();
-                abilityActive = false;
-            }
             currentAbility = 1;
-        }
-        else//float
-        {
-            if (abilityActive)
-            {
-                Floating();
-                SetWeight();
-                abilityActive = false;
-                SetMovementSpeed();
-            }
+        else //float
             currentAbility = 0;
-        }
+
+        gameManager.UpdateMechanics(0, false); //switch ability ani 
     }
     public void DoPause()
     {
