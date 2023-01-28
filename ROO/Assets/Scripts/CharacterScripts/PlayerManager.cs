@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
@@ -417,6 +418,7 @@ public class PlayerManager : MonoBehaviour
             character2script.EyePoint.GetComponent<MeshRenderer>().enabled = false;
             gameManager.UpdateConnection(1);
         }
+        SetMovementSpeed();
         gameManager.UpdateMechanics(1, false);
     }
     public void DoToggleLever()
@@ -425,8 +427,15 @@ public class PlayerManager : MonoBehaviour
     }
     public void TriggerAbility()
     {
-        if(moveBoth) //disable move together if triggering ability 
+        if (moveBoth) //disable move together if triggering ability 
+        {
             moveBoth = false;
+            if (currentCharacter == character1script)
+                gameManager.UpdateConnection(1);
+            else
+                gameManager.UpdateConnection(2);
+
+        }
 
         switch (currentAbility)
         {

@@ -2562,6 +2562,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4521404770085940, guid: 89956e675b749204c8e10395ce2b5fb9, type: 3}
   m_PrefabInstance: {fileID: 100614372}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &162885876 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2762038289582489581, guid: df83879d10ff7444a8d96a3003decd90, type: 3}
+  m_PrefabInstance: {fileID: 5234309859351386039}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &164732003
 GameObject:
   m_ObjectHideFlags: 0
@@ -8945,6 +8950,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4521404770085940, guid: 89956e675b749204c8e10395ce2b5fb9, type: 3}
   m_PrefabInstance: {fileID: 2128919012}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &419307128 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3669133143691124311, guid: df83879d10ff7444a8d96a3003decd90, type: 3}
+  m_PrefabInstance: {fileID: 5234309859351386039}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &455685381
 GameObject:
   m_ObjectHideFlags: 0
@@ -15010,11 +15026,6 @@ Transform:
   m_Father: {fileID: 1598387586}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &591312706 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5234309858794692853, guid: df83879d10ff7444a8d96a3003decd90, type: 3}
-  m_PrefabInstance: {fileID: 5234309859351386039}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &625228172 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4521404770085940, guid: 89956e675b749204c8e10395ce2b5fb9, type: 3}
@@ -17866,11 +17877,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4521404770085940, guid: 89956e675b749204c8e10395ce2b5fb9, type: 3}
   m_PrefabInstance: {fileID: 31662428}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &996995982 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5234309859194315833, guid: df83879d10ff7444a8d96a3003decd90, type: 3}
-  m_PrefabInstance: {fileID: 5234309859351386039}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &998520264 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4521404770085940, guid: 89956e675b749204c8e10395ce2b5fb9, type: 3}
@@ -20313,6 +20319,7 @@ MonoBehaviour:
   animationManager: {fileID: 2065328746}
   pauseMenu: {fileID: 3967368357442367147}
   isPaused: 0
+  tutorial: 0
 --- !u!4 &1166486979
 Transform:
   m_ObjectHideFlags: 0
@@ -41963,10 +41970,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 667e245640abf9146a2cfe0b1b744df5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mechanicsImage: {fileID: 0}
-  eyeImage: {fileID: 591312706}
-  fruitImage: {fileID: 996995982}
+  eyeImage: {fileID: 0}
+  fruitImage: {fileID: 0}
   lights: []
+  connection:
+  - {fileID: 21300000, guid: 2b6906874a0a93d4f97e8183f1d76527, type: 3}
+  - {fileID: 21300000, guid: da2f2a81c4f19644a8cfab0bf8e807e8, type: 3}
+  - {fileID: 21300000, guid: c79d6568965e406469998c0e64d07878, type: 3}
+  connectionImage: {fileID: 419307128}
+  lightAnimator: {fileID: 0}
+  skillAnimator: {fileID: 162885876}
+  zoudoo: 1
 --- !u!1001 &2073948546
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -15,69 +15,62 @@ public class AnimationManager : MonoBehaviour
 
     [SerializeField]
     private Animator lightAnimator, skillAnimator;
-    [SerializeField]
-    private int skillCount, lightCount;
+    private int lightCount;
     [SerializeField]
     private bool zoudoo;
 
-    public void ChangeMechanicsSprite(bool tutorial, int switchOption, bool sizeAbility, bool reset)
+    public void TutorialMechanicsTrigger(int n)
     {
-        //tutorial
-        if (tutorial)
-        {
-            if (skillCount == 0)
-            {
-                skillAnimator.SetTrigger("CanSize");
-                skillCount++;
-            }
-            else
-                skillAnimator.SetTrigger("CanFloat");
-        }
-        //all
+        if (n==0)
+            skillAnimator.SetBool("CanResize",true);
         else
+            skillAnimator.SetBool("CanFloat",true);
+    }
+
+    public void ChangeMechanicsSprite(int switchOption, bool sizeAbility, bool reset)
+    {
+        switch (switchOption)
         {
-            switch (switchOption)
-            {
-                case 0://switch ability
-                    if (sizeAbility)//size
-                    {
-                        skillAnimator.ResetTrigger("SwitchToSize");
-                        skillAnimator.SetTrigger("SwitchToFloat");
-                    }
-                    else //float
-                    {
-                        skillAnimator.ResetTrigger("SwitchToFloat");
-                        skillAnimator.SetTrigger("SwitchToSize");
-                    }
-                    break;
-                case 1://switch character
-                    if (zoudoo)
-                    {
-                        skillAnimator.SetBool("isZoudoo", false);
-                        zoudoo = false;
-                    }
-                    else
-                    {
-                        skillAnimator.SetBool("isZoudoo", true);
-                        zoudoo = true;
-                    }
-                    break;
-                case 2://trigger ability
-                    if (sizeAbility)
-                    {
-                        skillAnimator.SetBool("SizeActive", true);
-                        if (reset)
-                            skillAnimator.SetBool("SizeActive", false);
-                    }
-                    else
-                    {
-                        skillAnimator.SetBool("FloatActive", true);
-                        if (reset)
-                            skillAnimator.SetBool("FloatActive", false);
-                    }
-                    break;
-            }
+            case 0://switch ability
+                if (sizeAbility)//size
+                {
+                    skillAnimator.ResetTrigger("SwitchToSize");
+                    skillAnimator.SetTrigger("SwitchToFloat");
+                }
+                else //float
+                {
+                    skillAnimator.ResetTrigger("SwitchToFloat");
+                    skillAnimator.SetTrigger("SwitchToSize");
+                }
+                break;
+            case 1://switch character
+                if (zoudoo)
+                {
+                    skillAnimator.SetBool("isZoudoo", false);
+                    zoudoo = false;
+                }
+                else
+                {
+                    skillAnimator.SetBool("isZoudoo", true);
+                    zoudoo = true;
+                }
+                break;
+            case 2://trigger ability
+                if (sizeAbility)
+                {
+                    skillAnimator.SetBool("SizeActive", true);
+                    if (reset)
+                        skillAnimator.SetBool("SizeActive", false);
+                }
+                else
+                {
+                    skillAnimator.SetBool("FloatActive", true);
+                    if (reset)
+                        skillAnimator.SetBool("FloatActive", false);
+                }
+                break;
         }
+
     }
     public void ChangeFruitSprite(int fruitCollected)
     {

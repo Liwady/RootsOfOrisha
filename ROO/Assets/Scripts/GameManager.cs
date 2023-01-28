@@ -81,11 +81,15 @@ public class GameManager : MonoBehaviour
     // option 0 = switch ability, option 1 = switch character, option 2 = trigger ability
     public void UpdateMechanics(int option, bool reset)
     {
-        animationManager.ChangeMechanicsSprite(tutorial, option, playerManager.currentAbility == 0, reset);
+        animationManager.ChangeMechanicsSprite(option, playerManager.currentAbility == 0, reset);
     }
-
+    public void UpdateMechanicsTutorial(int n)
+    {
+        animationManager.TutorialMechanicsTrigger(n);
+    }
     public void UpdateConnection(int num)
     {
         animationManager.SwapConnectionSprite(num);
     }
+
 }
