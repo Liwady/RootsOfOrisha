@@ -9,7 +9,7 @@ public class PlayerManager : MonoBehaviour
     
     public int currentAbility, currentLevel, depth;
 
-    private CharacterScript character1script, character2script, otherCharacter;
+    public CharacterScript character1script, character2script, otherCharacter;
     private CameraScript camScript;
     private GameManager gameManager;
     public PlayerControls playerControls;
@@ -444,6 +444,7 @@ public class PlayerManager : MonoBehaviour
             if (abilityActive)
             {
                 Floating();
+                SetWeight();
                 abilityActive = false;
                 SetMovementSpeed();
             }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class CoverScript : MonoBehaviour
 {
@@ -8,11 +9,12 @@ public class CoverScript : MonoBehaviour
     [SerializeField]
     private SpriteRenderer spriteRenderer;
     private bool change;
-    private bool start;
+    private bool vanishing;
+    private int numPlayers;
     private void Update()
     {
         if (change)
-            ChangeColor(start);
+            ChangeColor(vanishing);
     }
     private void ChangeColor(bool st)
     {
@@ -34,8 +36,12 @@ public class CoverScript : MonoBehaviour
     {
         if (other.CompareTag("1") || other.CompareTag("2"))
         {
-            change = true;
-            start = true;
+            if (numPlayers == 0)
+            {
+                change = true;
+                vanishing = true;
+            }
+            numPlayers++;
         }
     }
 
@@ -43,8 +49,12 @@ public class CoverScript : MonoBehaviour
     {
         if (other.CompareTag("1") || other.CompareTag("2"))
         {
-            change = true;
-            start = false;
+            numPlayers--;
+            if (numPlayers == 0)
+            {
+                change = true;
+                vanishing = false;
+            }
         }
     }
 }
