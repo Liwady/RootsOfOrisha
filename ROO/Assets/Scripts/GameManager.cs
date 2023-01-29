@@ -11,11 +11,13 @@ public class GameManager : MonoBehaviour
     public PlayerManager playerManager;
     public SceneManagment sceneManagment;
     public AnimationManager animationManager;
+    public AudioManager audioManager;
 
     public GameObject pauseMenu;
     public CanvasGroup cg;
     public bool isPaused,tutorial;
     private float previousTimeScale;
+    
 
     private void Awake()
     {
@@ -115,4 +117,13 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void PlaySound(string _name)
+    {
+        audioManager.PlaySound(_name);
+    }
+
+    public void StopSound(string _name)
+    {
+        audioManager.StopSound(_name);
+    }
 }

@@ -30,8 +30,8 @@ public class CollectibleScript : MonoBehaviour
                     gameManager.amountOfFruit++;
                     gameManager.UpdateFruit(gameManager.amountOfFruit);
                 }
-                    
 
+                gameManager.PlaySound("collect");
                 Destroy(gameObject);
                 Destroy(this);
             }
