@@ -6,7 +6,9 @@ public class TutorialTrigger : MonoBehaviour
 {
     private GameObject Lplayer;
     private GameManager gameManager;
-    public int gate;
+    [SerializeField]
+    private int gate,trigger;
+    
 
     private void Awake()
     {
