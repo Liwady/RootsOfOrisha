@@ -1,6 +1,46 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
+
+/*        else if (hasReachedMax)
+
+if (currentAbility == 1 && abilityActive)
+@ -139,8 + 139,13 @@ public class PlayerManager : MonoBehaviour
+
+}
+private void MoveTogether()
+{
+@ -184,7 + 189,7 @@ public class PlayerManager : MonoBehaviour
+                otherCharacter.usedAbility = false;
+            }
+            abilityActive = false;
+
+gameManager.PlaySound("floatout");
+SetGravity();
+        }
+        else if (otherCharacter.isGrounded)
+@ -192,6 + 197,7 @@ public class PlayerManager : MonoBehaviour
+            abilityActive = true;
+            SetUsedAbility();
+            otherCharacter.MoveTowardsPlace(currentCharacter.floatCheck.transform);
+            gameManager.PlaySound("floatin");
+        }
+    }
+    public void Sizing()
+@ -212,7 + 218,10 @@ public class PlayerManager : MonoBehaviour
+                SetSize();
+                SetGravity();
+            }
+
+        }
+        else
+{
+    gameManager.PlaySound("cantResize");
+}
+    }
+    private void DoGrab()
+
+    */
 public class PlayerManager : MonoBehaviour
 {
     [HideInInspector]
@@ -37,12 +77,13 @@ public class PlayerManager : MonoBehaviour
         else if (hasReachedMax)
             MaxReached(false);
 
-        if (currentCharacter.canMove)
+        if (currentCharacter.canMove && movement.x != 0)
             Move();
 
         if (currentAbility == 1 && abilityActive)
             UpdateFloating();
     }
+
     private void Initialize()
     {
         camScript = FindObjectOfType<CameraScript>();
@@ -141,8 +182,12 @@ public class PlayerManager : MonoBehaviour
     private void Move()
     {
         currentCharacter.Move(movement.x);
+        gameManager.PlaySound("walk" + currentCharacter.tag);
         if (moveBoth)
+        {
             otherCharacter.Move(movement.x);
+            gameManager.PlaySound("walk" + otherCharacter.tag);
+        }
     }
     private void MoveTogether()
     {
@@ -196,12 +241,14 @@ public class PlayerManager : MonoBehaviour
                 otherCharacter.usedAbility = false;
             }
             abilityActive = false;
+            gameManager.PlaySound("floatout");
             gameManager.UpdateMechanics(2, true);
         }
         else if (otherCharacter.isGrounded)
         {
             abilityActive = true;
             SetUsedAbility();
+            gameManager.PlaySound("floatin");
             otherCharacter.MoveTowardsPlace(currentCharacter.floatCheck.transform);
             gameManager.UpdateMechanics(2, false);
         }
@@ -225,6 +272,8 @@ public class PlayerManager : MonoBehaviour
                 gameManager.UpdateMechanics(2, false);
             }
         }
+        else
+            gameManager.PlaySound("cantResize");
     }
     private void DoGrab()
     {
