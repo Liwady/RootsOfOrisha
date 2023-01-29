@@ -4,41 +4,49 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField]
     private int distance2Ani;
-    public int amountOfFruit, ability, character, together;
+    [SerializeField]
+    private int ability, character, together;
     public bool eyeColl;
-    public int currentScene;
+    public int currentScene, amountOfFruit;
 
     public PlayerManager playerManager;
     public SceneManagment sceneManagment;
     public AnimationManager animationManager;
     public AudioManager audioManager;
+    public CameraScript cameraScript;
 
     public GameObject pauseMenu;
     public CanvasGroup cg;
-    public bool isPaused,tutorial;
+    public bool isPaused, tutorial;
     private float previousTimeScale;
-    
 
-    private void Awake()
+
+    private void Start()
     {
-        amountOfFruit = 0;
         SetCurrentScene();
-        if(currentScene == 0)
-            tutorial = true;
-        if (tutorial)
-        {
-            //disable all controls besides walking
-        }
     }
     private void Update()
     {
         if (currentScene == 0 && !isPaused)
             animationManager.StartFireAnimation(playerManager.currentCharacter.transform.position, distance2Ani);
     }
+
     private void SetCurrentScene()
     {
-        //currentScene= sceneManagment.currentScene;
-        //GetComponent<Camera>().GetComponent<CameraScript>().currentLevel = currentScene;
+        if (currentScene == 0)
+            tutorial = true;
+        if (tutorial)
+        {
+            //disable all controls besides walking
+            Time.timeScale = 0;
+            cg.alpha = 0;
+            sceneManagment.startGame = true;
+            sceneManagment.GoToStartScreen(true);
+            isPaused = true;
+            playerManager.EnablePlayerControls(isPaused);
+        }
+        sceneManagment.currentScene = currentScene;
+        cameraScript.currentLevel = currentScene;
     }
     public void Pause()
     {
@@ -58,25 +66,15 @@ public class GameManager : MonoBehaviour
             cg.alpha = 1;
             isPaused = false;
         }
+        playerManager.EnablePlayerControls(isPaused);
     }
     public void StartGame()
     {
-        if (Time.timeScale > 0)
-        {
-            previousTimeScale = Time.timeScale;
-            Time.timeScale = 0;
-            cg.alpha = 0;
-            sceneManagment.GoToStartScreen(true);
-            isPaused = true;
-
-        }
-        else if (Time.timeScale == 0)
-        {
-            Time.timeScale = previousTimeScale;
-            pauseMenu.SetActive(false);
-            cg.alpha = 1;
-            isPaused = false;
-        }
+        Time.timeScale = 1;
+        pauseMenu.SetActive(false);
+        cg.alpha = 1;
+        isPaused = false;
+        playerManager.EnablePlayerControls(isPaused);
     }
     //set values so the sprite manager can use them and we can keep the info in the game manager. 
     public void UpdateEye(bool col)
@@ -102,7 +100,6 @@ public class GameManager : MonoBehaviour
     {
         animationManager.SwapConnectionSprite(num);
     }
-
     public void TutorialTriggers(int trigger)
     {
         switch (trigger)
@@ -116,14 +113,29 @@ public class GameManager : MonoBehaviour
         }
 
     }
-
     public void PlaySound(string _name)
     {
         audioManager.PlaySound(_name);
     }
-
     public void StopSound(string _name)
     {
         audioManager.StopSound(_name);
+    }
+    public void GoBack()
+    {
+        sceneManagment.GoBack();
+    }
+    public void ClickButton()
+    {
+        sceneManagment.ClickButton();
+    }
+    public void GetCurrentButton()
+    {
+        sceneManagment.GetCurrentButton();
+    }
+    public void SetValue(Vector2 value)
+    {
+        sceneManagment.movedSlider = true;
+        sceneManagment.valueS = value;
     }
 }

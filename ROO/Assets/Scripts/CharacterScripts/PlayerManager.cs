@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -61,24 +60,29 @@ public class PlayerManager : MonoBehaviour
     public RespawnPoint respawnPoint;
     [SerializeField]
     private bool abilityActive, moveBoth, hasReachedMax;
+    public bool usedMove;
 
     private void Awake()
     {
         Initialize();
         PlayerControlsGameplay();
-        if (gameManager.currentScene == 0)
-            StartGame();
+        PlayerControlsUI();
     }
     private void Update()
     {
-        
+
         if (middleBond.outOfRange)
             MaxReached(true);
-        else if (hasReachedMax)
+        else
             MaxReached(false);
 
         if (currentCharacter.canMove && movement.x != 0)
+        {
             Move();
+            usedMove = true;
+        }
+        else
+            usedMove = false;
 
         if (currentAbility == 1 && abilityActive)
             UpdateFloating();
@@ -121,7 +125,6 @@ public class PlayerManager : MonoBehaviour
     {
         if (r)
         {
-            hasReachedMax = true;
             SetLeftRight();
             if (currentAbility == 0 && abilityActive) //sizing ability active
             {
@@ -130,24 +133,21 @@ public class PlayerManager : MonoBehaviour
                 {
                     if (currentCharacter.usedAbility) //if character 1 used the ability
                     {
-                        currentCharacter.canMove = true;
                         moveBoth = true;
                         currentCharacter.movementSpeed = 2;
                         otherCharacter.movementSpeed = 1;
                     }
                     else // if char 2 used ability 
                     {
-                        currentCharacter.canMove = true;
                         moveBoth = true;
                         currentCharacter.movementSpeed = 5;
                         otherCharacter.movementSpeed = 4;
                     }
                 }
                 else //if they are walking towards eachother 
-                {
                     moveBoth = false;
-                    currentCharacter.canMove = true;
-                }
+
+                currentCharacter.canMove = true;
             }
             else //ability not active
             {
@@ -156,13 +156,15 @@ public class PlayerManager : MonoBehaviour
                 else //if the character is right of the other character 
                     currentCharacter.canMove = false;
             }
+            hasReachedMax = true;
         }
         else
         {
-            hasReachedMax = false;
-            moveBoth = false;
+            if (hasReachedMax)
+                moveBoth = false;
             currentCharacter.canMove = true;
             SetMovementSpeed();
+            hasReachedMax = false;
         }
 
     }
@@ -194,20 +196,28 @@ public class PlayerManager : MonoBehaviour
         if (!abilityActive)
         {
             SetMovementSpeed();
-            if (!moveBoth)
+            if (moveBoth)
             {
-                gameManager.UpdateConnection(0);
-
-                moveBoth = true;
+                if (currentCharacter == character1script)
+                {
+                    gameManager.UpdateConnection(1);
+                    character1script.canMove = true;
+                    character2script.canMove = false;
+                }
+                else
+                {
+                    gameManager.UpdateConnection(2);
+                    character1script.canMove = false;
+                    character2script.canMove = true;
+                }
+                moveBoth = false;
             }
             else
             {
-                if (currentCharacter == character1script)
-                    gameManager.UpdateConnection(1);
-                else
-                    gameManager.UpdateConnection(2);
-                
-                moveBoth = false;
+                gameManager.UpdateConnection(0);
+                character1script.canMove = true;
+                character2script.canMove = true;
+                moveBoth = true;
             }
         }//feedback cant move together rn 
     }
@@ -294,7 +304,7 @@ public class PlayerManager : MonoBehaviour
     }
     public void SetMovementSpeed()
     {
-        if(currentCharacter==character1script)
+        if (currentCharacter == character1script)
             character1script.canMove = true;
         else
             character2script.canMove = true;
@@ -518,24 +528,21 @@ public class PlayerManager : MonoBehaviour
 
         gameManager.UpdateMechanics(0, false); //switch ability ani 
     }
+
     public void DoPause()
     {
         gameManager.Pause();
-        if (gameManager.isPaused)
-        {
-            playerControls.Gameplay.Disable();
-            playerControls.UI.Enable();
-        }
-        else
-        {
-            playerControls.Gameplay.Enable();
-            playerControls.UI.Disable();
-        }
     }
-    public void StartGame()
+    private void PlayerControlsUI()
     {
-        gameManager.StartGame();
-        if (gameManager.isPaused)
+        playerControls.UI.Back.performed += ctx => gameManager.GoBack();
+        playerControls.UI.Click.performed += ctx => gameManager.ClickButton();
+        playerControls.UI.Navigate.performed += ctx => gameManager.GetCurrentButton();
+        playerControls.UI.Navigate.performed += ctx => gameManager.SetValue(ctx.ReadValue<Vector2>());
+    }
+    public void EnablePlayerControls(bool paused)
+    {
+        if (paused)
         {
             playerControls.Gameplay.Disable();
             playerControls.UI.Enable();

@@ -16,20 +16,19 @@ public class SceneManagment : MonoBehaviour
     private PostProcessProfile brightness;
     private ColorGrading exp;
     [SerializeField]
-    private PlayerManager playerManager;
-    [SerializeField]
     private GameManager gameManager;
     [SerializeField]
     private int old, currentScreen, currentSlider;//0=pause, 1=options, 2=child of options, 3=child of settings
 
+    public int currentScene;
     private SpriteState ss;
     private EventSystem eventSystem;
     private Button sfxButton, musicButton, brightnessButton, settingsButton, currentButton, creditsButton, controlsButton;
     private Slider slider;
-    private Vector2 valueS;
+    public Vector2 valueS;
     private float time;
     private bool atSlider, start;
-    public bool startGame;
+    public bool startGame,movedSlider;
 
 
     private void Awake()
@@ -39,6 +38,7 @@ public class SceneManagment : MonoBehaviour
         atSlider = false;
         currentScreen = 0;
         currentSlider = 0;
+        movedSlider = false;
         time = 0;
     }
     private void Start()
@@ -47,7 +47,6 @@ public class SceneManagment : MonoBehaviour
         eventSystem = FindObjectOfType<EventSystem>();
         currentButtonObject = eventSystem.firstSelectedGameObject;
         SetButtons();
-        PlayerControlsUI();
     }
     private void Update()
     {
@@ -57,13 +56,7 @@ public class SceneManagment : MonoBehaviour
         }
 
     }
-    private void PlayerControlsUI()
-    {
-        playerManager.playerControls.UI.Back.performed += ctx => GoBack();
-        playerManager.playerControls.UI.Click.performed += ctx => ClickButton();
-        playerManager.playerControls.UI.Navigate.performed += ctx => GetCurrentButton();
-        playerManager.playerControls.UI.Navigate.performed += ctx => valueS = ctx.ReadValue<Vector2>();
-    }
+   
     public void PlayScene(int sceneNumber)
     {
         SceneManager.LoadScene(sceneNumber);
@@ -97,11 +90,11 @@ public class SceneManagment : MonoBehaviour
         creditsButton = creditsObject.GetComponent<Button>();
         controlsButton = controlsObject.GetComponent<Button>();
     }
-    private void ClickButton()
+    public void ClickButton()
     {
         currentButton.onClick.Invoke();
     }
-    private void GetCurrentButton()
+    public void GetCurrentButton()
     {
         currentButtonObject = eventSystem.currentSelectedGameObject;
         currentButton = currentButtonObject.GetComponent<Button>();
@@ -113,9 +106,10 @@ public class SceneManagment : MonoBehaviour
         if (startGame)
         {
             startGame = false;
-            startScreen.SetActive(false); 
-        }
-        playerManager.DoPause();
+            startScreen.SetActive(false);
+            gameManager.StartGame();
+        }else
+            gameManager.Pause();
 
     }
     public void GoToStartScreen(bool first)
@@ -193,7 +187,7 @@ public class SceneManagment : MonoBehaviour
                 break;
         }
     }
-    private void GoBack()
+    public void GoBack()
     {
         switch (currentScreen)
         {
@@ -223,7 +217,7 @@ public class SceneManagment : MonoBehaviour
     //SLIDERS
     private void SliderValue()
     {
-        if (playerManager.playerControls.UI.Navigate.WasPerformedThisFrame() && time > Time.unscaledDeltaTime)
+        if (movedSlider && time > Time.unscaledDeltaTime)
         {
             if (valueS.x > 0)
                 old++;
@@ -237,6 +231,7 @@ public class SceneManagment : MonoBehaviour
 
             slider.value = old;
             time = 0;
+            movedSlider = false;
         }
         else
             time += Time.unscaledDeltaTime;
@@ -343,22 +338,22 @@ public class SceneManagment : MonoBehaviour
     public void GoNextScene(bool eshu)
     {
         if (!eshu)
-            switch (gameManager.currentScene)
+            switch (currentScene)
             {
                 case 0: //tutorial
-                    gameManager.currentScene = 1;
+                    currentScene = 1;
                     PlayScene(2);
                     break;
                 case 1://FireLevel
-                    gameManager.currentScene = 2;
+                    currentScene = 2;
                     PlayScene(3);
                     break;
                 case 2://EarthLevel
-                    gameManager.currentScene = 3;
+                    currentScene = 3;
                     PlayScene(4);
                     break;
                 case 3://WaterLevel
-                    gameManager.currentScene = 4;
+                    currentScene = 4;
                     PlayScene(5);
                     break;
             }
