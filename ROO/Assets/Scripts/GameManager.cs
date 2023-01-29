@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public AnimationManager animationManager;
 
     public GameObject pauseMenu;
+    public CanvasGroup cg;
     public bool isPaused,tutorial;
     private float previousTimeScale;
 
@@ -22,6 +23,7 @@ public class GameManager : MonoBehaviour
         SetCurrentScene();
         if(currentScene == 0)
             tutorial = true;
+        
     }
     private void Update()
     {
@@ -39,6 +41,7 @@ public class GameManager : MonoBehaviour
         {
             previousTimeScale = Time.timeScale;
             Time.timeScale = 0;
+            cg.alpha = 0;
             sceneManagment.GoToPauseScreen();
             isPaused = true;
 
@@ -47,6 +50,7 @@ public class GameManager : MonoBehaviour
         {
             Time.timeScale = previousTimeScale;
             pauseMenu.SetActive(false);
+            cg.alpha = 1;
             isPaused = false;
         }
     }
@@ -56,6 +60,7 @@ public class GameManager : MonoBehaviour
         {
             previousTimeScale = Time.timeScale;
             Time.timeScale = 0;
+            cg.alpha = 0;
             sceneManagment.GoToStartScreen(true);
             isPaused = true;
 
@@ -64,6 +69,7 @@ public class GameManager : MonoBehaviour
         {
             Time.timeScale = previousTimeScale;
             pauseMenu.SetActive(false);
+            cg.alpha = 1;
             isPaused = false;
         }
     }
