@@ -6,12 +6,12 @@ public class CharacterScript : MonoBehaviour
     private PlayerManager playerManager;
     public GameObject checker, floatCheck, grabbedObject, detectedObject, grabPoint, grabPointBoat, EyePoint, myRender;
     public Rigidbody rb;
-    public bool left, canMove, usedAbility, canResize, canWalkOnWater, isHoldingCollectible, isHoldingGrabbable, isGrounded, isOnWater, hitWhileFloating;
+    public bool left, canMove, usedAbility, canResize, canWalkOnWater, isHoldingCollectible, isHoldingGrabbable, isGrounded, isOnWater, hitWhileFloating, moving;
     public float movementSpeed, lastDir, grabPointPosLeft = 1.9f, grabPointPosRight = -1.9f;
     public int size, weight;
     public LeverScript inRangeLever;
     public CollectibleScript.FruitEye typeEF;
-    
+
 
     void Awake()
     {
@@ -21,9 +21,10 @@ public class CharacterScript : MonoBehaviour
         isHoldingGrabbable = false;
         canResize = true;
         canMove = true;
-        rb = GetComponentInChildren<Rigidbody>();
+        moving = false;
         playerManager = FindObjectOfType<PlayerManager>();
     }
+
     public void ToggleLever()
     {
         if (inRangeLever != null)
@@ -35,6 +36,7 @@ public class CharacterScript : MonoBehaviour
         MoveGrabPoint(movement);
         rb.velocity = new Vector3(movement * movementSpeed, rb.velocity.y);
         lastDir = movement;
+
     }
     public void Rotate(float movement)
     {

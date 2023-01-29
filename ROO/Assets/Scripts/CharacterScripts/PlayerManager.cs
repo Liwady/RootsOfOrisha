@@ -70,6 +70,15 @@ public class PlayerManager : MonoBehaviour
     }
     private void Update()
     {
+        if (currentCharacter.canMove && currentCharacter.isGrounded && otherCharacter.isGrounded)
+        {
+            if (!playerControls.Gameplay.Move.WasPerformedThisFrame())
+            {
+                currentCharacter.rb.velocity = Vector3.zero;
+                if (moveBoth)
+                    otherCharacter.rb.velocity = Vector3.zero;
+            }
+        }
 
         if (middleBond.outOfRange)
             MaxReached(true);
@@ -244,6 +253,7 @@ public class PlayerManager : MonoBehaviour
             {
                 otherCharacter.transform.position = new Vector3(otherCharacter.transform.position.x, otherCharacter.transform.position.y, depth);
                 currentCharacter.usedAbility = false;
+
             }
             else
             {
@@ -457,7 +467,7 @@ public class PlayerManager : MonoBehaviour
             character2script.canMove = true;
             character1.transform.position = new Vector3(character1.transform.position.x, character1.transform.position.y, depth);
             character2.transform.position = new Vector3(character2.transform.position.x, character2.transform.position.y, -depth);
-            otherCharacter = currentCharacter;
+            otherCharacter = character1script;
             currentCharacter = character2script;
             camScript.player = character2;
             character1script.EyePoint.GetComponent<MeshRenderer>().enabled = false;
@@ -470,7 +480,7 @@ public class PlayerManager : MonoBehaviour
             character1script.canMove = true;
             character1.transform.position = new Vector3(character1.transform.position.x, character1.transform.position.y, -depth);
             character2.transform.position = new Vector3(character2.transform.position.x, character2.transform.position.y, depth);
-            otherCharacter = currentCharacter;
+            otherCharacter = character2script;
             currentCharacter = character1script;
             camScript.player = character1;
             character1script.EyePoint.GetComponent<MeshRenderer>().enabled = true;
@@ -528,7 +538,6 @@ public class PlayerManager : MonoBehaviour
 
         gameManager.UpdateMechanics(0, false); //switch ability ani 
     }
-
     public void DoPause()
     {
         gameManager.Pause();

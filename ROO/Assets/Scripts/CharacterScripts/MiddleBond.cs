@@ -36,7 +36,6 @@ public class MiddleBond : MonoBehaviour
             distance = Vector3.Distance(points[0].transform.position, points[1].transform.position);
         else
             distance = Vector3.Distance(points[1].transform.position, points[0].transform.position);
-        Debug.Log(distance);
         if (maxDistance <= distance)
             outOfRange = true;
         else
