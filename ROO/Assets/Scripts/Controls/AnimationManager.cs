@@ -26,7 +26,6 @@ public class AnimationManager : MonoBehaviour
         else
             skillAnimator.SetBool("CanFloat",true);
     }
-
     public void ChangeMechanicsSprite(int switchOption, bool sizeAbility, bool reset)
     {
         switch (switchOption)

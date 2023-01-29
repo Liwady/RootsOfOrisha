@@ -8,6 +8,7 @@ public class TutorialTrigger : MonoBehaviour
     private GameManager gameManager;
     [SerializeField]
     private int gate,trigger;
+    public bool isGate;
     
 
     private void Awake()
@@ -19,10 +20,14 @@ public class TutorialTrigger : MonoBehaviour
     {
         if (other.CompareTag("1") || other.CompareTag("2"))
         {
+            
             if (Lplayer != other.gameObject && Lplayer != null)
             {
                 Lplayer = null;
-                gameManager.UpdateMechanicsTutorial(gate);
+                if (isGate)
+                    gameManager.UpdateMechanicsTutorial(gate);
+                else
+                    gameManager.TutorialTriggers(trigger);
                 Destroy(gameObject);
                 Destroy(this);
             }
