@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public AudioManager audioManager;
     public CameraScript cameraScript;
 
-    public GameObject pauseMenu;
+    public GameObject pauseMenu,overlay;
     public CanvasGroup cg;
     public bool isPaused, tutorial;
     private float previousTimeScale;
@@ -72,6 +72,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1;
         pauseMenu.SetActive(false);
+        overlay.SetActive(true);
         cg.alpha = 1;
         isPaused = false;
         playerManager.EnablePlayerControls(isPaused);

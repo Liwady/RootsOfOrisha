@@ -820,7 +820,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6808272751253504645}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SceneManagment, Assembly-CSharp
         m_MethodName: Unpause
         m_Mode: 1
@@ -4210,7 +4210,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6808272751253504645}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SceneManagment, Assembly-CSharp
         m_MethodName: Quit
         m_Mode: 1
@@ -4390,7 +4390,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5202988729459261941}
-  - component: {fileID: 3452280684936467979}
   m_Layer: 0
   m_Name: Overlay
   m_TagString: Untagged
@@ -4420,24 +4419,6 @@ RectTransform:
   m_AnchoredPosition: {x: -1, y: -4}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &3452280684936467979
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6419735394015231183}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 667e245640abf9146a2cfe0b1b744df5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mechanicsImage: {fileID: 0}
-  eyeImage: {fileID: 0}
-  fruitImage: {fileID: 0}
-  lights: []
-  connection: []
-  connectionImage: {fileID: 0}
 --- !u!1 &6459897493299690813
 GameObject:
   m_ObjectHideFlags: 0
@@ -4666,10 +4647,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 144
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 2560, y: 1440}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -4738,12 +4719,14 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 45e306af3faf7c646acf0da4e4d073e3, type: 3}
   - {fileID: 21300000, guid: a31878028bea88f4fb54df9fa9de2c77, type: 3}
   brightness: {fileID: 11400000, guid: c45eee2ddb8d8e6468d5eb26469e4df7, type: 2}
-  playerManager: {fileID: 0}
   gameManager: {fileID: 0}
   old: 0
   currentScreen: 0
   currentSlider: 0
+  currentScene: 0
+  valueS: {x: 0, y: 0}
   startGame: 0
+  movedSlider: 0
 --- !u!1 &6957277527225212343
 GameObject:
   m_ObjectHideFlags: 0
@@ -4753,6 +4736,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 679846059378601075}
+  - component: {fileID: 1497577894}
   m_Layer: 0
   m_Name: Bottom
   m_TagString: Untagged
@@ -4782,6 +4766,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -134}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &1497577894
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6957277527225212343}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &7250809386047524797
 GameObject:
   m_ObjectHideFlags: 0
@@ -4904,9 +4900,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6808272751253504645}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SceneManagment, Assembly-CSharp
-        m_MethodName: EnableButtonChildren
+        m_MethodName: 
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4983,7 +4979,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7c2fc61be046cef45af4f1f03c31a477, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fa2493447d9b01047a894dac456884e6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5586,7 +5582,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6808272751253504645}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SceneManagment, Assembly-CSharp
         m_MethodName: GoToOptionsScreen
         m_Mode: 1

@@ -352,13 +352,9 @@ public class SceneManagment : MonoBehaviour
                     currentScene = 3;
                     PlayScene(4);
                     break;
-                case 3://WaterLevel
-                    currentScene = 4;
-                    PlayScene(5);
-                    break;
             }
         else
-            PlayScene(6);//go to Eshu
+            PlayScene(5);//go to Eshu
 
     }
 }

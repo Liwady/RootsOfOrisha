@@ -1,45 +1,5 @@
 using UnityEngine;
 
-
-/*        else if (hasReachedMax)
-
-if (currentAbility == 1 && abilityActive)
-@ -139,8 + 139,13 @@ public class PlayerManager : MonoBehaviour
-
-}
-private void MoveTogether()
-{
-@ -184,7 + 189,7 @@ public class PlayerManager : MonoBehaviour
-                otherCharacter.usedAbility = false;
-            }
-            abilityActive = false;
-
-gameManager.PlaySound("floatout");
-SetGravity();
-        }
-        else if (otherCharacter.isGrounded)
-@ -192,6 + 197,7 @@ public class PlayerManager : MonoBehaviour
-            abilityActive = true;
-            SetUsedAbility();
-            otherCharacter.MoveTowardsPlace(currentCharacter.floatCheck.transform);
-            gameManager.PlaySound("floatin");
-        }
-    }
-    public void Sizing()
-@ -212,7 + 218,10 @@ public class PlayerManager : MonoBehaviour
-                SetSize();
-                SetGravity();
-            }
-
-        }
-        else
-{
-    gameManager.PlaySound("cantResize");
-}
-    }
-    private void DoGrab()
-
-    */
 public class PlayerManager : MonoBehaviour
 {
     [HideInInspector]
@@ -70,15 +30,6 @@ public class PlayerManager : MonoBehaviour
     }
     private void Update()
     {
-        if (currentCharacter.canMove && currentCharacter.isGrounded && otherCharacter.isGrounded)
-        {
-            if (!playerControls.Gameplay.Move.WasPerformedThisFrame())
-            {
-                currentCharacter.rb.velocity = Vector3.zero;
-                if (moveBoth)
-                    otherCharacter.rb.velocity = Vector3.zero;
-            }
-        }
 
         if (middleBond.outOfRange)
             MaxReached(true);

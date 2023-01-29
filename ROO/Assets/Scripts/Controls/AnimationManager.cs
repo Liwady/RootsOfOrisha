@@ -12,7 +12,6 @@ public class AnimationManager : MonoBehaviour
     private List<Sprite> connection;
     [SerializeField]
     private Image connectionImage;
-
     [SerializeField]
     private Animator lightAnimator, skillAnimator;
     private int lightCount;
@@ -99,5 +98,4 @@ public class AnimationManager : MonoBehaviour
     {
         connectionImage.sprite = connection[num];
     }
-
 }

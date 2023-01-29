@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1638165752059222942
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1638165752059222943}
+  - component: {fileID: 1638165752059222912}
+  m_Layer: 0
+  m_Name: SceneManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1638165752059222943
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1638165752059222942}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1638165752059222912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1638165752059222942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c49439e129051cd478779eb8662b8214, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundon: {fileID: 0}
+  soundoff: {fileID: 0}
+  startObject: {fileID: 0}
+  startScreen: {fileID: 0}
+  optionsScreen: {fileID: 0}
+  pauseScreen: {fileID: 0}
+  settingsObject: {fileID: 0}
+  controlsObject: {fileID: 0}
+  creditsObject: {fileID: 0}
+  continueObject: {fileID: 0}
+  settingsChild: {fileID: 0}
+  controlsChild: {fileID: 0}
+  creditsChild: {fileID: 0}
+  currentButtonObject: {fileID: 0}
+  musicObject: {fileID: 0}
+  sfxObject: {fileID: 0}
+  brightnessObject: {fileID: 0}
+  musicSource: {fileID: 0}
+  SFXSource: {fileID: 0}
+  scroller:
+  - {fileID: 21300000, guid: 552fcdf7f3e9f91438b1c56d9ef71a1a, type: 3}
+  - {fileID: 21300000, guid: 6761eeebcd4ff2d4aba079a8784251ad, type: 3}
+  - {fileID: 21300000, guid: cf5c50584f6e3a74f905cec5d66c8b67, type: 3}
+  - {fileID: 21300000, guid: 06f68bf5ad9fe7244beaa423095da287, type: 3}
+  activeSlider:
+  - {fileID: 21300000, guid: 72c23b78014baa24c84ce89edf49534b, type: 3}
+  - {fileID: 21300000, guid: 6601ef457553b02439f135cffca36afc, type: 3}
+  - {fileID: 21300000, guid: 1f049d76bd638db4aae8f9e44addc3a6, type: 3}
+  - {fileID: 21300000, guid: b8d47968c8401e9498f46bfb9b48ecdd, type: 3}
+  - {fileID: 21300000, guid: 45e306af3faf7c646acf0da4e4d073e3, type: 3}
+  - {fileID: 21300000, guid: a31878028bea88f4fb54df9fa9de2c77, type: 3}
+  brightness: {fileID: 11400000, guid: c45eee2ddb8d8e6468d5eb26469e4df7, type: 2}
+  gameManager: {fileID: 0}
+  old: 0
+  currentScreen: 0
+  currentSlider: 0
+  currentScene: 0
+  valueS: {x: 0, y: 0}
+  startGame: 1
+  movedSlider: 0

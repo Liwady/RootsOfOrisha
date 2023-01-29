@@ -61,7 +61,7 @@ public class CharacterScript : MonoBehaviour
         else if (movement > 0 && lastDir > 0)
             grabPoint.transform.localPosition = new Vector3(grabPointPosRight, grabPoint.transform.localPosition.y, grabPoint.transform.localPosition.z);
         if (grabbedObject != null)
-            grabbedObject.transform.position = grabPoint.transform.position;
+            grabbedObject.transform.position = new Vector3(grabPoint.transform.position.x, grabPoint.transform.position.y,grabbedObject.transform.position.z);
     }
     public void GrabObject()
     {
@@ -74,7 +74,6 @@ public class CharacterScript : MonoBehaviour
                 isHoldingGrabbable = false;
                 grabbedObject.transform.parent = null;
                 grabbedObject.GetComponent<Rigidbody>().isKinematic = false;
-                grabbedObject.transform.position = grabbedObject.transform.position;
                 grabbedObject = null;
                 detectedObject = null;
             }
@@ -91,7 +90,7 @@ public class CharacterScript : MonoBehaviour
                         grabbedObject = detectedObject;
                         grabbedObject.transform.parent = gameObject.GetComponentInChildren<Transform>();
                         grabbedObject.GetComponent<Rigidbody>().isKinematic = true;
-                        grabbedObject.transform.position = grabPoint.transform.position;
+                        grabbedObject.transform.position = new Vector3(grabPoint.transform.position.x, grabPoint.transform.position.y, grabbedObject.transform.position.z);
                     }
                     else if (detectedObject.CompareTag("Boat") && isOnWater)
                     {
@@ -116,7 +115,7 @@ public class CharacterScript : MonoBehaviour
                     grabbedObject = detectedObject;
                     grabbedObject.transform.parent = gameObject.GetComponentInChildren<Transform>();
                     grabbedObject.GetComponent<Rigidbody>().isKinematic = true;
-                    grabbedObject.transform.position = grabPoint.transform.position;
+                    grabbedObject.transform.position = new Vector3(grabPoint.transform.position.x, grabPoint.transform.position.y, grabbedObject.transform.position.z);
                 }
             }
         }
