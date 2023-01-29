@@ -283,12 +283,14 @@ public class PlayerManager : MonoBehaviour
                 abilityActive = false;
                 currentCharacter.usedAbility = false;
                 gameManager.UpdateMechanics(2, true);
+                gameManager.PlaySound("sizeout");
             }
             else
             {
                 abilityActive = true;
                 SetUsedAbility();
                 SetSize();
+                gameManager.PlaySound("sizein");
                 gameManager.UpdateMechanics(2, false);
             }
         }
