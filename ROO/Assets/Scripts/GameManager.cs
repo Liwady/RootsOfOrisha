@@ -25,7 +25,10 @@ public class GameManager : MonoBehaviour
         SetCurrentScene();
         if(currentScene == 0)
             tutorial = true;
-        
+        if (tutorial)
+        {
+            //disable all controls besides walking
+        }
     }
     private void Update()
     {
@@ -98,6 +101,20 @@ public class GameManager : MonoBehaviour
     public void UpdateConnection(int num)
     {
         animationManager.SwapConnectionSprite(num);
+    }
+
+    public void TutorialTriggers(int trigger)
+    {
+        switch (trigger)
+        {
+            case 0://walk pop upp button y
+                break;
+            case 1://pop up to disable walk together + r button pop up
+
+            default:
+                break;
+        }
+
     }
 
     public void PlaySound(string _name)
