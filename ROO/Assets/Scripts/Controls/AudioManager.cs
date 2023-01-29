@@ -5,7 +5,7 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     [SerializeField]
-    private AudioSource player1AS, player2AS, cantResizeAS, collectAS, floatInAS, floatOutAS;
+    private AudioSource player1AS, player2AS, cantResizeAS, collectAS, floatInAS, floatOutAS, sizeInAS, sizeOutAS;
 
     [SerializeField]
     private AudioClip[] walkingClipsCharacter1, walkingClipsCharacter2;
@@ -22,10 +22,6 @@ public class AudioManager : MonoBehaviour
         
     }
 
-    public void PutRandomClip(AudioClip[]_clips, AudioSource _source)
-    {
-
-    }
     public void PlaySound(string _name)
     {
         Debug.Log(_name);
@@ -60,6 +56,12 @@ public class AudioManager : MonoBehaviour
                 if (!floatOutAS.isPlaying)
                     floatOutAS.Play();
                 break;
+            case "sizein":
+                sizeInAS.Play();
+                break;
+            case "sizeout":
+                sizeOutAS.Play();
+                break;
             default:
                 break;
         }
@@ -69,12 +71,7 @@ public class AudioManager : MonoBehaviour
     {
         switch (_name)
         {
-            case "1": //char 1
-                player1AS.Play();
-                break;
-            case "2": //char 2
-                player2AS.Play();
-                break;
+            
             default:
                 break;
         }
