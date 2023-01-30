@@ -2501,7 +2501,7 @@ PrefabInstance:
     - target: {fileID: 81609603709544600, guid: 7822c70e7217d3744a09e7b6f4d97249, type: 3}
       propertyPath: sceneManagment
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1589041488}
     - target: {fileID: 81609603709544602, guid: 7822c70e7217d3744a09e7b6f4d97249, type: 3}
       propertyPath: m_Name
       value: EndGameZone
