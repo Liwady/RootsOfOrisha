@@ -24,7 +24,6 @@ public class AudioManager : MonoBehaviour
 
     public void PlaySound(string _name)
     {
-        Debug.Log(_name);
         switch (_name)
         {
             case "walk1": //char 1

@@ -401,15 +401,16 @@ public class PlayerManager : MonoBehaviour
                 character2.transform.position = new Vector3(respawnPoint.spawnPoints[1].transform.position.x, respawnPoint.spawnPoints[1].transform.position.y, 0);
 
             }
-            abilityActive = false;
+
 
             SetMovementSpeed();
-            if (currentAbility == 0)
+            if (currentAbility == 0 && abilityActive)
                 DefaultValuesSize();
             else
                 SetGravity();
             character1script.usedAbility = false;
             character2script.usedAbility = false;
+            abilityActive = false;
         }
     }
     public void SwitchCharacter()
