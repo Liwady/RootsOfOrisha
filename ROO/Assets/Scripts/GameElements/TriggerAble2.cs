@@ -28,16 +28,12 @@ public class TriggerAble2 : MonoBehaviour
     private WeightManager weightManager;
 
     private Vector3 originalPosLocal;
-    private bool triggered, hasWheel;
+    private bool triggered;
     private Wheel wheelUpScript, wheelDownScript;
     private PressurePlate2 pressurePlate;
 
     [HideInInspector]
-    public List<CharacterScript> characterScriptsOnMe = new List<CharacterScript>();
-    private PlayerManager playerManager;
-
-
-
+    public List<CharacterScript> characterScriptsOnMe = new();
 
     private void Start()
     {
@@ -48,10 +44,8 @@ public class TriggerAble2 : MonoBehaviour
             if (wheelUp != null)
             {
                 wheelUpScript = wheelUp.GetComponent<Wheel>();
-                hasWheel = true;
                 wheelDownScript = wheelDown.GetComponent<Wheel>();
             }
-            playerManager = FindObjectOfType<PlayerManager>();
             pressurePlate = GetComponent<PressurePlate2>();
         }
     }
@@ -113,14 +107,11 @@ public class TriggerAble2 : MonoBehaviour
                     {
                         transform.Translate(new Vector3(0, -movementSpeed, 0));
                         if (transform.localPosition.y < originalPosLocal.y - maxXchangeValue) // catch going over the limit
-                        {
                             transform.localPosition = new Vector3(transform.localPosition.x, originalPosLocal.y - maxXchangeValue, transform.localPosition.z);
-                        }
+                        
                     }
                     else if (transform.localPosition.y < originalPosLocal.y - maxXchangeValue)
-                    {
                         transform.Translate(new Vector3(0, movementSpeed, 0));
-                    }
                 }
                 else if (maxXchangeValue < 0) // if maxchange is negative it means it needs to go up
                 {
@@ -132,9 +123,7 @@ public class TriggerAble2 : MonoBehaviour
                             transform.localPosition = new Vector3(transform.localPosition.x, originalPosLocal.y - maxXchangeValue, transform.localPosition.z);
                     }
                     else if (transform.localPosition.y > originalPosLocal.y - maxXchangeValue)
-                    {
                         transform.Translate(new Vector3(0, -movementSpeed, 0));
-                    }
                 }
                 else if (maxXchangeValue == 0)
                 {

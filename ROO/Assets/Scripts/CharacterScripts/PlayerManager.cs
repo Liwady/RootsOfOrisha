@@ -81,6 +81,30 @@ public class PlayerManager : MonoBehaviour
         playerControls.Gameplay.Pause.performed += ctx => DoPause();
         playerControls.Gameplay.Enable();
     }
+    public void SetTutorialControls(int stage)
+    {
+        switch (stage)
+        {
+            case 1:
+                playerControls.Gameplay.MoveTogether.Enable();
+                break;
+            case 2:
+                playerControls.Gameplay.TriggerAbility.Enable();
+                break;
+            case 3:
+                playerControls.Gameplay.SwitchAbility.Enable();
+                break;
+            case 4:
+                playerControls.Gameplay.Grab.Enable();
+                break;
+            default:
+                playerControls.Gameplay.MoveTogether.Disable();
+                playerControls.Gameplay.TriggerAbility.Disable();
+                playerControls.Gameplay.SwitchAbility.Disable();
+                playerControls.Gameplay.Grab.Disable();
+                break;
+        }
+    }
     private void MaxReached(bool r)
     {
         if (r)

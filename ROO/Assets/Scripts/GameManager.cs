@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour
             sceneManagment.GoToStartScreen(true);
             isPaused = true;
             playerManager.EnablePlayerControls(isPaused);
+            TutorialTriggers(0);
         }
         sceneManagment.currentScene = currentScene;
         cameraScript.currentLevel = currentScene;
@@ -76,6 +77,7 @@ public class GameManager : MonoBehaviour
         cg.alpha = 1;
         isPaused = false;
         playerManager.EnablePlayerControls(isPaused);
+        playerManager.SetTutorialControls(0);
     }
     //set values so the sprite manager can use them and we can keep the info in the game manager. 
     public void UpdateEye(bool col)
@@ -93,26 +95,15 @@ public class GameManager : MonoBehaviour
     {
         animationManager.ChangeMechanicsSprite(option, playerManager.currentAbility == 0, reset);
     }
-    public void UpdateMechanicsTutorial(int n)
-    {
-        animationManager.TutorialMechanicsTrigger(n);
-    }
+
     public void UpdateConnection(int num)
     {
         animationManager.SwapConnectionSprite(num);
     }
-    public void TutorialTriggers(int trigger)
+    public void TutorialTriggers(int stage)
     {
-        switch (trigger)
-        {
-            case 0://walk pop upp button y
-                break;
-            case 1://pop up to disable walk together + r button pop up
-
-            default:
-                break;
-        }
-
+        playerManager.SetTutorialControls(stage);
+        animationManager.TutorialFeedbackTrigger(stage);
     }
     public void PlaySound(string _name)
     {

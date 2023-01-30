@@ -1,11 +1,11 @@
 
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.EventSystems;
 using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using UnityEngine.Audio;
 
 public class SceneManagment : MonoBehaviour
 {
@@ -32,7 +32,7 @@ public class SceneManagment : MonoBehaviour
     public Vector2 valueS;
     private float time;
     private bool atSlider, start;
-    public bool startGame,movedSlider;
+    public bool startGame, movedSlider;
 
 
     private void Awake()
@@ -55,14 +55,9 @@ public class SceneManagment : MonoBehaviour
     private void Update()
     {
         if (atSlider)
-        {
             SliderValue();
-        }
-
     }
 
-
-   
     public void PlayScene(int sceneNumber)
     {
         SceneManager.LoadScene(sceneNumber);
@@ -114,7 +109,8 @@ public class SceneManagment : MonoBehaviour
             startGame = false;
             startScreen.SetActive(false);
             gameManager.StartGame();
-        }else
+        }
+        else
             gameManager.Pause();
 
     }
@@ -326,11 +322,11 @@ public class SceneManagment : MonoBehaviour
     {
 
         //to overhaul later temporary fix
-            switch (slider.value)
-            {
-                case 0:
-                    SFXMasterMixer.SetFloat("MasterVolSFX", -80);
-                    break;
+        switch (slider.value)
+        {
+            case 0:
+                SFXMasterMixer.SetFloat("MasterVolSFX", -80);
+                break;
             case 1:
                 SFXMasterMixer.SetFloat("MasterVolSFX", -20);
                 break;
@@ -362,8 +358,8 @@ public class SceneManagment : MonoBehaviour
                 SFXMasterMixer.SetFloat("MasterVolSFX", 25);
                 break;
             default:
-                    break;
-            }
+                break;
+        }
 
     }
     public void SetBrightness()//5=1.5 brighness 10=2 brightness 0=1
