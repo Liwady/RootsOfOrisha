@@ -4,30 +4,24 @@ using UnityEngine;
 
 public class PressurePlate2 : MonoBehaviour
 {
+
     [SerializeField]
     private TriggerAble2[] triggeredObjects;
     [SerializeField]
-    private int weightRequirment;
+    private int weightRequirment = 1;
 
-    [SerializeField]
+
     private List<CharacterScript> characterScripts = new List<CharacterScript>();
-    [SerializeField]
+
     private List<int> characterOldRelatedWeights = new List<int>();
 
+    [HideInInspector]
     public int weightOnMe;
-    private PlayerManager playerManager;
 
 
-    void Start()
-    {
-        playerManager = FindObjectOfType<PlayerManager>();
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -94,7 +88,6 @@ public class PressurePlate2 : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log("t");
         if (other.CompareTag("1") || other.CompareTag("2"))
         {
             CharacterScript character = other.GetComponentInParent<CharacterScript>();

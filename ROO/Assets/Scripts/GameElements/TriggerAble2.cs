@@ -8,24 +8,27 @@ public class TriggerAble2 : MonoBehaviour
     {
         up,
         down,
-        weightdown,
-        weightup,
+        weight,
     }
-    [SerializeField]
-    private TriggerAble relatedWeightTriggerable;
+    [Header("General Must Set")]
     [SerializeField]
     private Mode mode;
     [SerializeField]
-    private GameObject deathZone, wheel;
-
-    [SerializeField]
     private float maxXchangeValue, movementSpeed;
-
-    public GameObject triggeredChar;
+    [Header("Up Mode Specifics ")]
+    [SerializeField]
+    private GameObject deathZone;
+    [Header("Weight Mode Specifics")]
+    [SerializeField]
+    private GameObject wheel;
+    [SerializeField]
+    private bool firstPackage;
     private Vector3 originalPosLocal;
     private bool triggered, hasWheel;
     private Wheel wheelScript;
-    public int weightOnMe;
+    private PressurePlate2 pressurePlate;
+    private WeightManager weightManager;
+
 
     private void Start()
     {
@@ -34,8 +37,13 @@ public class TriggerAble2 : MonoBehaviour
         {
             wheelScript = wheel.GetComponent<Wheel>();
             hasWheel = true;
+            weightManager = wheel.GetComponent<WeightManager>();
         }
-
+        if (mode == Mode.weight)
+        {
+            pressurePlate = GetComponent<PressurePlate2>();
+            
+        }
     }
     public void Toggle(bool _value) //sets the triggered value
     {
@@ -58,7 +66,7 @@ public class TriggerAble2 : MonoBehaviour
                 {
                     if (deathZone != null)
                         deathZone.SetActive(true);
-                    transform.Translate(new Vector3(0, - movementSpeed, 0));
+                    transform.Translate(new Vector3(0, -movementSpeed, 0));
                 }
                 break;
             case Mode.down:
@@ -76,11 +84,62 @@ public class TriggerAble2 : MonoBehaviour
                     transform.Translate(new Vector3(0, movementSpeed, 0));
                 }
                 break;
-            case Mode.weightdown:
+            case Mode.weight:
+                if (firstPackage)
+                {
+                    weightManager.weightOn1 = pressurePlate.weightOnMe;
+                    weightManager.balanceWeights();
+                    maxXchangeValue = weightManager.weightOn1New;
+                }
+                else
+                {
+                    weightManager.weightOn2 = pressurePlate.weightOnMe;
+                    maxXchangeValue = weightManager.weightOn2New;
+                }
+                if (maxXchangeValue > 0)
+                {
+                    if (transform.localPosition.y > originalPosLocal.y - maxXchangeValue)
+                    {
+                        transform.Translate(new Vector3(0, -movementSpeed, 0));
+                        if (transform.localPosition.y < originalPosLocal.y - maxXchangeValue) // catch going over the limit
+                        {
+                            transform.localPosition = new Vector3(transform.localPosition.x, originalPosLocal.y - maxXchangeValue, transform.localPosition.z);
+                        }
+                    }
+                    else if (transform.localPosition.y < originalPosLocal.y - maxXchangeValue)
+                    {
+                        transform.Translate(new Vector3(0, movementSpeed, 0));
+                    }
+                }
+                else if (maxXchangeValue < 0) // if maxchange is negative it means it needs to go up
+                {
 
-                break;
-            case Mode.weightup:
-
+                    if (transform.localPosition.y < originalPosLocal.y - maxXchangeValue)
+                    {
+                        transform.Translate(new Vector3(0, movementSpeed, 0));
+                        if (transform.localPosition.y > originalPosLocal.y - maxXchangeValue) // catch going over the limit
+                            transform.localPosition = new Vector3(transform.localPosition.x, originalPosLocal.y - maxXchangeValue, transform.localPosition.z);
+                    }
+                    else if (transform.localPosition.y > originalPosLocal.y - maxXchangeValue)
+                    {
+                        transform.Translate(new Vector3(0, -movementSpeed, 0));
+                    }
+                }
+                else if (maxXchangeValue == 0)
+                {
+                    if (transform.localPosition.y > originalPosLocal.y)
+                    {
+                        transform.Translate(new Vector3(0, -movementSpeed, 0));
+                        if (transform.localPosition.y < originalPosLocal.y) //catch going over the origanl position
+                            transform.localPosition = originalPosLocal;
+                    }
+                    else if (transform.localPosition.y < originalPosLocal.y)
+                    {
+                        transform.Translate(new Vector3(0, movementSpeed, 0));
+                        if (transform.localPosition.y > originalPosLocal.y) //catch going over the origanl position
+                            transform.localPosition = originalPosLocal;
+                    }
+                }
                 break;
         }
     }

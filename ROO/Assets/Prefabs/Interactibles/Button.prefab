@@ -70,8 +70,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 529327447
-  m_SortingLayer: 1
+  m_SortingLayerID: -634277405
+  m_SortingLayer: -1
   m_SortingOrder: 1
   m_Sprite: {fileID: 4428016675799487561, guid: 508078f9d38a9ec4cb5f5f85d6daddba, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3030566040297672275}
   - component: {fileID: 3030566040297672272}
-  - component: {fileID: 3030566040297672279}
+  - component: {fileID: 1765039681}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -131,9 +131,9 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.413995, y: 1.8501558, z: 10}
+  m_Size: {x: 1.413995, y: 1.8501558, z: 20}
   m_Center: {x: -0.109366655, y: 0.19572246, z: 0}
---- !u!114 &3030566040297672279
+--- !u!114 &1765039681
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -142,14 +142,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 3030566040297672278}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18455d393eed01442a658c5cc3f931cc, type: 3}
+  m_Script: {fileID: 11500000, guid: cac468971a2d46948bb0e92b93987df8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   triggeredObjects:
   - {fileID: 0}
-  - {fileID: 1435521457384562307}
+  - {fileID: 9075011975073847335}
   weightRequirment: 4
-  triggeredChar: {fileID: 0}
   weightOnMe: 0
 --- !u!1 &3089218139971118655
 GameObject:
@@ -206,8 +205,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6862406582893038145}
   - component: {fileID: 48779251289536578}
-  - component: {fileID: 1435521457384562307}
   - component: {fileID: 4496629080262540562}
+  - component: {fileID: 9075011975073847335}
   m_Layer: 0
   m_Name: Push_Button_Middle
   m_TagString: Untagged
@@ -269,8 +268,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 529327447
-  m_SortingLayer: 1
+  m_SortingLayerID: -634277405
+  m_SortingLayer: -1
   m_SortingOrder: 2
   m_Sprite: {fileID: 5034582391937893221, guid: 508078f9d38a9ec4cb5f5f85d6daddba, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -283,27 +282,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1435521457384562307
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6385440310855333258}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ace6cf8e93bf4b94298f2a729b9b2ad3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  relatedWeightTriggerable: {fileID: 0}
-  mode: 1
-  movementVector: {x: 0, y: 0.01, z: 0}
-  maxPos: {x: 0, y: 0.15, z: 0}
-  hasDeathZone: 0
-  deathZone: {fileID: 0}
-  wheel: {fileID: 0}
-  triggeredChar: {fileID: 0}
-  weightOnMe: 0
 --- !u!65 &4496629080262540562
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -317,6 +295,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.8790312, y: 0.54013294, z: 20}
   m_Center: {x: -0.018548489, y: -0.064126104, z: 0}
+--- !u!114 &9075011975073847335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6385440310855333258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5feb21f525eb06d4481b92c898b300dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mode: 1
+  maxXchangeValue: 0.15
+  movementSpeed: 0.01
+  deathZone: {fileID: 0}
+  wheel: {fileID: 0}
+  firstPackage: 0
 --- !u!1 &6461795648647085385
 GameObject:
   m_ObjectHideFlags: 0
@@ -387,8 +383,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 529327447
-  m_SortingLayer: 1
+  m_SortingLayerID: -634277405
+  m_SortingLayer: -1
   m_SortingOrder: 3
   m_Sprite: {fileID: -1777373565008354884, guid: 508078f9d38a9ec4cb5f5f85d6daddba, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
