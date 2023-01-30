@@ -6,8 +6,9 @@ public class AltarScript : MonoBehaviour
     [SerializeField]
     private int fruitRequirment, eyeRequirment;
     [SerializeField]
-    private TriggerAble2 gate;
+    private TriggerAble2[] gates;
     private Animator animator;
+    private bool toggled;
 
     private void Start()
     {
@@ -19,8 +20,14 @@ public class AltarScript : MonoBehaviour
         if (gameManager.amountOfFruit >= fruitRequirment && gameManager.eyeColl)
         {
             animator.SetTrigger("Start");
-            if (gate != null)
-                gate.Toggle(true);
+            if (gates != null && toggled == false)
+            {
+                for (int i = 0; i < gates.Length; i++)
+                    gates[i].Toggle(true);
+                toggled= true;
+                Debug.Log("altar activation");
+                gameManager.PlaySound("flame");
+            }
         }
 
         //change what camera can see

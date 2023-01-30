@@ -4,11 +4,13 @@ public class FireblobRB : MonoBehaviour
 {
     private Rigidbody myRB;
     private PlayerManager playerManager;
+    private GameManager gameManager;
     private float startposy;
     [SerializeField]
     public int force;
     private void Awake()
     {
+        gameManager = FindObjectOfType<GameManager>();
         myRB = this.GetComponent<Rigidbody>();
         playerManager = FindObjectOfType<PlayerManager>();
         startposy = this.transform.position.y;
@@ -18,7 +20,10 @@ public class FireblobRB : MonoBehaviour
     void Update()
     {
         if (this.transform.position.y < startposy)
+        {
+            gameManager.PlaySound("lava");
             myRB.velocity = new Vector3(0, force, 0);
+        }
     }
 
     private void OnTriggerEnter(Collider other) //checks if the player collided with the fireblob

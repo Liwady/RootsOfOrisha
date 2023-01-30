@@ -109,9 +109,14 @@ public class GameManager : MonoBehaviour
     {
         audioManager.PlaySound(_name);
     }
-    public void StopSound(string _name)
+    public void PlaySound(string _name, int _num)
     {
-        audioManager.StopSound(_name);
+        audioManager.PlaySound(_name, _num);
+    }
+
+    public void StopSound(string _name, int _num)
+    {
+        audioManager.StopSound(_name, _num);
     }
     public void GoBack()
     {
