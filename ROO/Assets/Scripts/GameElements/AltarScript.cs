@@ -6,7 +6,7 @@ public class AltarScript : MonoBehaviour
     [SerializeField]
     private int fruitRequirment, eyeRequirment;
     [SerializeField]
-    private TriggerAble gate;
+    private TriggerAble2 gate;
     private Animator animator;
 
     private void Start()

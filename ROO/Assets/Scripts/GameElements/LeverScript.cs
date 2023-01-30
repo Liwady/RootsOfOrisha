@@ -3,7 +3,7 @@ using UnityEngine;
 public class LeverScript : MonoBehaviour
 {
     [SerializeField]
-    private TriggerAble[] triggeredObjects;
+    private TriggerAble2[] triggeredObjects;
     private CharacterScript character;
     private bool toggled = false;
     private void OnTriggerEnter(Collider other)

@@ -18,12 +18,24 @@ public class AnimationManager : MonoBehaviour
     [SerializeField]
     private bool zoudoo;
 
-    public void TutorialMechanicsTrigger(int n)
+
+    public void TutorialFeedbackTrigger(int stage)
     {
-        if (n==0)
-            skillAnimator.SetBool("CanResize",true);
-        else
-            skillAnimator.SetBool("CanFloat",true);
+        switch (stage)
+        {
+            case 1://enable move together // show grab button 
+                break;
+            case 2://enable trigger ability // show trigger button 
+                skillAnimator.SetBool("CanResize", true);
+                break;
+            case 3://enable switch ability => show switch button 
+                skillAnimator.SetBool("CanFloat", true);
+                break;
+            case 4://enable grab => show grab button
+                break;
+            default:
+                break;
+        }
     }
     public void ChangeMechanicsSprite(int switchOption, bool sizeAbility, bool reset)
     {
