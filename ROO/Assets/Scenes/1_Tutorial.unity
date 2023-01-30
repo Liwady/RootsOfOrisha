@@ -24839,6 +24839,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8216099590502726377}
     - target: {fileID: 1638165752059222912, guid: 33b0ada333d48dd4092120e1a030ce8e, type: 3}
+      propertyPath: SFXMasterMixer
+      value: 
+      objectReference: {fileID: 24100000, guid: e26898ccd7be1d249b0136ddf3cf34a1, type: 2}
+    - target: {fileID: 1638165752059222912, guid: 33b0ada333d48dd4092120e1a030ce8e, type: 3}
       propertyPath: continueObject
       value: 
       objectReference: {fileID: 7412472006288037443}

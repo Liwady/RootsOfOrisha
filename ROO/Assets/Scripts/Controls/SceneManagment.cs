@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class SceneManagment : MonoBehaviour
 {
@@ -19,6 +20,9 @@ public class SceneManagment : MonoBehaviour
     private GameManager gameManager;
     [SerializeField]
     private int old, currentScreen, currentSlider;//0=pause, 1=options, 2=child of options, 3=child of settings
+
+    [SerializeField]
+    private AudioMixer SFXMasterMixer;
 
     public int currentScene;
     private SpriteState ss;
@@ -56,6 +60,8 @@ public class SceneManagment : MonoBehaviour
         }
 
     }
+
+
    
     public void PlayScene(int sceneNumber)
     {
@@ -318,10 +324,47 @@ public class SceneManagment : MonoBehaviour
     }
     public void SetSFXVolume()
     {
-        if (slider.value == 0)
-            SFXSource.GetComponent<AudioSource>().volume = 0;
-        else
-            SFXSource.GetComponent<AudioSource>().volume = (slider.value / 100);
+
+        //to overhaul later temporary fix
+            switch (slider.value)
+            {
+                case 0:
+                    SFXMasterMixer.SetFloat("MasterVolSFX", -80);
+                    break;
+            case 1:
+                SFXMasterMixer.SetFloat("MasterVolSFX", -20);
+                break;
+            case 2:
+                SFXMasterMixer.SetFloat("MasterVolSFX", -15);
+                break;
+            case 3:
+                SFXMasterMixer.SetFloat("MasterVolSFX", -10);
+                break;
+            case 4:
+                SFXMasterMixer.SetFloat("MasterVolSFX", -5);
+                break;
+            case 5:
+                SFXMasterMixer.SetFloat("MasterVolSFX", 0);
+                break;
+            case 6:
+                SFXMasterMixer.SetFloat("MasterVolSFX", 5);
+                break;
+            case 7:
+                SFXMasterMixer.SetFloat("MasterVolSFX", 10);
+                break;
+            case 8:
+                SFXMasterMixer.SetFloat("MasterVolSFX", 15);
+                break;
+            case 9:
+                SFXMasterMixer.SetFloat("MasterVolSFX", 20);
+                break;
+            case 10:
+                SFXMasterMixer.SetFloat("MasterVolSFX", 25);
+                break;
+            default:
+                    break;
+            }
+
     }
     public void SetBrightness()//5=1.5 brighness 10=2 brightness 0=1
     {
