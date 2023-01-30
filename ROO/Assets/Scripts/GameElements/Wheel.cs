@@ -8,9 +8,7 @@ public class Wheel : MonoBehaviour
     private float rotationSpeed;
     public void RotateWheelForward(bool _forward) 
     {
-        if (!_forward)
-            transform.Rotate(Vector3.back * (rotationSpeed * Time.deltaTime));
-        else
+        if (_forward)
             transform.Rotate(Vector3.forward * (rotationSpeed * Time.deltaTime));
 
     }

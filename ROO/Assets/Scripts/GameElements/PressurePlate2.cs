@@ -20,20 +20,20 @@ public class PressurePlate2 : MonoBehaviour
 
 
 
-
-
-
     private void OnTriggerEnter(Collider other)
     {
+        
         if (other.CompareTag("1") || other.CompareTag("2"))
         {
-            CharacterScript character = other.GetComponentInParent<CharacterScript>();
+            CharacterScript character = other.GetComponentInParent<CharacterScript>(); ;
             if (!characterScripts.Contains(character))
             {
                 weightOnMe += character.weight;
                 characterOldRelatedWeights.Add(character.weight);
                 characterScripts.Add(character);
             }
+            for (int i = 0; i < triggeredObjects.Length; i++)
+                triggeredObjects[i].characterScriptsOnMe = characterScripts;
         }
         else if (other.CompareTag("Statue"))
         {
@@ -43,9 +43,7 @@ public class PressurePlate2 : MonoBehaviour
         if (weightOnMe >= weightRequirment)
         {
             for (int i = 0; i < triggeredObjects.Length; i++)
-            {
                 triggeredObjects[i].Toggle(true);
-            }
         }
     }
     private void OnTriggerStay(Collider other)
@@ -101,6 +99,8 @@ public class PressurePlate2 : MonoBehaviour
                     characterOldRelatedWeights.RemoveAt(i);
                 }
             }
+            for (int i = 0; i < triggeredObjects.Length; i++)
+                triggeredObjects[i].characterScriptsOnMe = characterScripts;
         }
         else if (other.CompareTag("Statue"))
         {

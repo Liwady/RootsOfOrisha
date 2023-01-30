@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,29 +19,40 @@ public class TriggerAble2 : MonoBehaviour
     private GameObject deathZone;
     [Header("Weight Mode Specifics")]
     [SerializeField]
-    private GameObject wheel;
+    private GameObject wheelUp;
+    [SerializeField]
+    private GameObject wheelDown;
     [SerializeField]
     private bool firstPackage;
+    [SerializeField]
+    private WeightManager weightManager;
+
     private Vector3 originalPosLocal;
     private bool triggered, hasWheel;
-    private Wheel wheelScript;
+    private Wheel wheelUpScript, wheelDownScript;
     private PressurePlate2 pressurePlate;
-    private WeightManager weightManager;
+
+    [HideInInspector]
+    public List<CharacterScript> characterScriptsOnMe = new List<CharacterScript>();
+    private PlayerManager playerManager;
+
+
 
 
     private void Start()
     {
+
         originalPosLocal = transform.localPosition;
-        if (wheel != null)
-        {
-            wheelScript = wheel.GetComponent<Wheel>();
-            hasWheel = true;
-            weightManager = wheel.GetComponent<WeightManager>();
-        }
         if (mode == Mode.weight)
         {
+            if (wheelUp != null)
+            {
+                wheelUpScript = wheelUp.GetComponent<Wheel>();
+                hasWheel = true;
+                wheelDownScript = wheelDown.GetComponent<Wheel>();
+            }
+            playerManager = FindObjectOfType<PlayerManager>();
             pressurePlate = GetComponent<PressurePlate2>();
-            
         }
     }
     public void Toggle(bool _value) //sets the triggered value
@@ -60,7 +70,7 @@ public class TriggerAble2 : MonoBehaviour
                     if (deathZone != null)
                         deathZone.SetActive(false);
                     if (transform.localPosition.y < originalPosLocal.y + maxXchangeValue)
-                        transform.Translate(new Vector3(0, movementSpeed,0));
+                        transform.Translate(new Vector3(0, movementSpeed, 0));
                 }
                 else if (transform.localPosition.y > originalPosLocal.y)
                 {
@@ -96,6 +106,7 @@ public class TriggerAble2 : MonoBehaviour
                     weightManager.weightOn2 = pressurePlate.weightOnMe;
                     maxXchangeValue = weightManager.weightOn2New;
                 }
+                RotateWheels();
                 if (maxXchangeValue > 0)
                 {
                     if (transform.localPosition.y > originalPosLocal.y - maxXchangeValue)
@@ -143,6 +154,29 @@ public class TriggerAble2 : MonoBehaviour
                 break;
         }
     }
+
+
+    private void RotateWheels()
+    {
+        if (triggered)
+        {
+            if (transform.localPosition.y < originalPosLocal.y)// if u are below ur starting position
+            {
+                if (transform.localPosition.y != originalPosLocal.y - maxXchangeValue) //max not reached
+                    wheelDownScript.RotateWheelForward(true);
+                else if(transform.localPosition.y == originalPosLocal.y - maxXchangeValue) //max reached
+                    wheelDownScript.RotateWheelForward(false);
+            }
+            else if (transform.localPosition.y > originalPosLocal.y) //if u are above ur starting position
+            {
+                if (transform.localPosition.y != originalPosLocal.y - maxXchangeValue) //max not reached
+                    wheelUpScript.RotateWheelForward(true);
+                else if (transform.localPosition.y == originalPosLocal.y - maxXchangeValue) //max reached
+                    wheelUpScript.RotateWheelForward(false);
+            }
+        }
+    }
+
     private void Update()
     {
         ModeSwitch();

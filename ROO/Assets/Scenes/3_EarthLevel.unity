@@ -603,11 +603,9 @@ GameObject:
   m_Component:
   - component: {fileID: 80544896}
   - component: {fileID: 80544897}
-  - component: {fileID: 80544899}
   - component: {fileID: 80544900}
   - component: {fileID: 80544902}
   - component: {fileID: 80544901}
-  - component: {fileID: 80544903}
   m_Layer: 0
   m_Name: Package_4
   m_TagString: Obstacle
@@ -626,7 +624,8 @@ Transform:
   m_LocalPosition: {x: 7.84, y: -13.51, z: -0.39396766}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2102278772}
   m_Father: {fileID: 203261332}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -682,19 +681,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!65 &80544899
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 80544895}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3.5614128, y: 1.6214232, z: 10}
-  m_Center: {x: 0.005487442, y: -6.689288, z: 0}
 --- !u!65 &80544900
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -722,7 +708,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mode: 2
   maxXchangeValue: 0
-  movementSpeed: 0.002
+  movementSpeed: 0.0013
   deathZone: {fileID: 0}
   wheel: {fileID: 1433764491}
   firstPackage: 0
@@ -742,22 +728,6 @@ MonoBehaviour:
   - {fileID: 80544901}
   weightRequirment: 0
   weightOnMe: 0
---- !u!54 &80544903
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 80544895}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &97414528
 GameObject:
   m_ObjectHideFlags: 0
@@ -1520,6 +1490,68 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &218458850
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 218458851}
+  - component: {fileID: 218458852}
+  - component: {fileID: 218458853}
+  m_Layer: 0
+  m_Name: hitbox
+  m_TagString: Obstacle
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &218458851
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 218458850}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 972523319}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &218458852
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 218458850}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.8106575, y: 1.4185534, z: 10}
+  m_Center: {x: -0.0038166046, y: -6.706775, z: 0}
+--- !u!54 &218458853
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 218458850}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &225301571
 GameObject:
   m_ObjectHideFlags: 0
@@ -1772,6 +1804,68 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &287256674
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 287256675}
+  - component: {fileID: 287256677}
+  - component: {fileID: 287256676}
+  m_Layer: 0
+  m_Name: hitbox
+  m_TagString: Obstacle
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &287256675
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 287256674}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 871985147}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &287256676
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 287256674}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &287256677
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 287256674}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.9114342, y: 1.439744, z: 10}
+  m_Center: {x: 0.008436203, y: -6.7295003, z: 0}
 --- !u!1 &296609293
 GameObject:
   m_ObjectHideFlags: 0
@@ -1904,6 +1998,10 @@ PrefabInstance:
       propertyPath: m_Size.y
       value: 0.31
       objectReference: {fileID: 0}
+    - target: {fileID: 311091473030428094, guid: 5a16536b487c4d148b90c7a214a01ce2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.12
+      objectReference: {fileID: 0}
     - target: {fileID: 5232279899995449947, guid: 5a16536b487c4d148b90c7a214a01ce2, type: 3}
       propertyPath: m_Size.y
       value: 0.41
@@ -1955,6 +2053,18 @@ PrefabInstance:
     - target: {fileID: 5759162792689906043, guid: 5a16536b487c4d148b90c7a214a01ce2, type: 3}
       propertyPath: m_Name
       value: PlayerFin
+      objectReference: {fileID: 0}
+    - target: {fileID: 6761022221231462043, guid: 5a16536b487c4d148b90c7a214a01ce2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 15.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 6761022221231462043, guid: 5a16536b487c4d148b90c7a214a01ce2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 6818174076205066439, guid: 5a16536b487c4d148b90c7a214a01ce2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.06
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a16536b487c4d148b90c7a214a01ce2, type: 3}
@@ -3948,14 +4058,12 @@ GameObject:
   m_Component:
   - component: {fileID: 871985147}
   - component: {fileID: 871985148}
-  - component: {fileID: 871985150}
   - component: {fileID: 871985151}
   - component: {fileID: 871985153}
   - component: {fileID: 871985152}
-  - component: {fileID: 871985154}
   m_Layer: 0
   m_Name: Package_2
-  m_TagString: Obstacle
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3971,7 +4079,8 @@ Transform:
   m_LocalPosition: {x: -1.1699982, y: -8.27, z: -0.39396766}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 287256675}
   m_Father: {fileID: 203261332}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4027,19 +4136,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!65 &871985150
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 871985146}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3.9114342, y: 1.439744, z: 10}
-  m_Center: {x: 0.008436203, y: -6.7295003, z: 0}
 --- !u!65 &871985151
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4051,8 +4147,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.65, y: 2.25, z: -9.72}
-  m_Center: {x: 0, y: -5.46, z: 0}
+  m_Size: {x: 2.7719078, y: 0.89382553, z: 10}
+  m_Center: {x: 0.030477524, y: -5.558585, z: 0}
 --- !u!114 &871985152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4067,7 +4163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mode: 2
   maxXchangeValue: 0
-  movementSpeed: 0.002
+  movementSpeed: 0.0013
   deathZone: {fileID: 0}
   wheel: {fileID: 1433764491}
   firstPackage: 1
@@ -4087,22 +4183,6 @@ MonoBehaviour:
   - {fileID: 871985152}
   weightRequirment: 0
   weightOnMe: 0
---- !u!54 &871985154
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 871985146}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &878389109
 GameObject:
   m_ObjectHideFlags: 0
@@ -4360,14 +4440,12 @@ GameObject:
   m_Component:
   - component: {fileID: 972523319}
   - component: {fileID: 972523320}
-  - component: {fileID: 972523323}
   - component: {fileID: 972523324}
   - component: {fileID: 972523326}
   - component: {fileID: 972523325}
-  - component: {fileID: 972523327}
   m_Layer: 0
   m_Name: Package_1
-  m_TagString: Obstacle
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4383,7 +4461,8 @@ Transform:
   m_LocalPosition: {x: -4.21, y: -9.62, z: -0.39396766}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 218458851}
   m_Father: {fileID: 203261332}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4439,19 +4518,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!65 &972523323
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 972523318}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.8106575, y: 1.4185534, z: 10}
-  m_Center: {x: -0.0038166046, y: -6.706775, z: 0}
 --- !u!65 &972523324
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4479,7 +4545,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mode: 2
   maxXchangeValue: 0
-  movementSpeed: 0.002
+  movementSpeed: 0.0013
   deathZone: {fileID: 0}
   wheel: {fileID: 1952686682}
   firstPackage: 1
@@ -4499,22 +4565,6 @@ MonoBehaviour:
   - {fileID: 972523325}
   weightRequirment: 0
   weightOnMe: 0
---- !u!54 &972523327
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 972523318}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &1012129209
 GameObject:
   m_ObjectHideFlags: 0
@@ -4628,6 +4678,68 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.6583557, y: 7.9843016, z: 10}
   m_Center: {x: 7.117111, y: 6.5817513, z: 0}
+--- !u!1 &1018352533
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1018352534}
+  - component: {fileID: 1018352536}
+  - component: {fileID: 1018352535}
+  m_Layer: 0
+  m_Name: hitbox
+  m_TagString: Obstacle
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1018352534
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1018352533}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1172086131}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &1018352535
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1018352533}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &1018352536
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1018352533}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.186363, y: 1.0861068, z: 10}
+  m_Center: {x: -0.004840851, y: -6.8698053, z: 0}
 --- !u!1001 &1021795654
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5646,14 +5758,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1172086131}
   - component: {fileID: 1172086132}
-  - component: {fileID: 1172086134}
   - component: {fileID: 1172086135}
   - component: {fileID: 1172086137}
   - component: {fileID: 1172086136}
-  - component: {fileID: 1172086138}
   m_Layer: 0
   m_Name: package_3
-  m_TagString: Obstacle
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5669,7 +5779,8 @@ Transform:
   m_LocalPosition: {x: 3.36, y: -13.07, z: -0.39396766}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1018352534}
   m_Father: {fileID: 203261332}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5725,19 +5836,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!65 &1172086134
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1172086130}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 5.186363, y: 1.0861068, z: 10}
-  m_Center: {x: -0.004840851, y: -6.8698053, z: 0}
 --- !u!65 &1172086135
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5765,7 +5863,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mode: 2
   maxXchangeValue: 0
-  movementSpeed: 0.002
+  movementSpeed: 0.0013
   deathZone: {fileID: 0}
   wheel: {fileID: 1952686682}
   firstPackage: 0
@@ -5785,22 +5883,6 @@ MonoBehaviour:
   - {fileID: 1172086136}
   weightRequirment: 0
   weightOnMe: 0
---- !u!54 &1172086138
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1172086130}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &1173408566
 GameObject:
   m_ObjectHideFlags: 0
@@ -9882,6 +9964,68 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4318102997499214550, guid: 2ba9304705b06a34da3f47692802ec8a, type: 3}
   m_PrefabInstance: {fileID: 2094066344}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2102278771
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2102278772}
+  - component: {fileID: 2102278774}
+  - component: {fileID: 2102278773}
+  m_Layer: 0
+  m_Name: hitbox
+  m_TagString: Obstacle
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2102278772
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102278771}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 80544896}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &2102278773
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102278771}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &2102278774
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102278771}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.5614128, y: 1.6214232, z: 10}
+  m_Center: {x: 0.005487442, y: -6.689288, z: 0}
 --- !u!1001 &238534591990676414
 PrefabInstance:
   m_ObjectHideFlags: 0
