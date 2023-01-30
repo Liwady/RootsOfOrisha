@@ -13,9 +13,13 @@ public class GroundCheck : MonoBehaviour
         {
             myChar.isGrounded = true;
         }
-        else if (other.CompareTag("Water"))
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Obstacle"))
         {
-            myChar.isOnWater = true;
+            myChar.isGrounded = true;
         }
     }
 
@@ -24,10 +28,6 @@ public class GroundCheck : MonoBehaviour
         if (other.CompareTag("Obstacle"))
         {
             myChar.isGrounded = false;
-        }
-        else if (other.CompareTag("Water"))
-        {
-            myChar.isOnWater = false;
         }
     }
 }

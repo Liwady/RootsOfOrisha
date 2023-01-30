@@ -25,8 +25,30 @@ public class CameraScript : MonoBehaviour
             switchBounds = switchPoint.GetComponent<CameraSwitch>().switchBounds;
             Level1();
         }
-        
+        else if(currentLevel == 2)
+        {
+            switchBounds = switchBounds = switchPoint.GetComponent<CameraSwitch>().switchBounds;
+            Level2();
+        }
     }
+    private void Level2()
+    {
+        if (switchBounds)
+        {
+            upBound = 22.53f;
+            rightBound = 108.1f;
+        }
+        else
+        {
+            upBound = 15f;
+            downBound = 0.2f;
+            leftBound = 0.28f;
+            rightBound = 78;
+            offsettLeftRight = 11.8f;
+            offsettUpDown = 6.33f;
+        }
+    }
+
     private void Level1()
     {
         if(switchBounds)

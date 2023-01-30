@@ -55,7 +55,6 @@ public class PressurePlate2 : MonoBehaviour
             {
                 if (characterScripts[i].Equals(character) && character.weight != characterOldRelatedWeights[i])
                 {
-                    Debug.Log(other.tag + " " + character.weight + " ");
                     weightOnMe -= characterOldRelatedWeights[i];
                     weightOnMe += character.weight;
                     characterOldRelatedWeights[i] = character.weight;
