@@ -336,7 +336,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2805881829371660626}
   m_LocalRotation: {x: 0, y: 0.9396927, z: 0, w: 0.34202018}
-  m_LocalPosition: {x: -2, y: 0, z: 0}
+  m_LocalPosition: {x: 11.01, y: 2.54, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -376,6 +376,7 @@ MonoBehaviour:
   isGrounded: 0
   isOnWater: 0
   hitWhileFloating: 0
+  moving: 0
   movementSpeed: 5
   lastDir: 0
   grabPointPosLeft: 1.9
@@ -393,7 +394,7 @@ Rigidbody:
   m_GameObject: {fileID: 2805881829371660626}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 1
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -520,7 +521,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3038391848400105713}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.89, y: 2.8, z: 0}
+  m_LocalPosition: {x: 1.89, y: 2.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -537,7 +538,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2219274552470025785}
   - component: {fileID: 8799157612092226671}
-  - component: {fileID: 2503595841680916965}
   - component: {fileID: 4127660945482198303}
   m_Layer: 7
   m_Name: MidSizeChecker
@@ -575,19 +575,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parent: {fileID: 8343979968015549311}
   obstacles: []
---- !u!65 &2503595841680916965
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3248196847086197265}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.1950136, y: 0.13672441, z: 1.099294}
-  m_Center: {x: 0.02538843, y: 0.050304983, z: -0.093657605}
 --- !u!136 &4127660945482198303
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -598,10 +585,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.8488512
-  m_Height: 1.7112527
+  m_Radius: 0.84885114
+  m_Height: 1.731127
   m_Direction: 1
-  m_Center: {x: 0.0048780534, y: 1.0027779, z: -0.106927805}
+  m_Center: {x: 0.004878035, y: 0.9928407, z: -0.10692781}
 --- !u!1 &3749462218510402729
 GameObject:
   m_ObjectHideFlags: 0
@@ -778,6 +765,7 @@ MonoBehaviour:
   abilityActive: 0
   moveBoth: 0
   hasReachedMax: 0
+  usedMove: 0
 --- !u!1 &6580984343290934504
 GameObject:
   m_ObjectHideFlags: 0
@@ -1067,7 +1055,6 @@ GameObject:
   - component: {fileID: 8901758400711945935}
   - component: {fileID: 613975524168385890}
   - component: {fileID: 820421650279173571}
-  - component: {fileID: 3217697540551982267}
   m_Layer: 7
   m_Name: KoubooRender
   m_TagString: 2
@@ -1156,22 +1143,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.93
-  m_Height: 1.7112527
+  m_Height: 1.9030565
   m_Direction: 1
-  m_Center: {x: 0.0048780534, y: 0.96, z: 0.07}
---- !u!65 &3217697540551982267
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8171069620508272218}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.1950136, y: 0.13672441, z: 1.099294}
-  m_Center: {x: 0.02538843, y: 0.050304983, z: -0.093657605}
+  m_Center: {x: 0.0048780395, y: 0.9384709, z: 0.06999999}
 --- !u!1 &8329291641448810708
 GameObject:
   m_ObjectHideFlags: 0
@@ -1230,7 +1204,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8343979968015549311}
   m_LocalRotation: {x: 0, y: 0.9396927, z: 0, w: 0.34202018}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 6.47, y: 1.14, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1270,6 +1244,7 @@ MonoBehaviour:
   isGrounded: 0
   isOnWater: 0
   hitWhileFloating: 0
+  moving: 0
   movementSpeed: 5
   lastDir: 0
   grabPointPosLeft: 1.9
@@ -1287,7 +1262,7 @@ Rigidbody:
   m_GameObject: {fileID: 8343979968015549311}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 1
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -1439,6 +1414,7 @@ MonoBehaviour:
   - {fileID: 7451694108513111295}
   - {fileID: 1677563348175544541}
   maxDistance: 8
+  distance: 0
   outOfRange: 0
 --- !u!120 &311091471601700153
 LineRenderer:
