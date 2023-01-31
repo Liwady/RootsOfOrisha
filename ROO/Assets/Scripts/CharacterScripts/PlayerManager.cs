@@ -24,8 +24,8 @@ public class PlayerManager : MonoBehaviour
 
     public RespawnPoint respawnPoint;
     [SerializeField]
-    private bool abilityActive, moveBoth, hasReachedMax;
-    public bool usedMove;
+    private bool abilityActive, hasReachedMax;
+    public bool moveBoth;
 
     public bool cutscenePlaying = false;
 
@@ -46,11 +46,7 @@ public class PlayerManager : MonoBehaviour
         if (currentCharacter.canMove && movement.x != 0 && !cutscenePlaying)
         {
             Move();
-            usedMove = true;
-        }
-        else
-            usedMove = false;
-
+  
         if (currentAbility == 1 && abilityActive)
             UpdateFloating();
     }

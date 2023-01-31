@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public AudioManager audioManager;
 
 
-    public GameObject pauseMenu,overlay,cutscene;
+    public GameObject pauseMenu, overlay, cutscene;
     public CanvasGroup cg;
     public bool isPaused, tutorial;
     private float previousTimeScale;
@@ -107,7 +107,7 @@ public class GameManager : MonoBehaviour
     }
     public void UpdateConnection(int num)
     {
-        animationManager.SwapConnectionSprite(num);
+        animationManager.SwapConnectionSprite(num,playerManager.moveBoth);
     }
     public void TutorialTriggers(int stage)
     {
