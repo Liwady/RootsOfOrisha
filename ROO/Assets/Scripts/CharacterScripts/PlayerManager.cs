@@ -19,8 +19,8 @@ public class PlayerManager : MonoBehaviour
 
     public RespawnPoint respawnPoint;
     [SerializeField]
-    private bool abilityActive, moveBoth, hasReachedMax;
-    public bool usedMove;
+    private bool abilityActive, hasReachedMax;
+    public bool moveBoth;
 
     private void Awake()
     {
@@ -37,13 +37,8 @@ public class PlayerManager : MonoBehaviour
             MaxReached(false);
 
         if (currentCharacter.canMove && movement.x != 0)
-        {
             Move();
-            usedMove = true;
-        }
-        else
-            usedMove = false;
-
+  
         if (currentAbility == 1 && abilityActive)
             UpdateFloating();
     }
