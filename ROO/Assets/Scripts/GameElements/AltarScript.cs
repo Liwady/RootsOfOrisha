@@ -25,7 +25,6 @@ public class AltarScript : MonoBehaviour
                 for (int i = 0; i < gates.Length; i++)
                     gates[i].Toggle(true);
                 toggled= true;
-                Debug.Log("altar activation");
                 gameManager.PlaySound("flame");
             }
         }
