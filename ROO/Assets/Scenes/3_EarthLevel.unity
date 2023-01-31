@@ -7112,6 +7112,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8409428052142130268, guid: 4896a6001efa7bc48839107401bb53aa, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ca0d159fa07b9874ca9052f69baf1ce7, type: 2}
     - target: {fileID: 8409428052357231314, guid: 4896a6001efa7bc48839107401bb53aa, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -7172,6 +7176,10 @@ PrefabInstance:
       propertyPath: musicSource
       value: 
       objectReference: {fileID: 429042672}
+    - target: {fileID: 8409428052705635334, guid: 4896a6001efa7bc48839107401bb53aa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4896a6001efa7bc48839107401bb53aa, type: 3}
 --- !u!225 &1397565646 stripped

@@ -112,4 +112,9 @@ public class AnimationManager : MonoBehaviour
         else
             connectionImage.sprite = connection[num];
     }
+
+    public void ShowHelpStatue(bool _show)
+    {
+        Debug.Log("show help statue");
+    }
 }

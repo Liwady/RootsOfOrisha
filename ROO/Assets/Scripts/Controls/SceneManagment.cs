@@ -392,6 +392,7 @@ public class SceneManagment : MonoBehaviour
             }
         else
             PlayScene(5);//go to Eshu
-
     }
+
+
 }
