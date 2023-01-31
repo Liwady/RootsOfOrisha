@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public SceneManagment sceneManagment;
     public AnimationManager animationManager;
     public AudioManager audioManager;
-    public CameraScript cameraScript;
+
 
     public GameObject pauseMenu, overlay, cutscene;
     public CanvasGroup cg;
@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
         else if (currentScene == 6)
             StartCutscene();
         sceneManagment.currentScene = currentScene;
-        cameraScript.currentLevel = currentScene;
+
     }
     public void EndTutorial()
     {

@@ -1,4 +1,5 @@
 using UnityEngine;
+using Cinemachine;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -11,7 +12,11 @@ public class PlayerManager : MonoBehaviour
     public int currentAbility, currentLevel, depth;
 
     public CharacterScript character1script, character2script, otherCharacter;
-    private CameraScript camScript;
+    private CinemachineBrain cmBrain;
+
+    [SerializeField]
+    private CinemachineVirtualCamera zoubooCam, koobouCam;
+
     private GameManager gameManager;
     public PlayerControls playerControls;
     private MiddleBond middleBond;
@@ -21,6 +26,8 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     private bool abilityActive, hasReachedMax;
     public bool moveBoth;
+
+    public bool cutscenePlaying = false;
 
     private void Awake()
     {
@@ -36,7 +43,8 @@ public class PlayerManager : MonoBehaviour
         else
             MaxReached(false);
 
-        if (currentCharacter.canMove && movement.x != 0)
+        if (currentCharacter.canMove && movement.x != 0 && !cutscenePlaying)
+        {
             Move();
   
         if (currentAbility == 1 && abilityActive)
@@ -45,7 +53,7 @@ public class PlayerManager : MonoBehaviour
 
     private void Initialize()
     {
-        camScript = FindObjectOfType<CameraScript>();
+        cmBrain = FindObjectOfType<CinemachineBrain>();
         middleBond = FindObjectOfType<MiddleBond>();
         gameManager = FindObjectOfType<GameManager>();
         character1script = character1.GetComponent<CharacterScript>();
@@ -443,7 +451,9 @@ public class PlayerManager : MonoBehaviour
             character2.transform.position = new Vector3(character2.transform.position.x, character2.transform.position.y, -depth);
             otherCharacter = character1script;
             currentCharacter = character2script;
-            camScript.player = character2;
+
+            zoubooCam.Priority = 0;
+            koobouCam.Priority = 1;
             character1script.EyePoint.GetComponent<MeshRenderer>().enabled = false;
             character2script.EyePoint.GetComponent<MeshRenderer>().enabled = true;
             gameManager.UpdateConnection(2);
@@ -456,7 +466,8 @@ public class PlayerManager : MonoBehaviour
             character2.transform.position = new Vector3(character2.transform.position.x, character2.transform.position.y, depth);
             otherCharacter = character2script;
             currentCharacter = character1script;
-            camScript.player = character1;
+            zoubooCam.Priority = 1;
+            koobouCam.Priority = 0;
             character1script.EyePoint.GetComponent<MeshRenderer>().enabled = true;
             character2script.EyePoint.GetComponent<MeshRenderer>().enabled = false;
             gameManager.UpdateConnection(1);
