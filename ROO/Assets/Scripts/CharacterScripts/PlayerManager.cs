@@ -15,7 +15,7 @@ public class PlayerManager : MonoBehaviour
     private CinemachineBrain cmBrain;
 
     [SerializeField]
-    private CinemachineVirtualCamera zoubooCam, koobouCam;
+    public CinemachineVirtualCamera zoubooCam, koobouCam;
 
     private GameManager gameManager;
     public PlayerControls playerControls;

@@ -22,12 +22,12 @@ public class CameraScript : MonoBehaviour
         );
         if(currentLevel == 1)
         {
-            switchBounds = switchPoint.GetComponent<CameraSwitch>().switchBounds;
+            
             Level1();
         }
         else if(currentLevel == 2)
         {
-            switchBounds = switchBounds = switchPoint.GetComponent<CameraSwitch>().switchBounds;
+            
             Level2();
         }
     }

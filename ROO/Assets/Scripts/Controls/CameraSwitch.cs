@@ -1,23 +1,38 @@
 using UnityEngine;
+using Cinemachine;
 
 public class CameraSwitch : MonoBehaviour
 {
-    private GameObject Lplayer;
-    public bool switchBounds, activated;
+    [SerializeField]
+    private CinemachineVirtualCamera newKoubooCam, newZoubooCam;
+    private bool triggered;
+    private PlayerManager playerManager;
+
+    private void Awake()
+    {
+        playerManager = FindObjectOfType<PlayerManager>();
+    }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("1") || other.CompareTag("2"))
+        if (!triggered)
         {
-            if (Lplayer != other.gameObject && Lplayer != null)
+            playerManager.zoubooCam.Priority = -10;
+            playerManager.koobouCam.Priority = -10;
+            playerManager.zoubooCam = newZoubooCam;
+            playerManager.koobouCam = newKoubooCam;
+            if (other.GetComponentInParent<CharacterScript>().Equals(playerManager.character1script))
             {
-                switchBounds = true;
-                Lplayer = null;
-                activated = true;
+                playerManager.zoubooCam.Priority = 1;
+                playerManager.koobouCam.Priority = 0;
             }
             else
-                Lplayer = other.gameObject;
-
+            {
+                playerManager.zoubooCam.Priority = 0;
+                playerManager.koobouCam.Priority = 1;
+            }
         }
+
+
     }
 }
