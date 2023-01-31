@@ -60,6 +60,7 @@ public class SceneManagment : MonoBehaviour
 
     public void PlayScene(int sceneNumber)
     {
+        LevelTracker.level = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(sceneNumber);
     }
     public void Quit()
@@ -377,18 +378,15 @@ public class SceneManagment : MonoBehaviour
     public void GoNextScene(bool eshu)
     {
         if (!eshu)
-            switch (currentScene)
+            switch (LevelTracker.level)
             {
                 case 0: //tutorial
-                    currentScene = 1;
                     PlayScene(2);
                     break;
                 case 1://FireLevel
-                    currentScene = 2;
                     PlayScene(3);
                     break;
                 case 2://EarthLevel
-                    currentScene = 3;
                     PlayScene(4);
                     break;
             }
