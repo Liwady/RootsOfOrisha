@@ -123,6 +123,10 @@ public class GameManager : MonoBehaviour
         audioManager.PlaySound(_name, _num);
     }
 
+    public void StopSound(string _name)
+    {
+        audioManager.StopSound(_name);
+    }
     public void StopSound(string _name, int _num)
     {
         audioManager.StopSound(_name, _num);

@@ -84,14 +84,14 @@ public class TriggerAble2 : MonoBehaviour
                 if (triggered)
                 {
                     if (deathZone != null)
-                        deathZone.SetActive(false);
+                        deathZone.SetActive(true);
                     if (transform.localPosition.y > originalPosLocal.y - maxXchangeValue)
                         transform.Translate(new Vector3(0, -movementSpeed, 0));
                 }
                 else if (transform.localPosition.y < originalPosLocal.y)
                 {
                     if (deathZone != null)
-                        deathZone.SetActive(true);
+                        deathZone.SetActive(false);
                     transform.Translate(new Vector3(0, movementSpeed, 0));
                 }
                 break;

@@ -6,6 +6,7 @@ public class GateSound : MonoBehaviour
 {
     private GameManager gameManager;
     private Vector3 orignalPos;
+    private bool triggered;
     void Awake()
     {
         gameManager = FindObjectOfType<GameManager>();
@@ -19,6 +20,15 @@ public class GateSound : MonoBehaviour
         {
             gameManager.PlaySound("gate");
             orignalPos = transform.position;
+            triggered = true;
+        }
+        else if (transform.position == orignalPos)
+        {
+            if (triggered)
+            {
+                gameManager.StopSound("gate");
+                triggered = false;
+            }
         }
     }
 }

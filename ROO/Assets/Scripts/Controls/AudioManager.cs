@@ -92,7 +92,17 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-
+    public void StopSound(string _name)
+    {
+        switch (_name)
+        {
+            case "gate":
+                gateAS.Stop();
+                break;
+            default:
+                break;
+        }
+    }
     public void StopSound(string _name, int _num)
     {
         switch (_name)
