@@ -2120,6 +2120,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6519d00260722ee40a327f73931817aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  map: 0
+  cutscenePlayed: 0
+  clicked: 0
+  mapAnimator: {fileID: 0}
+  buttonAnimator: {fileID: 0}
 --- !u!1 &349306837
 GameObject:
   m_ObjectHideFlags: 0
@@ -4075,6 +4080,7 @@ MonoBehaviour:
   grabPointBoat: {fileID: 0}
   EyePoint: {fileID: 244847210}
   myRender: {fileID: 578870391}
+  interactibleObject: {fileID: 0}
   rb: {fileID: 720810312}
   left: 0
   canMove: 0
@@ -5061,6 +5067,7 @@ MonoBehaviour:
   grabPointBoat: {fileID: 0}
   EyePoint: {fileID: 1820041329}
   myRender: {fileID: 576244266}
+  interactibleObject: {fileID: 0}
   rb: {fileID: 888724883}
   left: 0
   canMove: 0
@@ -7284,7 +7291,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1208427904
 RectTransform:
   m_ObjectHideFlags: 0

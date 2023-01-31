@@ -24,7 +24,7 @@ public class SceneManagment : MonoBehaviour
     [SerializeField]
     private AudioMixer SFXMasterMixer;
 
-    public int currentScene;
+    public int lastScene,currentScene;
     private SpriteState ss;
     private EventSystem eventSystem;
     private Button sfxButton, musicButton, brightnessButton, settingsButton, currentButton, creditsButton, controlsButton;
@@ -44,7 +44,8 @@ public class SceneManagment : MonoBehaviour
         currentSlider = 0;
         movedSlider = false;
         time = 0;
-        currentScene = LevelTracker.level;
+        lastScene = LevelTracker.level; //last scene that is not eshu
+        currentScene = SceneManager.GetActiveScene().buildIndex;
     }
     private void Start()
     {
@@ -61,8 +62,8 @@ public class SceneManagment : MonoBehaviour
 
     public void PlayScene(int sceneNumber)
     {
-        LevelTracker.level = SceneManager.GetActiveScene().buildIndex;
-        currentScene = LevelTracker.level;
+        if (SceneManager.GetActiveScene().buildIndex != 6)
+            LevelTracker.level = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(sceneNumber);
     }
     public void Quit()

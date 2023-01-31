@@ -39,16 +39,15 @@ public class GameManager : MonoBehaviour
     {
         if(_value)
         {
-            playerManager.EnablePlayerControls(true);
+            playerManager.EnableEshuControls(true);
             map.SetActive(true);
         }
         else
         {
-            playerManager.EnablePlayerControls(false);
+            playerManager.EnableEshuControls(false);
             map.SetActive(false);
         }
     }
-
     public void GoNextSceneEshu()
     {
         sceneManagment.GoNextScene(false);
@@ -69,7 +68,7 @@ public class GameManager : MonoBehaviour
             playerManager.EnablePlayerControls(isPaused);
             TutorialTriggers(0);
         }
-        else if (currentScene == 6 && sceneManagment.currentScene==1)
+        else if (currentScene == 6 && sceneManagment.lastScene==1)
             StartCutscene();
     }
     public void SetWalking(bool isWalking)
