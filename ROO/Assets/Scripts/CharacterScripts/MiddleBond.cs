@@ -7,7 +7,7 @@ public class MiddleBond : MonoBehaviour
     private Transform[] points;
 
     [SerializeField]
-    private float maxDistance, distance;
+    public float maxDistance, distance;
     private PlayerManager playerManager;
 
     public bool outOfRange;

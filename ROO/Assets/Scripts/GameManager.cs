@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public AudioManager audioManager;
     public CameraScript cameraScript;
 
-    public GameObject pauseMenu,overlay;
+    public GameObject pauseMenu,overlay,cutscene;
     public CanvasGroup cg;
     public bool isPaused, tutorial;
     private float previousTimeScale;
@@ -30,7 +30,12 @@ public class GameManager : MonoBehaviour
         if (currentScene == 0 && !isPaused)
             animationManager.StartFireAnimation(playerManager.currentCharacter.transform.position, distance2Ani);
     }
-
+    public void StartCutscene()
+    {
+        playerManager.EnablePlayerControls(true);
+        Time.timeScale = 0;
+        cutscene.SetActive(true);
+    }
     private void SetCurrentScene()
     {
         if (currentScene == 0)
@@ -95,7 +100,6 @@ public class GameManager : MonoBehaviour
     {
         animationManager.ChangeMechanicsSprite(option, playerManager.currentAbility == 0, reset);
     }
-
     public void UpdateConnection(int num)
     {
         animationManager.SwapConnectionSprite(num);

@@ -93,6 +93,7 @@ public class PlayerManager : MonoBehaviour
                 break;
             case 3:
                 playerControls.Gameplay.SwitchAbility.Enable();
+                middleBond.maxDistance = 20;
                 break;
             case 4:
                 playerControls.Gameplay.Grab.Enable();
