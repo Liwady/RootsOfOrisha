@@ -33,7 +33,6 @@ public class GameManager : MonoBehaviour
     public void StartCutscene()
     {
         playerManager.EnablePlayerControls(true);
-        Time.timeScale = 0;
         cutscene.SetActive(true);
     }
     private void SetCurrentScene()
@@ -51,8 +50,14 @@ public class GameManager : MonoBehaviour
             playerManager.EnablePlayerControls(isPaused);
             TutorialTriggers(0);
         }
+        else if (currentScene == 6)
+            StartCutscene();
         sceneManagment.currentScene = currentScene;
         cameraScript.currentLevel = currentScene;
+    }
+    public void EndTutorial()
+    {
+        playerManager.EnablePlayerControls(isPaused);
     }
     public void Pause()
     {
