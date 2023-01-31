@@ -18,7 +18,6 @@ public class AnimationManager : MonoBehaviour
     [SerializeField]
     private bool zoudoo;
 
-
     public void TutorialFeedbackTrigger(int stage)
     {
         switch (stage)
@@ -106,8 +105,11 @@ public class AnimationManager : MonoBehaviour
             }
         }
     }
-    public void SwapConnectionSprite(int num)
+    public void SwapConnectionSprite(int num,bool together)
     {
-        connectionImage.sprite = connection[num];
+        if(together)
+            connectionImage.sprite = connection[0];
+        else
+            connectionImage.sprite = connection[num];
     }
 }
