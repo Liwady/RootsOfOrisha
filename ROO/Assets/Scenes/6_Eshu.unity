@@ -2097,9 +2097,8 @@ MonoBehaviour:
   otherCharacter: {fileID: 0}
   respawnPoint: {fileID: 0}
   abilityActive: 0
-  moveBoth: 0
   hasReachedMax: 0
-  usedMove: 0
+  moveBoth: 0
 --- !u!1 &720810310
 GameObject:
   m_ObjectHideFlags: 0
@@ -8439,10 +8438,6 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1589041488}
-    - target: {fileID: 6124766504892441385, guid: 1d2c3b490c9416d45822e7feaa79b7e1, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6124766505009051377, guid: 1d2c3b490c9416d45822e7feaa79b7e1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

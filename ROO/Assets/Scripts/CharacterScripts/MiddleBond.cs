@@ -24,11 +24,9 @@ public class MiddleBond : MonoBehaviour
     private void Update()
     {
         for (int i = 0; i < points.Length; i++)
-        {
             lineRenderer.SetPosition(i, points[i].position);
-        }
-        if (playerManager.usedMove)
-            CheckOutOfRange();
+        
+        CheckOutOfRange();
     }
     private void CheckOutOfRange()
     {
