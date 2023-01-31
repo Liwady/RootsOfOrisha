@@ -3,7 +3,7 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     [SerializeField]
-    private AudioSource player1AS, player2AS, cantResizeAS, collectAS, floatInAS, floatOutAS, sizeInAS, sizeOutAS, gateAS, flameAS, lavaAS;
+    private AudioSource player1AS, player2AS, cantResizeAS, collectAS, floatInAS, floatOutAS, sizeInAS, sizeOutAS, gateAS, flameAS, lavaAS, swapAS;
 
     [SerializeField]
     private AudioClip[] walkingClipsCharacter1, walkingClipsCharacter2, wheelClips, lavaClips;
@@ -77,6 +77,9 @@ public class AudioManager : MonoBehaviour
                     lavaAS.clip = lavaClips[Random.Range(0, lavaClips.Length)];
                     lavaAS.Play();
                 }
+                break;
+            case "swap":
+                swapAS.Play();
                 break;
             default:
                 break;

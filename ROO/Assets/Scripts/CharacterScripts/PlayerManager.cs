@@ -467,6 +467,7 @@ public class PlayerManager : MonoBehaviour
             gameManager.UpdateConnection(1);
         }
         SetMovementSpeed();
+        gameManager.PlaySound("swap");
         gameManager.UpdateMechanics(1, false);
     }
     public void DoToggleLever()
