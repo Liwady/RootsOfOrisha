@@ -32,12 +32,19 @@ public class TriggerAble2 : MonoBehaviour
     private Wheel wheelUpScript, wheelDownScript;
     private PressurePlate2 pressurePlate;
 
+    private GateCMActivate cutSceneStarter;
+    private bool hasCutscene;
+
     [HideInInspector]
     public List<CharacterScript> characterScriptsOnMe = new();
 
     private void Start()
     {
-
+        if (GetComponent<GateCMActivate>() != null)
+        { 
+            hasCutscene = true;
+            cutSceneStarter = GetComponent<GateCMActivate>();
+        }
         originalPosLocal = transform.localPosition;
         if (mode == Mode.weight)
         {
@@ -165,10 +172,17 @@ public class TriggerAble2 : MonoBehaviour
             }
         }
     }
-
+    private void ActivatedCutscene()
+    {
+        if (hasCutscene && triggered)
+        {
+            cutSceneStarter.activatedCutscene();
+        }
+    }
     private void Update()
     {
         ModeSwitch();
+        ActivatedCutscene();
     }
 }
 

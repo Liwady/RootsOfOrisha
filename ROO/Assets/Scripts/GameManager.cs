@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public SceneManagment sceneManagment;
     public AnimationManager animationManager;
     public AudioManager audioManager;
-    public CameraScript cameraScript;
+
 
     public GameObject pauseMenu,overlay,cutscene;
     public CanvasGroup cg;
@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
             TutorialTriggers(0);
         }
         sceneManagment.currentScene = currentScene;
-        cameraScript.currentLevel = currentScene;
+
     }
     public void Pause()
     {
