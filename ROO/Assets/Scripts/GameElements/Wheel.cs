@@ -11,8 +11,6 @@ public class Wheel : MonoBehaviour
     [SerializeField]
     private int wheelNum;
 
-    private bool rotating;
-
     void Awake()
     {
         gameManager = FindObjectOfType<GameManager>();
@@ -23,7 +21,6 @@ public class Wheel : MonoBehaviour
         {
             gameManager.PlaySound("wheel", wheelNum);
             transform.Rotate(Vector3.forward * (rotationSpeed * Time.deltaTime));
-            rotating = true;
         }
     }
 

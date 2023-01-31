@@ -434,7 +434,7 @@ public class PlayerManager : MonoBehaviour
 
             }
 
-
+            gameManager.UpdateMechanics(2, true);
             SetMovementSpeed();
             if (currentAbility == 0 && abilityActive)
                 DefaultValuesSize();
