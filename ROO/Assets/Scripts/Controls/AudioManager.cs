@@ -3,10 +3,10 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     [SerializeField]
-    private AudioSource player1AS, player2AS, cantResizeAS, collectAS, floatInAS, floatOutAS, sizeInAS, sizeOutAS, gateAS, flameAS, lavaAS, swapAS;
+    private AudioSource player1AS, player2AS, cantResizeAS, collectAS, floatInAS, floatOutAS, sizeInAS, sizeOutAS, gateAS, flameAS, lavaAS, swapAS, eshuLaughAS;
 
     [SerializeField]
-    private AudioClip[] walkingClipsCharacter1, walkingClipsCharacter2, wheelClips, lavaClips;
+    private AudioClip[] walkingClipsCharacter1, walkingClipsCharacter2, wheelClips, lavaClips, eshuLaughClips;
 
     [SerializeField]
     private AudioSource[] wheelAS ;
@@ -69,6 +69,13 @@ public class AudioManager : MonoBehaviour
                 break;
             case "swap":
                 swapAS.Play();
+                break;
+            case "eshulaugh":
+                if (!eshuLaughAS.isPlaying)
+                {
+                    eshuLaughAS.clip = eshuLaughClips[Random.Range(0, eshuLaughClips.Length)];
+                    eshuLaughAS.Play();
+                }
                 break;
             default:
                 break;

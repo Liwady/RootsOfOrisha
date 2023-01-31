@@ -124,4 +124,6 @@ public class AnimationManager : MonoBehaviour
         else
             zoudooAnimator.SetBool("isWalking", false);
     }
+
+
 }

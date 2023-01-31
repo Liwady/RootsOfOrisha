@@ -85,6 +85,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "1a416a31-ac53-4801-81c0-7ff25c2b1657",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -157,7 +166,7 @@
                 {
                     "name": "",
                     "id": "8641014e-89e7-479d-9b97-f4d52f986f84",
-                    "path": "<Gamepad>/buttonSouth",
+                    "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -179,7 +188,7 @@
                 {
                     "name": "",
                     "id": "7bface26-f60b-41ec-a924-fe4adb98c333",
-                    "path": "<Gamepad>/buttonEast",
+                    "path": "<SwitchProControllerHID>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -201,7 +210,7 @@
                 {
                     "name": "",
                     "id": "39d41cad-8f1d-4ee7-bf78-513da89f8fce",
-                    "path": "<Gamepad>/buttonEast",
+                    "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -244,6 +253,17 @@
                 },
                 {
                     "name": "",
+                    "id": "131ff0e3-3c0e-4145-bb92-c8fe95bac6f1",
+                    "path": "<SwitchProControllerHID>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Respawn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "9a315b88-a602-4551-adaa-4a57a8636fc1",
                     "path": "<Keyboard>/g",
                     "interactions": "",
@@ -256,7 +276,7 @@
                 {
                     "name": "",
                     "id": "ca7055dd-7d50-4dbd-a770-709bec38343f",
-                    "path": "<Gamepad>/buttonNorth",
+                    "path": "<SwitchProControllerHID>/buttonNorth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -267,7 +287,7 @@
                 {
                     "name": "",
                     "id": "44ced147-57fc-4c37-92cd-e5a511ed5449",
-                    "path": "<Gamepad>/leftShoulder",
+                    "path": "<SwitchProControllerHID>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -305,6 +325,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4e141ebc-49a3-4752-9cf8-9d6a19b5db72",
+                    "path": "<Keyboard>/i",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fb189881-947d-49f1-bd36-f190eedf5cec",
+                    "path": "<SwitchProControllerHID>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
