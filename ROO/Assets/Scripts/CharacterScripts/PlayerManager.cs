@@ -44,7 +44,6 @@ public class PlayerManager : MonoBehaviour
             MaxReached(false);
 
         if (currentCharacter.canMove && movement.x != 0 && !cutscenePlaying)
-        {
             Move();
   
         if (currentAbility == 1 && abilityActive)
