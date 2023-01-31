@@ -8,11 +8,8 @@ public class PlayerManager : MonoBehaviour
     [HideInInspector]
     public CharacterScript currentCharacter;
 
-
     public int currentAbility, currentLevel, depth;
-
     public CharacterScript character1script, character2script, otherCharacter;
-    private CinemachineBrain cmBrain;
 
     [SerializeField]
     public CinemachineVirtualCamera zoubooCam, koobouCam;
@@ -37,6 +34,10 @@ public class PlayerManager : MonoBehaviour
     }
     private void Update()
     {
+        if (movement.x != 0)
+            gameManager.SetWalking(true);
+        else
+            gameManager.SetWalking(false);
 
         if (middleBond.outOfRange)
             MaxReached(true);
@@ -52,7 +53,6 @@ public class PlayerManager : MonoBehaviour
 
     private void Initialize()
     {
-        cmBrain = FindObjectOfType<CinemachineBrain>();
         middleBond = FindObjectOfType<MiddleBond>();
         gameManager = FindObjectOfType<GameManager>();
         character1script = character1.GetComponent<CharacterScript>();
@@ -60,6 +60,7 @@ public class PlayerManager : MonoBehaviour
         currentCharacter = character1script;
         otherCharacter = character2script;
         abilityActive = false;
+
         SetMovementSpeed();
         SetWeight();
 
@@ -81,6 +82,7 @@ public class PlayerManager : MonoBehaviour
         playerControls.Gameplay.Grab.performed += ctx => DoGrab();
         playerControls.Gameplay.MoveTogether.performed += ctx => MoveTogether();
         playerControls.Gameplay.Pause.performed += ctx => DoPause();
+        playerControls.Gameplay.Interact.performed += ctx => DoInteract();
         playerControls.Gameplay.Enable();
     }
     public void SetTutorialControls(int stage)
@@ -279,6 +281,10 @@ public class PlayerManager : MonoBehaviour
     {
         currentCharacter.GrabObject();
     }
+    private void DoInteract()
+    {
+        currentCharacter.InteractWithObject();
+    }
     public void DefaultValuesSize()
     {
         if (character1script.usedAbility)
@@ -430,6 +436,7 @@ public class PlayerManager : MonoBehaviour
             }
 
             gameManager.UpdateMechanics(2, true);
+            gameManager.SetWalking(false);
             SetMovementSpeed();
             if (currentAbility == 0 && abilityActive)
                 DefaultValuesSize();
@@ -544,6 +551,23 @@ public class PlayerManager : MonoBehaviour
         else
         {
             playerControls.Gameplay.Enable();
+            playerControls.UI.Disable();
+        }
+    }
+    public void EnableEshuControls(bool paused)
+    {
+        if (paused)
+        {
+            playerControls.Gameplay.Disable();
+            playerControls.UI.Enable();
+        }
+        else
+        {
+            playerControls.Gameplay.Enable();
+            playerControls.Gameplay.MoveTogether.Disable();
+            playerControls.Gameplay.TriggerAbility.Disable();
+            playerControls.Gameplay.SwitchAbility.Disable();
+            playerControls.Gameplay.Grab.Disable();
             playerControls.UI.Disable();
         }
     }

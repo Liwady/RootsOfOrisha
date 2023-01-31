@@ -77,6 +77,13 @@ public class AudioManager : MonoBehaviour
                     eshuLaughAS.Play();
                 }
                 break;
+            case "eshulaugh":
+                if (!eshuLaughAS.isPlaying)
+                {
+                    eshuLaughAS.clip = eshuLaughClips[Random.Range(0, eshuLaughClips.Length)];
+                    eshuLaughAS.Play();
+                }
+                break;
             default:
                 break;
         }

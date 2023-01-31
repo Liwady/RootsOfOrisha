@@ -24,7 +24,7 @@ public class SceneManagment : MonoBehaviour
     [SerializeField]
     private AudioMixer SFXMasterMixer;
 
-    public int currentScene;
+    public int lastScene,currentScene;
     private SpriteState ss;
     private EventSystem eventSystem;
     private Button sfxButton, musicButton, brightnessButton, settingsButton, currentButton, creditsButton, controlsButton;
@@ -44,6 +44,8 @@ public class SceneManagment : MonoBehaviour
         currentSlider = 0;
         movedSlider = false;
         time = 0;
+        lastScene = LevelTracker.level; //last scene that is not eshu
+        currentScene = SceneManager.GetActiveScene().buildIndex;
     }
     private void Start()
     {
@@ -60,7 +62,8 @@ public class SceneManagment : MonoBehaviour
 
     public void PlayScene(int sceneNumber)
     {
-        LevelTracker.level = SceneManager.GetActiveScene().buildIndex;
+        if (SceneManager.GetActiveScene().buildIndex != 6)
+            LevelTracker.level = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(sceneNumber);
     }
     public void Quit()
@@ -192,28 +195,33 @@ public class SceneManagment : MonoBehaviour
     }
     public void GoBack()
     {
-        switch (currentScreen)
+        if (currentScene == 6)
+            gameManager.StartMap(false);
+        else
         {
-            case 0://pausescreen
-                Unpause();
-                break;
-            case 1://optionsscreen
-                if (startGame)
-                    GoToStartScreen(false);
-                else
-                    GoToPauseScreen();
-                break;
-            case 2://child of options screen
-                GoToOptionsScreen();
-                break;
-            case 3:
-                if (atSlider)
-                    DeactivateSlider();
-                GoToSettingsScreen();
-                break;
-            case 4:
-                PlayScene(0);
-                break;
+            switch (currentScreen)
+            {
+                case 0://pausescreen
+                    Unpause();
+                    break;
+                case 1://optionsscreen
+                    if (startGame)
+                        GoToStartScreen(false);
+                    else
+                        GoToPauseScreen();
+                    break;
+                case 2://child of options screen
+                    GoToOptionsScreen();
+                    break;
+                case 3:
+                    if (atSlider)
+                        DeactivateSlider();
+                    GoToSettingsScreen();
+                    break;
+                case 4:
+                    PlayScene(0);
+                    break;
+            }
         }
     }
 

@@ -12,6 +12,7 @@ TagManager:
   - Statue
   - Boat
   - ActivePlayer
+  - Interactible
   layers:
   - Default
   - TransparentFX

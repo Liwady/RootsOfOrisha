@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-public class eshuConvo : MonoBehaviour
+public class EshuConvoScript : MonoBehaviour
 {
     private GameManager gameManager;
     bool clicked;
@@ -51,7 +51,7 @@ public class eshuConvo : MonoBehaviour
     }
     bool AnimatorIsPlaying(Animator animator, string name)
     {
-        return animator.GetCurrentAnimatorStateInfo(0).IsName(name);
+        return animator.GetCurrentAnimatorStateInfo(0).IsName(name); 
     }
     public void Click()
     {

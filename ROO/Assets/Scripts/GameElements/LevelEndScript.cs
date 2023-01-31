@@ -7,6 +7,8 @@ public class LevelEndScript : MonoBehaviour
     private GameObject Lplayer;
     [SerializeField]
     private SceneManagment sceneManagment;
+    [SerializeField]
+    private GameObject loadingscreen,overlay;
     public bool eshu;
 
     private void OnTriggerEnter(Collider other)
@@ -16,6 +18,8 @@ public class LevelEndScript : MonoBehaviour
             if (Lplayer != other.gameObject && Lplayer != null)
             {
                 Lplayer=null;
+                overlay.SetActive(false);
+                loadingscreen.SetActive(true);
                 sceneManagment.GoNextScene(eshu);
             }            
             else

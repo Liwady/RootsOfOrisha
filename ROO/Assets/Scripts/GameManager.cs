@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public AudioManager audioManager;
 
 
-    public GameObject pauseMenu, overlay, cutscene;
+    public GameObject pauseMenu, overlay, cutscene,map;
     public CanvasGroup cg;
     public bool isPaused, tutorial;
     private float previousTimeScale;
@@ -35,8 +35,26 @@ public class GameManager : MonoBehaviour
         playerManager.EnablePlayerControls(true);
         cutscene.SetActive(true);
     }
+    public void StartMap(bool _value)
+    {
+        if(_value)
+        {
+            playerManager.EnableEshuControls(true);
+            map.SetActive(true);
+        }
+        else
+        {
+            playerManager.EnableEshuControls(false);
+            map.SetActive(false);
+        }
+    }
+    public void GoNextSceneEshu()
+    {
+        sceneManagment.GoNextScene(false);
+    }
     private void SetCurrentScene()
     {
+        currentScene = sceneManagment.currentScene;
         if (currentScene == 0)
             tutorial = true;
         if (tutorial)
@@ -50,10 +68,12 @@ public class GameManager : MonoBehaviour
             playerManager.EnablePlayerControls(isPaused);
             TutorialTriggers(0);
         }
-        else if (currentScene == 6)
+        else if (currentScene == 6 && sceneManagment.lastScene==1)
             StartCutscene();
-        sceneManagment.currentScene = currentScene;
-
+    }
+    public void SetWalking(bool isWalking)
+    {
+        animationManager.WalkingState(isWalking);
     }
     public void EndTutorial()
     {
@@ -122,7 +142,6 @@ public class GameManager : MonoBehaviour
     {
         audioManager.PlaySound(_name, _num);
     }
-
     public void StopSound(string _name)
     {
         audioManager.StopSound(_name);

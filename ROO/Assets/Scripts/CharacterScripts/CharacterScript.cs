@@ -4,7 +4,7 @@ public class CharacterScript : MonoBehaviour
 {
 
     private PlayerManager playerManager;
-    public GameObject checker, floatCheck, grabbedObject, detectedObject, grabPoint, grabPointBoat, EyePoint, myRender;
+    public GameObject checker, floatCheck, grabbedObject, detectedObject, grabPoint, grabPointBoat, EyePoint, myRender, interactibleObject;
     public Rigidbody rb;
     public bool left, canMove, usedAbility, canResize, canWalkOnWater, isHoldingCollectible, isHoldingGrabbable, isGrounded, isOnWater, hitWhileFloating, moving;
     public float movementSpeed, lastDir, grabPointPosLeft = 1.9f, grabPointPosRight = -1.9f;
@@ -41,9 +41,9 @@ public class CharacterScript : MonoBehaviour
     public void Rotate(float movement)
     {
         if (movement < 0 && lastDir < 0)
-            myRender.transform.eulerAngles = new Vector3(0, -140, 0);
+            myRender.transform.eulerAngles = new Vector3(0, -35, 0);
         else if (movement > 0 && lastDir > 0)
-            myRender.transform.eulerAngles = new Vector3(0, 140, 0);
+            myRender.transform.eulerAngles = new Vector3(0, 170, 0);
     }
     public void MoveTowardsPlace(Transform _currentPlayerFloatPoint)
     {
@@ -62,6 +62,13 @@ public class CharacterScript : MonoBehaviour
             grabPoint.transform.localPosition = new Vector3(grabPointPosRight, grabPoint.transform.localPosition.y, grabPoint.transform.localPosition.z);
         if (grabbedObject != null)
             grabbedObject.transform.position = new Vector3(grabPoint.transform.position.x, grabPoint.transform.position.y,grabbedObject.transform.position.z);
+    }
+    public void InteractWithObject()
+    {
+        if(interactibleObject!=null)
+        {
+            interactibleObject.GetComponent<InteractibleScript>().Interact();
+        }
     }
     public void GrabObject()
     {
@@ -124,5 +131,14 @@ public class CharacterScript : MonoBehaviour
     {
         if (other.CompareTag("Statue") || other.CompareTag("Boat") && !isHoldingGrabbable)
             detectedObject = other.gameObject;
+        if (other.CompareTag("Interactible"))
+            interactibleObject = other.gameObject;
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject == detectedObject)
+            detectedObject = null;
+        if (other.gameObject == interactibleObject)
+            interactibleObject = null;
     }
 }
