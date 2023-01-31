@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,7 +14,7 @@ public class AnimationManager : MonoBehaviour
     [SerializeField]
     private Image connectionImage;
     [SerializeField]
-    private Animator lightAnimator, skillAnimator;
+    private Animator lightAnimator, skillAnimator,zoudooAnimator,koubooAnimator;
     private int lightCount;
     [SerializeField]
     private bool zoudoo;
@@ -112,9 +113,15 @@ public class AnimationManager : MonoBehaviour
         else
             connectionImage.sprite = connection[num];
     }
-
     public void ShowHelpStatue(bool _show)
     {
         Debug.Log("show help statue");
+    }
+    public void WalkingState(bool isWalking)
+    {
+        if (isWalking)
+            zoudooAnimator.SetBool("isWalking", true);
+        else
+            zoudooAnimator.SetBool("isWalking", false);
     }
 }

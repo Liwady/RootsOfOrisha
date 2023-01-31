@@ -61,6 +61,7 @@ public class SceneManagment : MonoBehaviour
     public void PlayScene(int sceneNumber)
     {
         LevelTracker.level = SceneManager.GetActiveScene().buildIndex;
+        currentScene = LevelTracker.level;
         SceneManager.LoadScene(sceneNumber);
     }
     public void Quit()

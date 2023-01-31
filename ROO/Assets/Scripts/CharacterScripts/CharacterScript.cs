@@ -41,9 +41,9 @@ public class CharacterScript : MonoBehaviour
     public void Rotate(float movement)
     {
         if (movement < 0 && lastDir < 0)
-            myRender.transform.eulerAngles = new Vector3(0, -140, 0);
+            myRender.transform.eulerAngles = new Vector3(0, -80, 0);
         else if (movement > 0 && lastDir > 0)
-            myRender.transform.eulerAngles = new Vector3(0, 140, 0);
+            myRender.transform.eulerAngles = new Vector3(0, 170, 0);
     }
     public void MoveTowardsPlace(Transform _currentPlayerFloatPoint)
     {

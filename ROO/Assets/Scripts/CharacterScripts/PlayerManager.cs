@@ -37,6 +37,10 @@ public class PlayerManager : MonoBehaviour
     }
     private void Update()
     {
+        if (movement.x != 0)
+            gameManager.SetWalking(true);
+        else
+            gameManager.SetWalking(false);
 
         if (middleBond.outOfRange)
             MaxReached(true);
@@ -60,6 +64,7 @@ public class PlayerManager : MonoBehaviour
         currentCharacter = character1script;
         otherCharacter = character2script;
         abilityActive = false;
+
         SetMovementSpeed();
         SetWeight();
 
@@ -430,6 +435,7 @@ public class PlayerManager : MonoBehaviour
             }
 
             gameManager.UpdateMechanics(2, true);
+            gameManager.SetWalking(false);
             SetMovementSpeed();
             if (currentAbility == 0 && abilityActive)
                 DefaultValuesSize();

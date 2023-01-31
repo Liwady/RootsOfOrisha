@@ -50,10 +50,14 @@ public class GameManager : MonoBehaviour
             playerManager.EnablePlayerControls(isPaused);
             TutorialTriggers(0);
         }
-        else if (currentScene == 6)
+        else if (currentScene == 6 && sceneManagment.currentScene==1)
             StartCutscene();
         sceneManagment.currentScene = currentScene;
 
+    }
+    public void SetWalking(bool isWalking)
+    {
+        animationManager.WalkingState(isWalking);
     }
     public void EndTutorial()
     {
