@@ -10,7 +10,7 @@ public class eshuConvo : MonoBehaviour
     [SerializeField]
     private string[] states;
     [SerializeField]
-    private Animator boxAnimator, textAnimator, buttonAnimator;
+    private Animator boxAnimator, textAnimator, buttonAnimator,fireani;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,13 +22,17 @@ public class eshuConvo : MonoBehaviour
     private void Update()
     {
         if (AnimatorIsPlaying(boxAnimator, "staticBox"))
+        {
             textAnimator.SetTrigger("Start");
-
+            buttonAnimator.SetTrigger("start");
+        }
+            
         if (AnimatorIsPlaying(textAnimator, "end"))
             EndBoxAnimation();
 
         if ( AnimatorIsPlaying(boxAnimator, "end"))
         {
+            fireani.SetTrigger("start");
             gameManager.EndTutorial();
             Destroy(gameObject);
             Destroy(this);

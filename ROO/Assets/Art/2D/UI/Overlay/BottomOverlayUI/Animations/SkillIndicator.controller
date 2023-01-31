@@ -90,9 +90,6 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: SwitchToFloat
     m_EventTreshold: 0
-  - m_ConditionMode: 1
-    m_ConditionEvent: CanResize
-    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -5178330550819117733}
   m_Solo: 0
@@ -1012,9 +1009,6 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: SwitchToSize
-    m_EventTreshold: 0
-  - m_ConditionMode: 1
-    m_ConditionEvent: CanFloat
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -2112582032026673310}
