@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,7 +13,7 @@ public class AnimationManager : MonoBehaviour
     [SerializeField]
     private Image connectionImage;
     [SerializeField]
-    private Animator lightAnimator, skillAnimator,zoudooAnimator,koubooAnimator;
+    private Animator lightAnimator, skillAnimator, zoudooAnimator, koubooAnimator;
     private int lightCount;
     [SerializeField]
     private bool zoudoo;
@@ -106,9 +105,9 @@ public class AnimationManager : MonoBehaviour
             }
         }
     }
-    public void SwapConnectionSprite(int num,bool together)
+    public void SwapConnectionSprite(int num, bool together)
     {
-        if(together)
+        if (together)
             connectionImage.sprite = connection[0];
         else
             connectionImage.sprite = connection[num];
@@ -117,13 +116,46 @@ public class AnimationManager : MonoBehaviour
     {
         Debug.Log("show help statue");
     }
-    public void WalkingState(bool isWalking)
+    public void WalkingState(bool isWalking, bool together, bool zoudoo)
     {
-        if (isWalking)
-            zoudooAnimator.SetBool("isWalking", true);
+        if (together)
+        {
+            if (isWalking)
+            {
+                zoudooAnimator.SetBool("isWalking", true);
+                koubooAnimator.SetBool("isWalking", true);
+            }
+            else
+            {
+                zoudooAnimator.SetBool("isWalking", false);
+                koubooAnimator.SetBool("isWalking", false);
+            }
+        }
         else
-            zoudooAnimator.SetBool("isWalking", false);
+        {
+            if (zoudoo)
+            {
+                if (isWalking)
+                {
+                    zoudooAnimator.SetBool("isWalking", true);
+                    koubooAnimator.SetBool("isWalking", false);
+                }
+                else
+                    zoudooAnimator.SetBool("isWalking", false);
+            }
+            else
+            {
+                if (isWalking)
+                {
+                    koubooAnimator.SetBool("isWalking", true);
+                    zoudooAnimator.SetBool("isWalking", false);
+                }
+                else
+                    koubooAnimator.SetBool("isWalking", false);
+            }
+        }
     }
+
 
 
 }

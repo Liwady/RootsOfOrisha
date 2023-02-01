@@ -84,4 +84,6 @@ MonoBehaviour:
   connectionImage: {fileID: 0}
   lightAnimator: {fileID: 0}
   skillAnimator: {fileID: 0}
+  zoudooAnimator: {fileID: 0}
+  koubooAnimator: {fileID: 0}
   zoudoo: 1

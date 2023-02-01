@@ -24,7 +24,7 @@ public class SceneManagment : MonoBehaviour
     [SerializeField]
     private AudioMixer SFXMasterMixer;
 
-    public int lastScene,currentScene;
+    public int lastScene, currentScene;
     private SpriteState ss;
     private EventSystem eventSystem;
     private Button sfxButton, musicButton, brightnessButton, settingsButton, currentButton, creditsButton, controlsButton;
@@ -195,33 +195,29 @@ public class SceneManagment : MonoBehaviour
     }
     public void GoBack()
     {
-        if (currentScene == 6)
-            gameManager.StartMap(false);
-        else
+        switch (currentScreen)
         {
-            switch (currentScreen)
-            {
-                case 0://pausescreen
-                    Unpause();
-                    break;
-                case 1://optionsscreen
-                    if (startGame)
-                        GoToStartScreen(false);
-                    else
-                        GoToPauseScreen();
-                    break;
-                case 2://child of options screen
-                    GoToOptionsScreen();
-                    break;
-                case 3:
-                    if (atSlider)
-                        DeactivateSlider();
-                    GoToSettingsScreen();
-                    break;
-                case 4:
-                    PlayScene(0);
-                    break;
-            }
+            case 0://pausescreen
+                Unpause();
+                break;
+            case 1://optionsscreen
+                if (startGame)
+                    GoToStartScreen(false);
+                else
+                    GoToPauseScreen();
+                break;
+            case 2://child of options screen
+                GoToOptionsScreen();
+                break;
+            case 3:
+                if (atSlider)
+                    DeactivateSlider();
+                GoToSettingsScreen();
+                break;
+            case 4:
+                PlayScene(0);
+                break;
+
         }
     }
 

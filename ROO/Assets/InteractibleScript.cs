@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InteractibleScript : MonoBehaviour
 {
@@ -7,21 +8,19 @@ public class InteractibleScript : MonoBehaviour
     [SerializeField]
     private bool map, cutscenePlayed, clicked;
     [SerializeField]
-    private Animator mapAnimator, buttonAnimator;
+    private GameObject eshuActive, shanActive, ossainActive;
+    [SerializeField]
+    private Animator[] animators;
     private void Awake()
     {
         gameManager = FindObjectOfType<GameManager>();
-        previousScene = gameManager.currentScene;
+        
         cutscenePlayed = false;
     }
     private void Update()
     {
-        if (cutscenePlayed && AnimatorIsPlaying(mapAnimator, "next") && clicked)
-        {
-            clicked = false;
+        if (cutscenePlayed && AnimatorIsPlaying(animators[previousScene], "end"))
             gameManager.GoNextSceneEshu();
-        }
-
     }
     public void Interact()
     {
@@ -29,27 +28,31 @@ public class InteractibleScript : MonoBehaviour
             MapScene();
         else
             EshuInteraction();
-
-    }
-    public void Click()
-    {
-        clicked = true;
     }
 
     private void MapScene()
     {
+        previousScene = gameManager.lastScene;
+        gameManager.StartMap(true);
         switch (previousScene)
         {
             case 0: //tutorial show map going from nothing to eshu  
-                mapAnimator.SetInteger("level", 0);
+                eshuActive.SetActive(true);
+                eshuActive.GetComponentInChildren<Image>().color = Color.Lerp(Color.clear, Color.white, 2);
                 break;
             case 1://show map going from eshu to fire  
-                mapAnimator.SetInteger("level", 1);
+                shanActive.SetActive(true);
+                eshuActive.SetActive(true);
+                shanActive.GetComponentInChildren<Image>().color = Color.Lerp(Color.clear, Color.white, 2);
                 break;
             case 2://fire to earth 
-                mapAnimator.SetInteger("level", 2);
+                eshuActive.SetActive(true);
+                shanActive.SetActive(true);
+                ossainActive.SetActive(true);
+                ossainActive.GetComponentInChildren<Image>().color = Color.Lerp(Color.clear, Color.white, 2);
                 break;
         }
+        animators[previousScene].SetTrigger("start");
         cutscenePlayed = true;
     }
 

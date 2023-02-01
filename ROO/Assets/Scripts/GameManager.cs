@@ -7,12 +7,13 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private int ability, character, together;
     public bool eyeColl;
-    public int currentScene, amountOfFruit;
+    public int currentScene, amountOfFruit, lastScene;
 
     public PlayerManager playerManager;
     public SceneManagment sceneManagment;
     public AnimationManager animationManager;
     public AudioManager audioManager;
+    public EshuConvoScript eshuConvo;
 
 
     public GameObject pauseMenu, overlay, cutscene,map;
@@ -34,11 +35,13 @@ public class GameManager : MonoBehaviour
     {
         playerManager.EnablePlayerControls(true);
         cutscene.SetActive(true);
+        eshuConvo.isActive = true;
     }
     public void StartMap(bool _value)
     {
         if(_value)
         {
+
             playerManager.EnableEshuControls(true);
             map.SetActive(true);
         }
@@ -55,6 +58,7 @@ public class GameManager : MonoBehaviour
     private void SetCurrentScene()
     {
         currentScene = sceneManagment.currentScene;
+        lastScene = sceneManagment.lastScene;
         if (currentScene == 0)
             tutorial = true;
         if (tutorial)
@@ -68,12 +72,12 @@ public class GameManager : MonoBehaviour
             playerManager.EnablePlayerControls(isPaused);
             TutorialTriggers(0);
         }
-        else if (currentScene == 6 && sceneManagment.lastScene==1)
+        else if (currentScene == 5 && sceneManagment.lastScene==1)
             StartCutscene();
     }
     public void SetWalking(bool isWalking)
     {
-        animationManager.WalkingState(isWalking);
+        animationManager.WalkingState(isWalking,playerManager.moveBoth, playerManager.currentCharacter == playerManager.character1script);
     }
     public void EndTutorial()
     {
@@ -123,7 +127,8 @@ public class GameManager : MonoBehaviour
     // option 0 = switch ability, option 1 = switch character, option 2 = trigger ability
     public void UpdateMechanics(int option, bool reset)
     {
-        animationManager.ChangeMechanicsSprite(option, playerManager.currentAbility == 0, reset);
+        if(overlay.activeInHierarchy)
+            animationManager.ChangeMechanicsSprite(option, playerManager.currentAbility == 0, reset);
     }
     public void UpdateConnection(int num)
     {
