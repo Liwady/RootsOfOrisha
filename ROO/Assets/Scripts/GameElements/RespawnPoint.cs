@@ -8,11 +8,13 @@ public class RespawnPoint : MonoBehaviour
     private GameObject Lplayer;
     public Transform[] spawnPoints;
     private Animator animator;
+    private GameManager gameManager;
     public bool hasFire;
 
     private void Start()
     {
         playerManager = FindObjectOfType<PlayerManager>();
+        gameManager = FindObjectOfType<GameManager>();
         animator = GetComponentInChildren<Animator>();
     }
 
@@ -34,6 +36,7 @@ public class RespawnPoint : MonoBehaviour
         if (hasFire)
         {
             animator.SetTrigger("Start");
+            gameManager.PlaySound("flame");
             GetComponentInChildren<Light>().enabled = true;
         }
     }
