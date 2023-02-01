@@ -26,6 +26,7 @@ public class EshuConvoScript : MonoBehaviour
             {
                 textAnimator.SetTrigger("Start");
                 buttonAnimator.SetTrigger("start");
+                gameManager.PlaySound("eshulaugh");
             }
 
             if (AnimatorIsPlaying(textAnimator, "end"))
@@ -45,6 +46,8 @@ public class EshuConvoScript : MonoBehaviour
                 {
                     clicked = false;
                     text++;
+                    if(text == 11)
+                        gameManager.PlaySound("eshulaugh");
                     NextText();
                 }
                 else

@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Cinemachine;
+using UnityEngine;
 
 public class startCamMove : MonoBehaviour
 {
@@ -9,7 +7,7 @@ public class startCamMove : MonoBehaviour
     [SerializeField]
     private float timer, newBlendTime;
     public int scene;
-    private bool triggered, newBlendAsigned;
+    public bool triggered, newBlendAsigned, triggerAni;
     [SerializeField]
     private CinemachineVirtualCamera startCam;
     [SerializeField]
@@ -26,22 +24,29 @@ public class startCamMove : MonoBehaviour
             triggered = true;
             startCam.Priority = -100;
             timer2 = brain.m_DefaultBlend.m_Time;
-            title.SetActive(true);
-            title.GetComponent<Animator>().SetInteger("scene",scene);
         }
         else if (!triggered)
             timer -= Time.deltaTime;
         else if (triggered)
         {
+            if (triggerAni)
+            {
+                title.SetActive(true);
+                title.GetComponent<Animator>().SetInteger("scene", scene);
+                triggerAni = false;
+            }
             timer2 -= Time.deltaTime;
             if (timer2 < 0 && !newBlendAsigned)
             {
                 newBlendAsigned = true;
                 brain.m_DefaultBlend.m_Time = newBlendTime;
-                title.SetActive(false);
-                Destroy(title);
+                if (title != null)
+                {
+                    title.SetActive(false);
+                    Destroy(title);
+                }
             }
-            else if(!newBlendAsigned)
+            else if (!newBlendAsigned)
                 timer2 -= Time.deltaTime;
         }
 

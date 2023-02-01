@@ -6044,7 +6044,7 @@ ParticleSystem:
     serializedVersion: 6
     enabled: 1
     type: 4
-    angle: 5
+    angle: 1
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
@@ -6130,7 +6130,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 0.1
+      value: 0.0001
       mode: 0
       spread: 0
       speed:
@@ -10937,7 +10937,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 225}
+  m_AnchoredPosition: {x: 0, y: 43}
   m_SizeDelta: {x: 857, y: 673}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &460562166
@@ -11808,7 +11808,7 @@ ParticleSystem:
     serializedVersion: 6
     enabled: 1
     type: 4
-    angle: 5
+    angle: 1
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
@@ -11894,7 +11894,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 0.1
+      value: 0.0001
       mode: 0
       spread: 0
       speed:
@@ -24614,6 +24614,9 @@ MonoBehaviour:
   timer: 0.5
   newBlendTime: 4
   scene: 2
+  triggered: 0
+  newBlendAsigned: 0
+  triggerAni: 1
   startCam: {fileID: 1580025848}
   brain: {fileID: 1980108021}
   title: {fileID: 460562164}
@@ -24793,7 +24796,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 0.4
+  m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -27267,8 +27270,8 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.9176471, g: 0.10980393, b: 0.07450981, a: 1}
-  m_Intensity: 0.7
+  m_Color: {r: 1, g: 0.04186046, b: 0, a: 1}
+  m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -29066,7 +29069,7 @@ ParticleSystem:
     serializedVersion: 6
     enabled: 1
     type: 4
-    angle: 5
+    angle: 1
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
@@ -29152,7 +29155,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 0.1
+      value: 0.0001
       mode: 0
       spread: 0
       speed:
@@ -33990,7 +33993,7 @@ ParticleSystem:
     serializedVersion: 6
     enabled: 1
     type: 4
-    angle: 10.292664
+    angle: 1
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
@@ -34076,7 +34079,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 0.22039509
+      value: 0.0001
       mode: 0
       spread: 0
       speed:
@@ -38802,6 +38805,9 @@ MonoBehaviour:
   timer: 5.5
   newBlendTime: 2
   scene: 0
+  triggered: 0
+  newBlendAsigned: 0
+  triggerAni: 0
   startCam: {fileID: 924212040}
   brain: {fileID: 1980108021}
   title: {fileID: 0}

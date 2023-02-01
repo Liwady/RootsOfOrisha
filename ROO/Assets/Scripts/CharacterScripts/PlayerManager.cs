@@ -439,10 +439,14 @@ public class PlayerManager : MonoBehaviour
             gameManager.UpdateMechanics(2, true);
             gameManager.SetWalking(false);
             SetMovementSpeed();
+
             if (currentAbility == 0 && abilityActive)
                 DefaultValuesSize();
             else
-                SetGravity();
+            {
+                character1script.rb.useGravity = true;
+                character2script.rb.useGravity = true;
+            }
             character1script.usedAbility = false;
             character2script.usedAbility = false;
             abilityActive = false;

@@ -1599,7 +1599,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 253136132}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 328.67786, y: 5.516399, z: -8}
+  m_LocalPosition: {x: 325.0692, y: 5.518079, z: -12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7470,7 +7470,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.55
+  m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -7509,7 +7509,7 @@ Light:
     serializedVersion: 2
     m_Bits: 983
   m_RenderingLayerMask: 1
-  m_Lightmapping: 2
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 100, y: 100}
   m_BounceIntensity: 1
@@ -8861,8 +8861,8 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.5372549, g: 0, b: 1, a: 1}
-  m_Intensity: 0.7
+  m_Color: {r: 0.8933371, g: 0.12641507, b: 1, a: 1}
+  m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -8901,7 +8901,7 @@ Light:
     serializedVersion: 2
     m_Bits: 983
   m_RenderingLayerMask: 1
-  m_Lightmapping: 2
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 100, y: 100}
   m_BounceIntensity: 1
@@ -18497,6 +18497,7 @@ GameObject:
   - component: {fileID: 4215850257750682848}
   - component: {fileID: 4215850257750682847}
   - component: {fileID: 4215850257750682846}
+  - component: {fileID: 4215850257750682849}
   m_Layer: 0
   m_Name: Eshu_idle
   m_TagString: Untagged
@@ -19096,6 +19097,27 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4215850257750682849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3587792021169354343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6519d00260722ee40a327f73931817aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  map: 0
+  cutscenePlayed: 0
+  clicked: 0
+  introNext: 0
+  eshuActive: {fileID: 0}
+  shanActive: {fileID: 0}
+  ossainActive: {fileID: 0}
+  animators: []
+  start: 0
 --- !u!4 &4231849344831173005
 Transform:
   m_ObjectHideFlags: 0
