@@ -2636,7 +2636,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: c9d43dc630890704aaed993eac7c9479, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -8711,6 +8711,26 @@ PrefabInstance:
       propertyPath: wheelAS.Array.data[2]
       value: 
       objectReference: {fileID: 1571786312}
+    - target: {fileID: 6387966389587899124, guid: 7efcdda36baf97542b80891f522c8d1b, type: 3}
+      propertyPath: eshuLaughClips.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6387966389587899124, guid: 7efcdda36baf97542b80891f522c8d1b, type: 3}
+      propertyPath: eshuLaughClips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: ab6c9826148b0c94a8d4a7736fc18035, type: 3}
+    - target: {fileID: 6387966389587899124, guid: 7efcdda36baf97542b80891f522c8d1b, type: 3}
+      propertyPath: eshuLaughClips.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 35d08b14be8b99847a26e5de07a96ed5, type: 3}
+    - target: {fileID: 6387966389587899124, guid: 7efcdda36baf97542b80891f522c8d1b, type: 3}
+      propertyPath: eshuLaughClips.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 9d70a059b8147cc43843abcbd613e2d3, type: 3}
+    - target: {fileID: 6387966389587899124, guid: 7efcdda36baf97542b80891f522c8d1b, type: 3}
+      propertyPath: eshuLaughClips.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: b937e693a47a049498e3703538b34857, type: 3}
     - target: {fileID: 6387966389587899125, guid: 7efcdda36baf97542b80891f522c8d1b, type: 3}
       propertyPath: m_Name
       value: AudioManager
