@@ -40,10 +40,21 @@ public class CharacterScript : MonoBehaviour
     }
     public void Rotate(float movement)
     {
-        if (movement < 0 && lastDir < 0)
-            myRender.transform.eulerAngles = new Vector3(0, -35, 0);
-        else if (movement > 0 && lastDir > 0)
-            myRender.transform.eulerAngles = new Vector3(0, 170, 0);
+        if (playerManager.character1script == this)
+        {
+            if (movement < 0 && lastDir < 0)
+                myRender.transform.eulerAngles = new Vector3(0, -35, 0);
+            else if (movement > 0 && lastDir > 0)
+                myRender.transform.eulerAngles = new Vector3(0, 170, 0);
+        }
+        else
+        {
+            if (movement < 0 && lastDir < 0)
+                myRender.transform.eulerAngles = new Vector3(0, -120, 0);
+            else if (movement > 0 && lastDir > 0)
+                myRender.transform.eulerAngles = new Vector3(0, 120, 0);
+        }
+
     }
     public void MoveTowardsPlace(Transform _currentPlayerFloatPoint)
     {
@@ -61,11 +72,11 @@ public class CharacterScript : MonoBehaviour
         else if (movement > 0 && lastDir > 0)
             grabPoint.transform.localPosition = new Vector3(grabPointPosRight, grabPoint.transform.localPosition.y, grabPoint.transform.localPosition.z);
         if (grabbedObject != null)
-            grabbedObject.transform.position = new Vector3(grabPoint.transform.position.x, grabPoint.transform.position.y,grabbedObject.transform.position.z);
+            grabbedObject.transform.position = new Vector3(grabPoint.transform.position.x, grabPoint.transform.position.y, grabbedObject.transform.position.z);
     }
     public void InteractWithObject()
     {
-        if(interactibleObject!=null)
+        if (interactibleObject != null)
         {
             interactibleObject.GetComponent<InteractibleScript>().Interact();
         }

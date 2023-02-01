@@ -6172,8 +6172,8 @@ MonoBehaviour:
   m_ShowCameraFrustum: 1
   m_IgnoreTimeScale: 0
   m_WorldUpOverride: {fileID: 0}
-  m_UpdateMethod: 1
-  m_BlendUpdateMethod: 1
+  m_UpdateMethod: 0
+  m_BlendUpdateMethod: 0
   m_DefaultBlend:
     m_Style: 1
     m_Time: 5
@@ -9571,10 +9571,12 @@ MonoBehaviour:
   eyeColl: 0
   currentScene: 2
   amountOfFruit: 0
+  lastScene: 0
   playerManager: {fileID: 305747234}
   sceneManagment: {fileID: 1397565649}
   animationManager: {fileID: 1587030533}
   audioManager: {fileID: 1729969188}
+  eshuConvo: {fileID: 0}
   pauseMenu: {fileID: 1397565648}
   overlay: {fileID: 1397565647}
   cutscene: {fileID: 0}

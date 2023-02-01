@@ -41,7 +41,6 @@ public class GameManager : MonoBehaviour
     {
         if(_value)
         {
-
             playerManager.EnableEshuControls(true);
             map.SetActive(true);
         }

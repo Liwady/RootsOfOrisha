@@ -384,13 +384,13 @@ public class SceneManagment : MonoBehaviour
         if (!eshu)
             switch (LevelTracker.level)
             {
-                case 0: //tutorial
+                case 1: //tutorial
                     PlayScene(2);
                     break;
-                case 1://FireLevel
+                case 2://FireLevel
                     PlayScene(3);
                     break;
-                case 2://EarthLevel
+                case 3://EarthLevel
                     PlayScene(4);
                     break;
             }
