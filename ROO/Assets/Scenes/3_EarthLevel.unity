@@ -8146,6 +8146,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1694369395}
     - target: {fileID: 6065931378172111936, guid: 61c1079704853fc4ca2cdeaa129abe4d, type: 3}
+      propertyPath: koubooAnimator
+      value: 
+      objectReference: {fileID: 453143974}
+    - target: {fileID: 6065931378172111936, guid: 61c1079704853fc4ca2cdeaa129abe4d, type: 3}
+      propertyPath: zoudooAnimator
+      value: 
+      objectReference: {fileID: 1104242091}
+    - target: {fileID: 6065931378172111936, guid: 61c1079704853fc4ca2cdeaa129abe4d, type: 3}
       propertyPath: connectionImage
       value: 
       objectReference: {fileID: 563792540}
@@ -9143,6 +9151,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 1397565648}
   overlay: {fileID: 1397565647}
   cutscene: {fileID: 0}
+  map: {fileID: 0}
   cg: {fileID: 1397565646}
   isPaused: 0
   tutorial: 0
