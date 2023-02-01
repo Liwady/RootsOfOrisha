@@ -13,10 +13,9 @@ public class startCamMove : MonoBehaviour
     private CinemachineVirtualCamera startCam;
     [SerializeField]
     private CinemachineBrain brain;
-    private void Start()
-    {
-        startCam.Priority = 100;
-    }
+    [SerializeField]
+
+
 
     private void Update()
     {
@@ -40,5 +39,7 @@ public class startCamMove : MonoBehaviour
             else if(!newBlendAsigned)
                 timer2 -= Time.deltaTime;
         }
+
+
     }
 }
