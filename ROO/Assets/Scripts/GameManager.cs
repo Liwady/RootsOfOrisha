@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        if (currentScene == 0 && !isPaused)
+        if (currentScene == 1 && !isPaused)
             animationManager.StartFireAnimation(playerManager.currentCharacter.transform.position, distance2Ani);
     }
     public void StartCutscene()
@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
     {
         currentScene = sceneManagment.currentScene;
         lastScene = sceneManagment.lastScene;
-        if (currentScene == 0)
+        if (currentScene == 1)
             tutorial = true;
         if (tutorial)
         {

@@ -5,9 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class StartScreen : MonoBehaviour
 {
+    public InteractibleScript map;
     void Update()
     {
         if (Input.anyKeyDown)
-            SceneManager.LoadScene(1);
+            map.start = true;
     }
 }

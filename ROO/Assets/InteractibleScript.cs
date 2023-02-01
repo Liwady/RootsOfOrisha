@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class InteractibleScript : MonoBehaviour
@@ -6,19 +7,25 @@ public class InteractibleScript : MonoBehaviour
     private int previousScene;
     private GameManager gameManager;
     [SerializeField]
-    private bool map, cutscenePlayed, clicked;
+    private bool map, cutscenePlayed, clicked,introNext;
     [SerializeField]
     private GameObject eshuActive, shanActive, ossainActive;
     [SerializeField]
     private Animator[] animators;
+    public bool start;
     private void Awake()
     {
         gameManager = FindObjectOfType<GameManager>();
-        
         cutscenePlayed = false;
+        start = false;
     }
     private void Update()
     {
+        if (start)
+            MapSceneIntro();
+        if(introNext && AnimatorIsPlaying(animators[0], "end"))
+            SceneManager.LoadScene(1);
+
         if (cutscenePlayed && AnimatorIsPlaying(animators[previousScene], "end"))
             gameManager.GoNextSceneEshu();
     }
@@ -29,7 +36,15 @@ public class InteractibleScript : MonoBehaviour
         else
             EshuInteraction();
     }
-
+    private void MapSceneIntro()
+    {
+        gameManager.map.SetActive(true);
+        eshuActive.SetActive(true);
+        eshuActive.GetComponentInChildren<Image>().color = Color.Lerp(Color.clear, Color.white, 2);
+        animators[0].SetTrigger("start");
+        introNext = true;
+        start = false;
+    }
     private void MapScene()
     {
         previousScene = gameManager.lastScene;
