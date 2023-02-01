@@ -3,8 +3,10 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
+
+    public GameObject character1, character2;
     [HideInInspector]
-    public GameObject character1, character2, sizeC1, sizeC2;
+    public GameObject sizeC1, sizeC2;
     [HideInInspector]
     public CharacterScript currentCharacter;
 

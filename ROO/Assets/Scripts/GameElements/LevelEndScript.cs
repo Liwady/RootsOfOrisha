@@ -19,7 +19,8 @@ public class LevelEndScript : MonoBehaviour
             {
                 Lplayer=null;
                 overlay.SetActive(false);
-                loadingscreen.SetActive(true);
+                if (loadingscreen != null)
+                    loadingscreen.SetActive(true);
                 sceneManagment.GoNextScene(eshu);
             }            
             else
