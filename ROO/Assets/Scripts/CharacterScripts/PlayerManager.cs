@@ -1,5 +1,5 @@
-using UnityEngine;
 using Cinemachine;
+using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -11,7 +11,6 @@ public class PlayerManager : MonoBehaviour
     public int currentAbility, currentLevel, depth;
     public CharacterScript character1script, character2script, otherCharacter;
 
-    [SerializeField]
     public CinemachineVirtualCamera zoubooCam, koobouCam;
 
     private GameManager gameManager;
@@ -46,7 +45,7 @@ public class PlayerManager : MonoBehaviour
 
         if (currentCharacter.canMove && movement.x != 0 && !cutscenePlaying)
             Move();
-  
+
         if (currentAbility == 1 && abilityActive)
             UpdateFloating();
     }
@@ -189,13 +188,13 @@ public class PlayerManager : MonoBehaviour
             {
                 if (currentCharacter == character1script)
                 {
-                    gameManager.UpdateConnection(1);
+
                     character1script.canMove = true;
                     character2script.canMove = false;
                 }
                 else
                 {
-                    gameManager.UpdateConnection(2);
+
                     character1script.canMove = false;
                     character2script.canMove = true;
                 }
@@ -203,11 +202,11 @@ public class PlayerManager : MonoBehaviour
             }
             else
             {
-                gameManager.UpdateConnection(0);
                 character1script.canMove = true;
                 character2script.canMove = true;
                 moveBoth = true;
             }
+            gameManager.UpdateConnection();
         }//feedback cant move together rn 
     }
     private void UpdateFloating()
@@ -457,12 +456,10 @@ public class PlayerManager : MonoBehaviour
             character2.transform.position = new Vector3(character2.transform.position.x, character2.transform.position.y, -depth);
             otherCharacter = character1script;
             currentCharacter = character2script;
-
             zoubooCam.Priority = 0;
             koobouCam.Priority = 1;
             character1script.EyePoint.GetComponent<MeshRenderer>().enabled = false;
             character2script.EyePoint.GetComponent<MeshRenderer>().enabled = true;
-            gameManager.UpdateConnection(2);
         }
         else
         {
@@ -476,11 +473,11 @@ public class PlayerManager : MonoBehaviour
             koobouCam.Priority = 0;
             character1script.EyePoint.GetComponent<MeshRenderer>().enabled = true;
             character2script.EyePoint.GetComponent<MeshRenderer>().enabled = false;
-            gameManager.UpdateConnection(1);
         }
         SetMovementSpeed();
         gameManager.PlaySound("swap");
         gameManager.UpdateMechanics(1, false);
+        gameManager.UpdateConnection();
     }
     public void DoToggleLever()
     {
@@ -491,11 +488,7 @@ public class PlayerManager : MonoBehaviour
         if (moveBoth) //disable move together if triggering ability 
         {
             moveBoth = false;
-            if (currentCharacter == character1script)
-                gameManager.UpdateConnection(1);
-            else
-                gameManager.UpdateConnection(2);
-
+            gameManager.UpdateConnection();
         }
 
         switch (currentAbility)

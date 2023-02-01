@@ -105,12 +105,14 @@ public class AnimationManager : MonoBehaviour
             }
         }
     }
-    public void SwapConnectionSprite(int num, bool together)
+    public void SwapConnectionSprite(bool zoudoo, bool together)
     {
         if (together)
             connectionImage.sprite = connection[0];
-        else
-            connectionImage.sprite = connection[num];
+        else if (zoudoo)
+            connectionImage.sprite = connection[1];
+        else 
+            connectionImage.sprite = connection[2];
     }
     public void ShowHelpStatue(bool _show)
     {

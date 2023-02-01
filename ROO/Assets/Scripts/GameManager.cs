@@ -41,12 +41,12 @@ public class GameManager : MonoBehaviour
     {
         if(_value)
         {
-            playerManager.EnableEshuControls(true);
+            playerManager.EnableEshuControls(false);
             map.SetActive(true);
         }
         else
         {
-            playerManager.EnableEshuControls(false);
+            playerManager.EnableEshuControls(true);
             map.SetActive(false);
         }
     }
@@ -71,8 +71,10 @@ public class GameManager : MonoBehaviour
             playerManager.EnablePlayerControls(isPaused);
             TutorialTriggers(0);
         }
-        else if (currentScene == 5 && sceneManagment.lastScene==1)
+        else if (currentScene == 5 && sceneManagment.lastScene == 1)
             StartCutscene();
+        else if (currentScene == 2 || currentScene == 3)
+            playerManager.EnablePlayerControls(false);
     }
     public void SetWalking(bool isWalking)
     {
@@ -129,9 +131,9 @@ public class GameManager : MonoBehaviour
         if(overlay.activeInHierarchy)
             animationManager.ChangeMechanicsSprite(option, playerManager.currentAbility == 0, reset);
     }
-    public void UpdateConnection(int num)
+    public void UpdateConnection()
     {
-        animationManager.SwapConnectionSprite(num,playerManager.moveBoth);
+        animationManager.SwapConnectionSprite(playerManager.currentCharacter==playerManager.character1script,playerManager.moveBoth);
     }
     public void TutorialTriggers(int stage)
     {
