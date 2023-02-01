@@ -4190,11 +4190,11 @@ PrefabInstance:
     - target: {fileID: 6065931378172111936, guid: 61c1079704853fc4ca2cdeaa129abe4d, type: 3}
       propertyPath: koubooAnimator
       value: 
-      objectReference: {fileID: 455685384}
+      objectReference: {fileID: 662586862}
     - target: {fileID: 6065931378172111936, guid: 61c1079704853fc4ca2cdeaa129abe4d, type: 3}
       propertyPath: zoudooAnimator
       value: 
-      objectReference: {fileID: 1660939}
+      objectReference: {fileID: 1521102887}
     - target: {fileID: 6065931378172111936, guid: 61c1079704853fc4ca2cdeaa129abe4d, type: 3}
       propertyPath: connectionImage
       value: 
@@ -39449,7 +39449,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1804627378
 Transform:
   m_ObjectHideFlags: 0
@@ -98628,7 +98628,7 @@ MonoBehaviour:
   detectedObject: {fileID: 0}
   grabPoint: {fileID: 4440641370749346155}
   grabPointBoat: {fileID: 0}
-  EyePoint: {fileID: 0}
+  EyePoint: {fileID: 1804627377}
   myRender: {fileID: 8171069621544992024}
   interactibleObject: {fileID: 0}
   rb: {fileID: 9016187463335447786}
@@ -99148,7 +99148,7 @@ MonoBehaviour:
   detectedObject: {fileID: 0}
   grabPoint: {fileID: 3038391849436425139}
   grabPointBoat: {fileID: 0}
-  EyePoint: {fileID: 0}
+  EyePoint: {fileID: 759953716}
   myRender: {fileID: 1319675765382803687}
   interactibleObject: {fileID: 0}
   rb: {fileID: 6645460018950231020}
