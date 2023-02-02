@@ -12204,6 +12204,8 @@ MonoBehaviour:
   - {fileID: 9075011973928342936}
   weightRequirment: 3
   weightOnMe: 0
+  twoPressurePlateSystem: 1
+  otherPressurePlate: {fileID: 9075011974685066850}
 --- !u!1 &905514647
 GameObject:
   m_ObjectHideFlags: 0
@@ -34169,6 +34171,8 @@ MonoBehaviour:
   - {fileID: 3018894813744594408}
   weightRequirment: 1
   weightOnMe: 0
+  twoPressurePlateSystem: 0
+  otherPressurePlate: {fileID: 0}
 --- !u!1 &3030566039295689705
 GameObject:
   m_ObjectHideFlags: 0
@@ -34216,7 +34220,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.413995, y: 1.8501558, z: 20}
+  m_Size: {x: 1.413995, y: 13.18, z: 20}
   m_Center: {x: -0.109366655, y: 0.19572246, z: 0}
 --- !u!1 &3038391847992953727
 GameObject:
@@ -40101,7 +40105,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.413995, y: 1.8501558, z: 20}
+  m_Size: {x: 1.413995, y: 12.84, z: 20}
   m_Center: {x: -0.109366655, y: 0.19572246, z: 0}
 --- !u!1 &6340593898867349109
 GameObject:
@@ -44725,6 +44729,8 @@ MonoBehaviour:
   - {fileID: 9033560282965008482}
   weightRequirment: 5
   weightOnMe: 0
+  twoPressurePlateSystem: 1
+  otherPressurePlate: {fileID: 904877054}
 --- !u!65 &9080538553095790332
 BoxCollider:
   m_ObjectHideFlags: 0
