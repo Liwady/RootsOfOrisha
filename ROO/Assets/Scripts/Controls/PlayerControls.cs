@@ -122,7 +122,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""3c8c3969-2205-4c5e-a5d4-938a037ed93a"",
-                    ""path"": ""<Gamepad>/rightStick"",
+                    ""path"": ""<SwitchProControllerHID>/leftStick"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

@@ -32,7 +32,7 @@ public class SceneManagment : MonoBehaviour
     public Vector2 valueS;
     private float time;
     private bool atSlider, start;
-    public bool startGame, movedSlider;
+    public bool startGame, movedSlider, cutscene;
 
 
     private void Awake()
@@ -101,8 +101,11 @@ public class SceneManagment : MonoBehaviour
     }
     public void GetCurrentButton()
     {
-        currentButtonObject = eventSystem.currentSelectedGameObject;
-        currentButton = currentButtonObject.GetComponent<Button>();
+        if (!cutscene)
+        {
+            currentButtonObject = eventSystem.currentSelectedGameObject;
+            currentButton = currentButtonObject.GetComponent<Button>();
+        }
     }
 
     //NAVIGATION
