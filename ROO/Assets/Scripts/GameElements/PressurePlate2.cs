@@ -16,7 +16,7 @@ public class PressurePlate2 : MonoBehaviour
 
 
     public int weightOnMe;
-
+    private bool statued;
     [Header("Two Pressure Plate System")]
     [SerializeField]
     private bool twoPressurePlateSystem;
@@ -41,10 +41,10 @@ public class PressurePlate2 : MonoBehaviour
         }
         else if (other.CompareTag("Statue"))
         {
-            weightOnMe += 10;
+            statued = true;
         }
 
-        if (weightOnMe >= weightRequirment)
+        if (weightOnMe >= weightRequirment || statued)
         {
             for (int i = 0; i < triggeredObjects.Length; i++)
                 triggeredObjects[i].Toggle(true);
@@ -68,14 +68,14 @@ public class PressurePlate2 : MonoBehaviour
         }
         else if (other.CompareTag("Statue"))
         {
-            //??
+            statued = true;
         }
 
         if (weightOnMe < weightRequirment)
         {
             if (twoPressurePlateSystem)
             {
-                if (!otherPressurePlate.triggered)
+                if (!otherPressurePlate.triggered && !statued)
                     for (int i = 0; i < triggeredObjects.Length; i++)
                         triggeredObjects[i].Toggle(false);
             }
@@ -84,11 +84,10 @@ public class PressurePlate2 : MonoBehaviour
         else if (weightOnMe >= weightRequirment)
         {
             for (int i = 0; i < triggeredObjects.Length; i++)
-            {
                 triggeredObjects[i].Toggle(true);
-            }
             triggered = true;
         }
+
 
     }
 
@@ -112,11 +111,11 @@ public class PressurePlate2 : MonoBehaviour
         }
         else if (other.CompareTag("Statue"))
         {
-            weightOnMe -= 10;
+            statued = false;
         }
 
 
-        if (weightOnMe < weightRequirment)
+        if (weightOnMe < weightRequirment && !statued)
         {
             if (twoPressurePlateSystem)
             {

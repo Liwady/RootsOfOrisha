@@ -83,57 +83,44 @@ public class CharacterScript : MonoBehaviour
     }
     public void GrabObject()
     {
-        if (detectedObject != null)
+        //if  holding item -> drop
+        //set bool false, unparent object, grabbed object null
+        if (isHoldingGrabbable)
         {
-            //if  holding item -> drop
-            //set bool false, unparent object, grabbed object null
-            if (isHoldingGrabbable)
+            isHoldingGrabbable = false;
+            grabbedObject.transform.parent = null;
+            grabbedObject.GetComponent<Rigidbody>().isKinematic = false;
+            grabbedObject = null;
+            detectedObject = null;
+        }
+        else if (detectedObject != null)
+        {
+            isHoldingGrabbable = true;
+            grabbedObject = detectedObject;
+            grabbedObject.transform.parent = gameObject.GetComponentInChildren<Transform>();
+            grabbedObject.GetComponent<Rigidbody>().isKinematic = true;
+            if (detectedObject.CompareTag("Statue"))
             {
-                isHoldingGrabbable = false;
-                grabbedObject.transform.parent = null;
-                grabbedObject.GetComponent<Rigidbody>().isKinematic = false;
-                grabbedObject = null;
-                detectedObject = null;
+
+                grabbedObject.transform.position = new Vector3(grabPoint.transform.position.x, grabPoint.transform.position.y, grabbedObject.transform.position.z);
             }
             //if  holding nothing -> grab
             //set bool to true, parent object to player, grabbed object to object 
-            else
+            float minDistance = 2.5f;
+            if (gameObject == playerManager.character1)
             {
-                float minDistance = 2.5f;
-                if (gameObject == playerManager.character1)
+
+                if (detectedObject.CompareTag("Boat") && isOnWater)
                 {
-                    if (detectedObject.CompareTag("Statue"))
+                    if (grabbedObject.transform.position.x - transform.position.x < 0 && grabbedObject.transform.position.x - transform.position.x > -minDistance)
                     {
-                        isHoldingGrabbable = true;
-                        grabbedObject = detectedObject;
-                        grabbedObject.transform.parent = gameObject.GetComponentInChildren<Transform>();
-                        grabbedObject.GetComponent<Rigidbody>().isKinematic = true;
-                        grabbedObject.transform.position = new Vector3(grabPoint.transform.position.x, grabPoint.transform.position.y, grabbedObject.transform.position.z);
+                        //left side
+                        grabbedObject.transform.position = new Vector3(grabbedObject.transform.position.x - 0.8f, grabbedObject.transform.position.y, grabbedObject.transform.position.z);
                     }
-                    else if (detectedObject.CompareTag("Boat") && isOnWater)
+                    if (grabbedObject.transform.position.x - transform.position.x > 0 && grabbedObject.transform.position.x - transform.position.x < minDistance) //right side
                     {
-                        isHoldingGrabbable = true;
-                        grabbedObject = detectedObject;
-                        grabbedObject.transform.parent = gameObject.GetComponentInChildren<Transform>();
-                        grabbedObject.GetComponent<Rigidbody>().isKinematic = true;
-                        if (grabbedObject.transform.position.x - transform.position.x < 0 && grabbedObject.transform.position.x - transform.position.x > -minDistance)
-                        {
-                            //left side
-                            grabbedObject.transform.position = new Vector3(grabbedObject.transform.position.x - 0.8f, grabbedObject.transform.position.y, grabbedObject.transform.position.z);
-                        }
-                        if (grabbedObject.transform.position.x - transform.position.x > 0 && grabbedObject.transform.position.x - transform.position.x < minDistance) //right side
-                        {
-                            grabbedObject.transform.position = new Vector3(grabbedObject.transform.position.x + 0.4f, grabbedObject.transform.position.y, grabbedObject.transform.position.z);
-                        }
+                        grabbedObject.transform.position = new Vector3(grabbedObject.transform.position.x + 0.4f, grabbedObject.transform.position.y, grabbedObject.transform.position.z);
                     }
-                }
-                else
-                {
-                    isHoldingGrabbable = true;
-                    grabbedObject = detectedObject;
-                    grabbedObject.transform.parent = gameObject.GetComponentInChildren<Transform>();
-                    grabbedObject.GetComponent<Rigidbody>().isKinematic = true;
-                    grabbedObject.transform.position = new Vector3(grabPoint.transform.position.x, grabPoint.transform.position.y, grabbedObject.transform.position.z);
                 }
             }
         }

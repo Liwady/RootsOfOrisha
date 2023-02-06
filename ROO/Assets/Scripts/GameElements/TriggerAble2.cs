@@ -63,6 +63,7 @@ public class TriggerAble2 : MonoBehaviour
 
     private void ModeSwitch() //depending on which mode the TriggerAble is executes the corresponding code
     {
+        float _movementSpeed = movementSpeed * Time.deltaTime;
         switch (mode)
         {
             case Mode.up:
@@ -71,13 +72,13 @@ public class TriggerAble2 : MonoBehaviour
                     if (deathZone != null)
                         deathZone.SetActive(false);
                     if (transform.localPosition.y < originalPosLocal.y + maxXchangeValue)
-                        transform.Translate(new Vector3(0, movementSpeed, 0));
+                        transform.Translate(new Vector3(0, _movementSpeed, 0));
                 }
                 else if (transform.localPosition.y > originalPosLocal.y)
                 {
                     if (deathZone != null)
                         deathZone.SetActive(true);
-                    transform.Translate(new Vector3(0, -movementSpeed, 0));
+                    transform.Translate(new Vector3(0, -_movementSpeed, 0));
                 }
                 break;
             case Mode.down:
@@ -86,13 +87,13 @@ public class TriggerAble2 : MonoBehaviour
                     if (deathZone != null)
                         deathZone.SetActive(true);
                     if (transform.localPosition.y > originalPosLocal.y - maxXchangeValue)
-                        transform.Translate(new Vector3(0, -movementSpeed, 0));
+                        transform.Translate(new Vector3(0, -_movementSpeed, 0));
                 }
                 else if (transform.localPosition.y < originalPosLocal.y)
                 {
                     if (deathZone != null)
                         deathZone.SetActive(false);
-                    transform.Translate(new Vector3(0, movementSpeed, 0));
+                    transform.Translate(new Vector3(0, _movementSpeed, 0));
                 }
                 break;
             case Mode.weight:
@@ -112,37 +113,37 @@ public class TriggerAble2 : MonoBehaviour
                 {
                     if (transform.localPosition.y > originalPosLocal.y - maxXchangeValue)
                     {
-                        transform.Translate(new Vector3(0, -movementSpeed, 0));
+                        transform.Translate(new Vector3(0, -_movementSpeed, 0));
                         if (transform.localPosition.y < originalPosLocal.y - maxXchangeValue) // catch going over the limit
                             transform.localPosition = new Vector3(transform.localPosition.x, originalPosLocal.y - maxXchangeValue, transform.localPosition.z);
                         
                     }
                     else if (transform.localPosition.y < originalPosLocal.y - maxXchangeValue)
-                        transform.Translate(new Vector3(0, movementSpeed, 0));
+                        transform.Translate(new Vector3(0, _movementSpeed, 0));
                 }
                 else if (maxXchangeValue < 0) // if maxchange is negative it means it needs to go up
                 {
 
                     if (transform.localPosition.y < originalPosLocal.y - maxXchangeValue)
                     {
-                        transform.Translate(new Vector3(0, movementSpeed, 0));
+                        transform.Translate(new Vector3(0, _movementSpeed, 0));
                         if (transform.localPosition.y > originalPosLocal.y - maxXchangeValue) // catch going over the limit
                             transform.localPosition = new Vector3(transform.localPosition.x, originalPosLocal.y - maxXchangeValue, transform.localPosition.z);
                     }
                     else if (transform.localPosition.y > originalPosLocal.y - maxXchangeValue)
-                        transform.Translate(new Vector3(0, -movementSpeed, 0));
+                        transform.Translate(new Vector3(0, -_movementSpeed, 0));
                 }
                 else if (maxXchangeValue == 0)
                 {
                     if (transform.localPosition.y > originalPosLocal.y)
                     {
-                        transform.Translate(new Vector3(0, -movementSpeed, 0));
+                        transform.Translate(new Vector3(0, -_movementSpeed, 0));
                         if (transform.localPosition.y < originalPosLocal.y) //catch going over the origanl position
                             transform.localPosition = originalPosLocal;
                     }
                     else if (transform.localPosition.y < originalPosLocal.y)
                     {
-                        transform.Translate(new Vector3(0, movementSpeed, 0));
+                        transform.Translate(new Vector3(0, _movementSpeed, 0));
                         if (transform.localPosition.y > originalPosLocal.y) //catch going over the origanl position
                             transform.localPosition = originalPosLocal;
                     }

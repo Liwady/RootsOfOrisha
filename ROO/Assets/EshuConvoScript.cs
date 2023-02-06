@@ -4,7 +4,7 @@ using UnityEngine;
 public class EshuConvoScript : MonoBehaviour
 {
     private GameManager gameManager;
-    public bool clicked, isActive;
+    public bool clicked, isActive, playSound;
     [SerializeField]
     private int text;
     [SerializeField]
@@ -15,6 +15,7 @@ public class EshuConvoScript : MonoBehaviour
     void Start()
     {
         clicked = false;
+        playSound = true;
         text = 2;
         gameManager = FindObjectOfType<GameManager>();
     }
@@ -24,9 +25,13 @@ public class EshuConvoScript : MonoBehaviour
         {
             if (AnimatorIsPlaying(boxAnimator, "staticBox"))
             {
+                if (text == 2 && playSound)
+                {
+                    gameManager.PlaySound("eshulaugh");
+                    playSound = false;
+                }
                 textAnimator.SetTrigger("Start");
                 buttonAnimator.SetTrigger("start");
-                gameManager.PlaySound("eshulaugh");
             }
 
             if (AnimatorIsPlaying(textAnimator, "end"))
@@ -46,7 +51,7 @@ public class EshuConvoScript : MonoBehaviour
                 {
                     clicked = false;
                     text++;
-                    if(text == 11)
+                    if (text == 11)
                         gameManager.PlaySound("eshulaugh");
                     NextText();
                 }

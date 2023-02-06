@@ -71,6 +71,7 @@ public class AudioManager : MonoBehaviour
                 swapAS.Play();
                 break;
             case "eshulaugh":
+                Debug.Log("c");
                 if (!eshuLaughAS.isPlaying)
                 {
                     eshuLaughAS.clip = eshuLaughClips[Random.Range(0, eshuLaughClips.Length)];

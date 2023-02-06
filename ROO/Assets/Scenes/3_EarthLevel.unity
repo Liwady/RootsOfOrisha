@@ -982,7 +982,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mode: 2
   maxXchangeValue: 0
-  movementSpeed: 0.0013
+  movementSpeed: 1
   deathZone: {fileID: 0}
   wheelUp: {fileID: 1952686682}
   wheelDown: {fileID: 1433764491}
@@ -1005,6 +1005,8 @@ MonoBehaviour:
   - {fileID: 80544901}
   weightRequirment: 1
   weightOnMe: 0
+  twoPressurePlateSystem: 0
+  otherPressurePlate: {fileID: 0}
 --- !u!1 &85953269
 GameObject:
   m_ObjectHideFlags: 0
@@ -3777,6 +3779,8 @@ MonoBehaviour:
   - {fileID: 2038953460}
   weightRequirment: 1
   weightOnMe: 0
+  twoPressurePlateSystem: 0
+  otherPressurePlate: {fileID: 0}
 --- !u!1 &425182078
 GameObject:
   m_ObjectHideFlags: 0
@@ -5968,6 +5972,8 @@ MonoBehaviour:
   - {fileID: 765159695}
   weightRequirment: 1
   weightOnMe: 0
+  twoPressurePlateSystem: 0
+  otherPressurePlate: {fileID: 0}
 --- !u!114 &765159695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5982,7 +5988,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mode: 2
   maxXchangeValue: 0
-  movementSpeed: 0.001
+  movementSpeed: 1
   deathZone: {fileID: 0}
   wheelUp: {fileID: 1571786307}
   wheelDown: {fileID: 1571786307}
@@ -6697,7 +6703,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mode: 2
   maxXchangeValue: 0
-  movementSpeed: 0.0013
+  movementSpeed: 1
   deathZone: {fileID: 0}
   wheelUp: {fileID: 1952686682}
   wheelDown: {fileID: 1433764491}
@@ -6720,6 +6726,8 @@ MonoBehaviour:
   - {fileID: 871985152}
   weightRequirment: 1
   weightOnMe: 0
+  twoPressurePlateSystem: 0
+  otherPressurePlate: {fileID: 0}
 --- !u!1 &874981701
 GameObject:
   m_ObjectHideFlags: 0
@@ -7050,6 +7058,8 @@ MonoBehaviour:
   - {fileID: 887005666}
   weightRequirment: 1
   weightOnMe: 0
+  twoPressurePlateSystem: 0
+  otherPressurePlate: {fileID: 0}
 --- !u!114 &887005666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7064,7 +7074,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mode: 2
   maxXchangeValue: 0
-  movementSpeed: 0.001
+  movementSpeed: 1
   deathZone: {fileID: 0}
   wheelUp: {fileID: 1571786307}
   wheelDown: {fileID: 1571786307}
@@ -7318,7 +7328,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mode: 2
   maxXchangeValue: 0
-  movementSpeed: 0.0013
+  movementSpeed: 1
   deathZone: {fileID: 0}
   wheelUp: {fileID: 1952686682}
   wheelDown: {fileID: 1433764491}
@@ -7341,6 +7351,8 @@ MonoBehaviour:
   - {fileID: 972523325}
   weightRequirment: 1
   weightOnMe: 0
+  twoPressurePlateSystem: 0
+  otherPressurePlate: {fileID: 0}
 --- !u!1 &987371600
 GameObject:
   m_ObjectHideFlags: 0
@@ -9066,7 +9078,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mode: 0
   maxXchangeValue: 10
-  movementSpeed: 0.002
+  movementSpeed: 1
   deathZone: {fileID: 1359563190}
   wheelUp: {fileID: 0}
   wheelDown: {fileID: 0}
@@ -9621,7 +9633,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mode: 2
   maxXchangeValue: 0
-  movementSpeed: 0.0013
+  movementSpeed: 1
   deathZone: {fileID: 0}
   wheelUp: {fileID: 1952686682}
   wheelDown: {fileID: 1433764491}
@@ -9644,6 +9656,8 @@ MonoBehaviour:
   - {fileID: 1172086136}
   weightRequirment: 1
   weightOnMe: 0
+  twoPressurePlateSystem: 0
+  otherPressurePlate: {fileID: 0}
 --- !u!1 &1173408566
 GameObject:
   m_ObjectHideFlags: 0
@@ -11429,7 +11443,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mode: 0
   maxXchangeValue: 3
-  movementSpeed: 0.001
+  movementSpeed: 1
   deathZone: {fileID: 1220313871}
   wheelUp: {fileID: 0}
   wheelDown: {fileID: 0}
@@ -12347,7 +12361,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mode: 1
   maxXchangeValue: 3
-  movementSpeed: 0.001
+  movementSpeed: 1
   deathZone: {fileID: 0}
   wheelUp: {fileID: 0}
   wheelDown: {fileID: 0}
@@ -15965,7 +15979,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mode: 1
   maxXchangeValue: 0.1
-  movementSpeed: 0.02
+  movementSpeed: 0.5
   deathZone: {fileID: 0}
   wheelUp: {fileID: 0}
   wheelDown: {fileID: 0}
@@ -17234,7 +17248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mode: 1
   maxXchangeValue: 10
-  movementSpeed: 0.002
+  movementSpeed: 1
   deathZone: {fileID: 0}
   wheelUp: {fileID: 0}
   wheelDown: {fileID: 0}
@@ -23377,6 +23391,7 @@ MonoBehaviour:
   valueS: {x: 0, y: 0}
   startGame: 0
   movedSlider: 0
+  cutscene: 0
 --- !u!1 &8409428053183256818
 GameObject:
   m_ObjectHideFlags: 0

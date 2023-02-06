@@ -150,6 +150,8 @@ MonoBehaviour:
   - {fileID: 9075011975073847335}
   weightRequirment: 4
   weightOnMe: 0
+  twoPressurePlateSystem: 0
+  otherPressurePlate: {fileID: 0}
 --- !u!1 &3089218139971118655
 GameObject:
   m_ObjectHideFlags: 0
@@ -309,10 +311,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mode: 1
   maxXchangeValue: 0.15
-  movementSpeed: 0.01
+  movementSpeed: 0.5
   deathZone: {fileID: 0}
-  wheel: {fileID: 0}
+  wheelUp: {fileID: 0}
+  wheelDown: {fileID: 0}
   firstPackage: 0
+  weightManager: {fileID: 0}
+  characterScriptsOnMe: []
 --- !u!1 &6461795648647085385
 GameObject:
   m_ObjectHideFlags: 0
