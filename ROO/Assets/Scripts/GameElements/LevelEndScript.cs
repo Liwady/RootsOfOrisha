@@ -1,14 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelEndScript : MonoBehaviour
 {
     private GameObject Lplayer;
     [SerializeField]
-    private SceneManagment sceneManagment;
+    private GameManager gameManager;
     [SerializeField]
-    private GameObject loadingscreen,overlay;
+    private GameObject loadingscreen, overlay;
     public bool eshu;
 
     private void OnTriggerEnter(Collider other)
@@ -17,15 +15,22 @@ public class LevelEndScript : MonoBehaviour
         {
             if (Lplayer != other.gameObject && Lplayer != null)
             {
-                Lplayer=null;
+                Lplayer = null;
                 overlay.SetActive(false);
                 if (loadingscreen != null)
                     loadingscreen.SetActive(true);
-                sceneManagment.GoNextScene(eshu);
-            }            
+                SetCompletedLevel();
+                gameManager.GoToEshu();
+            }
             else
                 Lplayer = other.gameObject;
 
         }
+    }
+    private void SetCompletedLevel()
+    {
+        if (LevelTracker.level < LevelTracker.completedLevel.Length)
+            LevelTracker.completedLevel[LevelTracker.level] = true;
+
     }
 }

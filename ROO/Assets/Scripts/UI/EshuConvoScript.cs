@@ -16,6 +16,7 @@ public class EshuConvoScript : MonoBehaviour
     {
         clicked = false;
         playSound = true;
+        isActive = false;
         text = 2;
         gameManager = FindObjectOfType<GameManager>();
     }
@@ -40,7 +41,7 @@ public class EshuConvoScript : MonoBehaviour
             if (AnimatorIsPlaying(boxAnimator, "end"))
             {
                 fireani.SetTrigger("start");
-                gameManager.EndTutorial();
+                gameManager.EndCutscene();
                 isActive = false;
                 Destroy(gameObject);
                 Destroy(this);

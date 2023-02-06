@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static Cinemachine.DocumentationSortingAttribute;
 
 public class SceneManagment : MonoBehaviour
 {
@@ -45,7 +46,8 @@ public class SceneManagment : MonoBehaviour
         movedSlider = false;
         time = 0;
         lastScene = LevelTracker.level; //last scene that is not eshu
-        currentScene = SceneManager.GetActiveScene().buildIndex;
+        LevelTracker.level = SceneManager.GetActiveScene().buildIndex;
+        currentScene= LevelTracker.level;   
     }
     private void Start()
     {
@@ -62,8 +64,6 @@ public class SceneManagment : MonoBehaviour
 
     public void PlayScene(int sceneNumber)
     {
-        if (SceneManager.GetActiveScene().buildIndex != 6)
-            LevelTracker.level = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(sceneNumber);
     }
     public void Quit()
@@ -106,6 +106,12 @@ public class SceneManagment : MonoBehaviour
             currentButtonObject = eventSystem.currentSelectedGameObject;
             currentButton = currentButtonObject.GetComponent<Button>();
         }
+    }
+    public void SetCurrentButton(GameObject button)
+    {
+        eventSystem.SetSelectedGameObject(button);
+        currentButtonObject = eventSystem.currentSelectedGameObject;
+        currentButton = currentButtonObject.GetComponent<Button>();
     }
 
     //NAVIGATION
@@ -382,24 +388,5 @@ public class SceneManagment : MonoBehaviour
 
         exp.postExposure.value = value;
     }
-    public void GoNextScene(bool eshu)
-    {
-        if (!eshu)
-            switch (LevelTracker.level)
-            {
-                case 1: //tutorial
-                    PlayScene(2);
-                    break;
-                case 2://FireLevel
-                    PlayScene(3);
-                    break;
-                case 3://EarthLevel
-                    PlayScene(4);
-                    break;
-            }
-        else
-            PlayScene(5);//go to Eshu
-    }
-
 
 }

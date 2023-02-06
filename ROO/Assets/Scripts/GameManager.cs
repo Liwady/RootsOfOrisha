@@ -31,29 +31,6 @@ public class GameManager : MonoBehaviour
         if (currentScene == 1 && !isPaused)
             animationManager.StartFireAnimation(playerManager.currentCharacter.transform.position, distance2Ani);
     }
-    public void StartCutscene()
-    {
-        playerManager.EnablePlayerControls(true);
-        cutscene.SetActive(true);
-        eshuConvo.isActive = true;
-    }
-    public void StartMap(bool _value)
-    {
-        if(_value)
-        {
-            playerManager.EnableEshuControls(false);
-            map.SetActive(true);
-        }
-        else
-        {
-            playerManager.EnableEshuControls(true);
-            map.SetActive(false);
-        }
-    }
-    public void GoNextSceneEshu()
-    {
-        sceneManagment.GoNextScene(false);
-    }
     private void SetCurrentScene()
     {
         currentScene = sceneManagment.currentScene;
@@ -76,13 +53,36 @@ public class GameManager : MonoBehaviour
         else if (currentScene == 2 || currentScene == 3)
             playerManager.EnablePlayerControls(false);
     }
-    public void SetWalking(bool isWalking)
+    public void StartMap(bool _start)
     {
-        animationManager.WalkingState(isWalking,playerManager.moveBoth, playerManager.currentCharacter == playerManager.character1script);
+        if (_start)
+        {
+            playerManager.EnableEshuControls(true);
+            map.SetActive(true);
+        }
+        else
+        {
+            playerManager.EnableEshuControls(false);
+            map.SetActive(false);
+        }
     }
-    public void EndTutorial()
+
+    public void StartCutscene()
     {
-        playerManager.EnablePlayerControls(isPaused);
+        playerManager.EnablePlayerControls(true);
+        cutscene.SetActive(true);
+        eshuConvo.isActive = true;
+
+    }
+    public void EndCutscene()
+    {
+        playerManager.EnablePlayerControls(false);
+        cutscene.SetActive(false);
+        sceneManagment.cutscene = false;
+    }
+    public void GoToEshu()
+    {
+        sceneManagment.PlayScene(5);
     }
     public void Pause()
     {
@@ -115,6 +115,10 @@ public class GameManager : MonoBehaviour
         playerManager.SetTutorialControls(0);
     }
     //set values so the sprite manager can use them and we can keep the info in the game manager. 
+    public void SetWalking(bool isWalking)
+    {
+        animationManager.WalkingState(isWalking, playerManager.moveBoth, playerManager.currentCharacter == playerManager.character1script);
+    }
     public void UpdateEye(bool col)
     {
         eyeColl = col;
