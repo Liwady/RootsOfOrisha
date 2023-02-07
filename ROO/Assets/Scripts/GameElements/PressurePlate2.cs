@@ -71,15 +71,15 @@ public class PressurePlate2 : MonoBehaviour
             statued = true;
         }
 
-        if (weightOnMe < weightRequirment)
+        if (weightOnMe < weightRequirment && !!statued)
         {
             if (twoPressurePlateSystem)
             {
-                if (!otherPressurePlate.triggered && !statued)
+                if (!otherPressurePlate.triggered )
                     for (int i = 0; i < triggeredObjects.Length; i++)
                         triggeredObjects[i].Toggle(false);
             }
-            else
+            else if()
             {
                 for (int i = 0; i < triggeredObjects.Length; i++)
                     triggeredObjects[i].Toggle(false);
