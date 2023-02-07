@@ -17,7 +17,7 @@ public class InteractibleScript : MonoBehaviour
     private void Awake()
     {
         gameManager = FindObjectOfType<GameManager>();
-        sceneManager=gameManager.sceneManagment;
+        sceneManager = gameManager.sceneManagment;
         cutscenePlayed = false;
     }
     private void Update()
@@ -41,36 +41,31 @@ public class InteractibleScript : MonoBehaviour
     public void MapScene()
     {
         gameManager.StartMap(true);
-        /*if (LevelTracker.level == 0)
+        if (LevelTracker.level != 0)
+        {
+            for (int i = 0; i < 3; i++) // 1 i tut 2 shan 3 is oshu 0=tut 1=shan 2=osu
+            {
+                if (LevelTracker.completedLevel[i])
+                {
+                    activeElements[i].SetActive(true);
+                    activeElements[i].GetComponentInParent<Button>().interactable = false;
+                }
+                else
+                    sceneManager.SetCurrentButton(activeElements[i].GetComponentInParent<Button>().gameObject);
+            }
+        }
+        else
         {
             activeElements[0].SetActive(true);
             TriggerAnimation(0);
             LevelTracker.level = 1;
+            
         }
-        else
-        {*/
-        LevelTracker.completedLevel = new bool[6];
-        for (int i = 0; i < LevelTracker.completedLevel.Length; i++)
-            LevelTracker.completedLevel[i] = false;
-        LevelTracker.level = 1;
-        LevelTracker.completedLevel[0] = true;
-        LevelTracker.completedLevel[1] = true;
-        for (int i = 0; i < 3; i++) // 1 i tut 2 shan 3 is oshu 0=tut 1=shan 2=osu
-        {
-            if (LevelTracker.completedLevel[i])
-            {
-                activeElements[i].SetActive(true);
-                activeElements[i].GetComponentInParent<Button>().interactable = false;
-            }
-            else
-                sceneManager.SetCurrentButton(activeElements[i].GetComponentInParent<Button>().gameObject);
-        }
-        //}
     }
 
     public void TriggerAnimation(int _button)
     {
-        activeElements[_button+1].SetActive(true);
+        activeElements[_button + 1].SetActive(true);
         animators[_button].SetTrigger("start");
         button = _button;
         cutscenePlayed = true;

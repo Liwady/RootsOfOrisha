@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     public EshuConvoScript eshuConvo;
 
 
-    public GameObject pauseMenu, overlay, cutscene,map;
+    public GameObject pauseMenu, overlay, cutscene, map;
     public CanvasGroup cg;
     public bool isPaused, tutorial;
     private float previousTimeScale;
@@ -57,7 +57,8 @@ public class GameManager : MonoBehaviour
     {
         if (_start)
         {
-            playerManager.EnableEshuControls(true);
+            if (currentScene != 0)
+                playerManager.EnableEshuControls(true);
             map.SetActive(true);
         }
         else
@@ -132,12 +133,12 @@ public class GameManager : MonoBehaviour
     // option 0 = switch ability, option 1 = switch character, option 2 = trigger ability
     public void UpdateMechanics(int option, bool reset)
     {
-        if(overlay.activeInHierarchy)
+        if (overlay.activeInHierarchy)
             animationManager.ChangeMechanicsSprite(option, playerManager.currentAbility == 0, reset);
     }
     public void UpdateConnection()
     {
-        animationManager.SwapConnectionSprite(playerManager.currentCharacter==playerManager.character1script,playerManager.moveBoth);
+        animationManager.SwapConnectionSprite(playerManager.currentCharacter == playerManager.character1script, playerManager.moveBoth);
     }
     public void TutorialTriggers(int stage)
     {
