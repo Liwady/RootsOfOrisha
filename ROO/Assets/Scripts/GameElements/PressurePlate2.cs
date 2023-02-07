@@ -79,6 +79,11 @@ public class PressurePlate2 : MonoBehaviour
                     for (int i = 0; i < triggeredObjects.Length; i++)
                         triggeredObjects[i].Toggle(false);
             }
+            else
+            {
+                for (int i = 0; i < triggeredObjects.Length; i++)
+                    triggeredObjects[i].Toggle(false);
+            }
             triggered = false;
         }
         else if (weightOnMe >= weightRequirment)
