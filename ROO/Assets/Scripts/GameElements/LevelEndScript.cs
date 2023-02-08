@@ -29,8 +29,8 @@ public class LevelEndScript : MonoBehaviour
     }
     private void SetCompletedLevel()
     {
+        
         if (LevelTracker.level < LevelTracker.completedLevel.Length)
             LevelTracker.completedLevel[LevelTracker.level] = true;
-
     }
 }

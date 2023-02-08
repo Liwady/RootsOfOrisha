@@ -484,7 +484,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mode: 1
   maxXchangeValue: 0.15
-  movementSpeed: 0.002
+  movementSpeed: 1
   deathZone: {fileID: 0}
   wheelUp: {fileID: 0}
   wheelDown: {fileID: 0}
@@ -50327,6 +50327,10 @@ PrefabInstance:
       propertyPath: overlay
       value: 
       objectReference: {fileID: 8409428052897978671}
+    - target: {fileID: 81609603709544600, guid: 7822c70e7217d3744a09e7b6f4d97249, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1166486978}
     - target: {fileID: 81609603709544600, guid: 7822c70e7217d3744a09e7b6f4d97249, type: 3}
       propertyPath: loadingscreen
       value: 

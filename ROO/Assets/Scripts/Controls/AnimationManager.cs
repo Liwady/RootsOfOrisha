@@ -83,6 +83,7 @@ public class AnimationManager : MonoBehaviour
     }
     public void ChangeFruitSprite(int fruitCollected)
     {
+        Debug.Log("test");
         fruitImage.SetInteger("score", fruitCollected);
     }
     public void ChangeEyeSprite(bool eyeCollected)
