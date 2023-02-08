@@ -43,7 +43,6 @@ public class PressurePlate2 : MonoBehaviour
             statued = true;
         if (weightOnMe >= weightRequirment || statued)
         {
-            Debug.Log("triggered");
             for (int i = 0; i < triggeredObjects.Length; i++)
                 triggeredObjects[i].Toggle(true);
             triggered = true;
