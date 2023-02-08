@@ -40,12 +40,10 @@ public class PressurePlate2 : MonoBehaviour
                 triggeredObjects[i].characterScriptsOnMe = characterScripts;
         }
         else if (other.CompareTag("Statue"))
-        {
             statued = true;
-        }
-
         if (weightOnMe >= weightRequirment || statued)
         {
+            Debug.Log("triggered");
             for (int i = 0; i < triggeredObjects.Length; i++)
                 triggeredObjects[i].Toggle(true);
             triggered = true;
@@ -67,11 +65,9 @@ public class PressurePlate2 : MonoBehaviour
             }
         }
         else if (other.CompareTag("Statue"))
-        {
             statued = true;
-        }
-
-        if (weightOnMe < weightRequirment && !!statued)
+        
+        if (weightOnMe < weightRequirment && !statued)
         {
             if (twoPressurePlateSystem)
             {
@@ -80,10 +76,8 @@ public class PressurePlate2 : MonoBehaviour
                         triggeredObjects[i].Toggle(false);
             }
             else 
-            {
                 for (int i = 0; i < triggeredObjects.Length; i++)
                     triggeredObjects[i].Toggle(false);
-            }
             triggered = false;
         }
         else if (weightOnMe >= weightRequirment)
@@ -115,13 +109,12 @@ public class PressurePlate2 : MonoBehaviour
                 triggeredObjects[i].characterScriptsOnMe = characterScripts;
         }
         else if (other.CompareTag("Statue"))
-        {
             statued = false;
-        }
 
 
         if (weightOnMe < weightRequirment && !statued)
         {
+
             if (twoPressurePlateSystem)
             {
                 if (!otherPressurePlate.triggered)
@@ -135,8 +128,6 @@ public class PressurePlate2 : MonoBehaviour
         }
 
         if (characterScripts.Count == 0)
-        {
             weightOnMe = 0;
-        }
     }
 }
