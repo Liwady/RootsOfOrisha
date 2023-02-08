@@ -79,7 +79,7 @@ public class PressurePlate2 : MonoBehaviour
                     for (int i = 0; i < triggeredObjects.Length; i++)
                         triggeredObjects[i].Toggle(false);
             }
-            else if()
+            else 
             {
                 for (int i = 0; i < triggeredObjects.Length; i++)
                     triggeredObjects[i].Toggle(false);
