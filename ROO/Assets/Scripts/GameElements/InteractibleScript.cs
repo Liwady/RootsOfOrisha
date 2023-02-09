@@ -43,15 +43,15 @@ public class InteractibleScript : MonoBehaviour
         gameManager.StartMap(true);
         if (LevelTracker.level != 0)
         {
-            for (int i = 0; i < 3; i++) // 1 i tut 2 shan 3 is oshu 0=tut 1=shan 2=osu
+            for (int i = 1; i < 3; i++) // level 0=intro 1=tutorial 2=shan 3=osh =>img/ani 0=tut 1=shan 2=osu
             {
                 if (LevelTracker.completedLevel[i])
                 {
-                    activeElements[i].SetActive(true);
-                    activeElements[i].GetComponentInParent<Button>().interactable = false;
+                    activeElements[i-1].SetActive(true);
+                    activeElements[i-1].GetComponentInParent<Button>().interactable = false;
                 }
                 else
-                    sceneManager.SetCurrentButton(activeElements[i].GetComponentInParent<Button>().gameObject);
+                    sceneManager.SetCurrentButton(activeElements[i - 1].GetComponentInParent<Button>().gameObject);
             }
         }
         else
@@ -59,13 +59,12 @@ public class InteractibleScript : MonoBehaviour
             activeElements[0].SetActive(true);
             TriggerAnimation(0);
             LevelTracker.level = 1;
-            
         }
     }
 
     public void TriggerAnimation(int _button)
     {
-        activeElements[_button + 1].SetActive(true);
+        activeElements[_button].SetActive(true);
         animators[_button].SetTrigger("start");
         button = _button;
         cutscenePlayed = true;

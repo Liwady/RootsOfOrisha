@@ -9,32 +9,26 @@ public class CollectibleScript : MonoBehaviour
     }
     [SerializeField]
     private FruitEye typeEF;
-    private PlayerManager playerManager;
     private GameManager gameManager;
 
     private void Awake()
     {
-        playerManager = FindObjectOfType<PlayerManager>();
         gameManager = FindObjectOfType<GameManager>();
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("1") || other.gameObject.CompareTag("2"))
+        if (other.CompareTag("1") || other.CompareTag("2"))
         {
-            if (playerManager.currentCharacter.isHoldingCollectible == false)
+            if (typeEF == FruitEye.eye)
+                gameManager.UpdateEye(true);
+            else if (typeEF == FruitEye.fruit)
             {
-                if (typeEF == FruitEye.eye)
-                    gameManager.UpdateEye(true);
-                else if (typeEF == FruitEye.fruit)
-                {
-                    gameManager.amountOfFruit++;
-                    gameManager.UpdateFruit(gameManager.amountOfFruit);
-                }
-
-                gameManager.PlaySound("collect");
-                Destroy(gameObject);
-                Destroy(this);
+                gameManager.amountOfFruit++;
+                gameManager.UpdateFruit(gameManager.amountOfFruit);
             }
+            gameManager.PlaySound("collect");
+            Destroy(gameObject);
+            Destroy(this);
         }
     }
 }
