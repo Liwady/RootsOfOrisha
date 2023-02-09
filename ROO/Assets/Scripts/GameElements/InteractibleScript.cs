@@ -58,7 +58,6 @@ public class InteractibleScript : MonoBehaviour
         {
             activeElements[0].SetActive(true);
             TriggerAnimation(0);
-            LevelTracker.level = 1;
         }
     }
 

@@ -45,8 +45,9 @@ public class SceneManagment : MonoBehaviour
         movedSlider = false;
         time = 0;
         lastScene = LevelTracker.level; //last scene that is not eshu
-        LevelTracker.level = SceneManager.GetActiveScene().buildIndex;
-        currentScene= LevelTracker.level;   
+        if (SceneManager.GetActiveScene().buildIndex != 5) // 
+            LevelTracker.level = SceneManager.GetActiveScene().buildIndex;
+        currentScene = SceneManager.GetActiveScene().buildIndex;
     }
     private void Start()
     {
