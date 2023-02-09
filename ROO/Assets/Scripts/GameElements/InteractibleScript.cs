@@ -43,6 +43,8 @@ public class InteractibleScript : MonoBehaviour
         gameManager.StartMap(true);
         if (LevelTracker.level != 0)
         {
+            activeElements[0].SetActive(true);
+            activeElements[0].GetComponentInParent<Button>().interactable = false;
             for (int i = 1; i < 3; i++) // level 0=intro 1=tutorial 2=shan 3=osh =>img/ani 0=tut 1=shan 2=osu
             {
                 if (LevelTracker.completedLevel[i+1])
