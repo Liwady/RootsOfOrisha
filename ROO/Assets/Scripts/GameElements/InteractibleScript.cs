@@ -47,11 +47,11 @@ public class InteractibleScript : MonoBehaviour
             {
                 if (LevelTracker.completedLevel[i])
                 {
-                    activeElements[i-1].SetActive(true);
-                    activeElements[i-1].GetComponentInParent<Button>().interactable = false;
+                    activeElements[i].SetActive(true);
+                    activeElements[i].GetComponentInParent<Button>().interactable = false;
                 }
                 else
-                    sceneManager.SetCurrentButton(activeElements[i - 1].GetComponentInParent<Button>().gameObject);
+                    sceneManager.SetCurrentButton(activeElements[i].GetComponentInParent<Button>().gameObject);
             }
         }
         else
