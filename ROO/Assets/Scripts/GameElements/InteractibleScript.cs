@@ -61,6 +61,8 @@ public class InteractibleScript : MonoBehaviour
             activeElements[0].SetActive(true);
             TriggerAnimation(0);
         }
+        if (LevelTracker.completedLevel[1] && LevelTracker.completedLevel[2] && LevelTracker.completedLevel[3])
+            gameManager.EndGame();
     }
 
     public void TriggerAnimation(int _button) // play the animations for the map and keep button for end condition

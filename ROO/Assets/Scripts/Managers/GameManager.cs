@@ -67,7 +67,10 @@ public class GameManager : MonoBehaviour
             map.SetActive(false);
         }
     }
-
+    public void EndGame()
+    {
+        sceneManagment.PlayScene(4);
+    }
     public void StartCutscene()
     {
         playerManager.EnablePlayerControls(true);
