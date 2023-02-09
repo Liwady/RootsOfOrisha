@@ -17,36 +17,19 @@ public class CollectibleScript : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("1") || other.CompareTag("2"))
+        if (other.CompareTag("1") || other.CompareTag("2")) //if triggered by the character
         {
-            if (typeEF == FruitEye.eye)
-                gameManager.UpdateEye(true);
-            else if (typeEF == FruitEye.fruit)
+            if (typeEF == FruitEye.eye) // if u are an eye 
+                gameManager.UpdateEye(true); //set eye collected
+            else if (typeEF == FruitEye.fruit) //if u are a fruit
             {
-                gameManager.amountOfFruit++;
-                gameManager.UpdateFruit(gameManager.amountOfFruit);
+                gameManager.amountOfFruit++;//fruitcount +1
+                gameManager.UpdateFruit(gameManager.amountOfFruit);//give the fruitcount to the game manager 
             }
-            gameManager.PlaySound("collect");
+            gameManager.PlaySound("collect"); //make collect sound 
             Destroy(gameObject);
             Destroy(this);
         }
     }
 }
 
-
-/* 
- * //&& playerManager.currentCharacter.typeEF == FruitEye.fruit  
- * //&& playerManager.currentCharacter.typeEF == FruitEye.eye  
- * else if (typeEF == FruitEye.eye)//&& playerManager.currentCharacter.typeEF == FruitEye.fruit
-                {
-                    //change sprite to holding eye
-                    Debug.Log("tt");
-                    playerManager.currentCharacter.isHoldingCollectible = true;
-                }
-                else if (typeEF == FruitEye.fruit && playerManager.currentCharacter.typeEF == FruitEye.eye)
-                {
-                    //change sprite to holding fruit
-                    Debug.Log("ff");
-                    playerManager.currentCharacter.isHoldingCollectible = true;
-                }
- */
