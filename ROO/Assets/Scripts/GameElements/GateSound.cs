@@ -4,29 +4,49 @@ using UnityEngine;
 
 public class GateSound : MonoBehaviour
 {
+    // Reference to the GameManager component
     private GameManager gameManager;
-    private Vector3 orignalPos;
+
+    // Store the original position of the gate
+    private Vector3 originalPos;
+
+    // A flag to keep track of whether the gate has been triggered
     private bool triggered;
+
     void Awake()
     {
+        // Get a reference to the GameManager component
         gameManager = FindObjectOfType<GameManager>();
-        orignalPos = transform.position;
+
+        // Store the original position of the gate
+        originalPos = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (transform.position != orignalPos)
+        // If the position of the gate has changed
+        if (transform.position != originalPos)
         {
+            // Play the gate sound
             gameManager.PlaySound("gate");
-            orignalPos = transform.position;
+
+            // Update the original position of the gate
+            originalPos = transform.position;
+
+            // Set the triggered flag to true
             triggered = true;
         }
-        else if (transform.position == orignalPos)
+        // If the position of the gate has not changed
+        else if (transform.position == originalPos)
         {
+            // If the gate has been triggered previously
             if (triggered)
             {
+                // Stop playing the gate sound
                 gameManager.StopSound("gate");
+
+                // Set the triggered flag to false
                 triggered = false;
             }
         }
