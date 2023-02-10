@@ -1325,6 +1325,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   duration: 2
   spriteRenderer: {fileID: 125027032}
+  statue: 0
 --- !u!65 &125027035
 BoxCollider:
   m_ObjectHideFlags: 0
