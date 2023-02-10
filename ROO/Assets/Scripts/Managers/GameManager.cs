@@ -30,7 +30,13 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         if (currentScene == 1 || SceneManager.GetActiveScene().buildIndex == 5 && !isPaused)
-            animationManager.StartFireAnimation(playerManager.currentCharacter.transform.position, distance2Ani);
+        {
+            if(playerManager.character1script.left)
+                animationManager.StartFireAnimation(playerManager.character2script.transform.position, distance2Ani);
+            else
+                animationManager.StartFireAnimation(playerManager.character1script.transform.position, distance2Ani);
+        }
+            
     }
 
     private void SetCurrentScene()

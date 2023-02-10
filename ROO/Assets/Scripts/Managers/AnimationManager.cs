@@ -14,6 +14,8 @@ public class AnimationManager : MonoBehaviour
     private Image connectionImage;
     [SerializeField]
     private Animator lightAnimator, skillAnimator, zoudooAnimator, koubooAnimator;
+    [SerializeField]
+    private SpriteRenderer eye,statueHint;
     public int lightCount;
     [SerializeField]
     private bool zoudoo;
@@ -22,41 +24,46 @@ public class AnimationManager : MonoBehaviour
     {
         lightCount = 0;
     }
+
+    //animate the ui in the tutorial
     public void TutorialFeedbackTrigger(int stage)
     {
         switch (stage)
         {
-            case 1://enable move together // show grab button 
-                break;
-            case 2://enable trigger ability // show trigger button 
+            case 2:
                 skillAnimator.SetBool("CanResize", true);
                 break;
-            case 3://enable switch ability => show switch button 
+            case 3:
                 skillAnimator.SetBool("CanFloat", true);
-                break;
-            case 4://enable grab => show grab button
                 break;
             default:
                 break;
         }
     }
+
+    //change the mechanics ui
     public void ChangeMechanicsSprite(int switchOption, bool sizeAbility, bool reset)
     {
         switch (switchOption)
         {
-            case 0://switch ability
-                if (sizeAbility)//size
+            //switch ability
+            case 0:
+                //size
+                if (sizeAbility)
                 {
                     skillAnimator.ResetTrigger("SwitchToSize");
                     skillAnimator.SetTrigger("SwitchToFloat");
                 }
-                else //float
+                //float
+                else
                 {
                     skillAnimator.ResetTrigger("SwitchToFloat");
                     skillAnimator.SetTrigger("SwitchToSize");
                 }
                 break;
-            case 1://switch character
+
+            //switch character
+            case 1:
                 if (zoudoo)
                 {
                     skillAnimator.SetBool("isZoudoo", false);
@@ -68,7 +75,9 @@ public class AnimationManager : MonoBehaviour
                     zoudoo = true;
                 }
                 break;
-            case 2://trigger ability
+
+            //trigger ability
+            case 2:
                 if (sizeAbility)
                 {
                     skillAnimator.SetBool("SizeActive", true);
@@ -85,19 +94,23 @@ public class AnimationManager : MonoBehaviour
         }
 
     }
+
+    //change the fruit ui
     public void ChangeFruitSprite(int fruitCollected)
     {
-        Debug.Log("test");
         fruitImage.SetInteger("score", fruitCollected);
     }
+
+    //change the eye ui
     public void ChangeEyeSprite(bool eyeCollected)
     {
         if (eyeCollected)
             eyeImage.SetTrigger("EyeAni");
         else
             eyeImage.ResetTrigger("EyeAni");
-
     }
+
+    //start the fire animation 
     public void StartFireAnimation(Vector3 position, int distance)
     {
         if (lightCount < lights.Count)
@@ -110,19 +123,26 @@ public class AnimationManager : MonoBehaviour
             }
         }
     }
+
+    //change the connection ui
     public void SwapConnectionSprite(bool zoudoo, bool together)
     {
         if (together)
+        {
+            eye.enabled = true;
             connectionImage.sprite = connection[0];
-        else if (zoudoo)
-            connectionImage.sprite = connection[1];
-        else 
-            connectionImage.sprite = connection[2];
+        }
+        else
+        {
+            eye.enabled = false;
+            if (zoudoo)
+                connectionImage.sprite = connection[1];
+            else
+                connectionImage.sprite = connection[2];
+        }
     }
-    public void ShowHelpStatue(bool _show)
-    {
-        Debug.Log("show help statue");
-    }
+
+ 
     public void WalkingState(bool isWalking, bool together, bool zoudoo)
     {
         if (together)

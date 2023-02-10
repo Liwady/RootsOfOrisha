@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -8,7 +9,7 @@ public class InteractibleScript : MonoBehaviour
     private GameManager gameManager;
     private SceneManagment sceneManager;
     [SerializeField]
-    private bool map, cutscenePlayed, clicked, introNext;
+    private bool map, cutscenePlayed, clicked, introNext,buttonSet;
     [SerializeField]
     private GameObject[] activeElements;
     [SerializeField]
@@ -19,6 +20,7 @@ public class InteractibleScript : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
         sceneManager = gameManager.sceneManagment;
         cutscenePlayed = false;
+        buttonSet = false;  
     }
     private void Update()
     {
@@ -52,8 +54,12 @@ public class InteractibleScript : MonoBehaviour
                     activeElements[i].SetActive(true);
                     activeElements[i].GetComponentInParent<Button>().interactable = false;
                 }
-                else
+                else if (!buttonSet)
+                {
                     sceneManager.SetCurrentButton(activeElements[i].GetComponentInParent<Button>().gameObject); // else set current button to be the not played level
+                    buttonSet = true;
+                }
+                    
             }
         }
         else //if tutorial
