@@ -32,10 +32,7 @@ public class GameManager : MonoBehaviour
         if (currentScene == 1 || SceneManager.GetActiveScene().buildIndex == 5 && !isPaused)
             animationManager.StartFireAnimation(playerManager.currentCharacter.transform.position, distance2Ani);
     }
-    public void ResetChar()
-    {
-        playerManager.ResetChar();
-    }
+
     private void SetCurrentScene()
     {
         currentScene = sceneManagment.currentScene;
