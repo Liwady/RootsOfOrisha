@@ -79,6 +79,8 @@ public class PlayerManager : MonoBehaviour
     //call the character(s) to move
     private void Move()
     {
+        //check which side you are
+        SetLeftRight();
         currentCharacter.Move(movement.x);
         gameManager.PlaySound("walk" + currentCharacter.tag);
         if (moveBoth)
@@ -150,9 +152,6 @@ public class PlayerManager : MonoBehaviour
     {
         if (r)
         {
-            //check which side you are
-            SetLeftRight();
-
             //sizing ability active
             if (sizeAbilityActive)
             {

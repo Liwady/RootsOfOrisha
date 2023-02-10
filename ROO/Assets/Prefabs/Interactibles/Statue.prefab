@@ -61,6 +61,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   duration: 0.5
   spriteRenderer: {fileID: 4055260566344801884}
+  statue: 1
 --- !u!1 &571510400180345301
 GameObject:
   m_ObjectHideFlags: 0

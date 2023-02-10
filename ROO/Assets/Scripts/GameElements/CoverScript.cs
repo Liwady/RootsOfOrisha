@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections.Generic;
 
 public class CoverScript : MonoBehaviour
 {
@@ -10,11 +9,18 @@ public class CoverScript : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private bool change;
     private bool vanishing;
+    public bool statue;
     private int numPlayers;
+    private void Awake()
+    {
+        if (statue)
+            vanishing = false;
+    }
     private void Update()
     {
         if (change)
             ChangeColor(vanishing);
+
     }
     private void ChangeColor(bool st)
     {
@@ -25,7 +31,7 @@ public class CoverScript : MonoBehaviour
 
         if (time < 1)
             time += Time.deltaTime / duration;
-        else 
+        else
         {
             change = false;
             time = 0;
@@ -39,7 +45,10 @@ public class CoverScript : MonoBehaviour
             if (numPlayers == 0)
             {
                 change = true;
-                vanishing = true;
+                if (!statue)
+                    vanishing = true;
+                else
+                    vanishing = false;
             }
             numPlayers++;
         }
@@ -53,7 +62,10 @@ public class CoverScript : MonoBehaviour
             if (numPlayers == 0)
             {
                 change = true;
-                vanishing = false;
+                if (!statue)
+                    vanishing = false;
+                else
+                    vanishing = true;
             }
         }
     }

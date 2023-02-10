@@ -9316,7 +9316,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 636819782}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.2, z: -1}
+  m_LocalPosition: {x: 0, y: 2.5, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10058,7 +10058,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2e8501a90fa1d24b9936ddce5289aba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance2Ani: 16
+  distance2Ani: 15
   ability: 0
   character: 0
   together: 0
@@ -22621,6 +22621,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 669565443}
     m_Modifications:
+    - target: {fileID: 1981663171642167331, guid: f726679434ed7394794339d09b4af05c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4055260566344801884, guid: f726679434ed7394794339d09b4af05c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4128645109148520898, guid: f726679434ed7394794339d09b4af05c, type: 3}
       propertyPath: m_Name
       value: Statue
@@ -29639,7 +29647,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1947682177}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.2, z: -1}
+  m_LocalPosition: {x: 0, y: 2.5, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -43647,7 +43655,7 @@ MonoBehaviour:
   myRender: {fileID: 1319675763806228523}
   interactibleObject: {fileID: 0}
   rb: {fileID: 6645460019789656864}
-  left: 0
+  left: 1
   canMove: 0
   usedAbility: 0
   usedSizeAbility: 0
