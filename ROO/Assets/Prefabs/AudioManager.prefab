@@ -425,7 +425,7 @@ AudioSource:
   m_GameObject: {fileID: 5754722358167769038}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -8507219614860599741, guid: e26898ccd7be1d249b0136ddf3cf34a1, type: 2}
   m_audioClip: {fileID: 8300000, guid: 12c6eea866ec2834ebf3094a522cfecd, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -578,6 +578,7 @@ MonoBehaviour:
   flameAS: {fileID: 5740152287835546542}
   lavaAS: {fileID: 7833787800262518058}
   swapAS: {fileID: 3635971468033687990}
+  eshuLaughAS: {fileID: 0}
   walkingClipsCharacter1:
   - {fileID: 8300000, guid: 439a6a78cc13fcf45b77bdcc76266037, type: 3}
   - {fileID: 8300000, guid: 0ca949b464c785e4d8ba819c2d983910, type: 3}
@@ -601,6 +602,7 @@ MonoBehaviour:
   lavaClips:
   - {fileID: 8300000, guid: 16683d684cca4e04eb72cbbbf1dd70ab, type: 3}
   - {fileID: 8300000, guid: 2d2f9bab04ac62945b14142e78aa8ab6, type: 3}
+  eshuLaughClips: []
   wheelAS:
   - {fileID: 0}
   - {fileID: 0}
@@ -1158,7 +1160,7 @@ AudioSource:
   m_GameObject: {fileID: 8721136137537452067}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: e26898ccd7be1d249b0136ddf3cf34a1, type: 2}
+  OutputAudioMixerGroup: {fileID: -5313036245053899377, guid: e26898ccd7be1d249b0136ddf3cf34a1, type: 2}
   m_audioClip: {fileID: 8300000, guid: 2d2f9bab04ac62945b14142e78aa8ab6, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1

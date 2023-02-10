@@ -1871,7 +1871,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 253136132}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 328.67786, y: 5.516399, z: -8}
+  m_LocalPosition: {x: 322.59802, y: 5.519229, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3345,6 +3345,8 @@ MonoBehaviour:
   left: 0
   canMove: 0
   usedAbility: 0
+  usedSizeAbility: 0
+  usedFloatAbility: 0
   canResize: 1
   canWalkOnWater: 0
   isHoldingCollectible: 0
@@ -6437,6 +6439,8 @@ MonoBehaviour:
   left: 0
   canMove: 0
   usedAbility: 0
+  usedSizeAbility: 0
+  usedFloatAbility: 0
   canResize: 0
   canWalkOnWater: 0
   isHoldingCollectible: 0
@@ -9217,7 +9221,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1207275651}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 327.07, y: 2.630005, z: 0}
+  m_LocalPosition: {x: 320.99, y: 2.630005, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -9249,16 +9253,17 @@ MonoBehaviour:
   currentAbility: 0
   currentLevel: 0
   depth: 0
+  moveBoth: 0
+  cutscenePlaying: 0
   character1script: {fileID: 861242842}
   character2script: {fileID: 481972977}
   otherCharacter: {fileID: 0}
   zoubooCam: {fileID: 1971879661}
   koobouCam: {fileID: 1982345492}
   respawnPoint: {fileID: 0}
-  abilityActive: 0
+  floatAbilityActive: 0
+  sizeAbilityActive: 0
   hasReachedMax: 0
-  moveBoth: 0
-  cutscenePlaying: 0
 --- !u!1 &1209338244
 GameObject:
   m_ObjectHideFlags: 0
@@ -11451,7 +11456,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1417139278
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11470,7 +11475,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 1632, y: -378}
-  m_SizeDelta: {x: 2595, y: 1486}
+  m_SizeDelta: {x: 2764, y: 1180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1417139279
 MonoBehaviour:
@@ -11492,7 +11497,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 631a8040f5a46d84eb774c1edf524e81, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fa18835441a7873439b9a90da6e7aade, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

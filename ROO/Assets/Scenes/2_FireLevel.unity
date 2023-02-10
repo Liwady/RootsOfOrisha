@@ -48949,7 +48949,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1980108015}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 89.71, y: 11.7, z: -9.977416}
+  m_LocalPosition: {x: 62.394638, y: 7.5272655, z: -9.977416}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -75696,16 +75696,17 @@ MonoBehaviour:
   currentAbility: 0
   currentLevel: 1
   depth: 0
+  moveBoth: 0
+  cutscenePlaying: 0
   character1script: {fileID: 0}
   character2script: {fileID: 0}
   otherCharacter: {fileID: 0}
   zoubooCam: {fileID: 2293957087893550428}
   koobouCam: {fileID: 1003644354}
   respawnPoint: {fileID: 2145037399}
-  abilityActive: 0
+  floatAbilityActive: 0
+  sizeAbilityActive: 0
   hasReachedMax: 0
-  moveBoth: 0
-  cutscenePlaying: 0
 --- !u!1 &338359883523546854
 GameObject:
   m_ObjectHideFlags: 0
@@ -100346,6 +100347,8 @@ MonoBehaviour:
   left: 0
   canMove: 0
   usedAbility: 0
+  usedSizeAbility: 0
+  usedFloatAbility: 0
   canResize: 1
   canWalkOnWater: 0
   isHoldingCollectible: 0
@@ -100866,6 +100869,8 @@ MonoBehaviour:
   left: 0
   canMove: 0
   usedAbility: 0
+  usedSizeAbility: 0
+  usedFloatAbility: 0
   canResize: 0
   canWalkOnWater: 0
   isHoldingCollectible: 0
@@ -102989,7 +102994,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 1632, y: -378}
-  m_SizeDelta: {x: 2595, y: 1486}
+  m_SizeDelta: {x: 2764, y: 1180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8409428052327811095
 MonoBehaviour:
@@ -103011,7 +103016,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 631a8040f5a46d84eb774c1edf524e81, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fa18835441a7873439b9a90da6e7aade, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

@@ -6,7 +6,7 @@ public class CharacterScript : MonoBehaviour
     private PlayerManager playerManager;
     public GameObject checker, floatCheck, grabbedObject, detectedObject, grabPoint, grabPointBoat, EyePoint, myRender, interactibleObject;
     public Rigidbody rb;
-    public bool left, canMove, usedAbility, canResize, canWalkOnWater, isHoldingCollectible, isHoldingGrabbable, isGrounded, isOnWater, hitWhileFloating, moving;
+    public bool left, canMove, usedAbility, usedSizeAbility,usedFloatAbility, canResize, canWalkOnWater, isHoldingCollectible, isHoldingGrabbable, isGrounded, isOnWater, hitWhileFloating, moving;
     public float movementSpeed, lastDir, grabPointPosLeft = 1.9f, grabPointPosRight = -1.9f;
     public int size, weight;
     public LeverScript inRangeLever;
@@ -15,6 +15,8 @@ public class CharacterScript : MonoBehaviour
 
     void Awake()
     {
+        usedSizeAbility = false;
+        usedFloatAbility = false;
         usedAbility = false;
         canWalkOnWater = false;
         isHoldingCollectible = false;
