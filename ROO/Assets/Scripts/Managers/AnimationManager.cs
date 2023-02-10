@@ -14,10 +14,14 @@ public class AnimationManager : MonoBehaviour
     private Image connectionImage;
     [SerializeField]
     private Animator lightAnimator, skillAnimator, zoudooAnimator, koubooAnimator;
-    private int lightCount;
+    public int lightCount;
     [SerializeField]
     private bool zoudoo;
 
+    private void Start()
+    {
+        lightCount = 0;
+    }
     public void TutorialFeedbackTrigger(int stage)
     {
         switch (stage)

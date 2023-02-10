@@ -19,6 +19,7 @@ public class LevelEndScript : MonoBehaviour
                 overlay.SetActive(false);
                 if (loadingscreen != null)
                     loadingscreen.SetActive(true);
+                gameManager.ResetChar();
                 SetCompletedLevel();
                 gameManager.GoToEshu();
             }

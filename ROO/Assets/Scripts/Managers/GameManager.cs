@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -28,16 +29,18 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        if (currentScene == 1 && !isPaused)
+        if (currentScene == 1 || SceneManager.GetActiveScene().buildIndex == 5 && !isPaused)
             animationManager.StartFireAnimation(playerManager.currentCharacter.transform.position, distance2Ani);
+    }
+    public void ResetChar()
+    {
+        playerManager.ResetChar();
     }
     private void SetCurrentScene()
     {
         currentScene = sceneManagment.currentScene;
         lastScene = sceneManagment.lastScene;
         if (currentScene == 1)
-            tutorial = true;
-        if (tutorial)
         {
             //disable all controls besides walking
             Time.timeScale = 0;
@@ -48,10 +51,16 @@ public class GameManager : MonoBehaviour
             playerManager.EnablePlayerControls(isPaused);
             TutorialTriggers(0);
         }
-        else if (currentScene == 5 && sceneManagment.lastScene == 1)
-            StartCutscene();
+        else if (currentScene == 5)
+        {
+            if (sceneManagment.lastScene == 1)
+                StartCutscene();
+            else
+                playerManager.EnableEshuControls(false);
+        }
         else if (currentScene == 2 || currentScene == 3)
             playerManager.EnablePlayerControls(false);
+
     }
     public void StartMap(bool _start)
     {

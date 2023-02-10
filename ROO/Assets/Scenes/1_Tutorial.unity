@@ -1795,10 +1795,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2566225337595703450, guid: ca15622b8f049ac4c967ecf13dcf925d, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2566225337595703455, guid: ca15622b8f049ac4c967ecf13dcf925d, type: 3}
       propertyPath: m_Name
       value: RespawnPoint
@@ -36082,7 +36078,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mode: 1
-  maxXchangeValue: 5
+  maxXchangeValue: 4
   movementSpeed: 0.5
   deathZone: {fileID: 958946130}
   wheelUp: {fileID: 0}
