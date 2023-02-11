@@ -5,12 +5,6 @@ public class GroundCheck : MonoBehaviour
     [SerializeField]
     private CharacterScript myChar;
 
-    // Use this for initialization
-    private void Start()
-    {
-        // Initialize myChar to the component of type CharacterScript attached to the same game object as this script component.
-        myChar = GetComponent<CharacterScript>();
-    }
 
     // This function is called whenever a collider enters the trigger area of the collider attached to the same game object as this script component.
     private void OnTriggerEnter(Collider other)
