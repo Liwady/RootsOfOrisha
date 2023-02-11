@@ -25616,7 +25616,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 0.5
-  newBlendTime: 4
+  newBlendTime: 8
   scene: 2
   triggered: 0
   newBlendAsigned: 0
@@ -40342,7 +40342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a2ca9dba596f154b9b59c1016c1507c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 5.5
+  timer: 8.5
   newBlendTime: 2
   scene: 0
   triggered: 0
@@ -40359,7 +40359,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1666952096}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.18, y: 6.37, z: 0.02258357}
+  m_LocalPosition: {x: 4.5, y: 4.2, z: 0.02258357}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -49661,7 +49661,7 @@ MonoBehaviour:
   m_BlendUpdateMethod: 0
   m_DefaultBlend:
     m_Style: 1
-    m_Time: 15
+    m_Time: 8
     m_CustomCurve:
       serializedVersion: 2
       m_Curve: []
