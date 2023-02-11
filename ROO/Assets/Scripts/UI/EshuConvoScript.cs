@@ -32,7 +32,8 @@ public class EshuConvoScript : MonoBehaviour
                     playSound = false;
                 }
                 textAnimator.SetTrigger("Start"); //start the text animations
-                buttonAnimator.SetTrigger("start"); //start the button animations
+                if (buttonAnimator != null)
+                    buttonAnimator.SetTrigger("start"); //start the button animations
             }
 
             if (AnimatorIsPlaying(textAnimator, "end")) //once the text ani ends start the box end animation
@@ -40,10 +41,10 @@ public class EshuConvoScript : MonoBehaviour
 
             if (AnimatorIsPlaying(boxAnimator, "end")) //if the box animator is in end state
             {
-                fireani.SetTrigger("start"); //sstart fires of the level
+                fireani.SetTrigger("Start"); //sstart fires of the level
                 gameManager.EndCutscene(); //call the game manager to end the cutscene
                 isActive = false; //cutscene not active
-                Destroy(gameObject); 
+                Destroy(gameObject);
                 Destroy(this);
             }
             if (AnimatorIsPlaying(textAnimator, states[text])) // if in static state (waiting for the button) 

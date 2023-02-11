@@ -85,7 +85,6 @@ public class AudioManager : MonoBehaviour
                 break;
             //If the input string is "eshulaugh", play a random "eshuLaugh" sound effect from the list
             case "eshulaugh":
-                Debug.Log("c");
                 if (!eshuLaughAS.isPlaying)
                 {
                     eshuLaughAS.clip = eshuLaughClips[Random.Range(0, eshuLaughClips.Length)];

@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
         currentScene = sceneManagment.currentScene;
         lastScene = sceneManagment.lastScene;
 
-        //If the current scene is the starting screen
+        //If the current scene is the tutorial
         if (currentScene == 1)
         {
             //Disable all controls besides walking
@@ -67,15 +67,14 @@ public class GameManager : MonoBehaviour
             sceneManagment.startGame = true;
             sceneManagment.GoToStartScreen(true);
             isPaused = true;
-            playerManager.EnablePlayerControls(isPaused);
-
+            playerManager.EnableEshuControls(true); //enable UI controls 
             //Trigger tutorial sequence
             TutorialTriggers(0);
         }
         //If the current scene is the level selection screen
         else if (currentScene == 5)
         {
-            //If the last scene was the starting screen, start the cutscene
+            //If the last scene was the tutorial screen, start the cutscene
             if (sceneManagment.lastScene == 1)
                 StartCutscene();
             else
@@ -85,6 +84,7 @@ public class GameManager : MonoBehaviour
         else if (currentScene == 2 || currentScene == 3)
             playerManager.EnablePlayerControls(false);
     }
+
 
     //Display the world map and enable Eshu's controls
     public void StartMap(bool _start)
@@ -111,7 +111,7 @@ public class GameManager : MonoBehaviour
     // Start the cutscene by enabling player controls and activating the cutscene object and Eshu's conversation script
     public void StartCutscene()
     {
-        playerManager.EnablePlayerControls(true);
+        playerManager.EnableEshuControls(true);
         cutscene.SetActive(true);
         eshuConvo.isActive = true;
     }
@@ -119,7 +119,7 @@ public class GameManager : MonoBehaviour
     // End the cutscene by disabling player controls and deactivating the cutscene object
     public void EndCutscene()
     {
-        playerManager.EnablePlayerControls(false);
+        playerManager.EnableEshuControls(false);
         cutscene.SetActive(false);
         sceneManagment.cutscene = false;
     }
@@ -133,20 +133,21 @@ public class GameManager : MonoBehaviour
     // Pause the game by setting timescale to 0 and displaying the pause menu
     public void Pause()
     {
-        if (Time.timeScale > 0)
-        {
-            previousTimeScale = Time.timeScale;
-            Time.timeScale = 0;
-            cg.alpha = 0;
-            sceneManagment.GoToPauseScreen();
-            isPaused = true;
-        }
-        else if (Time.timeScale == 0)
+        if (Time.timeScale == 0)
         {
             Time.timeScale = previousTimeScale;
             pauseMenu.SetActive(false);
             cg.alpha = 1;
             isPaused = false;
+        }
+        else if (Time.timeScale > 0)
+        {
+            previousTimeScale = Time.timeScale;
+            Time.timeScale = 0;
+            if (cg != null)
+                cg.alpha = 0;
+            sceneManagment.GoToPauseScreen();
+            isPaused = true;
         }
         playerManager.EnablePlayerControls(isPaused);
     }
@@ -160,7 +161,6 @@ public class GameManager : MonoBehaviour
         cg.alpha = 1;
         isPaused = false;
         playerManager.EnablePlayerControls(isPaused);
-        playerManager.SetTutorialControls(0);
     }
 
     // Set the walking animation and sprite based on movement
@@ -186,8 +186,11 @@ public class GameManager : MonoBehaviour
     // Update the ability or character mechanics sprite based on the player's selection
     public void UpdateMechanics(int option, bool reset)
     {
-        if (overlay.activeInHierarchy)
-            animationManager.ChangeMechanicsSprite(option, playerManager.currentAbility == 0, reset);
+        if (overlay != null)
+        {
+            if (overlay.activeInHierarchy)
+                animationManager.ChangeMechanicsSprite(option, playerManager.currentAbility == 0, reset);
+        }
     }
 
     // Update the connection sprite based on the character and movement status
@@ -199,7 +202,7 @@ public class GameManager : MonoBehaviour
     // Set tutorial triggers and provide feedback based on the current stage
     public void TutorialTriggers(int stage)
     {
-        playerManager.SetTutorialControls(stage);
+        playerManager.SetTutorialControls(stage, false);
         animationManager.TutorialFeedbackTrigger(stage);
     }
 

@@ -10090,8 +10090,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1e83a9bdf1ef9647b44362ff24299fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  overlay: {fileID: 4214644485866637962}
-  overlayTimer: 15
+  overlay: {fileID: 4214644485866637964}
+  overlayTimer: 8
 --- !u!1 &676067915
 GameObject:
   m_ObjectHideFlags: 0
@@ -39385,6 +39385,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4214644485866637963}
+  - component: {fileID: 4214644485866637964}
   m_Layer: 0
   m_Name: Overlay
   m_TagString: Untagged
@@ -39414,6 +39415,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &4214644485866637964
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4214644485866637962}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &4214644485883640239
 GameObject:
   m_ObjectHideFlags: 0

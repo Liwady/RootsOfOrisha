@@ -26007,7 +26007,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1e83a9bdf1ef9647b44362ff24299fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  overlay: {fileID: 8409428052897978671}
+  overlay: {fileID: 8409428052897978672}
   overlayTimer: 8.7
 --- !u!1 &1166784577
 GameObject:
@@ -105079,6 +105079,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8409428052897978656}
+  - component: {fileID: 8409428052897978672}
   m_Layer: 0
   m_Name: Overlay
   m_TagString: Untagged
@@ -105086,6 +105087,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!225 &8409428052897978672
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8409428052897978671}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!224 &8409428052913437640
 RectTransform:
   m_ObjectHideFlags: 0

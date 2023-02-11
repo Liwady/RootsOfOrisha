@@ -735,7 +735,17 @@ public class PlayerManager : MonoBehaviour
     }
 
     //playercontrols for tutorial only 
-    public void SetTutorialControls(int stage)
+    public void SetTutorialControls(int stage,bool paused)
+    {
+        if (paused)
+        {
+            for (int i = 0; i <= stage; i++)        
+                SetStage(i);
+        }
+        else
+            SetStage(stage);
+    }
+    private void SetStage(int stage)
     {
         switch (stage)
         {

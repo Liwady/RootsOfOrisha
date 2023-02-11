@@ -5,14 +5,14 @@ using UnityEngine;
 public class overlayDelay : MonoBehaviour
 {
     [SerializeField]
-    private GameObject overlay;
+    private CanvasGroup overlay;
     [SerializeField]
     private float overlayTimer;
     private bool triggered;
     // Start is called before the first frame update
     void Start()
     {
-        overlay.SetActive(false);
+        overlay.alpha = 0;
     }
 
     // Update is called once per frame
@@ -22,7 +22,7 @@ public class overlayDelay : MonoBehaviour
         {
             if (overlayTimer < 0)
             {
-                overlay.SetActive(true);
+                overlay.alpha = 1;
                 triggered = true;
             }
             else
