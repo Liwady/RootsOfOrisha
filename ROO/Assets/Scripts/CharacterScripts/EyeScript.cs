@@ -12,9 +12,9 @@ public class EyeScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //middle of the two characters
+        // Calculate the midpoint between zoudoo and kouboo
         transform.position = Vector3.Lerp(kouboo.position, zoudoo.position, 0.5f);
-        //y+4.5 so its above the characters
+        // Set the position of the eye object to be 4.5 units above the midpoint
         transform.position= new Vector3(transform.position.x,transform.position.y+4.5f,transform.position.z);  
     }
 }
