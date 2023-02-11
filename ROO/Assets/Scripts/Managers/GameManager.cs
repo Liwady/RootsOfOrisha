@@ -133,7 +133,7 @@ public class GameManager : MonoBehaviour
     // Pause the game by setting timescale to 0 and displaying the pause menu
     public void Pause()
     {
-        if (currentScene == 0)
+        if (currentScene == 1)
         {
             if (Time.timeScale == 0)
             {
