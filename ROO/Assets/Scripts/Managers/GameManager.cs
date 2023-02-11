@@ -133,23 +133,26 @@ public class GameManager : MonoBehaviour
     // Pause the game by setting timescale to 0 and displaying the pause menu
     public void Pause()
     {
-        if (Time.timeScale == 0)
+        if (currentScene == 0)
         {
-            Time.timeScale = previousTimeScale;
-            pauseMenu.SetActive(false);
-            cg.alpha = 1;
-            isPaused = false;
+            if (Time.timeScale == 0)
+            {
+                Time.timeScale = previousTimeScale;
+                pauseMenu.SetActive(false);
+                cg.alpha = 1;
+                isPaused = false;
+            }
+            else if (Time.timeScale > 0)
+            {
+                previousTimeScale = Time.timeScale;
+                Time.timeScale = 0;
+                if (cg != null)
+                    cg.alpha = 0;
+                sceneManagment.GoToPauseScreen();
+                isPaused = true;
+            }
+            playerManager.EnablePlayerControls(isPaused);
         }
-        else if (Time.timeScale > 0)
-        {
-            previousTimeScale = Time.timeScale;
-            Time.timeScale = 0;
-            if (cg != null)
-                cg.alpha = 0;
-            sceneManagment.GoToPauseScreen();
-            isPaused = true;
-        }
-        playerManager.EnablePlayerControls(isPaused);
     }
 
     // Start the game by setting timescale to 1 and hiding the pause menu
